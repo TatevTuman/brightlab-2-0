@@ -13,20 +13,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`
-      }
-    },
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -48,8 +34,30 @@ module.exports = {
         ]
       }
     },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        includePaths: [`${__dirname}/src/assets/styles`],
+        useResolveUrlLoader: {
+          options: {
+            sourceMap: true
+          }
+        },
+        // Override the file regex for SASS
+        // sassRuleTest: /\.global\.s(a|c)ss$/,
+        // Override the file regex for CSS modules
+        // sassRuleModulesTest: /\.mod\.s(a|c)ss$/
+      }
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/assets/images`,
+        name: `images`
+      }
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

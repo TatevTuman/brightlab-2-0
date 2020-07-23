@@ -13,7 +13,10 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@components": ["src/components/index.ts"] // also check gatsby-node.js onCreateWebpackConfig aliases
+      "@components": ["src/components/index.ts"], // also check gatsby-node.js onCreateWebpackConfig aliases
+      "@elements": ["src/elements/index.ts"],
+      "@typography": ["src/utils/typography.ts"],
+      "@hooks": ["src/hooks/index.ts"]
     }
   },
   "exclude": ["node_modules", "public", ".cache"]

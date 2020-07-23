@@ -1,13 +1,16 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
+import { Container } from '@components'
+import { Link } from '@elements'
 
-class Home extends PureComponent {
-  render() {
-    return (
-      <div>
-        <h1>Brightlab Gatsby Boilerplate</h1>
-      </div>
-    )
-  }
+const Home: React.FC = () => {
+  return (
+    <section>
+      <Container>
+        <h1>This is Brightlab Gatsby boilerplate</h1>
+        <Link to="/ui">Check UI</Link>
+      </Container>
+    </section>
+  )
 }
 
 export default Home

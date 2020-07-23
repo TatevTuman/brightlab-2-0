@@ -1,0 +1,53 @@
+html {
+  //height: 100%;
+  //display: flex;
+  //flex-direction: column;
+
+  // Colors
+  --grey: #F4F4F4;
+  --dark-grey: #99A3AF;
+  --blue: #47DEFF;
+  --light-blue: #46FFFF;
+  --dark-blue: #4B4E6D;
+  --black: #191919;
+}
+
+html, body {
+  overflow-x: hidden;
+  -webkit-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+  }
+}
+
+img,
+svg {
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  box-shadow: none;
+  background-color: transparent;
+  letter-spacing: inherit;
+  outline: none;
+}
+
+button,
+textarea,
+input,
+select,
+a,
+div {
+  -webkit-tap-highlight-color: transparent;
+}
+
+hr {
+  background: var(--grey);
+}

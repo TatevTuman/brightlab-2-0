@@ -1,0 +1,86 @@
+@mixin animation($name, $duration, $function, $delay, $repeats) {
+  -webkit-animation: $name $duration $function $delay $repeats normal;
+  -moz-animation: $name $duration $function $delay $repeats normal;
+  -ms-animation: $name $duration $function $delay $repeats normal;
+  animation: $name $duration $function $delay $repeats normal;
+}
+
+@mixin appear($y1, $y2, $name, $duration, $function, $delay, $repeats) {
+  @include animation(appear__#{$name}, $duration, $function, $delay, $repeats);
+
+  @-webkit-keyframes appear__#{$name} {
+    0%{
+      opacity: 0;
+      -webkit-transform: translateY($y1);
+      transform: translateY($y1);
+    }
+    100%{
+      opacity: 1;
+      -webkit-transform: translateY($y2);
+      transform: translateY($y2);
+    }
+  };
+
+  @keyframes appear__#{$name} {
+    0%{
+      opacity: 0;
+      transform: translateY($y1);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY($y2);
+    }
+  };
+}
+
+@mixin disappear($y1, $y2, $name, $duration, $function, $delay, $repeats) {
+  @include animation(disappear__#{$name}, $duration, $function, $delay, $repeats);
+
+  @-webkit-keyframes disappear__#{$name} {
+    0%{
+      opacity: 1;
+      -webkit-transform: translateY($y1);
+      transform: translateY($y1);
+    }
+    100%{
+      opacity: 0;
+      -webkit-transform: translateY($y2);
+      transform: translateY($y2);
+    }
+  };
+
+  @keyframes disappear__#{$name} {
+    0%{
+      opacity: 1;
+      transform: translateY($y1);
+    }
+    100%{
+      opacity: 0;
+      transform: translateY($y2);
+    }
+  };
+}
+
+@mixin slide($x1, $x2, $name, $duration, $function, $delay, $repeats) {
+  @include animation(slide__#{$name}, $duration, $function, $delay, $repeats);
+
+  @-webkit-keyframes slide__#{$name} {
+    0%{
+      -webkit-transform: translateX($x1);
+      transform: translateX($x1);
+    }
+    100%{
+      -webkit-transform: translateX($x2);
+      transform: translateX($x2);
+    }
+  };
+
+  @keyframes slide__#{$name} {
+    0%{
+      transform: translateX($x1);
+    }
+    100%{
+      transform: translateX($x2);
+    }
+  };
+}

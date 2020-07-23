@@ -28,7 +28,10 @@ exports.onCreateWebpackConfig = function ({ actions }) {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        '@components': path.resolve(__dirname, 'src/components/index.ts')
+        '@components': path.resolve(__dirname, 'src/components/index.ts'),
+        '@elements': path.resolve(__dirname, 'src/elements/index.ts'),
+        '@typography': path.resolve(__dirname, 'src/utils/typography.ts'),
+        '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
       }
     }
   })
