@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button render() 1`] = `
+<button
+  className="button button__primary-lg"
+  data-disabled={false}
+  onClick={[Function]}
+>
+  Button
+</button>
+`;

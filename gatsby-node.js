@@ -1,5 +1,5 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
@@ -14,10 +14,10 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === 'MarkdownRemark') {
     const value = createFilePath({ node, getNode })
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
       value
     })
@@ -31,7 +31,8 @@ exports.onCreateWebpackConfig = function ({ actions }) {
         '@components': path.resolve(__dirname, 'src/components/index.ts'),
         '@elements': path.resolve(__dirname, 'src/elements/index.ts'),
         '@typography': path.resolve(__dirname, 'src/utils/typography.ts'),
-        '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
+        '@hooks': path.resolve(__dirname, 'src/hooks/index.ts'),
+        '@styles/*': path.resolve(__dirname, 'src/assets/styles/*')
       }
     }
   })

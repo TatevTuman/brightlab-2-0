@@ -115,12 +115,12 @@ const Typograpgy: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link to="/ui" active>
+            <Link to="/typography" active>
               Link active
             </Link>
           </li>
           <li>
-            <Link className="underlined" to="/ui" active>
+            <Link className="underlined" to="/typography" active>
               Link active underlined
             </Link>
           </li>
@@ -136,12 +136,12 @@ const Typograpgy: React.FC = () => {
             </Link>
           </li>
           <li>
-            <Link to="/ui" active>
+            <Link to="/typography" active>
               Link active
             </Link>
           </li>
           <li>
-            <Link className="underlined" to="/ui" active>
+            <Link className="underlined" to="/typography" active>
               Link active underlined
             </Link>
           </li>
@@ -202,6 +202,7 @@ const Typograpgy: React.FC = () => {
             &lt;mark&gt; <mark>Lorem ipsum dolor sit amet</mark>
           </li>
         </ul>
+        <Link to="/">Go back</Link>
       </Container>
     </section>
   )

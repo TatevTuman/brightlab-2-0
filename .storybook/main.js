@@ -1,8 +1,15 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../stories/**/*.stories.js', '../stories/**/*.stories.tsx'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
+  stories: [
+    '../__stories__/**/*.stories.js',
+    '../__stories__/**/*.stories.tsx',
+    '../src/**/**/*.stories.tsx',
+  ],
+  addons: [
+    '@storybook/addon-actions',
+    '@storybook/addon-links'
+  ],
   webpackFinal: async config => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
     config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/]
@@ -11,7 +18,7 @@ module.exports = {
     // use @babel/preset-react for JSX and env (instead of staged presets)
     config.module.rules[0].use[0].options.presets = [
       require.resolve("@babel/preset-react"),
-      require.resolve("@babel/preset-env"),
+      require.resolve("@babel/preset-env")
     ]
     config.module.rules[0].use[0].options.plugins = [
       // use @babel/plugin-proposal-class-properties for class arrow functions
@@ -39,13 +46,14 @@ module.exports = {
       '@components': path.resolve(__dirname, '../src/components/index.ts'),
       '@elements': path.resolve(__dirname, '../src/elements/index.ts'),
       '@typography': path.resolve(__dirname, '../src/utils/typography.ts'),
-      '@hooks': path.resolve(__dirname, '../src/hooks/index.ts')
+      '@hooks': path.resolve(__dirname, '../src/hooks/index.ts'),
+      '@styles/*': path.resolve(__dirname, '../src/assets/styles/*')
     }
     // add scss handling
     config.module.rules.push({
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],
-      include: path.resolve(__dirname, '../')
+      include: [path.resolve(__dirname, '../')]
     });
     return config;
   },

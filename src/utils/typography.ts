@@ -1,10 +1,13 @@
 import Typography from 'typography'
 
+// all styles that are
+// included in import './src/assets/styles/app.scss' are allowed to use here
+
 const typography = new Typography({
   title: 'Brightlab',
-  baseFontSize: '16px',
-  baseLineHeight: 1.5,
-  scaleRatio: 5,
+  baseFontSize: '16px', // font-size
+  baseLineHeight: 1.5, // line-height
+  scaleRatio: 5, // default headings sizes <h1 style={{ fontSize: calc(16px * 5) || 5rem }}>Heading</h1>
   headerFontFamily: ['Helvetica Neue', 'sans-serif'],
   bodyFontFamily: ['Helvetica Neue', 'sans-serif'],
   headerColor: `inherit`,
@@ -19,6 +22,7 @@ const typography = new Typography({
   blockMarginBottom: 1.5, // 1 rhythm unit = baseLineHeight = 1rem
   includeNormalize: true,
   overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => {
+    // All typography styles should be here, if they are global
     const { bodyFontFamily, baseLineHeight } = options
 
     return {
@@ -50,7 +54,7 @@ const typography = new Typography({
       '.light-blue': { color: 'var(--light-blue)' }, // #46FFFF;
       '.dark-blue': { color: 'var(--dark-blue)' }, // #4B4E6D;
       '.black': { color: 'var(--black)' }, // #191919;
-      '.white': { color: '#fff' }, // #191919;
+      '.white': { color: 'var(--white)' }, // #FFFFF;
 
       'p, a, h1, h2, h3, h4, h5, h6, li': {
         transition: 'all 0.2s ease'
@@ -152,7 +156,7 @@ const typography = new Typography({
       ins: {},
       del: {},
       mark: {
-        color: '#fff',
+        color: 'var(--white)',
         backgroundColor: 'black',
         display: 'inline-block',
         padding: '0 1rem'
@@ -161,14 +165,12 @@ const typography = new Typography({
   }
 })
 
-// Output CSS as string.
-typography.toString()
-
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {
   typography.injectStyles()
 }
 
 export default typography
+// Functions to calculate sizes returns rems
 export const rhythm = typography.rhythm
 export const scale = typography.scale

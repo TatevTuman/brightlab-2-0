@@ -1,41 +1,41 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: 'Gatsby Starter Blog',
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`
+      name: 'Kyle Mathews',
+      summary: 'who lives and works in San Francisco building useful things.'
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    description: 'A starter blog demonstrating what Gatsby can do.',
+    siteUrl: 'https://gatsby-starter-blog-demo.netlify.app/',
     social: {
-      twitter: `kylemathews`
+      twitter: 'kylemathews'
     }
   },
   plugins: [
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 590
             }
           },
           {
-            resolve: `gatsby-remark-responsive-iframe`,
+            resolve: 'gatsby-remark-responsive-iframe',
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`
+              wrapperStyle: 'margin-bottom: 1.0725rem'
             }
           },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`
+          'gatsby-remark-prismjs',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-smartypants'
         ]
       }
     },
     {
-      resolve: `gatsby-plugin-sass`,
+      resolve: 'gatsby-plugin-sass',
       options: {
         includePaths: [`${__dirname}/src/assets/styles`],
         useResolveUrlLoader: {
@@ -49,17 +49,17 @@ module.exports = {
         // sassRuleModulesTest: /\.mod\.s(a|c)ss$/
       }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/assets/images`,
-        name: `images`
+        name: 'images'
       }
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       }
@@ -77,12 +77,12 @@ module.exports = {
     //     icon: `content/assets/gatsby-icon.png`
     //   }
     // },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-typescript`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-typescript',
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        pathToConfigModule: 'src/utils/typography',
         omitGoogleFont: false
       }
     }

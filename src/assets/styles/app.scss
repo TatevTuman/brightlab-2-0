@@ -10,6 +10,22 @@ html {
   --light-blue: #46FFFF;
   --dark-blue: #4B4E6D;
   --black: #191919;
+  --white: #ffffff;
+
+  // Colors example
+  --base: #191919;
+  --primary: #46FFFF;
+  --primary-light: #46FFFF;
+  --primary-dark: #4B4E6D;
+  --secondary: #82A4AB;
+  --secondary-light: #B0D8E1;
+  --secondary-dark: darken(#82A4AB, 20%);
+  --neutral: #F4F4F4;
+  --neutral-light: #ffffff;
+  --neutral-dark: #99A3AF;
+  --danger: red;
+  --info: blue;
+  --success: green;
 }
 
 html, body {
