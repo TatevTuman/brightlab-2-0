@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.10.4",
+    "@types/react": "^16.9.43",
     "@types/react-helmet": "^6.0.0",
     "@types/react-test-renderer": "^16.9.2",
     "babel-preset-react-app": "^9.1.2",
