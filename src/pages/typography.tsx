@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from '@components'
 import { Link } from '@elements'
 
-const Typograpgy: React.FC = () => {
+const Typography: React.FC = () => {
   return (
     <section>
       <Container>
@@ -208,4 +208,4 @@ const Typograpgy: React.FC = () => {
   )
 }
 
-export default Typograpgy
+export default Typography
