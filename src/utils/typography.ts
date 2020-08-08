@@ -49,10 +49,10 @@ const typography = new Typography({
       '.text-sm': { 'font-size': '0.77rem' }, // 14px mobile: 9.8px
       '.text-xs': { 'font-size': '12px' }, // I don't think this font-size should be resized
 
-      '.grey': { color: 'var(--grey)' }, // #F4F4F4;
-      '.blue': { color: 'var(--blue)' }, // #47DEFF;
-      '.light-blue': { color: 'var(--light-blue)' }, // #46FFFF;
-      '.dark-blue': { color: 'var(--dark-blue)' }, // #4B4E6D;
+      '.grey': { color: 'var(--secondary)' }, // #F4F4F4;
+      '.blue': { color: 'var(--primary)' }, // #47DEFF;
+      '.light-blue': { color: 'var(--primary-light)' }, // #46FFFF;
+      '.dark-blue': { color: 'var(--primary-dark)' }, // #4B4E6D;
       '.black': { color: 'var(--black)' }, // #191919;
       '.white': { color: 'var(--white)' }, // #FFFFF;
 
@@ -75,11 +75,11 @@ const typography = new Typography({
         textDecoration: 'none'
       },
       'a.active': {
-        color: 'var(--blue)'
+        color: 'var(--primary)'
       },
       'a:hover': {
         cursor: 'pointer',
-        color: 'var(--blue)'
+        color: 'var(--primary)'
       },
       'a.underlined:before': {
         content: 'close-quote',
@@ -90,10 +90,10 @@ const typography = new Typography({
         width: '100%'
       },
       'a.active:before': {
-        borderTop: '2px solid var(--blue)'
+        borderTop: '2px solid var(--primary)'
       },
       'a.underlined:hover:before': {
-        borderTop: '2px solid var(--blue)'
+        borderTop: '2px solid var(--primary)'
       },
 
       ul: {
@@ -101,7 +101,7 @@ const typography = new Typography({
       },
       'ul[data-selection="true"] > li:hover': {
         cursor: 'pointer',
-        color: 'var(--blue)'
+        color: 'var(--primary)'
       },
 
       ol: {
@@ -109,7 +109,7 @@ const typography = new Typography({
       },
       'ol[data-selection="true"] > li:hover': {
         cursor: 'pointer',
-        color: 'var(--blue)'
+        color: 'var(--primary)'
       },
 
       nav: {
@@ -144,12 +144,12 @@ const typography = new Typography({
 
       b: {},
       em: {
-        color: 'var(--dark-grey)'
+        color: 'var(--secondary-dark)'
       },
       i: {},
       small: {},
       strong: {
-        color: 'var(--blue)'
+        color: 'var(--primary)'
       },
       sub: {},
       sup: {},

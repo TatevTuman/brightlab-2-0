@@ -11,14 +11,14 @@ button {
   font-size: 0.75rem;
 
   &[data-disabled='true'] {
-    background-color: var(--dark-grey);
-    border: 2px solid var(--dark-grey);
+    background-color: var(--secondary-dark);
+    border: 2px solid var(--secondary-dark);
     cursor: not-allowed;
     color: var(--white);
 
     &:hover, &:active {
-      background-color: var(--dark-grey);
-      border: 2px solid var(--dark-grey);
+      background-color: var(--secondary-dark);
+      border: 2px solid var(--secondary-dark);
     }
   }
 
@@ -34,12 +34,12 @@ button {
   width: 100%;
   max-width: $width;
   color: #fff;
-  background-color: var(--blue);
-  border: 2px solid var(--blue);
+  background-color: var(--primary);
+  border: 2px solid var(--primary);
 
   &:hover {
-    background-color: var(--dark-grey);
-    border: 2px solid var(--dark-grey);
+    background-color: var(--secondary-dark);
+    border: 2px solid var(--secondary-dark);
   }
 
   &:active {
@@ -51,18 +51,18 @@ button {
 @mixin secondary_button($width) {
   width: 100%;
   max-width: $width;
-  color: var(--blue);
+  color: var(--primary);
   background-color: transparent;
-  border: 2px solid var(--blue);
+  border: 2px solid var(--primary);
 
   &:hover {
-    background-color: var(--grey);
-    border: 2px solid var(--grey);
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
   }
 
   &:active {
-    background-color: var(--grey);
-    border: 2px solid var(--grey);
+    background-color: var(--secondary);
+    border: 2px solid var(--secondary);
   }
 }
 
@@ -81,12 +81,9 @@ button {
 
 // Button sizes
 $buttons_sizes: (
-  "lg": 418px,
-  "lm": 248px,
-  "md": 214px,
-  "sm": 186px,
-  "ms": 148px,
-  "xs": 138px
+  "lg": 400px,
+  "md": 200px,
+  "sm": 100px,
 );
 
 $buttons_types_sizes: (

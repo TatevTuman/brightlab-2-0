@@ -10,7 +10,7 @@ Promise.all(
   matches.map(async match => {
     console.log('image', match)
 
-    const backupDir = 'static/assets/images/backup'
+    const backupDir = 'static/assets/backup/images'
     const stream = sharp(match)
     const info = await stream.metadata()
 

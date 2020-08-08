@@ -32,6 +32,7 @@ exports.onCreateWebpackConfig = function ({ actions }) {
         '@elements': path.resolve(__dirname, 'src/elements/index.ts'),
         '@images': path.resolve(__dirname, 'static/assets/images'),
         '@styles': path.resolve(__dirname, 'static/assets/styles'),
+        '@types': path.resolve(__dirname, 'src/types/index.ts'),
         '@typography': path.resolve(__dirname, 'src/utils/typography.ts'),
         '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
       }

@@ -15,28 +15,13 @@ export const Story = () => {
         </Button>
       </div>
       <div className="story-row">
-        <Button type={'secondary'} size={'lm'} onClick={() => null} loading={false} disabled={false}>
-          Secondary Large
+        <Button type={'secondary'} size={'md'} onClick={() => null} loading={false} disabled={false}>
+          Secondary Medium
         </Button>
       </div>
       <div className="story-row">
-        <Button type={'danger'} size={'md'} onClick={() => null} loading={false} disabled={false}>
-          Danger Medium
-        </Button>
-      </div>
-      <div className="story-row">
-        <Button type={'primary'} size={'sm'} onClick={() => null} loading={false} disabled={false}>
-          Primary Small
-        </Button>
-      </div>
-      <div className="story-row">
-        <Button type={'secondary'} size={'ms'} onClick={() => null} loading={false} disabled={false}>
-          Secondary Smallest
-        </Button>
-      </div>
-      <div className="story-row">
-        <Button type={'danger'} size={'xs'} onClick={() => null} loading={false} disabled={false}>
-          Danger Extra Small
+        <Button type={'danger'} size={'sm'} onClick={() => null} loading={false} disabled={false}>
+          Danger Small
         </Button>
       </div>
     </div>

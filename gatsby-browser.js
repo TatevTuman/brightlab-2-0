@@ -1,1 +1,8 @@
+import React from 'react'
+import { Page } from '@elements'
 import './static/assets/styles/app.scss'
+
+// eslint-disable-next-line react/display-name
+export const wrapPageElement = ({ element, props }) => {
+  return <Page {...props}>{element}</Page>
+}

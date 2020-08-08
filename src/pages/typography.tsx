@@ -1,9 +1,11 @@
 import React from 'react'
-import { Page, Link } from '@elements'
+import { Link } from '@elements'
+import { SEO } from '@components'
 
 const Typography: React.FC = () => {
   return (
-    <Page name={'Typography'}>
+    <section>
+      <SEO title={'Typography'} />
       <h1>
         Brightlab <mark>Ui</mark>
       </h1>
@@ -34,7 +36,7 @@ const Typography: React.FC = () => {
           </p>
         </li>
         <li>
-          <p className="dark-blue" style={{ background: 'var(--grey)', padding: '1rem' }}>
+          <p className="dark-blue" style={{ background: 'var(--secondary)', padding: '1rem' }}>
             Donec efficitur purus velit, eu vehicula dolor posuere in. Aliquam erat volutpat. Nullam mattis neque lacus,
             nec tristique urna porta congue. Maecenas eu placerat tellus. Nunc sodales, magna eu porttitor suscipit,
             massa massa finibus augue, at sodales ante sem vitae enim. Vestibulum aliquet, dui at rhoncus condimentum,
@@ -201,7 +203,7 @@ const Typography: React.FC = () => {
         </li>
       </ul>
       <Link to="/">Go back</Link>
-    </Page>
+    </section>
   )
 }
 

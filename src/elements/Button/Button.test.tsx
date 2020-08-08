@@ -4,13 +4,13 @@ import Button from './Button'
 
 describe('Button', () => {
   it('render()', () => {
-    const tree = renderer
+    const button = renderer
       .create(
         <Button type={'primary'} size={'lg'} onClick={() => null} loading={false} disabled={false}>
           Button
         </Button>
       )
       .toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(button).toMatchSnapshot()
   })
 })

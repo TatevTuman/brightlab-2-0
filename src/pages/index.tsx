@@ -1,10 +1,18 @@
 import React from 'react'
-import { Page, Link } from '@elements'
+import { SEO } from '@components'
+import { Image, Link } from '@elements'
 import Logo from '@images/logo.svg'
 
 const Home: React.FC = () => {
+  const logoStyles = {
+    position: 'absolute' as const,
+    top: 0,
+    right: 0
+  }
+
   return (
-    <Page name="Home">
+    <section>
+      <SEO title={'Home'} />
       <h1>
         <mark>Brightlab</mark>
         <br />
@@ -13,7 +21,7 @@ const Home: React.FC = () => {
         Boilerplate
       </h1>
       <h2>Check all features</h2>
-      <Logo className={'logo'} />
+      <Logo style={logoStyles} />
       <h3>
         <ul>
           <li>
@@ -37,7 +45,8 @@ const Home: React.FC = () => {
           </li>
         </ul>
       </h3>
-    </Page>
+      <Image filename={'test.png'} />
+    </section>
   )
 }
 

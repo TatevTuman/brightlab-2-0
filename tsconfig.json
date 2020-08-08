@@ -17,6 +17,7 @@
       "@elements": ["src/elements/index.ts"], // and jest.config.js with moduleNameMapper
       "@images": ["static/assets/images"], // and .storybook/main.js in config.resolve.alias
       "@styles": ["static/assets/styles"],
+      "@types": ["src/types/index.ts"],
       "@typography": ["src/utils/typography.ts"],
       "@hooks": ["src/hooks/index.ts"]
     }

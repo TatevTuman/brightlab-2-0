@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { SEO, Container } from '@components'
+import { Link } from '@elements'
 
 interface NotFoundPageProps {
   data: { site: { siteMetadata: { title: string } } }
@@ -17,6 +18,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = props => {
         <SEO title={'404: Not Found'} />
         <h1>Not Found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <Link to="/">Go home</Link>
       </Container>
     </section>
   )

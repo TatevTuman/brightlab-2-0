@@ -10,6 +10,7 @@ module.exports = {
     '@elements': '<rootDir>/src/elements/index.ts',
     '@images': '<rootDir>/static/assets/images',
     '@styles': '<rootDir>/static/assets/styles',
+    '@types': '<rootDir>/src/types/index.ts',
     '@typography': '<rootDir>/src/utils/typography.ts',
     '@hooks': '<rootDir>/src/hooks/index.ts'
   },

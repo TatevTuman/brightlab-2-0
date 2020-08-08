@@ -116,3 +116,7 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 12. **`README.md`**: A text file containing useful reference information about your project.
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+## Image Component
+
+https://noahgilmore.com/blog/easy-gatsby-image-components/
