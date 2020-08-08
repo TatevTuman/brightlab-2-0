@@ -65,12 +65,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-load-script',
-      options: {
-        src: `${__dirname}/static/scripts/pre-optimize-images.js`
-      }
-    },
-    {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
@@ -86,9 +80,9 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
         omitGoogleFont: false
       }
-    }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`
   ]
 }
