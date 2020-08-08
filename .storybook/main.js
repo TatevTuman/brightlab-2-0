@@ -45,9 +45,10 @@ module.exports = {
     config.resolve.alias = {
       '@components': path.resolve(__dirname, '../src/components/index.ts'),
       '@elements': path.resolve(__dirname, '../src/elements/index.ts'),
+      '@images': path.resolve(__dirname, '../static/assets/images'),
+      '@styles': path.resolve(__dirname, '../static/assets/styles'),
       '@typography': path.resolve(__dirname, '../src/utils/typography.ts'),
-      '@hooks': path.resolve(__dirname, '../src/hooks/index.ts'),
-      '@styles/*': path.resolve(__dirname, '../src/assets/styles/*')
+      '@hooks': path.resolve(__dirname, '../src/hooks/index.ts')
     }
     // add scss handling
     config.module.rules.push({

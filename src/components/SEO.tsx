@@ -26,9 +26,9 @@ const SEO: React.FC<SeoProps> = props => {
           siteMetadata {
             title
             description
-            social {
-              twitter
-            }
+            #            social {
+            #              twitter
+            #            }
           }
         }
       }
@@ -60,23 +60,23 @@ const SEO: React.FC<SeoProps> = props => {
         {
           property: `og:type`,
           content: `website`
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.social.twitter
-        },
-        {
-          name: `twitter:title`,
-          content: title
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription
         }
+        // {
+        //   name: `twitter:card`,
+        //   content: `summary`
+        // },
+        // {
+        //   name: `twitter:creator`,
+        //   content: site.siteMetadata.social.twitter
+        // },
+        // {
+        //   name: `twitter:title`,
+        //   content: title
+        // },
+        // {
+        //   name: `twitter:description`,
+        //   content: metaDescription
+        // }
       ].concat(meta)}
     />
   )
