@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Link } from '@elements'
+import Logo from '@images/logo.svg'
 
 const Home: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Home: React.FC = () => {
         Boilerplate
       </h1>
       <h2>Check all features</h2>
+      <Logo className={'logo'} />
       <h3>
         <ul>
           <li>

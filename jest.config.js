@@ -8,9 +8,10 @@ module.exports = {
       '<rootDir>/__mocks__/file-mock.ts',
     '@components': '<rootDir>/src/components/index.ts',
     '@elements': '<rootDir>/src/elements/index.ts',
+    '@images': '<rootDir>/static/assets/images',
+    '@styles': '<rootDir>/static/assets/styles',
     '@typography': '<rootDir>/src/utils/typography.ts',
-    '@hooks': '<rootDir>/src/hooks/index.ts',
-    '@styles/*': '<rootDir>/src/assets/styles/*'
+    '@hooks': '<rootDir>/src/hooks/index.ts'
   },
   testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],
   transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],

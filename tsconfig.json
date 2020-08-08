@@ -15,9 +15,10 @@
     "paths": {
       "@components": ["src/components/index.ts"], // also check gatsby-node.js onCreateWebpackConfig aliases
       "@elements": ["src/elements/index.ts"], // and jest.config.js with moduleNameMapper
-      "@typography": ["src/utils/typography.ts"], // and .storybook/main.js in config.resolve.alias
-      "@hooks": ["src/hooks/index.ts"],
-      "@styles/*": ["src/assets/styles/*"]
+      "@images": ["static/assets/images"], // and .storybook/main.js in config.resolve.alias
+      "@styles": ["static/assets/styles"],
+      "@typography": ["src/utils/typography.ts"],
+      "@hooks": ["src/hooks/index.ts"]
     }
   },
   "exclude": ["node_modules", "public", ".cache"]
