@@ -65,10 +65,16 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-load-script',
+      options: {
+        src: `${__dirname}/static/scripts/pre-optimize-images.js`
+      }
+    },
+    {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: `${__dirname}/static/assets/images/`
+          include: /\.svg$/
         }
       }
     },

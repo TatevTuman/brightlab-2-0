@@ -95,6 +95,7 @@
     "test": "jest",
     "type-check": "tsc --noEmit",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "optimize-images": "node static/scripts/optimize-images.js"
   }
 }
