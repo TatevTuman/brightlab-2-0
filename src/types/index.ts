@@ -1,3 +1,2 @@
 export * from './image'
-
-export type StaticQueryDataType<T> = T
+export * from './table'

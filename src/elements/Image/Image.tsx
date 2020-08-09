@@ -1,11 +1,24 @@
 import React from 'react'
-import Img, { FluidObject } from 'gatsby-image'
-import { AllImageFiles } from '@types'
+import Img, { FluidObject, FixedObject } from 'gatsby-image'
 import { graphql, StaticQuery } from 'gatsby'
 
 interface ImageProps {
   filename: string
   alt?: string
+}
+
+export type ImageEdge = {
+  node: {
+    childImageSharp?: {
+      sizes: FluidObject | FixedObject
+    }
+    name: string
+    relativePath: string
+  }
+}
+
+export type AllImageFiles = {
+  edges: ImageEdge[]
 }
 
 const Image: React.FC<ImageProps> = props => {

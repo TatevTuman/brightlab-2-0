@@ -1,0 +1,882 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table render() 1`] = `
+<div
+  className="story"
+>
+  <table
+    className="table"
+    style={
+      Object {
+        "minWidth": undefined,
+      }
+    }
+  >
+    <thead
+      className="table-head"
+    >
+      <tr
+        className="table-head-tr"
+      >
+        <td
+          className="table-head-tr-td"
+        />
+        <th
+          className="table-head-tr-th"
+        >
+          Имя
+        </th>
+        <th
+          className="table-head-tr-th"
+        >
+          Фамилия
+        </th>
+        <th
+          className="table-head-tr-th"
+        >
+          Возраст
+        </th>
+        <th
+          className="table-head-tr-th"
+        >
+          
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="table-body"
+    >
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            1
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            2
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            3
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            4
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            5
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            6
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            7
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            8
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            9
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        className="table-body-tr"
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "20px",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            10
+            .
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            34
+          </div>
+        </td>
+        <td
+          className="table-body-tr-td"
+          style={
+            Object {
+              "width": "unset",
+            }
+          }
+        >
+          <div
+            className="table-body-tr-td__inner"
+          >
+            <button
+              className="button button__secondary-md"
+              data-disabled={false}
+              onClick={[Function]}
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
