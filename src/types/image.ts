@@ -1,15 +1,9 @@
-export type GatsbyImageSharpSizes = {
-  aspectRatio: number
-  base64: string
-  sizes: string
-  src: string
-  srcSet: string
-}
+import { FluidObject, FixedObject } from 'gatsby-image'
 
 export type ImageEdge = {
   node: {
     childImageSharp?: {
-      sizes: GatsbyImageSharpSizes
+      sizes: FluidObject | FixedObject
     }
     name: string
     relativePath: string

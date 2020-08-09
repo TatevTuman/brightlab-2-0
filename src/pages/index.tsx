@@ -1,7 +1,22 @@
 import React from 'react'
+import GatsbyImage, { FixedObject, FluidObject } from 'gatsby-image'
+import { graphql, StaticQuery } from 'gatsby'
 import { SEO } from '@components'
 import { Image, Link } from '@elements'
 import Logo from '@images/logo.svg'
+
+type StaticImageQuery = {
+  imageFluid: {
+    childImageSharp: {
+      fluid: FluidObject
+    }
+  }
+  imageFixed: {
+    childImageSharp: {
+      fixed: FixedObject
+    }
+  }
+}
 
 const Home: React.FC = () => {
   const logoStyles = {
@@ -46,6 +61,30 @@ const Home: React.FC = () => {
         </ul>
       </h3>
       <Image filename={'test.png'} />
+      <StaticQuery<StaticImageQuery>
+        query={graphql`
+          query {
+            imageFluid: file(relativePath: { eq: "test.png" }) {
+              ...ImageFluid
+            }
+            imageFixed: file(relativePath: { eq: "test.png" }) {
+              ...ImageFixed600x600 # @elements/Image 62:line working only of element was imported
+            }
+          }
+        `}
+      >
+        {data => {
+          const fluid = data.imageFluid.childImageSharp.fluid
+          const fixed = data.imageFixed.childImageSharp.fixed
+
+          return (
+            <>
+              <GatsbyImage fluid={fluid} />
+              <GatsbyImage fixed={fixed} />
+            </>
+          )
+        }}
+      </StaticQuery>
     </section>
   )
 }

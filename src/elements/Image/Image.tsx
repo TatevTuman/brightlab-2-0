@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from 'gatsby-image'
+import Img, { FluidObject } from 'gatsby-image'
 import { AllImageFiles } from '@types'
 import { graphql, StaticQuery } from 'gatsby'
 
@@ -21,7 +21,7 @@ const Image: React.FC<ImageProps> = props => {
                 relativePath
                 name
                 childImageSharp {
-                  sizes(maxWidth: 600) {
+                  sizes(maxWidth: 1200, maxHeight: 800) {
                     ...GatsbyImageSharpSizes
                   }
                 }
@@ -40,7 +40,7 @@ const Image: React.FC<ImageProps> = props => {
         }
 
         const imageSharp = image.node.childImageSharp
-        const imageSizes = imageSharp && imageSharp.sizes
+        const imageSizes = imageSharp && (imageSharp.sizes as FluidObject)
 
         return <Img alt={alt} sizes={imageSizes} />
       }}
@@ -49,3 +49,21 @@ const Image: React.FC<ImageProps> = props => {
 }
 
 export default Image
+
+export const query = graphql`
+  fragment ImageFluid on File {
+    childImageSharp {
+      fluid {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+
+  fragment ImageFixed600x600 on File {
+    childImageSharp {
+      fixed(width: 600, height: 600) {
+        ...GatsbyImageSharpFixed
+      }
+    }
+  }
+`
