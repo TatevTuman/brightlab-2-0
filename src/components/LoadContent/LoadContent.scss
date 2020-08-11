@@ -1,0 +1,11 @@
+@import 'static/assets/styles/animations.scss';
+
+.loaded-content {
+  flex: 1;
+  height: 100%;
+
+  &__query, &__mutation {
+    will-change: opacity, transform;
+    @include appear(-3%, 0, load-content, 0.5s, ease, 0s, 1);
+  }
+}

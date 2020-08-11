@@ -6,3 +6,7 @@ import './static/assets/styles/app.scss'
 export const wrapPageElement = ({ element, props }) => {
   return <Page {...props}>{element}</Page>
 }
+
+export const wrapRootElement = ({ element, props }) => {
+  return <div {...props}>{element}</div>
+}

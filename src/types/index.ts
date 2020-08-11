@@ -1,2 +1,2 @@
-export * from './image'
+export * from './errors'
 export * from './table'
