@@ -2,9 +2,8 @@ import React from 'react'
 import GatsbyImage, { FixedObject, FluidObject } from 'gatsby-image'
 import { graphql, StaticQuery } from 'gatsby'
 import { SEO } from '@components'
-import { Image, Button, Link } from '@elements'
-import Page, { PageLayerProps, PageLayerState } from '../layers/Page'
-import PageLayer from '../layers/Page'
+import { Image, Link } from '@elements'
+import { PageLayer, PageLayerProps, PageLayerState } from '@layers'
 import Logo from '@images/logo.svg'
 
 type StaticImageQuery = {
@@ -26,7 +25,7 @@ interface HomeState extends PageLayerState {
   home: boolean
 }
 
-class Home extends Page<HomeProps, HomeState> {
+class Home extends PageLayer<HomeProps, HomeState> {
   state: HomeState
 
   constructor(props: HomeProps) {
