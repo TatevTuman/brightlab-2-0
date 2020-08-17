@@ -4,8 +4,8 @@ import { useLoadingDelay } from '@hooks'
 import './Button.scss'
 
 interface ButtonProps {
-  type: string
-  size: string
+  type?: string
+  size?: string
   onClick?(): void
   children: string
   disabled?: boolean
@@ -14,7 +14,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const { type, size, to, children, onClick = () => null, loading = false, disabled = false } = props
+  const { type = 'primary', size = 'lg', to, children, onClick = () => null, loading = false, disabled = false } = props
 
   const className = `button button__${type}-${size}`
   const delayedLoading = useLoadingDelay(loading)
@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = props => {
 
   return (
     <button className={className} data-disabled={delayedLoading || disabled} onClick={handleButtonClick}>
-      {delayedLoading ? 'Загрузка' : children}
+      {delayedLoading ? 'Загрузка...' : children}
     </button>
   )
 }

@@ -37,12 +37,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
-        includePaths: [`${__dirname}/src/assets/styles`],
-        useResolveUrlLoader: {
-          options: {
-            sourceMap: true
-          }
-        }
+        includePaths: [`${__dirname}/static/assets/styles`],
+        useResolveUrlLoader: true
         // Override the file regex for SASS
         // sassRuleTest: /\.global\.s(a|c)ss$/,
         // Override the file regex for CSS modules
