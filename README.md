@@ -77,6 +77,8 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 1.  **`/.storybook`**: Storybook configs folder. By default you can create stories inside your elements or components with `*.stories.tsx`
 
+1.  **`/.jest`**: Jest configs folder. By default you can create tests inside your elements or components with `*.test.tsx`
+
 1.  **`/__mocks__`**: Jest mocks
 
 1.  **`/__stories__`**: Main storybook stories
@@ -104,8 +106,6 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 8.  **`tsconfig.json`**: TypeScript config file
 
 8.  **`jest.config`**: Jest config file
-
-8.  **`jest-preprocess`**: Jest babel transpile config
 
 9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
 

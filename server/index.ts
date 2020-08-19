@@ -38,12 +38,12 @@ const schema = makeExecutableSchema({
 const app = express()
 
 // The GraphQL endpoint
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
+app.use('/api', bodyParser.json(), graphqlExpress({ schema }))
 
 // GraphiQL, a visual editor for queries
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/api' }))
 
 // Start the server
 app.listen(4000, () => {
-  console.log('Go to http://localhost:3000/graphiql to run queries!')
+  console.log('Go to http://localhost:4000/graphiql to run queries!')
 })

@@ -22,15 +22,7 @@ const cache = new InMemoryCache({
   }
 })
 
-const store = {
-  __typename: 'Store'
-}
-
-const typeDefs = gql``
-
-const resolvers = {}
-
-const authMiddleware = new ApolloLink((operation, forward) => {
+const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token')
 
   operation.setContext(({ headers = {} }) => ({
@@ -61,10 +53,8 @@ const httpLink = new HttpLink({
 })
 
 const client = new ApolloClient({
-  link: from([authMiddleware, errorLink, httpLink]),
+  link: from([authLink, errorLink, httpLink]),
   cache,
-  typeDefs,
-  resolvers,
   connectToDevTools: true
 })
 
