@@ -12,7 +12,7 @@
 
 1.  **Start developing.**
 
-    Start up.
+    Start up client.
 
     ```shell
     yarn develop
@@ -32,6 +32,18 @@
         
     ```shell
     yarn storybook
+    ```
+    
+    Setup databse.
+    
+    ```shell
+    yarn db:setup
+    ```
+    
+    Start up server.
+    
+    ```shell
+    yarn server
     ```
 
 1.  **Open the source code and start editing!**

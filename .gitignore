@@ -70,6 +70,6 @@ yarn-error.log
 
 .idea
 
-static/assets/images/backup
 __stories__/
 __tests__/
+/backup/

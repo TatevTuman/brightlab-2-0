@@ -1,4 +1,14 @@
 const path = require('path')
+const dotenv = require('dotenv')
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+
+let dotenvPath = ''
+
+if (isDevelopment) dotenvPath = '.env.development'
+else dotenvPath = '.env.production'
+
+dotenv.config({ path: dotenvPath }).parsed
 
 // const { createFilePath } = require('gatsby-source-filesystem')
 
@@ -25,7 +35,7 @@ const path = require('path')
 //   }
 // }
 
-exports.onCreateWebpackConfig = function ({ actions }) {
+exports.onCreateWebpackConfig = function ({ plugins, actions }) {
   actions.setWebpackConfig({
     resolve: {
       alias: {

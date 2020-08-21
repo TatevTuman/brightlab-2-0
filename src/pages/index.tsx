@@ -87,7 +87,7 @@ class Home extends PageLayer<HomeProps, HomeState> {
                 ...ImageFluid
               }
               imageFixed: file(relativePath: { eq: "test.png" }) {
-                ...ImageFixed600x600 # @elements/Image 62:line working only of element was imported
+                ...ImageFixed600x600 # @elements/Image 62:line working only if element was imported
               }
             }
           `}
