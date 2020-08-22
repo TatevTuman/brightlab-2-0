@@ -19,7 +19,7 @@
       "@images": ["static/assets/images"],
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
-      "@typography": ["src/utils/typography.ts"],
+      "@utils": ["src/utils"],
       "@hooks": ["src/hooks/index.ts"]
     }
   },

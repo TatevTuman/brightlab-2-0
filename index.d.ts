@@ -35,6 +35,13 @@ declare module 'typography' {
   }
 }
 
+declare module '@utils/navigation' {
+  import { Navigation } from '@types'
+  const navigation: Navigation
+
+  export default navigation
+}
+
 declare module '*.bmp' {
   const src: string
   export default src

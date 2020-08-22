@@ -49,7 +49,7 @@ module.exports = {
       '@images': path.resolve(__dirname, '../static/assets/images'),
       '@styles': path.resolve(__dirname, '../static/assets/styles'),
       '@types': path.resolve(__dirname, '../src/types/index.ts'),
-      '@typography': path.resolve(__dirname, '../src/utils/typography.ts'),
+      '@utils': path.resolve(__dirname, '../src/utils'),
       '@hooks': path.resolve(__dirname, '../src/hooks/index.ts')
     }
     // add scss handling

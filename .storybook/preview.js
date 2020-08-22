@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions"
-import typography from '@typography'
+import typography from '@utils/typography'
 import '!style-loader!css-loader!sass-loader!./stories.scss'
 
 if (process.env.NODE_ENV !== `production`) {

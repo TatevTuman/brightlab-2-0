@@ -12,7 +12,7 @@ module.exports = {
     '@images': '<rootDir>/static/assets/images',
     '@styles': '<rootDir>/static/assets/styles',
     '@types': '<rootDir>/src/types/index.ts',
-    '@typography': '<rootDir>/src/utils/typography.ts',
+    '@utils': '<rootDir>/src/utils',
     '@hooks': '<rootDir>/src/hooks/index.ts'
   },
   testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],

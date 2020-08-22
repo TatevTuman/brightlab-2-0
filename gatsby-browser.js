@@ -1,5 +1,6 @@
 import React from 'react'
 import { ApolloProvider } from '@apollo/client'
+import { Header } from '@components'
 import { Page } from '@elements'
 import ApolloClient from './apollo'
 import '@styles/app.scss'
@@ -12,6 +13,7 @@ export const wrapPageElement = ({ element, props }) => {
 export const wrapRootElement = ({ element, props }) => {
   return (
     <ApolloProvider client={ApolloClient}>
+      <Header />
       {element}
     </ApolloProvider>
   )

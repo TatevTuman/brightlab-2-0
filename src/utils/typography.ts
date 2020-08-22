@@ -113,6 +113,7 @@ const typography = new Typography({
       },
 
       nav: {
+        width: 'fit-content',
         marginLeft: '1.5rem',
         marginRight: 0,
         marginTop: 0,
@@ -135,6 +136,9 @@ const typography = new Typography({
       },
       'nav[data-direction="vertical"] > li': {
         margin: '1rem 0rem'
+      },
+      'nav[data-no-margin="true"]': {
+        margin: '0 -1rem'
       },
       label: {
         position: 'relative',
