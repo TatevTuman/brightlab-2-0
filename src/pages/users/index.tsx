@@ -4,9 +4,7 @@ import { PageLayer, PageLayerProps, PageLayerState } from '@layers'
 
 interface UsersProps extends PageLayerProps {}
 
-interface UsersState extends PageLayerState {
-  home: boolean
-}
+interface UsersState extends PageLayerState {}
 
 class Users extends PageLayer<UsersProps, UsersState> {
   state: UsersState
@@ -15,13 +13,12 @@ class Users extends PageLayer<UsersProps, UsersState> {
     const supper = (super(props) as unknown) as PageLayer<UsersProps, UsersState>
 
     this.state = {
-      ...supper.state,
-      home: true
+      ...supper.state
     }
   }
 
   render() {
-    return (
+    return this.preRender(
       <section>
         <SEO title={'Users'} />
         <h1>Users</h1>

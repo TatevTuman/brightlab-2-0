@@ -3,20 +3,30 @@ import { navigate } from 'gatsby'
 import { useLoadingDelay } from '@hooks'
 import './Button.scss'
 
-interface ButtonProps {
+export interface ButtonProps {
+  children: string
+  className?: string
   type?: string
   size?: string
   onClick?(): void
-  children: string
   disabled?: boolean
   loading?: boolean
   to?: string
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const { type = 'primary', size = 'lg', to, children, onClick = () => null, loading = false, disabled = false } = props
+  const {
+    className = '',
+    type = 'primary',
+    size = 'lg',
+    to,
+    children,
+    onClick = () => null,
+    loading = false,
+    disabled = false
+  } = props
 
-  const className = `button button__${type}-${size}`
+  const classNames = `button button__${type}-${size} ${className}`
   const delayedLoading = useLoadingDelay(loading)
 
   const handleButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +37,7 @@ const Button: React.FC<ButtonProps> = props => {
   }
 
   return (
-    <button className={className} data-disabled={delayedLoading || disabled} onClick={handleButtonClick}>
+    <button className={classNames} data-disabled={delayedLoading || disabled} onClick={handleButtonClick}>
       {delayedLoading ? 'Загрузка...' : children}
     </button>
   )

@@ -105,7 +105,7 @@ const Typography: React.FC = () => {
       <hr />
       <h2>Navigation</h2>
       <h4>Horizontal</h4>
-      <nav>
+      <nav style={{ marginBottom: '2.25rem' }}>
         <li>
           <Link to="/">Link</Link>
         </li>

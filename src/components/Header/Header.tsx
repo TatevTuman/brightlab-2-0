@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { NavigationItem } from '@types'
 import { Container } from '@components'
-import { Link } from '@elements'
+import { Link, SignInButton } from '@elements'
 import navigation from '@utils/navigation'
 import './Header.scss'
 
@@ -10,7 +10,7 @@ const Header = () => {
     <div className="header">
       <Container>
         <div className="header-content">
-          <nav data-direction="horizontal" data-no-margin={true}>
+          <nav data-direction="horizontal">
             {navigation.map((item: NavigationItem) => {
               const { to, label } = item
 
@@ -21,6 +21,7 @@ const Header = () => {
               )
             })}
           </nav>
+          <SignInButton size={'md'} />
         </div>
       </Container>
     </div>

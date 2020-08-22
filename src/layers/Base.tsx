@@ -1,4 +1,4 @@
-import { PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 
 export interface BaseLayerProps {}
 export interface BaseLayerState {
@@ -15,6 +15,10 @@ class BaseLayer<P extends BaseLayerProps, S extends BaseLayerState> extends Pure
       ...supper.state,
       base: true
     }
+  }
+
+  preRender(children: JSX.Element) {
+    return children
   }
 }
 

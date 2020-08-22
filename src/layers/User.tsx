@@ -1,3 +1,4 @@
+import React from 'react'
 import BaseLayer, { BaseLayerProps, BaseLayerState } from './Base'
 
 export interface UserLayerProps extends BaseLayerProps {}
@@ -15,6 +16,10 @@ class UserLayer<P extends UserLayerProps, S extends UserLayerState> extends Base
       ...supper.state,
       user: true
     }
+  }
+
+  preRender(children: JSX.Element) {
+    return super.preRender(children)
   }
 }
 

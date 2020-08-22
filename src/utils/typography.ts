@@ -124,7 +124,7 @@ const typography = new Typography({
         listStyle: 'none',
         display: 'flex',
         alignItems: 'center',
-        margin: '0 -1rem 2.25rem'
+        margin: '0 -1rem'
       },
       'nav > li': {
         margin: '0 1rem'
@@ -136,9 +136,6 @@ const typography = new Typography({
       },
       'nav[data-direction="vertical"] > li': {
         margin: '1rem 0rem'
-      },
-      'nav[data-no-margin="true"]': {
-        margin: '0 -1rem'
       },
       label: {
         position: 'relative',

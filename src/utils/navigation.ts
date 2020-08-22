@@ -5,19 +5,23 @@ import { Navigation } from '@types'
 const navigation: Navigation = [
   {
     to: '/',
-    label: 'Home'
+    label: 'Home',
+    roles: ['user']
   },
   {
     to: '/typography',
-    label: 'Typgraphy'
+    label: 'Typography',
+    roles: ['user']
   },
   {
     to: '/users',
-    label: 'User'
+    label: 'User',
+    roles: ['admin', 'user']
   },
   {
     to: '/books',
-    label: 'Books'
+    label: 'Books',
+    roles: ['admin', 'user']
   }
 ]
 
