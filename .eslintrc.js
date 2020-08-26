@@ -30,7 +30,7 @@ module.exports = {
     'react/jsx-curly-spacing': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-empty-interface': 'off'
+    '@typescript-eslint/no-empty-interface': 'off',
     // 'max-len': ['warn', { code: 120 }],
     // indent: ['error', 2],
     // semi: ['error', 'never'],

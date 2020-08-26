@@ -12,6 +12,8 @@ module.exports = {
     '@images': '<rootDir>/static/assets/images',
     '@styles': '<rootDir>/static/assets/styles',
     '@types': '<rootDir>/src/types/index.ts',
+    '@graphql': '<rootDir>/src/graphql/index.ts',
+    '@fragments': '<rootDir>/src/graphql/fragments/index.ts',
     '@utils': '<rootDir>/src/utils',
     '@hooks': '<rootDir>/src/hooks/index.ts'
   },

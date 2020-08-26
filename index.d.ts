@@ -89,6 +89,13 @@ declare module '*.scss' {
   export default classes
 }
 
+declare module '*.gql' {
+  import { DocumentNode } from '@apollo/client'
+
+  const value: DocumentNode
+  export default value
+}
+
 // declare module '*.module.css' {
 //   const classes: { readonly [key: string]: string }
 //   export default classes

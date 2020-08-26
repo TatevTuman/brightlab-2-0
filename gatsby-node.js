@@ -45,6 +45,8 @@ exports.onCreateWebpackConfig = function ({ plugins, actions }) {
         '@images': path.resolve(__dirname, 'static/assets/images'),
         '@styles': path.resolve(__dirname, 'static/assets/styles'),
         '@types': path.resolve(__dirname, 'src/types/index.ts'),
+        '@graphql': path.resolve(__dirname, 'src/graphql/index.ts'),
+        '@fragments': path.resolve(__dirname, 'src/graphql/fragments/index.ts'),
         '@utils': path.resolve(__dirname, 'src/utils'),
         '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
       }

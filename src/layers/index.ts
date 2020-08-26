@@ -1,7 +1,7 @@
 export { default as BaseLayer } from './Base'
-export { default as UserLayer } from './User'
+export { default as AuthLayer } from './Auth'
 export { default as PageLayer } from './Page'
 
 export type { BaseLayerState, BaseLayerProps } from './Base'
-export type { UserLayerState, UserLayerProps } from './User'
+export type { AuthLayerState, AuthLayerProps } from './Auth'
 export type { PageLayerState, PageLayerProps } from './Page'

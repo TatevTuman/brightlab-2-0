@@ -1,9 +1,7 @@
-import React, { PureComponent } from 'react'
+import { PureComponent } from 'react'
 
 export interface BaseLayerProps {}
-export interface BaseLayerState {
-  base: boolean
-}
+export interface BaseLayerState {}
 
 class BaseLayer<P extends BaseLayerProps, S extends BaseLayerState> extends PureComponent<P, S> {
   state: S
@@ -12,8 +10,7 @@ class BaseLayer<P extends BaseLayerProps, S extends BaseLayerState> extends Pure
     const supper = (super(props) as unknown) as PureComponent<P, S>
 
     this.state = {
-      ...supper.state,
-      base: true
+      ...supper.state
     }
   }
 

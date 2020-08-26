@@ -14,12 +14,12 @@ const navigation: Navigation = [
     roles: ['user']
   },
   {
-    to: '/users',
-    label: 'User',
+    to: '/admin/users',
+    label: 'Users',
     roles: ['admin', 'user']
   },
   {
-    to: '/books',
+    to: '/admin/books',
     label: 'Books',
     roles: ['admin', 'user']
   }

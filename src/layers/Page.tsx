@@ -1,20 +1,16 @@
-import React from 'react'
-import UserLayer, { UserLayerProps, UserLayerState } from './User'
+import AuthLayer, { AuthLayerProps, AuthLayerState } from './Auth'
 
-export interface PageLayerProps extends UserLayerProps {}
-export interface PageLayerState extends UserLayerState {
-  page: boolean
-}
+export interface PageLayerProps extends AuthLayerProps {}
+export interface PageLayerState extends AuthLayerState {}
 
-class PageLayer<P extends PageLayerProps, S extends PageLayerState> extends UserLayer<PageLayerProps, PageLayerState> {
+class PageLayer<P extends PageLayerProps, S extends PageLayerState> extends AuthLayer<PageLayerProps, PageLayerState> {
   state: PageLayerState
 
   constructor(props: PageLayerProps) {
-    const supper = (super(props) as unknown) as UserLayer<PageLayerProps, PageLayerState>
+    const supper = (super(props) as unknown) as AuthLayer<PageLayerProps, PageLayerState>
 
     this.state = {
-      ...supper.state,
-      page: true
+      ...supper.state
     }
   }
 

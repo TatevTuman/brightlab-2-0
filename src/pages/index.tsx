@@ -1,9 +1,9 @@
 import React from 'react'
 import GatsbyImage, { FixedObject, FluidObject } from 'gatsby-image'
 import { graphql, StaticQuery } from 'gatsby'
+import { PageLayer, PageLayerProps, PageLayerState } from '@layers'
 import { SEO } from '@components'
 import { Image, Link } from '@elements'
-import { PageLayer, PageLayerProps, PageLayerState } from '@layers'
 import Logo from '@images/logo.svg'
 
 type StaticImageQuery = {
