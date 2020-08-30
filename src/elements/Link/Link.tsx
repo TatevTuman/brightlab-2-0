@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import { LinkGetProps } from '@reach/router'
 import './Link.scss'
@@ -31,4 +31,4 @@ const Link: React.FC<LinkProps> = props => {
   )
 }
 
-export default Link
+export default memo(Link)

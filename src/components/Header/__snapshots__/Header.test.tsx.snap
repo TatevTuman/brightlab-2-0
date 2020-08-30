@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header render() 1`] = `
+<div
+  className="header"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="header-content"
+    >
+      <nav
+        data-direction="horizontal"
+        role="navigation"
+      >
+        <li>
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/typography"
+          >
+            Typography
+          </a>
+        </li>
+        <li>
+          <a
+            href="/admin/users"
+          >
+            Users
+          </a>
+        </li>
+        <li>
+          <a
+            href="/admin/books"
+          >
+            Books
+          </a>
+        </li>
+      </nav>
+      <button
+        className="button button__sign-in-md "
+        data-disabled={false}
+        onClick={[Function]}
+      >
+        Sign In
+      </button>
+    </div>
+  </div>
+</div>
+`;

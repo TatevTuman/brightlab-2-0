@@ -1,30 +1,56 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { SEO } from '@components'
-import { PageLayer, PageLayerProps, PageLayerState } from '@layers'
+import { Form, Input, Button } from '@elements'
+import { LayersProps } from '@layers'
+import { SignInForm } from '@types'
+import { FieldErrors } from 'react-hook-form'
+import { emailPattern, passwordValidation } from '@utils'
 
-interface SignInProps extends PageLayerProps {}
+interface SignInProps extends LayersProps {}
 
-interface SignInState extends PageLayerState {}
+const SignIn: React.FC<SignInProps> = props => {
+  const { authMethods, navigate } = props
 
-class SignIn extends PageLayer<SignInProps, SignInState> {
-  state: SignInState
+  const handleSignIn = async (form: SignInForm) => {
+    const token = await authMethods.handleSignIn(form)
 
-  constructor(props: SignInProps) {
-    const supper = (super(props) as unknown) as PageLayer<SignInProps, SignInState>
-
-    this.state = {
-      ...supper.state
+    if (token) {
+      navigate && navigate('/admin/users')
     }
   }
 
-  render() {
-    return this.preRender(
-      <section>
-        <SEO title={'SignIn'} />
-        <h1>SignIn</h1>
-      </section>
-    )
+  const handleSignInError = (errors: FieldErrors<SignInForm>) => {
+    console.log('errors', errors)
   }
+
+  return (
+    <section>
+      <SEO title={'SignIn'} />
+      <h1>SignIn</h1>
+      {/* @ts-ignore TODO loadable component don't see generic type */}
+      <Form<SignInForm> onSubmit={handleSignIn} onError={handleSignInError}>
+        <Input
+          name={'email'}
+          label={'Email'}
+          validation={{
+            required: { value: true, message: 'Email is required' },
+            pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
+          }}
+        />
+        <Input
+          name={'password'}
+          label={'Password'}
+          validation={{
+            required: { value: true, message: 'Password is required' },
+            ...passwordValidation
+          }}
+        />
+        <Button type={'secondary'} size={'md'} submit>
+          Войти
+        </Button>
+      </Form>
+    </section>
+  )
 }
 
-export default SignIn
+export default memo(SignIn)

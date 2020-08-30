@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Img, { FluidObject, FixedObject } from 'gatsby-image'
 import { graphql, StaticQuery } from 'gatsby'
 
@@ -61,7 +61,7 @@ const Image: React.FC<ImageProps> = props => {
   )
 }
 
-export default Image
+export default memo(Image)
 
 export const query = graphql`
   fragment ImageFluid on File {

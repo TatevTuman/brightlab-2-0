@@ -120,7 +120,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -203,7 +203,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -286,7 +286,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -369,7 +369,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -452,7 +452,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -535,7 +535,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -618,7 +618,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -701,7 +701,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -784,7 +784,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >
@@ -867,7 +867,7 @@ exports[`Table render() 1`] = `
             className="table-body-tr-td__inner"
           >
             <button
-              className="button button__secondary-md"
+              className="button button__secondary-md "
               data-disabled={false}
               onClick={[Function]}
             >

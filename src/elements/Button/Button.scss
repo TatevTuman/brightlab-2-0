@@ -2,7 +2,7 @@
 
 button {
   height: 44px;
-  border-radius: 22px;
+  border-radius: 4px;
   text-transform: uppercase;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -56,12 +56,14 @@ button {
 
   &:hover {
     background-color: var(--secondary);
-    border: 2px solid var(--secondary);
+    border: 2px solid var(--black);
+    color: var(--black);
   }
 
   &:active {
     background-color: var(--secondary);
-    border: 2px solid var(--secondary);
+    border: 2px solid var(--black);
+    color: var(--black);
   }
 }
 
@@ -84,12 +86,25 @@ button {
   color: var(--black);
   background-color: transparent;
   border: 2px solid var(--black);
-  border-radius: 0;
 
   &:hover, &:active {
     background-color: var(--primary-dark);
     color: var(--white);
     border-color: var(--primary-dark);
+  }
+}
+
+@mixin sign_up_button($width) {
+  width: 100%;
+  max-width: $width;
+  color: var(--black);
+  background-color: transparent;
+  border: 2px solid var(--secondary-dark);
+
+  &:hover, &:active {
+    background-color: var(--black);
+    color: var(--white);
+    border-color: var(--black);
   }
 }
 
@@ -105,6 +120,7 @@ $buttons_types_sizes: (
   "secondary": $buttons_sizes,
   "danger": $buttons_sizes,
   "sign-in": $buttons_sizes,
+  "sign-up": $buttons_sizes,
 );
 
 @each $button_type, $button_sizes in $buttons_types_sizes {
@@ -127,6 +143,10 @@ $buttons_types_sizes: (
 
       @if $button_type == "sign-in" {
         @include sign_in_button($button_size_value);
+      }
+
+      @if $button_type == "sign-up" {
+        @include sign_up_button($button_size_value);
       }
     }
   }

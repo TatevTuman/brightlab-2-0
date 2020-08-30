@@ -48,7 +48,6 @@ fs.readdirSync(__dirname)
   .forEach(model => {
     const { entry, typeDefs, resolvers } = model
 
-    console.log('entry', entry)
     const modelClass = require(path.join(__dirname, entry))(sequelize, Sequelize.DataTypes)
     const modelTypeDefs = typeDefs && require(path.join(__dirname, typeDefs))
     const modelResolvers = resolvers && require(path.join(__dirname, resolvers))

@@ -2,11 +2,7 @@ const path = require('path')
 const dotenv = require('dotenv')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
-
-let dotenvPath = ''
-
-if (isDevelopment) dotenvPath = '.env.development'
-else dotenvPath = '.env.production'
+const dotenvPath = isDevelopment ? '.env.development' : '.env.production'
 
 dotenv.config({ path: dotenvPath }).parsed
 
@@ -39,15 +35,15 @@ exports.onCreateWebpackConfig = function ({ plugins, actions }) {
   actions.setWebpackConfig({
     resolve: {
       alias: {
-        '@components': path.resolve(__dirname, 'src/components/index.ts'),
-        '@elements': path.resolve(__dirname, 'src/elements/index.ts'),
-        '@layers': path.resolve(__dirname, 'src/layers/index.ts'),
+        '@components': path.resolve(__dirname, 'src/components/index.tsx'),
+        '@elements': path.resolve(__dirname, 'src/elements/index.tsx'),
+        '@layers': path.resolve(__dirname, 'src/layers/index.tsx'),
         '@images': path.resolve(__dirname, 'static/assets/images'),
         '@styles': path.resolve(__dirname, 'static/assets/styles'),
         '@types': path.resolve(__dirname, 'src/types/index.ts'),
         '@graphql': path.resolve(__dirname, 'src/graphql/index.ts'),
         '@fragments': path.resolve(__dirname, 'src/graphql/fragments/index.ts'),
-        '@utils': path.resolve(__dirname, 'src/utils'),
+        '@utils': path.resolve(__dirname, 'src/utils/index.ts'),
         '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
       }
     }

@@ -43,15 +43,15 @@ module.exports = {
     config.resolve.extensions.push(".ts", ".tsx")
     // add aliases to relative paths
     config.resolve.alias = {
-      '@components': path.resolve(__dirname, '../src/components/index.ts'),
-      '@elements': path.resolve(__dirname, '../src/elements/index.ts'),
-      '@layers': path.resolve(__dirname, '../src/layers/index.ts'),
+      '@components': path.resolve(__dirname, '../src/components/index.tsx'),
+      '@elements': path.resolve(__dirname, '../src/elements/index.tsx'),
+      '@layers': path.resolve(__dirname, '../src/layers/index.tsx'),
       '@images': path.resolve(__dirname, '../static/assets/images'),
       '@styles': path.resolve(__dirname, '../static/assets/styles'),
       '@types': path.resolve(__dirname, '../src/types/index.ts'),
       '@graphql': path.resolve(__dirname, '../src/graphql/index.ts'),
       '@fragments': path.resolve(__dirname, '../src/graphql/fragments/index.ts'),
-      '@utils': path.resolve(__dirname, '../src/utils'),
+      '@utils': path.resolve(__dirname, '../src/utils/index.ts'),
       '@hooks': path.resolve(__dirname, '../src/hooks/index.ts')
     }
     // add scss handling

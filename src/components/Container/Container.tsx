@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './Container.scss'
 
 interface ContainerProps {
@@ -11,4 +11,4 @@ const Container: React.FC<ContainerProps> = props => {
   return <div className="container">{children}</div>
 }
 
-export default Container
+export default memo(Container)

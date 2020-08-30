@@ -4,6 +4,14 @@ const express = require('express')
 const { ApolloServer, gql } = require('apollo-server-express')
 const { makeExecutableSchema } = require('graphql-tools')
 const db = require('./models')
+const jwt = require('express-jwt')
+
+const dotenv = require('dotenv')
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+const dotenvPath = isDevelopment ? '.env.development' : '.env.production'
+
+dotenv.config({ path: dotenvPath }).parsed
 
 const server = new ApolloServer({
   schema: makeExecutableSchema({
@@ -30,10 +38,23 @@ const server = new ApolloServer({
       }
     }
   }),
-  context: { ...db }
+  context: ({ req }) => {
+    // express-jwt get user with auth token and pass it into req
+    return {
+      user: req.user,
+      ...db
+    }
+  }
 })
 
 const app = express()
+app.use(
+  jwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ['HS256'],
+    credentialsRequired: false
+  })
+)
 server.applyMiddleware({ app })
 
 // Database login with config

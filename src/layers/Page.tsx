@@ -1,22 +1,27 @@
-import AuthLayer, { AuthLayerProps, AuthLayerState } from './Auth'
+import React, { memo, useState } from 'react'
+import { RouteComponentProps } from '@reach/router'
+import { ApolloClient } from '@apollo/client'
 
-export interface PageLayerProps extends AuthLayerProps {}
-export interface PageLayerState extends AuthLayerState {}
-
-class PageLayer<P extends PageLayerProps, S extends PageLayerState> extends AuthLayer<PageLayerProps, PageLayerState> {
-  state: PageLayerState
-
-  constructor(props: PageLayerProps) {
-    const supper = (super(props) as unknown) as AuthLayer<PageLayerProps, PageLayerState>
-
-    this.state = {
-      ...supper.state
-    }
-  }
-
-  preRender(children: JSX.Element) {
-    return super.preRender(children)
-  }
+export interface PageLayerMethods {}
+export interface PageLayerState {
+  page: boolean
+}
+export interface PageLayerProps extends RouteComponentProps {
+  client: ApolloClient<Record<string, any>>
+  children(page: {
+    state: PageLayerState
+    props: Omit<PageLayerProps, 'children' | 'client'>
+    pageMethods: PageLayerMethods
+  }): JSX.Element | JSX.Element[]
 }
 
-export default PageLayer
+const PageLayer: React.FC<PageLayerProps> = props => {
+  const { children, client, ...otherProps } = props
+  const [state, setState] = useState<PageLayerState>({ page: true })
+
+  const pageMethods: PageLayerMethods = {}
+
+  return <>{children({ state, props: otherProps, pageMethods })}</>
+}
+
+export default memo(PageLayer)

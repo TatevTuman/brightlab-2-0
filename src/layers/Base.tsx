@@ -1,22 +1,33 @@
-import { PureComponent } from 'react'
+import React, { memo, useState } from 'react'
+import { ApolloClient, ApolloConsumer } from '@apollo/client'
+import { RouteComponentProps } from '@reach/router'
 
-export interface BaseLayerProps {}
-export interface BaseLayerState {}
-
-class BaseLayer<P extends BaseLayerProps, S extends BaseLayerState> extends PureComponent<P, S> {
-  state: S
-
-  constructor(props: P) {
-    const supper = (super(props) as unknown) as PureComponent<P, S>
-
-    this.state = {
-      ...supper.state
-    }
-  }
-
-  preRender(children: JSX.Element) {
-    return children
-  }
+export interface BaseLayerMethods {}
+export interface BaseLayerState {
+  base: boolean
+}
+export interface BaseLayerProps extends RouteComponentProps {
+  children(base: {
+    state: BaseLayerState
+    props: Omit<BaseLayerProps, 'children'>
+    baseMethods: BaseLayerMethods
+    client: ApolloClient<Record<string, any>>
+  }): JSX.Element | JSX.Element[]
 }
 
-export default BaseLayer
+const BaseLayer: React.FC<BaseLayerProps> = props => {
+  const { children, ...otherProps } = props
+  const [state, setState] = useState<BaseLayerState>({ base: true })
+
+  const baseMethods: BaseLayerMethods = {}
+
+  return (
+    <ApolloConsumer>
+      {client => {
+        return <>{children({ state, props: otherProps, baseMethods, client })}</>
+      }}
+    </ApolloConsumer>
+  )
+}
+
+export default memo(BaseLayer)

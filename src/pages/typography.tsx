@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Link } from '@elements'
 import { SEO } from '@components'
+import { LayersProps } from '@layers'
 
-const Typography: React.FC = () => {
+interface TypographyProps extends LayersProps {}
+
+const Typography: React.FC<TypographyProps> = props => {
   return (
     <section>
       <SEO title={'Typography'} />
@@ -207,4 +210,4 @@ const Typography: React.FC = () => {
   )
 }
 
-export default Typography
+export default memo(Typography)

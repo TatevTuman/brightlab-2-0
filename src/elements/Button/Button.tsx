@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react'
+import React, { memo, MouseEvent } from 'react'
 import { navigate } from 'gatsby'
 import { useLoadingDelay } from '@hooks'
 import './Button.scss'
@@ -12,6 +12,7 @@ export interface ButtonProps {
   disabled?: boolean
   loading?: boolean
   to?: string
+  submit?: boolean
 }
 
 const Button: React.FC<ButtonProps> = props => {
@@ -23,7 +24,8 @@ const Button: React.FC<ButtonProps> = props => {
     children,
     onClick = () => null,
     loading = false,
-    disabled = false
+    disabled = false,
+    submit = false
   } = props
 
   const classNames = `button button__${type}-${size} ${className}`
@@ -37,10 +39,15 @@ const Button: React.FC<ButtonProps> = props => {
   }
 
   return (
-    <button className={classNames} data-disabled={delayedLoading || disabled} onClick={handleButtonClick}>
+    <button
+      className={classNames}
+      type={submit ? 'submit' : 'button'}
+      data-disabled={delayedLoading || disabled}
+      onClick={handleButtonClick}
+    >
       {delayedLoading ? 'Загрузка...' : children}
     </button>
   )
 }
 
-export default Button
+export default memo(Button)

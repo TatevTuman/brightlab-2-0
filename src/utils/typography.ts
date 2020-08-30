@@ -38,7 +38,7 @@ const typography = new Typography({
       },
       '@media(max-width: 414px)': {
         html: {
-          font: `65%/${baseLineHeight} ${bodyFontFamily}`
+          font: `60%/${baseLineHeight} ${bodyFontFamily}`
         }
       },
 
@@ -138,11 +138,18 @@ const typography = new Typography({
         margin: '1rem 0rem'
       },
       label: {
+        display: 'block',
         position: 'relative',
         width: 'fit-content',
         cursor: 'pointer'
       },
-
+      'label[data-required="true"]::after': {
+        content: '"*"',
+        position: 'absolute',
+        top: '0',
+        right: '-7px',
+        color: 'var(--danger)'
+      },
       b: {},
       em: {
         color: 'var(--secondary-dark)'

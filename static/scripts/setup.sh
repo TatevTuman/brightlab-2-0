@@ -8,7 +8,7 @@ SITE_NAME=gatsby_site
 USER_NAME=gatsby_user
 PASSWORD=GatsbySitePassword
 
-psql -U postgres -c "CREATE ROLE $USER_NAME WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$PASSWORD';"
+psql -U postgres -c "CREATE USER $USER_NAME WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$PASSWORD';"
 
 if [ "$NODE_ENV" == "development" ] || [ "$NODE_ENV" == "" ]; then
   echo "Development setup..."

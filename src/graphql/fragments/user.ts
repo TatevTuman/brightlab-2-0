@@ -7,9 +7,12 @@ export default gql`
     firstName
     lastName
     email
-    password
     books {
       ...BookFields
+    }
+    roles {
+      id
+      name
     }
   }
 

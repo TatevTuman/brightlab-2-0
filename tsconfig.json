@@ -13,15 +13,15 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@components": ["src/components/index.ts"], // also check gatsby-node.js onCreateWebpackConfig aliases
-      "@elements": ["src/elements/index.ts"], // and jest.config.js with moduleNameMapper
-      "@layers": ["src/layers/index.ts"], // and .storybook/main.js in config.resolve.alias
+      "@components": ["src/components/index.tsx"], // also check gatsby-node.js onCreateWebpackConfig aliases
+      "@elements": ["src/elements/index.tsx"], // and jest.config.js with moduleNameMapper
+      "@layers": ["src/layers/index.tsx"], // and .storybook/main.js in config.resolve.alias
       "@images": ["static/assets/images"],
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
       "@graphql": ["src/graphql/index.ts"],
       "@fragments": ["src/graphql/fragments/index.ts"],
-      "@utils": ["src/utils"],
+      "@utils": ["src/utils/index.ts"],
       "@hooks": ["src/hooks/index.ts"]
     }
   },

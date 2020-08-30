@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { graphql } from 'gatsby'
 import { SEO, Container } from '@components'
 import { Link } from '@elements'
+import { LayersProps } from '@layers'
 
-interface NotFoundPageProps {
+interface NotFoundPageProps extends LayersProps {
   data: { site: { siteMetadata: { title: string } } }
   location: any
 }
@@ -24,7 +25,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = props => {
   )
 }
 
-export default NotFoundPage
+export default memo(NotFoundPage)
 
 export const pageQuery = graphql`
   query {

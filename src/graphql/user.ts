@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 import { UserFragments } from '@fragments'
 
-export const fetchUsers = gql`
+export const FetchUsers = gql`
   query fetchUsers {
     users {
       ...UserFields
@@ -11,7 +11,7 @@ export const fetchUsers = gql`
   ${UserFragments}
 `
 
-export const fetchUser = gql`
+export const FetchUser = gql`
   query fetchUser($id: String!) {
     user(id: $id) {
       ...UserFields
@@ -21,7 +21,17 @@ export const fetchUser = gql`
   ${UserFragments}
 `
 
-export const createUser = gql`
+export const FetchCurrentUser = gql`
+  query fetchCurrentUser {
+    currentUser {
+      ...UserFields
+    }
+  }
+
+  ${UserFragments}
+`
+
+export const CreateUser = gql`
   mutation createUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     createUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       ...UserFields
@@ -31,7 +41,7 @@ export const createUser = gql`
   ${UserFragments}
 `
 
-export const updateUser = gql`
+export const UpdateUser = gql`
   mutation updateUser($id: Int!, $firstName: String!, $lastName: String!, $email: String!, $password: String!) {
     updateUser(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       ...UserFields
@@ -41,10 +51,22 @@ export const updateUser = gql`
   ${UserFragments}
 `
 
-export const deleteUser = gql`
+export const DeleteUser = gql`
   mutation deleteUser($id: Int!) {
     deleteUser(id: $id) {
       id
     }
+  }
+`
+
+export const SignUp = gql`
+  mutation signUp($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    signup(firstName: $firstName, lastName: $lastName, email: $email, password: $password)
+  }
+`
+
+export const SignIn = gql`
+  mutation signin($email: String!, $password: String!) {
+    signin(email: $email, password: $password)
   }
 `
