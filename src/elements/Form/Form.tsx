@@ -1,6 +1,7 @@
 import React, { memo, ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { UnpackNestedValue, FieldErrors } from 'react-hook-form/dist/types/form'
+import './Form.scss'
 
 interface FormProps<T> {
   defaultValues?: Record<string, any>

@@ -1,14 +1,11 @@
-.table {
+.table-head {
+  background: var(--white);
 
-  &-head {
-    background: var(--white);
+  &-tr {
+    height: 30px;
 
-    &-tr {
-      height: 30px;
+    &-th {
 
-      &-th {
-
-      }
     }
   }
 }

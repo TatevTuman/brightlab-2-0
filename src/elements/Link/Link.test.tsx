@@ -4,7 +4,7 @@ import Link from './Link'
 
 describe('Link', () => {
   it('render()', () => {
-    const button = renderer.create(<Link to={'/'}>Home</Link>).toJSON()
-    expect(button).toMatchSnapshot()
+    const link = renderer.create(<Link to={'/'}>Home</Link>).toJSON()
+    expect(link).toMatchSnapshot()
   })
 })

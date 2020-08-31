@@ -30,6 +30,7 @@ const SignIn: React.FC<SignInProps> = props => {
       {/* @ts-ignore TODO loadable component don't see generic type */}
       <Form<SignInForm> onSubmit={handleSignIn} onError={handleSignInError}>
         <Input
+          type={'email'}
           name={'email'}
           label={'Email'}
           validation={{
@@ -38,6 +39,7 @@ const SignIn: React.FC<SignInProps> = props => {
           }}
         />
         <Input
+          type={'password'}
           name={'password'}
           label={'Password'}
           validation={{
@@ -45,7 +47,7 @@ const SignIn: React.FC<SignInProps> = props => {
             ...passwordValidation
           }}
         />
-        <Button type={'secondary'} size={'md'} submit>
+        <Button type={'secondary'} size={'md'} submit centered>
           Войти
         </Button>
       </Form>

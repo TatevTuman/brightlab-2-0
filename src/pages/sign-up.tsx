@@ -31,19 +31,20 @@ const SignUp: React.FC<SignUpProps> = props => {
       <Form<SignUpForm> onSubmit={handleSignUp} onError={handleSignUpError}>
         <Input
           name={'firstName'}
-          label={'firstName'}
+          label={'First name'}
           validation={{
             required: { value: true, message: 'firstName is required' }
           }}
         />
         <Input
           name={'lastName'}
-          label={'lastName'}
+          label={'Last name'}
           validation={{
             required: { value: true, message: 'firstName is required' }
           }}
         />
         <Input
+          type={'email'}
           name={'email'}
           label={'Email'}
           validation={{
@@ -52,6 +53,7 @@ const SignUp: React.FC<SignUpProps> = props => {
           }}
         />
         <Input
+          type={'password'}
           name={'password'}
           label={'Password'}
           validation={{
@@ -59,7 +61,7 @@ const SignUp: React.FC<SignUpProps> = props => {
             ...passwordValidation
           }}
         />
-        <Button type={'secondary'} size={'md'} submit>
+        <Button type={'secondary'} size={'md'} submit centered>
           Войти
         </Button>
       </Form>

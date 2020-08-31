@@ -1,6 +1,8 @@
 @import "variables.scss";
 
 button {
+  display: block;
+  min-width: 35px;
   height: 44px;
   border-radius: 4px;
   text-transform: uppercase;
@@ -19,6 +21,11 @@ button {
       background-color: var(--secondary-dark);
       border: 2px solid var(--secondary-dark);
     }
+  }
+
+  &[data-centered='true'] {
+    margin: 0 auto;
+    align-self: center;
   }
 
   @include breakpoint_max('mobile') {

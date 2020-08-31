@@ -4,13 +4,13 @@ import Page from './Page'
 
 describe('Page', () => {
   it('render()', () => {
-    const button = renderer
+    const page = renderer
       .create(
         <Page>
           <div>Hello World</div>
         </Page>
       )
       .toJSON()
-    expect(button).toMatchSnapshot()
+    expect(page).toMatchSnapshot()
   })
 })

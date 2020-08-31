@@ -4,7 +4,7 @@ import Input from './Input'
 
 describe('Input', () => {
   it('render()', () => {
-    const button = renderer.create(<Input name={'name'} />).toJSON()
-    expect(button).toMatchSnapshot()
+    const input = renderer.create(<Input name={'name'} />).toJSON()
+    expect(input).toMatchSnapshot()
   })
 })

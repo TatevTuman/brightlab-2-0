@@ -3,6 +3,7 @@ import { FieldElement, Ref, ValidationRules, FieldError } from 'react-hook-form/
 import './Input.scss'
 
 interface InputProps {
+  type?: string
   name: string
   label?: string
   validation?: ValidationRules
@@ -11,7 +12,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = props => {
-  const { name, label, register, validation, error, ...rest } = props
+  const { type = 'text', name, label, register, validation, error, ...rest } = props
 
   const isRequired = !!validation?.required
 
@@ -22,7 +23,7 @@ const Input: React.FC<InputProps> = props => {
           {label}
         </label>
       )}
-      <input name={name} ref={register} {...rest} />
+      <input type={type} name={name} ref={register} {...rest} />
       {error && <span className="validation-error">{error.message}</span>}
     </div>
   )

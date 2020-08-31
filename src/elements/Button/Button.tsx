@@ -13,6 +13,7 @@ export interface ButtonProps {
   loading?: boolean
   to?: string
   submit?: boolean
+  centered?: boolean
 }
 
 const Button: React.FC<ButtonProps> = props => {
@@ -25,7 +26,8 @@ const Button: React.FC<ButtonProps> = props => {
     onClick = () => null,
     loading = false,
     disabled = false,
-    submit = false
+    submit = false,
+    centered = false
   } = props
 
   const classNames = `button button__${type}-${size} ${className}`
@@ -43,6 +45,7 @@ const Button: React.FC<ButtonProps> = props => {
       className={classNames}
       type={submit ? 'submit' : 'button'}
       data-disabled={delayedLoading || disabled}
+      data-centered={centered}
       onClick={handleButtonClick}
     >
       {delayedLoading ? 'Загрузка...' : children}

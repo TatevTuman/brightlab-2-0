@@ -1,5 +1,6 @@
 import React, { memo, useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
+import { Row, Col } from 'react-flexbox-grid'
 import { NavigationItem } from '@types'
 import { Container } from '@components'
 import { Button, Link } from '@elements'
@@ -26,33 +27,41 @@ const Header = () => {
   return (
     <div className="header">
       <Container>
-        <div className="header-content">
-          <nav role={'navigation'} data-direction="horizontal">
-            {navigation.map((item: NavigationItem) => {
-              const { to, label } = item
+        <Row middle={'xs'} between={'xs'}>
+          <Col xs={8}>
+            <nav role={'navigation'} data-direction="horizontal">
+              {navigation.map((item: NavigationItem) => {
+                const { to, label } = item
 
-              return (
-                <li key={to}>
-                  <Link to={to}>{label}</Link>
-                </li>
-              )
-            })}
-          </nav>
-          {user ? (
-            <Button type={'danger'} size={'md'} onClick={handleSignOut}>
-              Sign Out
-            </Button>
-          ) : (
-            <>
-              <Button to={'/sign-in'} type={'sign-in'} size={'md'}>
-                Sign In
+                return (
+                  <li key={to}>
+                    <Link to={to}>{label}</Link>
+                  </li>
+                )
+              })}
+            </nav>
+          </Col>
+          <Col xs={4}>
+            {user ? (
+              <Button type={'danger'} size={'lg'} onClick={handleSignOut}>
+                Sign Out
               </Button>
-              <Button to={'/sign-up'} type={'sign-up'} size={'md'}>
-                Sign Up
-              </Button>
-            </>
-          )}
-        </div>
+            ) : (
+              <Row end={'xs'}>
+                <Col xs={6}>
+                  <Button to={'/sign-in'} type={'sign-in'} size={'lg'}>
+                    Sign In
+                  </Button>
+                </Col>
+                <Col xs={6}>
+                  <Button to={'/sign-up'} type={'sign-up'} size={'lg'}>
+                    Sign Up
+                  </Button>
+                </Col>
+              </Row>
+            )}
+          </Col>
+        </Row>
       </Container>
     </div>
   )

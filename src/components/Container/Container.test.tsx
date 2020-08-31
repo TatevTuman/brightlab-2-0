@@ -4,13 +4,13 @@ import Container from './Container'
 
 describe('Container', () => {
   it('render()', () => {
-    const tree = renderer
+    const container = renderer
       .create(
         <Container>
           <div>child</div>
         </Container>
       )
       .toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 })

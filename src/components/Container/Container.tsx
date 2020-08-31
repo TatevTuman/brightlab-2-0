@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import './Container.scss'
+import styles from './Container.module.scss'
 
 interface ContainerProps {
   children: JSX.Element | JSX.Element[]
@@ -8,7 +8,7 @@ interface ContainerProps {
 const Container: React.FC<ContainerProps> = props => {
   const { children } = props
 
-  return <div className="container">{children}</div>
+  return <div className={styles.container}>{children}</div>
 }
 
 export default memo(Container)

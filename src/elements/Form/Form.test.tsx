@@ -4,13 +4,13 @@ import Form from './Form'
 
 describe('Form', () => {
   it('render()', () => {
-    const button = renderer
+    const form = renderer
       .create(
         <Form defaultValues={{ name: 'test', password: 'test' }} onSubmit={data => null}>
           <input type="text" />
         </Form>
       )
       .toJSON()
-    expect(button).toMatchSnapshot()
+    expect(form).toMatchSnapshot()
   })
 })
