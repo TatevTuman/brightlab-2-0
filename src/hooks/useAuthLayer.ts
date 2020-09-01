@@ -1,31 +1,23 @@
-import React, { memo, useState } from 'react'
-import { RouteComponentProps } from '@reach/router'
+import { useEffect, useState } from 'react'
+import { useApolloClient } from '@apollo/client'
 import { FetchCurrentUser, SignIn, SignUp } from '@graphql'
 import { SignInForm, SignUpForm } from '@types'
-import { ApolloClient } from '@apollo/client'
 
-export interface AuthLayerMethods {
+interface AuthLayerState {}
+
+interface AuthLayerMethods {
   fetchCurrentUser(): Promise<{ currentUser: any }> // TODO user
   handleSignIn(data: SignInForm): Promise<string | null>
   handleSignUp(data: SignUpForm): Promise<string | null>
 }
-export interface AuthLayerState {
-  auth: boolean
-}
-export interface AuthLayerProps extends RouteComponentProps {
-  client: ApolloClient<Record<string, any>>
-  children(auth: {
-    state: AuthLayerState
-    props: Omit<AuthLayerProps, 'children' | 'client'>
-    authMethods: AuthLayerMethods
-  }): JSX.Element | JSX.Element[]
-}
 
-const AuthLayer: React.FC<AuthLayerProps> = props => {
-  const { children, client, ...otherProps } = props
-  const [state, setState] = useState<AuthLayerState>({ auth: true })
+const useAuthLayer = () => {
+  const client = useApolloClient()
+  const initialState = {}
 
-  const authMethods: AuthLayerMethods = {
+  const [state, setState] = useState<AuthLayerState>(initialState)
+
+  const Auth: AuthLayerMethods = {
     // TODO user
     async fetchCurrentUser(): Promise<any> {
       try {
@@ -87,7 +79,10 @@ const AuthLayer: React.FC<AuthLayerProps> = props => {
     }
   }
 
-  return <>{children({ state, props: otherProps, authMethods })}</>
+  return {
+    state,
+    Auth
+  }
 }
 
-export default memo(AuthLayer)
+export default useAuthLayer

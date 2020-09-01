@@ -1,18 +1,21 @@
 import React, { memo } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
 import { Form, Input, Button } from '@elements'
-import { LayersProps } from '@layers'
+import { useAuthLayer } from '@hooks'
 import { SignInForm } from '@types'
 import { FieldErrors } from 'react-hook-form'
-import { emailPattern, passwordValidation } from '@utils'
+import { emailPattern } from '@utils'
 
-interface SignInProps extends LayersProps {}
+interface SignInProps extends RouteComponentProps {}
 
 const SignIn: React.FC<SignInProps> = props => {
-  const { authMethods, navigate } = props
+  const { navigate } = props
+
+  const { Auth } = useAuthLayer()
 
   const handleSignIn = async (form: SignInForm) => {
-    const token = await authMethods.handleSignIn(form)
+    const token = await Auth.handleSignIn(form)
 
     if (token) {
       navigate && navigate('/admin/users')
@@ -43,8 +46,7 @@ const SignIn: React.FC<SignInProps> = props => {
           name={'password'}
           label={'Password'}
           validation={{
-            required: { value: true, message: 'Password is required' },
-            ...passwordValidation
+            required: { value: true, message: 'Password is required' }
           }}
         />
         <Button type={'secondary'} size={'md'} submit centered>

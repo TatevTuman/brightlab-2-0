@@ -45,7 +45,6 @@ module.exports = {
     config.resolve.alias = {
       '@components': path.resolve(__dirname, '../src/components/index.tsx'),
       '@elements': path.resolve(__dirname, '../src/elements/index.tsx'),
-      '@layers': path.resolve(__dirname, '../src/layers/index.tsx'),
       '@images': path.resolve(__dirname, '../static/assets/images'),
       '@styles': path.resolve(__dirname, '../static/assets/styles'),
       '@types': path.resolve(__dirname, '../src/types/index.ts'),

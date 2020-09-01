@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
-import { LayersProps } from '@layers'
 
-interface AdminBooksProps extends LayersProps {}
+interface AdminBooksProps extends RouteComponentProps {}
 
 const AdminBooks: React.FC<AdminBooksProps> = props => {
   return (

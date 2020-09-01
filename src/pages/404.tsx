@@ -1,10 +1,10 @@
 import React, { memo } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { graphql } from 'gatsby'
 import { SEO, Container } from '@components'
 import { Link } from '@elements'
-import { LayersProps } from '@layers'
 
-interface NotFoundPageProps extends LayersProps {
+interface NotFoundPageProps extends RouteComponentProps {
   data: { site: { siteMetadata: { title: string } } }
   location: any
 }

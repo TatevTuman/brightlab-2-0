@@ -15,8 +15,7 @@
     "paths": {
       "@components": ["src/components/index.tsx"], // also check gatsby-node.js onCreateWebpackConfig aliases
       "@elements": ["src/elements/index.tsx"], // and jest.config.js with moduleNameMapper
-      "@layers": ["src/layers/index.tsx"], // and .storybook/main.js in config.resolve.alias
-      "@images": ["static/assets/images"],
+      "@images": ["static/assets/images"],  // and .storybook/main.js in config.resolve.alias
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
       "@graphql": ["src/graphql/index.ts"],

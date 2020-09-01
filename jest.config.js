@@ -8,7 +8,6 @@ module.exports = {
       '<rootDir>/__mocks__/file-mock.ts',
     '@components': '<rootDir>/src/components/index.tsx',
     '@elements': '<rootDir>/src/elements/index.tsx',
-    '@layers': '<rootDir>/src/layers/index.tsx',
     '@images': '<rootDir>/static/assets/images',
     '@styles': '<rootDir>/static/assets/styles',
     '@types': '<rootDir>/src/types/index.ts',

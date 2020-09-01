@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import GatsbyImage, { FixedObject, FluidObject } from 'gatsby-image'
 import { graphql, StaticQuery } from 'gatsby'
-import { LayersProps } from '@layers'
 import { SEO } from '@components'
 import { Image, Link } from '@elements'
 import Logo from '@images/logo.svg'
@@ -19,7 +19,7 @@ type StaticImageQuery = {
   }
 }
 
-interface HomeProps extends LayersProps {}
+interface HomeProps extends RouteComponentProps {}
 
 const Home: React.FC<HomeProps> = props => {
   const logoStyles = {

@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
+import { RouteComponentProps } from '@reach/router'
 import { Link } from '@elements'
 import { SEO } from '@components'
-import { LayersProps } from '@layers'
 
-interface TypographyProps extends LayersProps {}
+interface TypographyProps extends RouteComponentProps {}
 
 const Typography: React.FC<TypographyProps> = props => {
   return (

@@ -11,15 +11,23 @@ const useWindowSize = (): { width: number; height: number; breakpoint: string } 
   }
 
   const getBreakpoint = (width: number): string => {
-    if (width < 320) {
-      return 'xs'
-    } else if (width >= 320 && width < 720) {
-      return 'sm'
-    } else if (width >= 720 && width < 1024) {
-      return 'md'
+    if (width <= 1440) {
+      return 'desktop_lg'
+    }
+    if (width <= 1280) {
+      return 'desktop_md'
+    }
+    if (width <= 1024) {
+      return 'tablet_lg'
+    }
+    if (width <= 867) {
+      return 'tablet_md'
+    }
+    if (width <= 720) {
+      return 'tablet_sm'
     }
 
-    return 'lg'
+    return 'mobile'
   }
 
   const initialWindowSize = getSize()
