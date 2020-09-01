@@ -12,10 +12,10 @@ interface SignInProps extends RouteComponentProps {}
 const SignIn: React.FC<SignInProps> = props => {
   const { navigate } = props
 
-  const { Auth } = useAuthLayer()
+  const { authMethods } = useAuthLayer()
 
   const handleSignIn = async (form: SignInForm) => {
-    const token = await Auth.handleSignIn(form)
+    const token = await authMethods.handleSignIn(form)
 
     if (token) {
       navigate && navigate('/admin/users')

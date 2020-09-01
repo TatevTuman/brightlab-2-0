@@ -12,10 +12,10 @@ interface SignUpProps extends RouteComponentProps {}
 const SignUp: React.FC<SignUpProps> = props => {
   const { navigate } = props
 
-  const { Auth } = useAuthLayer()
+  const { authMethods } = useAuthLayer()
 
   const handleSignUp = async (form: SignUpForm) => {
-    const token = await Auth.handleSignUp(form)
+    const token = await authMethods.handleSignUp(form)
 
     if (token) {
       navigate && navigate('/sign-in')

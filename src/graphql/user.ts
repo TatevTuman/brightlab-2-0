@@ -23,7 +23,7 @@ export const FetchUser = gql`
 
 export const FetchCurrentUser = gql`
   query fetchCurrentUser {
-    currentUser {
+    user: currentUser {
       ...UserFields
     }
   }

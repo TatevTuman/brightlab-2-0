@@ -1,32 +1,23 @@
-import { useEffect, useState } from 'react'
-import { useApolloClient } from '@apollo/client'
 import { FetchCurrentUser, SignIn, SignUp } from '@graphql'
-import { SignInForm, SignUpForm } from '@types'
+import { SignInForm, SignUpForm, Client } from '@types'
 
-interface AuthLayerState {}
-
-interface AuthLayerMethods {
-  fetchCurrentUser(): Promise<{ currentUser: any }> // TODO user
+export interface AuthLayerMethods {
+  fetchCurrentUser(): Promise<{ user: any }> // TODO user
   handleSignIn(data: SignInForm): Promise<string | null>
   handleSignUp(data: SignUpForm): Promise<string | null>
 }
 
-const useAuthLayer = () => {
-  const client = useApolloClient()
-  const initialState = {}
-
-  const [state, setState] = useState<AuthLayerState>(initialState)
-
-  const Auth: AuthLayerMethods = {
+export default (client: Client): AuthLayerMethods => {
+  return {
     // TODO user
     async fetchCurrentUser(): Promise<any> {
       try {
         // TODO user
-        const request = await client.mutate<{ currentUser: any }>({ mutation: FetchCurrentUser })
+        const request = await client.mutate<{ user: any }>({ mutation: FetchCurrentUser })
 
         if (request && request.data) {
-          const { currentUser } = request.data
-          return currentUser
+          const { user } = request.data
+          return user
         } else {
           return null
         }
@@ -78,11 +69,4 @@ const useAuthLayer = () => {
       }
     }
   }
-
-  return {
-    state,
-    Auth
-  }
 }
-
-export default useAuthLayer

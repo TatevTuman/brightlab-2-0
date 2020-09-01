@@ -1,27 +1,22 @@
-import React, { memo, useEffect } from 'react'
-import { useLazyQuery } from '@apollo/client'
+import React, { memo } from 'react'
 import { Row, Col } from 'react-flexbox-grid'
 import { NavigationItem } from '@types'
 import { Container } from '@components'
 import { Button, Link } from '@elements'
 import { navigation } from '@utils'
-import { FetchCurrentUser } from '@graphql'
+import { useAuthLayer } from '@hooks'
 import './Header.scss'
 
 const Header = () => {
-  // TODO user
-  const [fetchCurrentUser, { data }] = useLazyQuery<{ currentUser: any }>(FetchCurrentUser, {
-    query: FetchCurrentUser,
-    fetchPolicy: 'cache-and-network'
-  })
+  const {
+    authData: { data, refetch }
+  } = useAuthLayer()
 
-  useEffect(() => fetchCurrentUser(), [])
+  const user = data && data.user
 
-  const user = data && data.currentUser
-
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     localStorage.removeItem('token')
-    fetchCurrentUser()
+    await refetch()
   }
 
   return (
