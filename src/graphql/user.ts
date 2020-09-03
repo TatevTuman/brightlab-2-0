@@ -53,9 +53,7 @@ export const UpdateUser = gql`
 
 export const DeleteUser = gql`
   mutation deleteUser($id: Int!) {
-    deleteUser(id: $id) {
-      id
-    }
+    deleteUser(id: $id)
   }
 `
 

@@ -4,7 +4,7 @@ const typeDefs = `
     user(id: String!): User
     currentUser: User
   }
-  
+
   extend type Mutation {
     createUser(firstName: String!, lastName: String!, email: String!, password: String!): User
     updateUser(id: Int!, firstName: String!, lastName: String!, email: String!, password: String!): User

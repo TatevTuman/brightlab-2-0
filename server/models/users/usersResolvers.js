@@ -35,7 +35,7 @@ module.exports = {
       const user = Users.findByPk(id)
       const a = await user.destroy()
       console.log('a', a)
-      return { id }
+      return id
     },
     async signup(_, args, { Users }) {
       const { firstName, lastName, email, password } = args

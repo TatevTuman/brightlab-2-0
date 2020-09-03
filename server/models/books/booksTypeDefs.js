@@ -3,7 +3,7 @@ const typeDefs = `
     books: [Book]
     book(id: String!): Book
   }
-  
+
   extend type Mutation {
     createBook(title: String!, author: String!): Book
   }

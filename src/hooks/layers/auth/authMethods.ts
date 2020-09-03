@@ -1,19 +1,17 @@
 import { FetchCurrentUser, SignIn, SignUp } from '@graphql'
-import { SignInForm, SignUpForm, Client } from '@types'
+import { SignInForm, SignUpForm, Client, User } from '@types'
 
 export interface AuthLayerMethods {
-  fetchCurrentUser(): Promise<{ user: any }> // TODO user
+  fetchCurrentUser(): Promise<{ user: User }>
   handleSignIn(data: SignInForm): Promise<string | null>
   handleSignUp(data: SignUpForm): Promise<string | null>
 }
 
 export default (client: Client): AuthLayerMethods => {
   return {
-    // TODO user
-    async fetchCurrentUser(): Promise<any> {
+    async fetchCurrentUser(): Promise<User> {
       try {
-        // TODO user
-        const request = await client.mutate<{ user: any }>({ mutation: FetchCurrentUser })
+        const request = await client.mutate<{ user: User }>({ mutation: FetchCurrentUser })
 
         if (request && request.data) {
           const { user } = request.data

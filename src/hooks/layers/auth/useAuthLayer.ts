@@ -1,9 +1,10 @@
 import { useApolloClient, useQuery, gql, QueryResult } from '@apollo/client'
 import { FetchCurrentUser } from '@graphql'
+import { User } from '@types'
 import authMethods, { AuthLayerMethods } from './authMethods'
 
 interface AuthLayerQueryData {
-  user: any
+  user: User
 }
 
 interface UseAuthLayer {
@@ -15,10 +16,8 @@ const useAuthLayer = (): UseAuthLayer => {
   const client = useApolloClient()
   const query = gql`
     ${FetchCurrentUser}
-    # Other Queries
   `
 
-  // TODO USER
   const data = useQuery<AuthLayerQueryData>(query, {
     query: FetchCurrentUser,
     fetchPolicy: 'cache-and-network'
