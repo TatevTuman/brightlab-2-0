@@ -36,14 +36,14 @@ const SignUp: React.FC<SignUpProps> = props => {
           name={'firstName'}
           label={'First name'}
           validation={{
-            required: { value: true, message: 'firstName is required' }
+            required: { value: true, message: 'First name is required' }
           }}
         />
         <Input
           name={'lastName'}
           label={'Last name'}
           validation={{
-            required: { value: true, message: 'firstName is required' }
+            required: { value: true, message: 'Last name is required' }
           }}
         />
         <Input

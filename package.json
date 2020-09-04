@@ -77,11 +77,11 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@graphql-codegen/cli": "1.17.8",
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/addon-links": "^5.3.19",
-    "@storybook/addon-storyshots": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/react": "^5.3.19",
+    "@graphql-codegen/fragment-matcher": "1.17.8",
+    "@graphql-codegen/introspection": "1.17.8",
+    "@graphql-codegen/typescript": "1.17.8",
+    "@graphql-codegen/typescript-operations": "1.17.8",
+    "@graphql-codegen/typescript-react-apollo": "^2.0.6",
     "@testing-library/jest-dom": "^5.11.1",
     "@testing-library/react": "^10.4.7",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
@@ -98,12 +98,7 @@
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "typescript": "^3.9.7",
-    "url-loader": "^4.1.0",
-    "@graphql-codegen/typescript": "1.17.8",
-    "@graphql-codegen/typescript-operations": "1.17.8",
-    "@graphql-codegen/typescript-react-apollo": "1.17.8",
-    "@graphql-codegen/fragment-matcher": "1.17.8",
-    "@graphql-codegen/introspection": "1.17.8"
+    "url-loader": "^4.1.0"
   },
   "homepage": "https://gitlab.com/VladRose/brightlab-boilerplate-gatsby",
   "keywords": [
@@ -126,8 +121,6 @@
     "server": "node server/index.js",
     "db:setup": "env NODE_ENV=development /bin/bash static/scripts/setup.sh",
     "type-check": "tsc --noEmit",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "types-generate": "graphql-codegen --config codegen.yml"
   }
 }
