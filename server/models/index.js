@@ -4,8 +4,14 @@ const fs = require('fs')
 const path = require('path')
 const gql = require('apollo-server-express').gql
 const Sequelize = require('sequelize')
-const env = process.env.NODE_ENV || 'development'
-const config = require(__dirname + '/../config/config.json')[env]
+const dotenv = require('dotenv')
+const env = process.argv[2] // Get env from command line
+
+const isProduction = env === 'production'
+const dotenvPath = isProduction ? '.env.production' : '.env.development'
+dotenv.config({ path: dotenvPath })
+
+const { DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST } = process.env
 
 const db = {}
 
@@ -17,12 +23,15 @@ let modelsResolvers = {
   Mutation: {}
 }
 
-let sequelize
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config)
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config)
+const config = {
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
+  database: DB_NAME,
+  host: DB_HOST,
+  dialect: 'postgres'
 }
+
+let sequelize = new Sequelize(config)
 
 // It goes through every file in models directory
 // To dynamicly assign models typeDefs and resolvers to the db

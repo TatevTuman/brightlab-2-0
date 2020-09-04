@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt')
 const jsonwebtoken = require('jsonwebtoken')
 
+const getJWTToken = (id, email) => jsonwebtoken.sign({ id, email }, process.env.JWT_SECRET, { expiresIn: '1w' })
+
 module.exports = {
   Query: {
     users(root, args, { Users }) {
@@ -49,28 +51,29 @@ module.exports = {
         firstName,
         lastName,
         email,
-        password: await bcrypt.hash(password, 10),
+        password: await bcrypt.hash(password, process.env.JWT_SECRET),
         books: ''
       })
 
-      return jsonwebtoken.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1y' })
+      return getJWTToken(user.id, user.email)
     },
     async signin(_, args, { Users }) {
       const { email, password } = args
       const user = await Users.findOne({ where: { email } })
 
+      console.log('process.env.JWT_SECRET', process.env.JWT_SECRET)
+
       if (!user) {
-        throw new Error('No user with that email')
+        throw new Error('Incorrect password email or password')
       }
 
       const valid = await bcrypt.compare(password, user.password)
 
       if (!valid) {
-        throw new Error('Incorrect password')
+        throw new Error('Incorrect password email or password')
       }
 
-      // return json web token
-      return jsonwebtoken.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1d' })
+      return getJWTToken(user.id, user.email)
     }
   }
 }

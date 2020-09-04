@@ -5,11 +5,12 @@ const { ApolloServer, gql } = require('apollo-server-express')
 const { makeExecutableSchema } = require('graphql-tools')
 const db = require('./models')
 const jwt = require('express-jwt')
-
+const cors = require('cors')
 const dotenv = require('dotenv')
+const env = process.argv[2] // Get env from command line
 
-const isDevelopment = process.env.NODE_ENV === 'development'
-const dotenvPath = isDevelopment ? '.env.development' : '.env.production'
+const isProduction = env === 'production'
+const dotenvPath = isProduction ? '.env.production' : '.env.development'
 
 dotenv.config({ path: dotenvPath }).parsed
 
@@ -48,6 +49,7 @@ const server = new ApolloServer({
 })
 
 const app = express()
+app.use(cors())
 app.use(
   jwt({
     secret: process.env.JWT_SECRET,

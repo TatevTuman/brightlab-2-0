@@ -85,9 +85,5 @@ module.exports = {
     //     precachePages: [`/index`, '/404']
     //   }
     // }
-  ],
-  proxy: {
-    prefix: '/graphql',
-    url: 'http://0.0.0.0:4000/graphql'
-  }
+  ]
 }

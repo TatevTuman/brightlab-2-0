@@ -3,23 +3,28 @@
 ###################################################
 # Bash Shell script to setup gatsby-site postgres user and grant him create db rights
 ###################################################
+NODE_ENV=$1
 
-SITE_NAME=gatsby_site
-USER_NAME=gatsby_user
-PASSWORD=GatsbySitePassword
+read_var() {
+  local ENV_FILE=.env.development
 
-psql -U postgres -c "CREATE USER $USER_NAME WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$PASSWORD';"
+  if [ "$NODE_ENV" == "production" ]; then
+    ENV_FILE=.env.production
+  fi
 
-if [ "$NODE_ENV" == "development" ] || [ "$NODE_ENV" == "" ]; then
-  echo "Development setup..."
-  psql -U postgres -c "CREATE DATABASE ${SITE_NAME}_development;"
-  psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE ${SITE_NAME}_development TO $USER_NAME;"
-else
-  echo "Production setup..."
-  psql -U postgres -c "CREATE DATABASE ${SITE_NAME}_production;"
-  psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE ${SITE_NAME}_production TO $USER_NAME;"
-fi
+  local VAR=$(grep $1 "$ENV_FILE" | xargs)
+  IFS="=" read -ra VAR <<<"$VAR"
+  echo ${VAR[1]}
+}
 
-echo "Setup script is done!"
+echo $env
+
+DB_NAME=$(read_var DB_NAME)
+DB_USERNAME=$(read_var DB_USERNAME)
+DB_PASSWORD=$(read_var DB_PASSWORD)
+
+createuser --createdb --login "$DB_USERNAME"
+psql -U postgres -c "ALTER USER ${DB_USERNAME} WITH ENCRYPTED PASSWORD '${DB_PASSWORD}'"
+createdb --owner="$DB_USERNAME" "$DB_NAME"
 
 exit 0
