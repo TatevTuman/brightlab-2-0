@@ -118,9 +118,13 @@
     "serve": "dotenv gatsby serve",
     "clean": "gatsby clean",
     "test": "jest",
-    "server": "node server/index.js",
+    "server": "nodemon server/index.js",
     "db:setup": "env NODE_ENV=development /bin/bash static/scripts/setup.sh",
     "type-check": "tsc --noEmit",
     "types-generate": "graphql-codegen --config codegen.yml"
+  },
+  "nodemonConfig": {
+    "ignore": ["static/*", "src/*", "public/*", "node_modules/*", "apollo/*", "__tests__/*", "__mocks__/*", ".jest/*", ".cache/*"],
+    "delay": 2500
   }
 }
