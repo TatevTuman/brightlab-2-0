@@ -1,22 +1,21 @@
 import React, { memo } from 'react'
 import { Row, Col } from 'react-flexbox-grid'
-import { NavigationItem } from '@types'
 import { Container } from '@components'
 import { Button, Link } from '@elements'
 import { navigation } from '@utils'
-import { useAuthLayer } from '@hooks'
+import { useUsersLayer } from '@layers'
 import './Header.scss'
 
 const Header = () => {
-  const {
-    authData: { data, refetch }
-  } = useAuthLayer()
+  const { data, refetch } = useUsersLayer().usersData
 
   const user = data && data.user
 
   const handleSignOut = async () => {
-    localStorage.removeItem('token')
-    await refetch()
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token')
+      await refetch()
+    }
   }
 
   return (
@@ -25,7 +24,7 @@ const Header = () => {
         <Row middle={'xs'} between={'xs'}>
           <Col xs={8}>
             <nav role={'navigation'} data-direction="horizontal">
-              {navigation.map((item: NavigationItem) => {
+              {navigation.map(item => {
                 const { to, label } = item
 
                 return (

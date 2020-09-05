@@ -9,7 +9,7 @@ interface ImageProps {
 
 export type ImageEdge = {
   node: {
-    childImageSharp?: {
+    childImageSharp: {
       sizes: FluidObject | FixedObject
     }
     name: string
@@ -55,7 +55,7 @@ const Image: React.FC<ImageProps> = props => {
         const imageSharp = image.node.childImageSharp
         const imageSizes = imageSharp && (imageSharp.sizes as FluidObject)
 
-        return <Img alt={alt} sizes={imageSizes} />
+        return <Img alt={alt} fluid={imageSizes} />
       }}
     />
   )

@@ -1,5 +1,9 @@
-import { ApolloClient, HttpLink, InMemoryCache, ApolloLink, from } from '@apollo/client'
+import React from 'react'
+import fetch from 'cross-fetch'
 import { onError } from '@apollo/client/link/error'
+import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache, ApolloLink, from } from '@apollo/client'
+import { Page, Header } from '@components'
+import '@styles/app.scss'
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -23,14 +27,16 @@ const cache = new InMemoryCache({
 })
 
 const authLink = new ApolloLink((operation, forward) => {
-  const token = localStorage.getItem('token')
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token')
 
-  operation.setContext(({ headers = {} }) => ({
-    headers: {
-      ...headers,
-      Authorization: token ? `Bearer ${token}` : ''
-    }
-  }))
+    operation.setContext(({ headers = {} }) => ({
+      headers: {
+        ...headers,
+        Authorization: token ? `Bearer ${token}` : ''
+      }
+    }))
+  }
 
   return forward(operation)
 })
@@ -49,7 +55,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 })
 
 const httpLink = new HttpLink({
-  uri: process.env.API
+  uri: process.env.GATSBY_API,
+  fetch
 })
 
 const client = new ApolloClient({
@@ -58,4 +65,19 @@ const client = new ApolloClient({
   connectToDevTools: true
 })
 
-export default client
+// eslint-disable-next-line react/display-name
+export const wrapPageElement = ({ element, props }) => {
+  // All routing and roles logic are in the Page component
+  return <Page {...props}>{React.createElement(element.type, props)}</Page>
+}
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <ApolloProvider client={client}>
+      <div role={'main'}>
+        <Header />
+        {element}
+      </div>
+    </ApolloProvider>
+  )
+}

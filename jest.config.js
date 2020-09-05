@@ -14,6 +14,7 @@ module.exports = {
     '@graphql': '<rootDir>/src/graphql/index.ts',
     '@fragments': '<rootDir>/src/graphql/fragments/index.ts',
     '@utils': '<rootDir>/src/utils/index.ts',
+    '@layers': '<rootDir>/src/layers/index.ts',
     '@hooks': '<rootDir>/src/hooks/index.ts'
   },
   testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],

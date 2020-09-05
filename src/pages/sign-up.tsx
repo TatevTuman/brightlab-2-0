@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
 import { Form, Input, Button } from '@elements'
-import { useAuthLayer } from '@hooks'
+import { useUsersLayer } from '@layers'
 import { SignUpForm } from '@types'
 import { FieldErrors } from 'react-hook-form'
 import { emailPattern, passwordValidation } from '@utils'
@@ -12,10 +12,10 @@ interface SignUpProps extends RouteComponentProps {}
 const SignUp: React.FC<SignUpProps> = props => {
   const { navigate } = props
 
-  const { authMethods } = useAuthLayer()
+  const { usersApi } = useUsersLayer()
 
   const handleSignUp = async (form: SignUpForm) => {
-    const token = await authMethods.handleSignUp(form)
+    const token = await usersApi.handleSignUp(form)
 
     if (token) {
       navigate && navigate('/sign-in')

@@ -6,10 +6,37 @@ module.exports = {
       summary: 'DRY - make things once, make them fast'
     },
     description: 'Brightlab Gatsby project to start',
-    siteUrl: 'https://url-to-site-deploy/'
-    // social: {
-    //   twitter: 'kylemathews'
-    // }
+    siteUrl: 'https://url-to-site-deploy/',
+    pages: [
+      {
+        route: '/',
+        roles: []
+      },
+      {
+        route: '/sign-in/',
+        roles: []
+      },
+      {
+        route: '/sign-up/',
+        roles: []
+      },
+      {
+        route: '/typography/',
+        roles: []
+      },
+      {
+        route: '/admin/books/',
+        roles: ['admin']
+      },
+      {
+        route: '/admin/users/',
+        roles: ['admin']
+      },
+      {
+        route: '/admin/roles/',
+        roles: ['admin']
+      }
+    ]
   },
   plugins: [
     {

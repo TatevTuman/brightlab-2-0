@@ -118,8 +118,8 @@ export type User = {
   lastName: Scalars['String'];
   email: Scalars['String'];
   password: Scalars['String'];
-  books?: Maybe<Array<Maybe<Book>>>;
-  roles?: Maybe<Array<Maybe<Role>>>;
+  books: Array<Maybe<Book>>;
+  roles: Array<Maybe<Role>>;
 };
 
 export type BookFieldsFragment = (
@@ -127,15 +127,31 @@ export type BookFieldsFragment = (
   & Pick<Book, 'id' | 'title' | 'author'>
 );
 
+export type RoleFieldsFragment = (
+  { __typename?: 'Role' }
+  & Pick<Role, 'id' | 'name'>
+);
+
 export type UserFieldsFragment = (
   { __typename?: 'User' }
   & Pick<User, 'id' | 'firstName' | 'lastName' | 'email'>
-  & { books?: Maybe<Array<Maybe<(
+  & { books: Array<Maybe<(
     { __typename?: 'Book' }
     & BookFieldsFragment
-  )>>>, roles?: Maybe<Array<Maybe<(
+  )>>, roles: Array<Maybe<(
     { __typename?: 'Role' }
     & Pick<Role, 'id' | 'name'>
+  )>> }
+);
+
+export type FetchRolesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchRolesQuery = (
+  { __typename?: 'Query' }
+  & { roles?: Maybe<Array<Maybe<(
+    { __typename?: 'Role' }
+    & RoleFieldsFragment
   )>>> }
 );
 
@@ -241,6 +257,12 @@ export type SigninMutation = (
   & Pick<Mutation, 'signin'>
 );
 
+export const RoleFieldsFragmentDoc = gql`
+    fragment RoleFields on Role {
+  id
+  name
+}
+    `;
 export const BookFieldsFragmentDoc = gql`
     fragment BookFields on Book {
   id
@@ -263,6 +285,38 @@ export const UserFieldsFragmentDoc = gql`
   }
 }
     ${BookFieldsFragmentDoc}`;
+export const FetchRolesDocument = gql`
+    query fetchRoles {
+  roles {
+    ...RoleFields
+  }
+}
+    ${RoleFieldsFragmentDoc}`;
+
+/**
+ * __useFetchRolesQuery__
+ *
+ * To run a query within a React component, call `useFetchRolesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchRolesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchRolesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFetchRolesQuery(baseOptions?: Apollo.QueryHookOptions<FetchRolesQuery, FetchRolesQueryVariables>) {
+        return Apollo.useQuery<FetchRolesQuery, FetchRolesQueryVariables>(FetchRolesDocument, baseOptions);
+      }
+export function useFetchRolesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FetchRolesQuery, FetchRolesQueryVariables>) {
+          return Apollo.useLazyQuery<FetchRolesQuery, FetchRolesQueryVariables>(FetchRolesDocument, baseOptions);
+        }
+export type FetchRolesQueryHookResult = ReturnType<typeof useFetchRolesQuery>;
+export type FetchRolesLazyQueryHookResult = ReturnType<typeof useFetchRolesLazyQuery>;
+export type FetchRolesQueryResult = Apollo.QueryResult<FetchRolesQuery, FetchRolesQueryVariables>;
 export const FetchUsersDocument = gql`
     query fetchUsers {
   users {

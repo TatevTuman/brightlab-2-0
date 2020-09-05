@@ -1,28 +1,13 @@
 import { FetchCurrentUser, SignIn, SignUp } from '@graphql'
-import { SignInForm, SignUpForm, Client, User } from '@types'
+import { SignInForm, SignUpForm, Client } from '@types'
 
-export interface AuthLayerMethods {
-  fetchCurrentUser(): Promise<User | null>
+export interface UsersLayerApi {
   handleSignIn(data: SignInForm): Promise<string | null>
   handleSignUp(data: SignUpForm): Promise<string | null>
 }
 
-export default (client: Client): AuthLayerMethods => {
+export default (client: Client): UsersLayerApi => {
   return {
-    async fetchCurrentUser() {
-      try {
-        const request = await client.mutate<{ user: User }>({ mutation: FetchCurrentUser })
-
-        if (request && request.data) {
-          const { user } = request.data
-          return user
-        } else {
-          return null
-        }
-      } catch (e) {
-        throw new Error(e)
-      }
-    },
     async handleSignUp(data: SignUpForm) {
       try {
         const request = await client.mutate<{ signup: string }, SignUpForm>({
@@ -48,7 +33,9 @@ export default (client: Client): AuthLayerMethods => {
           refetchQueries: res => {
             if (res && res.data) {
               const { signin: token } = res.data
-              localStorage.setItem('token', token)
+              if (typeof window !== 'undefined') {
+                localStorage.setItem('token', token)
+              }
               return [{ query: FetchCurrentUser }]
             }
 
@@ -63,6 +50,7 @@ export default (client: Client): AuthLayerMethods => {
           return null
         }
       } catch (e) {
+        console.log('e', e)
         throw new Error(e)
       }
     }

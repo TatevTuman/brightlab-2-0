@@ -1,27 +1,25 @@
 import { Navigation } from '@types'
 
-// If you want to change navigation you should check
-// Declared module in index.d.ts and @types/
 const navigation: Navigation = [
   {
     to: '/',
-    label: 'Home',
-    roles: ['user']
+    label: 'Home'
   },
   {
     to: '/typography',
-    label: 'Typography',
-    roles: ['user']
+    label: 'Typography'
   },
   {
     to: '/admin/users',
-    label: 'Users',
-    roles: ['admin', 'user']
+    label: 'Users'
   },
   {
     to: '/admin/books',
-    label: 'Books',
-    roles: ['admin', 'user']
+    label: 'Books'
+  },
+  {
+    to: '/admin/roles',
+    label: 'Roles'
   }
 ]
 

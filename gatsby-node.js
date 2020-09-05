@@ -1,19 +1,13 @@
 const path = require('path')
-const dotenv = require('dotenv')
-
-const isDevelopment = process.env.NODE_ENV === 'development'
-const dotenvPath = isDevelopment ? '.env.development' : '.env.production'
-
-dotenv.config({ path: dotenvPath }).parsed
 
 // const { createFilePath } = require('gatsby-source-filesystem')
 
 // exports.createPages = async ({ graphql, actions }) => {
 //   const { createPage } = actions
-//   const notFoundPage = path.resolve(`./src/pages/404/index.tsx`)
+//   const notFoundPage = path.resolve(`./src/pages/404.tsx`)
 //
 //   createPage({
-//     path: '/404',
+//     path: '/404/:id',
 //     component: notFoundPage
 //   })
 // }
@@ -43,6 +37,7 @@ exports.onCreateWebpackConfig = function ({ plugins, actions }) {
         '@graphql': path.resolve(__dirname, 'src/graphql/index.ts'),
         '@fragments': path.resolve(__dirname, 'src/graphql/fragments/index.ts'),
         '@utils': path.resolve(__dirname, 'src/utils/index.ts'),
+        '@layers': path.resolve(__dirname, 'src/layers/index.ts'),
         '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
       }
     }
