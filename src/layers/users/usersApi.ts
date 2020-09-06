@@ -50,7 +50,6 @@ export default (client: Client): UsersLayerApi => {
           return null
         }
       } catch (e) {
-        console.log('e', e)
         throw new Error(e)
       }
     }

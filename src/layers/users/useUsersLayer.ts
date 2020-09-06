@@ -20,7 +20,14 @@ const useUsersLayer = (): UseUsersLayer => {
 
   const data = useQuery<UsersLayerQueryData>(query, {
     query: query,
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'cache-and-network',
+    onError(error) {
+      if (typeof window !== undefined) {
+        localStorage.removeItem('token')
+      }
+
+      throw new Error(error.message)
+    }
   })
 
   return {
