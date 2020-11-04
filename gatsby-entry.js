@@ -67,7 +67,7 @@ const client = new ApolloClient({
 
 // eslint-disable-next-line react/display-name
 export const wrapPageElement = ({ element, props }) => {
-  // All routing and roles logic are in the Page component
+  // All routing logic is in the Page component
   return <Page {...props}>{React.createElement(element.type, props)}</Page>
 }
 

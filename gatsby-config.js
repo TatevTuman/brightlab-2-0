@@ -7,34 +7,14 @@ module.exports = {
     },
     description: 'Brightlab Gatsby project to start',
     siteUrl: 'https://url-to-site-deploy/',
-    pages: [
+    navigation: [
       {
-        route: '/',
-        roles: []
+        path: '/',
+        label: 'Home'
       },
       {
-        route: '/sign-in/',
-        roles: []
-      },
-      {
-        route: '/sign-up/',
-        roles: []
-      },
-      {
-        route: '/typography/',
-        roles: []
-      },
-      {
-        route: '/admin/books/',
-        roles: ['admin']
-      },
-      {
-        route: '/admin/users/',
-        roles: ['admin']
-      },
-      {
-        route: '/admin/roles/',
-        roles: ['admin']
+        path: '/typography/',
+        label: 'Typography'
       }
     ]
   },

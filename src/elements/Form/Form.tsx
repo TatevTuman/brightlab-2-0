@@ -1,21 +1,21 @@
-import React, { memo, ReactElement } from 'react'
+import React, { memo, forwardRef, ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { UnpackNestedValue, FieldErrors } from 'react-hook-form/dist/types/form'
 import './Form.scss'
 
-interface FormProps<T> {
+interface FormProps {
   defaultValues?: Record<string, any>
   children: JSX.Element | JSX.Element[]
-  onSubmit: (data: UnpackNestedValue<T>) => void
-  onError?: (errors: FieldErrors<T>) => void
+  onSubmit: (data: UnpackNestedValue<Record<string, any>>) => void
+  onError?: (errors: FieldErrors<Record<string, any>>) => void
 }
 
-function Form<T>(props: FormProps<T>): ReactElement<FormProps<T>> {
+const Form: React.ForwardRefExoticComponent<FormProps> = forwardRef<HTMLFormElement, FormProps>((props, ref) => {
   const { defaultValues, onSubmit, onError, children } = props
   const { register, handleSubmit, errors } = useForm({ defaultValues })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <form ref={ref} onSubmit={handleSubmit(onSubmit, onError)}>
       {React.Children.map(children, (child: ReactElement) => {
         return child.props.name
           ? React.createElement(child.type, {
@@ -30,6 +30,6 @@ function Form<T>(props: FormProps<T>): ReactElement<FormProps<T>> {
       })}
     </form>
   )
-}
+})
 
 export default memo(Form)

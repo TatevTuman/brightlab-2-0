@@ -1,8 +1,7 @@
-import React, { memo } from 'react'
+import React, { memo, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
 import { Form, Input, Button } from '@elements'
-import { useUsersLayer } from '@layers'
 import { SignUpForm } from '@types'
 import { FieldErrors } from 'react-hook-form'
 import { emailPattern, passwordValidation } from '@utils'
@@ -10,15 +9,14 @@ import { emailPattern, passwordValidation } from '@utils'
 interface SignUpProps extends RouteComponentProps {}
 
 const SignUp: React.FC<SignUpProps> = props => {
-  const { navigate } = props
-
-  const { usersApi } = useUsersLayer()
+  const signUpForm = useRef<HTMLFormElement>()
 
   const handleSignUp = async (form: SignUpForm) => {
-    const token = await usersApi.handleSignUp(form)
+    console.log('form', form)
 
-    if (token) {
-      navigate && navigate('/sign-in')
+    if (signUpForm && signUpForm.current) {
+      const { firstName } = signUpForm.current
+      console.log('firstName', firstName.value)
     }
   }
 
@@ -31,7 +29,7 @@ const SignUp: React.FC<SignUpProps> = props => {
       <SEO title={'SignUp'} />
       <h1>SignUp</h1>
       {/* @ts-ignore TODO loadable component don't see generic type */}
-      <Form<SignUpForm> onSubmit={handleSignUp} onError={handleSignUpError}>
+      <Form ref={signUpForm} onSubmit={handleSignUp} onError={handleSignUpError}>
         <Input
           name={'firstName'}
           label={'First name'}

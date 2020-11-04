@@ -21,7 +21,6 @@
       "@graphql": ["src/graphql/index.ts"],
       "@fragments": ["src/graphql/fragments/index.ts"],
       "@utils": ["src/utils/index.ts"],
-      "@layers": ["src/layers/index.ts"],
       "@hooks": ["src/hooks/index.ts"]
     }
   },

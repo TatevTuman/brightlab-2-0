@@ -1,29 +1,14 @@
 const path = require('path')
 
-// const { createFilePath } = require('gatsby-source-filesystem')
-
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions
-//   const notFoundPage = path.resolve(`./src/pages/404.tsx`)
-//
-//   createPage({
-//     path: '/404/:id',
-//     component: notFoundPage
-//   })
-// }
-//
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-//   const { createNodeField } = actions
-//
-//   if (node.internal.type === 'MarkdownRemark') {
-//     const value = createFilePath({ node, getNode })
-//     createNodeField({
-//       name: 'slug',
-//       node,
-//       value
-//     })
-//   }
-// }
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+  // const page = path.resolve(`src/pages/page`)
+  //
+  // createPage({
+  //   path: '/page',
+  //   component: Page
+  // })
+}
 
 exports.onCreateWebpackConfig = function ({ plugins, actions }) {
   actions.setWebpackConfig({
@@ -37,7 +22,6 @@ exports.onCreateWebpackConfig = function ({ plugins, actions }) {
         '@graphql': path.resolve(__dirname, 'src/graphql/index.ts'),
         '@fragments': path.resolve(__dirname, 'src/graphql/fragments/index.ts'),
         '@utils': path.resolve(__dirname, 'src/utils/index.ts'),
-        '@layers': path.resolve(__dirname, 'src/layers/index.ts'),
         '@hooks': path.resolve(__dirname, 'src/hooks/index.ts')
       }
     }

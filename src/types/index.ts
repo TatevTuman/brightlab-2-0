@@ -4,7 +4,22 @@ export * from './forms'
 export * from './apollo'
 export * from './generated'
 
-export type SitePage = {
-  route: string
-  roles: string[]
+export type SiteRoute = {
+  path: string
+  label: string
+}
+
+export type Site = {
+  site: {
+    siteMetadata: {
+      title: string
+      author: {
+        name: string
+        summary: string
+      }
+      description: string
+      siteUrl: string
+      navigation: SiteRoute[]
+    }
+  }
 }
