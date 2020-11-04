@@ -2,7 +2,7 @@ import React, { memo, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { SEO } from '@components'
-import { Form, Input, Button } from '@elements'
+import { Form, Input, Checkbox, Button } from '@elements'
 import { SignInForm } from '@types'
 import { emailPattern } from '@utils'
 
@@ -43,6 +43,13 @@ const SignIn: React.FC<SignInProps> = props => {
           type={'password'}
           name={'password'}
           label={'Password'}
+          validation={{
+            required: { value: true, message: 'Password is required' }
+          }}
+        />
+        <Checkbox
+          name={'remember'}
+          label={'Remember me'}
           validation={{
             required: { value: true, message: 'Password is required' }
           }}

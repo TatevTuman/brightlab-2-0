@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import Img, { FluidObject, FixedObject } from 'gatsby-image'
 import { graphql, StaticQuery } from 'gatsby'
 
-interface ImageProps {
+export interface ImageProps {
   filename: string
   alt?: string
 }

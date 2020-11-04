@@ -15,6 +15,14 @@ module.exports = {
       {
         path: '/typography/',
         label: 'Typography'
+      },
+      {
+        path: '/sign-in',
+        label: 'Sign in'
+      },
+      {
+        path: '/sign-up',
+        label: 'Sign up'
       }
     ]
   },

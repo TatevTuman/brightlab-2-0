@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { UnpackNestedValue, FieldErrors } from 'react-hook-form/dist/types/form'
 import './Form.scss'
 
-interface FormProps {
+export interface FormProps {
   defaultValues?: Record<string, any>
   children: JSX.Element | JSX.Element[]
   onSubmit: (data: UnpackNestedValue<Record<string, any>>) => void

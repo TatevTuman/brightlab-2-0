@@ -3,7 +3,7 @@ import { Link as GatsbyLink } from 'gatsby'
 import { LinkGetProps } from '@reach/router'
 import './Link.scss'
 
-interface LinkProps {
+export interface LinkProps {
   to: string
   className?: string
   state?: Record<string, any>
