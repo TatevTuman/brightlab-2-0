@@ -23,6 +23,10 @@ module.exports = {
       {
         path: '/sign-up',
         label: 'Sign up'
+      },
+      {
+        path: '/dynamic',
+        label: 'Dynamic'
       }
     ]
   },

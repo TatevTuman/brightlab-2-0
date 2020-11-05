@@ -4,7 +4,7 @@ import ErrorBoundary from './ErrorBoundary'
 
 describe('ErrorBoundary', () => {
   it('render()', () => {
-    const errorBoundary = renderer.create(<ErrorBoundary />).toJSON()
+    const errorBoundary = renderer.create(<ErrorBoundary>Test</ErrorBoundary>).toJSON()
     expect(errorBoundary).toMatchSnapshot()
   })
 })

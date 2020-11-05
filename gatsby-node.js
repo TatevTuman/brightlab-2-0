@@ -1,6 +1,6 @@
 const path = require('path')
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ page, actions }) => {
   const { createPage } = actions
   // const page = path.resolve(`src/pages/page`)
   //
@@ -8,6 +8,19 @@ exports.createPages = async ({ graphql, actions }) => {
   //   path: '/page',
   //   component: Page
   // })
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+
+  // page.matchPath is a special key that's used for matching pages
+  // only on the client.
+  if (page.path.match(/^\/dynamic/)) {
+    page.matchPath = '/dynamic/*'
+
+    // Update the page.
+    createPage(page)
+  }
 }
 
 exports.onCreateWebpackConfig = function ({ plugins, actions }) {
