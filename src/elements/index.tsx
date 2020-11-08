@@ -5,11 +5,12 @@ import { ImageProps } from './Image/Image'
 import { LinkProps } from './Link/Link'
 import { InputProps } from './Input/Input'
 import { CheckboxProps } from './Checkbox/Checkbox'
-import { FormProps } from './Form/Form'
 
 export const Button: LoadableComponent<ButtonProps> = loadable(() => import('./Button/Button'))
 export const Image: LoadableComponent<ImageProps> = loadable(() => import('./Image/Image'))
 export const Link: LoadableComponent<LinkProps> = loadable(() => import('./Link/Link'))
 export const Input: LoadableComponent<InputProps> = loadable(() => import('./Input/Input'))
 export const Checkbox: LoadableComponent<CheckboxProps> = loadable(() => import('./Checkbox/Checkbox'))
-export const Form: LoadableComponent<FormProps> = loadable(() => import('./Form/Form'))
+
+// Generic Form
+export { default as Form } from './Form/Form'

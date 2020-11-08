@@ -1,35 +1,48 @@
-import React, { memo, forwardRef, ReactElement } from 'react'
+/* eslint-disable react/display-name */
+
+import React, { memo, forwardRef, ReactElement, RefObject } from 'react'
 import { useForm } from 'react-hook-form'
-import { UnpackNestedValue, FieldErrors } from 'react-hook-form/dist/types/form'
+import { SubmitHandler, SubmitErrorHandler, UnpackNestedValue, DeepPartial, ValidationRules } from 'react-hook-form'
 import './Form.scss'
 
-export interface FormProps {
-  defaultValues?: Record<string, any>
+export interface FormProps<F> {
+  defaultValues?: UnpackNestedValue<DeepPartial<F>>
   children: JSX.Element | JSX.Element[]
-  onSubmit: (data: UnpackNestedValue<Record<string, any>>) => void
-  onError?: (errors: FieldErrors<Record<string, any>>) => void
+  onSubmit: SubmitHandler<F>
+  onError?: SubmitErrorHandler<F>
+  ref?: RefObject<HTMLFormElement>
 }
 
-const Form: React.ForwardRefExoticComponent<FormProps> = forwardRef<HTMLFormElement, FormProps>((props, ref) => {
-  const { defaultValues, onSubmit, onError, children } = props
-  const { register, handleSubmit, errors } = useForm({ defaultValues })
+export type FormChildProp<F> = ReactElement<{ name: keyof F; validation: ValidationRules }>
 
-  return (
-    <form ref={ref} onSubmit={handleSubmit(onSubmit, onError)}>
-      {React.Children.map(children, (child: ReactElement) => {
-        return child.props.name
-          ? React.createElement(child.type, {
-              ...{
-                ...child.props,
-                register: register(child.props.validation),
-                error: errors[child.props.name],
-                key: child.props.name
-              }
-            })
-          : child
-      })}
-    </form>
+const formWithForwardedRef = <F,>() =>
+  memo(
+    forwardRef<HTMLFormElement, FormProps<F>>((props, ref) => {
+      const { defaultValues, onSubmit, onError, children } = props
+      const { register, handleSubmit, errors } = useForm<F>({ defaultValues })
+
+      return (
+        <form ref={ref} onSubmit={handleSubmit(onSubmit, onError)}>
+          {React.Children.map(children, (child: FormChildProp<F>) => {
+            return child.props.name
+              ? React.createElement(child.type, {
+                  ...{
+                    ...child.props,
+                    register: register(child.props.validation),
+                    error: errors[child.props.name],
+                    key: child.props.name
+                  }
+                })
+              : child
+          })}
+        </form>
+      )
+    })
   )
-})
 
-export default memo(Form)
+const Form = <F,>(props: FormProps<F>) => {
+  const FormWithForwardedRef = formWithForwardedRef<F>()
+  return <FormWithForwardedRef {...props} />
+}
+
+export default Form

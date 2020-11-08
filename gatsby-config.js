@@ -13,7 +13,7 @@ module.exports = {
         label: 'Home'
       },
       {
-        path: '/typography/',
+        path: '/typography',
         label: 'Typography'
       },
       {

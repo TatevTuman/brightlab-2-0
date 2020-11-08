@@ -9,7 +9,7 @@ import { emailPattern } from '@utils'
 interface SignInProps extends RouteComponentProps {}
 
 const SignIn: React.FC<SignInProps> = props => {
-  const signInForm = useRef<HTMLFormElement>()
+  const signInForm = useRef<HTMLFormElement>(null)
 
   const handleSignIn = async (form: SignInForm) => {
     console.log('form', form)
@@ -28,8 +28,7 @@ const SignIn: React.FC<SignInProps> = props => {
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      {/* @ts-ignore TODO loadable component don't see generic type */}
-      <Form onSubmit={handleSignIn} onError={handleSignInError}>
+      <Form<SignInForm> ref={signInForm} onSubmit={handleSignIn} onError={handleSignInError}>
         <Input
           type={'email'}
           name={'email'}

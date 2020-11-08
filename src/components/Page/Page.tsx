@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { RouteComponentProps } from '@reach/router'
 import { Container } from '@components'
-import { SiteRoute } from '@types'
+import { Site } from '@types'
 import './Page.scss'
 
 const GetSiteNavigation = graphql`
@@ -19,24 +19,27 @@ const GetSiteNavigation = graphql`
 `
 
 interface PageProps extends RouteComponentProps {
+  path: string
   children: JSX.Element | JSX.Element[]
 }
 
 const Page: React.FC<PageProps> = props => {
   const { children, path } = props
-  const { navigation } = useStaticQuery(GetSiteNavigation).site.siteMetadata
+  const { navigation } = useStaticQuery<Site>(GetSiteNavigation).site.siteMetadata
 
-  const page = navigation.find((page: SiteRoute) => page.path === path)
-
-  if (!page) {
-    console.warn('Client: Couldn`t find a page with', path, 'route', 'please add this page info into gatsby-config.js')
-  }
+  const isDynamicPage = path.includes('/*')
+  const pathWithoutSlash = path.slice(0, isDynamicPage ? -2 : -1)
+  const page = navigation.find(page => page.path === pathWithoutSlash)
 
   return (
     <div className="page">
       <Container>{children}</Container>
     </div>
   )
+}
+
+Page.defaultProps = {
+  path: ''
 }
 
 export default memo(Page)
