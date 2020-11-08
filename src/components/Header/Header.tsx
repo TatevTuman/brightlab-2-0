@@ -1,35 +1,14 @@
 import React, { memo } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import { Row, Col } from 'react-flexbox-grid'
-import { Site } from '@types'
 import { Container } from '@components'
-import { Button, Link } from '@elements'
+import { Link } from '@elements'
+import { useSiteMetadata } from '@hooks'
 import './Header.scss'
-
-export const GetSiteNavigation = graphql`
-  query {
-    site {
-      siteMetadata {
-        navigation {
-          path
-          label
-        }
-      }
-    }
-  }
-`
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = props => {
-  const { navigation } = useStaticQuery<Site>(GetSiteNavigation).site.siteMetadata
-
-  const handleSignOut = async () => {
-    // Need to compile gatbsy server side
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token')
-    }
-  }
+  const { navigation } = useSiteMetadata()
 
   return (
     <div className="header">
@@ -48,26 +27,6 @@ const Header: React.FC<HeaderProps> = props => {
               })}
             </nav>
           </Col>
-          {/*<Col xs={4}>*/}
-          {/*  {user ? (*/}
-          {/*    <Button type={'danger'} size={'lg'} onClick={handleSignOut}>*/}
-          {/*      Sign Out*/}
-          {/*    </Button>*/}
-          {/*  ) : (*/}
-          {/*    <Row end={'xs'}>*/}
-          {/*      <Col xs={6}>*/}
-          {/*        <Button to={'/sign-in'} type={'sign-in'} size={'lg'}>*/}
-          {/*          Sign In*/}
-          {/*        </Button>*/}
-          {/*      </Col>*/}
-          {/*      <Col xs={6}>*/}
-          {/*        <Button to={'/sign-up'} type={'sign-up'} size={'lg'}>*/}
-          {/*          Sign Up*/}
-          {/*        </Button>*/}
-          {/*      </Col>*/}
-          {/*    </Row>*/}
-          {/*  )}*/}
-          {/*</Col>*/}
         </Row>
       </Container>
     </div>

@@ -1,4 +1,5 @@
 module.exports = {
+  // If you change this please sync it with @hooks/useSiteMetadata.js
   siteMetadata: {
     title: 'Brightlab Gatsby boilerplate',
     author: {

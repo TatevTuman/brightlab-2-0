@@ -17,27 +17,16 @@ export interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const {
-    className = '',
-    type = 'primary',
-    size = 'lg',
-    to,
-    children,
-    onClick = () => null,
-    loading = false,
-    disabled = false,
-    submit = false,
-    centered = false
-  } = props
+  const { className, type, size, to, children, onClick, loading, disabled, submit, centered } = props
 
   const classNames = `button button__${type}-${size} ${className}`
-  const delayedLoading = useLoadingDelay(loading)
+  const delayedLoading = useLoadingDelay(loading!)
 
   const handleButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
 
     if (to) await navigate(to)
-    else onClick()
+    else onClick!()
   }
 
   return (
@@ -51,6 +40,17 @@ const Button: React.FC<ButtonProps> = props => {
       {delayedLoading ? 'Загрузка...' : children}
     </button>
   )
+}
+
+Button.defaultProps = {
+  className: '',
+  type: 'primary',
+  size: 'lg',
+  onClick: () => null,
+  loading: false,
+  disabled: false,
+  submit: false,
+  centered: false
 }
 
 export default memo(Button)

@@ -4,12 +4,14 @@ export * from './forms'
 export * from './apollo'
 export * from './generated'
 
-export type SiteRoute = {
+export type SiteMetadataNavigationRoute = {
   path: string
   label: string
 }
 
-export type Site = {
+export type SiteMetadataNavigation = SiteMetadataNavigationRoute[]
+
+export type SiteMetadata = {
   site: {
     siteMetadata: {
       title: string
@@ -19,7 +21,7 @@ export type Site = {
       }
       description: string
       siteUrl: string
-      navigation: SiteRoute[]
+      navigation: SiteMetadataNavigation
     }
   }
 }

@@ -1,6 +1,9 @@
 import React from 'react'
+import { RouteComponentProps } from '@reach/router'
 
-const Create = props => {
+interface CreateProps extends RouteComponentProps<{ id: string }> {}
+
+const Create: React.FC<CreateProps> = props => {
   return (
     <div>
       <h2>Create</h2>
