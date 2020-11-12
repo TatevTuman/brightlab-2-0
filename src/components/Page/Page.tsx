@@ -2,10 +2,11 @@ import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { Container } from '@components'
 import { useSiteMetadata } from '@hooks'
+import { Children } from '@types'
 import styles from './Page.module.scss'
 
 interface PageProps extends RouteComponentProps {
-  children: JSX.Element | JSX.Element[] | string
+  children: Children
 }
 
 const Page: React.FC<PageProps> = props => {

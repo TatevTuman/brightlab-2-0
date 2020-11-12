@@ -1,8 +1,9 @@
 import React, { memo } from 'react'
+import { Children } from '@types'
 import styles from './Container.module.scss'
 
 interface ContainerProps {
-  children: JSX.Element | JSX.Element[] | string
+  children: Children
 }
 
 const Container: React.FC<ContainerProps> = props => {

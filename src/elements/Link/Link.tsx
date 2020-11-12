@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import { LinkGetProps } from '@reach/router'
+import { Children } from '@types'
 import styles from './Link.module.scss'
 
 export interface LinkProps {
@@ -9,7 +10,7 @@ export interface LinkProps {
   state?: Record<string, any>
   active?: boolean
   underlined?: boolean
-  children: JSX.Element | JSX.Element[] | string
+  children: Children
 }
 
 const Link: React.FC<LinkProps> = props => {

@@ -32,33 +32,39 @@ const SignIn: React.FC<SignInProps> = props => {
         {useFormMethods => {
           return (
             <>
-              <Input
-                {...useFormMethods}
-                type={'email'}
-                name={'email'}
-                label={'Email'}
-                validation={{
-                  required: { value: true, message: 'Email is required' },
-                  pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
-                }}
-              />
-              <Input
-                {...useFormMethods}
-                type={'password'}
-                name={'password'}
-                label={'Password'}
-                validation={{
-                  required: { value: true, message: 'Password is required' }
-                }}
-              />
-              <Checkbox
-                {...useFormMethods}
-                name={'remember'}
-                label={'Remember me'}
-                validation={{
-                  required: { value: true, message: 'Password is required' }
-                }}
-              />
+              <Form.FormItem>
+                <Input
+                  {...useFormMethods}
+                  type={'email'}
+                  name={'email'}
+                  label={'Email'}
+                  validation={{
+                    required: { value: true, message: 'Email is required' },
+                    pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
+                  }}
+                />
+              </Form.FormItem>
+              <Form.FormItem>
+                <Input
+                  {...useFormMethods}
+                  type={'password'}
+                  name={'password'}
+                  label={'Password'}
+                  validation={{
+                    required: { value: true, message: 'Password is required' }
+                  }}
+                />
+              </Form.FormItem>
+              <Form.FormItem>
+                <Checkbox
+                  {...useFormMethods}
+                  name={'remember'}
+                  label={'Remember me'}
+                  validation={{
+                    required: { value: true, message: 'Password is required' }
+                  }}
+                />
+              </Form.FormItem>
               <Button type={'secondary'} size={'md'} submit centered>
                 Войти
               </Button>

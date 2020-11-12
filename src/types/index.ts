@@ -5,6 +5,8 @@ export * from './apollo'
 export * from './validation'
 export * from './generated'
 
+export type Children = JSX.Element | JSX.Element[] | string
+
 export type SiteMetadataNavigationRoute = {
   path: string
   label: string
