@@ -1,9 +1,7 @@
 export type TableColumnType = {
   title: string
-  dataIndex: string
   key: string
-  hidden?: boolean
-  width?: string
+  style?: Record<string, any>
   render?: (cell: any, row: TableRowType) => any
 }
 

@@ -2,10 +2,10 @@ import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { Container } from '@components'
 import { useSiteMetadata } from '@hooks'
-import './Page.scss'
+import styles from './Page.module.scss'
 
 interface PageProps extends RouteComponentProps {
-  children: JSX.Element | JSX.Element[]
+  children: JSX.Element | JSX.Element[] | string
 }
 
 const Page: React.FC<PageProps> = props => {
@@ -17,7 +17,7 @@ const Page: React.FC<PageProps> = props => {
   const page = navigation.find(page => page.path === pathWithoutSlash)
 
   return (
-    <div className="page">
+    <div className={styles.page} role="main">
       <Container>{children}</Container>
     </div>
   )

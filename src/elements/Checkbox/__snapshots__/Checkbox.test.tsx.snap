@@ -1,15 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Checkbox render() 1`] = `
-<label
-  className="checkbox"
->
-  <input
-    onChange={[Function]}
-    type="checkbox"
-  />
-  <div
-    className="checkboxIndicator"
-  />
-</label>
+exports[`Checkbox renders correctly 1`] = `
+<div>
+  <label
+    class="checkbox"
+  >
+    <input
+      id="checkbox"
+      name="checkbox"
+      type="checkbox"
+    />
+    <div
+      class="checkboxIndicator"
+    />
+  </label>
+</div>
 `;

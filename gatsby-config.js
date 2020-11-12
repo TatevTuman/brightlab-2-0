@@ -1,5 +1,6 @@
 module.exports = {
   // If you change this please sync it with @hooks/useSiteMetadata.js
+  // and __mocks__/gatsby.ts for static queries mocking
   siteMetadata: {
     title: 'Brightlab Gatsby boilerplate',
     author: {

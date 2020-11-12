@@ -29,33 +29,42 @@ const SignIn: React.FC<SignInProps> = props => {
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
       <Form<SignInForm> ref={signInForm} onSubmit={handleSignIn} onError={handleSignInError}>
-        <Input
-          type={'email'}
-          name={'email'}
-          label={'Email'}
-          validation={{
-            required: { value: true, message: 'Email is required' },
-            pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
-          }}
-        />
-        <Input
-          type={'password'}
-          name={'password'}
-          label={'Password'}
-          validation={{
-            required: { value: true, message: 'Password is required' }
-          }}
-        />
-        <Checkbox
-          name={'remember'}
-          label={'Remember me'}
-          validation={{
-            required: { value: true, message: 'Password is required' }
-          }}
-        />
-        <Button type={'secondary'} size={'md'} submit centered>
-          Войти
-        </Button>
+        {useFormMethods => {
+          return (
+            <>
+              <Input
+                {...useFormMethods}
+                type={'email'}
+                name={'email'}
+                label={'Email'}
+                validation={{
+                  required: { value: true, message: 'Email is required' },
+                  pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
+                }}
+              />
+              <Input
+                {...useFormMethods}
+                type={'password'}
+                name={'password'}
+                label={'Password'}
+                validation={{
+                  required: { value: true, message: 'Password is required' }
+                }}
+              />
+              <Checkbox
+                {...useFormMethods}
+                name={'remember'}
+                label={'Remember me'}
+                validation={{
+                  required: { value: true, message: 'Password is required' }
+                }}
+              />
+              <Button type={'secondary'} size={'md'} submit centered>
+                Войти
+              </Button>
+            </>
+          )
+        }}
       </Form>
     </section>
   )

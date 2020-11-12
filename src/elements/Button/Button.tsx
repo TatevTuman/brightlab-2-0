@@ -25,6 +25,8 @@ const Button: React.FC<ButtonProps> = props => {
   const handleButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
 
+    if (delayedLoading || disabled) return
+
     if (to) await navigate(to)
     else onClick!()
   }

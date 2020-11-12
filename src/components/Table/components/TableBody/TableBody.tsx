@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { TableColumnType, TableRowType } from '@types'
-import './TableBody.scss'
+import styles from './TableBody.module.scss'
 
 interface TableBodyProps {
   columns: TableColumnType[]
@@ -34,31 +34,31 @@ const TableBody: React.FC<TableBodyProps> = props => {
     : rows
 
   return (
-    <tbody className={'table-body'}>
+    <tbody className={styles.tableBody}>
       {filteredRows.map((row: any, index) => {
-        const cells = columns.map(column => ({ dataIndex: column.dataIndex, width: column.width || 'unset' }))
+        const cells = columns
 
         return (
           <tr
             className={'table-body-tr'}
             key={index}
-            data-disabled={row.status === 'Inactive'}
+            data-disabled={row.disabled}
             onClick={() => handleRowClick && handleRowClick(row)}
           >
             {isRowIndex && <TableBodyRowIndex index={index} />}
             {cells.map((cell, index) => {
-              const { dataIndex, width } = cell
-              const isOption = typeof row[dataIndex] === 'object'
+              const { key, style } = cell
+              const isOption = typeof row[key] === 'object'
 
               const renderFunction = renderFunctions[index]
               const render = renderFunction
-                ? renderFunction(row[dataIndex], row)
+                ? renderFunction(row[key], row)
                 : isOption
-                ? row[dataIndex] && row[dataIndex].label
-                : row[dataIndex]
+                ? row[key] && row[key].label
+                : row[key]
 
               return (
-                <td className={'table-body-tr-td'} key={index} style={{ width }}>
+                <td className={'table-body-tr-td'} key={index} style={style}>
                   <div className={'table-body-tr-td__inner'}>{render}</div>
                 </td>
               )

@@ -1,55 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header render() 1`] = `
-<div
-  className="header"
->
+exports[`Header renders correctly 1`] = `
+<div>
   <div
-    className="container"
+    class="header"
   >
     <div
-      className="header-content"
+      class="container"
     >
-      <nav
-        data-direction="horizontal"
-        role="navigation"
+      <div
+        class="row middle-xs between-xs"
       >
-        <li>
-          <a
-            href="/"
+        <div
+          class="col-xs-8"
+        >
+          <nav
+            data-direction="horizontal"
+            role="navigation"
           >
-            Home
-          </a>
-        </li>
-        <li>
-          <a
-            href="/typography"
-          >
-            Typography
-          </a>
-        </li>
-        <li>
-          <a
-            href="/admin/users"
-          >
-            Users
-          </a>
-        </li>
-        <li>
-          <a
-            href="/admin/books"
-          >
-            Books
-          </a>
-        </li>
-      </nav>
-      <button
-        className="button button__sign-in-md "
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        Sign In
-      </button>
+            <li>
+              <a
+                href="/"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="/typography"
+              >
+                Typography
+              </a>
+            </li>
+            <li>
+              <a
+                href="/sign-in"
+              >
+                Sign in
+              </a>
+            </li>
+            <li>
+              <a
+                href="/sign-up"
+              >
+                Sign up
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dynamic"
+              >
+                Dynamic
+              </a>
+            </li>
+          </nav>
+        </div>
+      </div>
     </div>
   </div>
 </div>

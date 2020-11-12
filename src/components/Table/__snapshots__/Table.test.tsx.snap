@@ -1,799 +1,517 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Table render() 1`] = `
-<div
-  className="story"
->
+exports[`Table renders correctly 1`] = `
+<div>
   <table
-    className="table"
-    style={
-      Object {
-        "minWidth": undefined,
-      }
-    }
+    class="table"
   >
     <thead
-      className="table-head"
+      class="tableHead"
     >
       <tr
-        className="table-head-tr"
+        class="table-head-tr"
       >
-        <td
-          className="table-head-tr-td"
-        />
         <th
-          className="table-head-tr-th"
+          class="table-head-tr-th"
         >
           Имя
         </th>
         <th
-          className="table-head-tr-th"
+          class="table-head-tr-th"
         >
           Фамилия
         </th>
         <th
-          className="table-head-tr-th"
+          class="table-head-tr-th"
         >
           Возраст
         </th>
         <th
-          className="table-head-tr-th"
-        >
-          
-        </th>
+          class="table-head-tr-th"
+        />
       </tr>
     </thead>
     <tbody
-      className="table-body"
+      class="tableBody"
     >
       <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
+        class="table-body-tr"
       >
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          class="table-body-tr-td"
+          style="width: 100px;"
+        >
+          <div
+            class="table-body-tr-td__inner"
+          >
+            0
+          </div>
+        </td>
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
+          >
+            John
+          </div>
+        </td>
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
+          >
+            Doe
+          </div>
+        </td>
+        <td
+          class="table-body-tr-td"
+          style="width: 100px;"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             1
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             2
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             3
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             4
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             5
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             6
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             7
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             8
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
+          >
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="table-body-tr"
+      >
+        <td
+          class="table-body-tr-td"
+        >
+          <div
+            class="table-body-tr-td__inner"
           >
             John
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             Doe
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
+          style="width: 100px;"
         >
           <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
             9
-            .
           </div>
         </td>
         <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
+          class="table-body-tr-td"
         >
           <div
-            className="table-body-tr-td__inner"
+            class="table-body-tr-td__inner"
           >
-            John
+            <button
+              class="button button__secondary-md "
+              data-centered="false"
+              data-disabled="false"
+              type="button"
+            >
+              Get Info
+            </button>
           </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          >
-            Doe
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
-        </td>
-      </tr>
-      <tr
-        className="table-body-tr"
-        data-disabled={false}
-        onClick={[Function]}
-      >
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "20px",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          >
-            10
-            .
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          >
-            John
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          >
-            Doe
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          >
-            34
-          </div>
-        </td>
-        <td
-          className="table-body-tr-td"
-          style={
-            Object {
-              "width": "unset",
-            }
-          }
-        >
-          <div
-            className="table-body-tr-td__inner"
-          />
         </td>
       </tr>
     </tbody>

@@ -1,19 +1,19 @@
 import React, { memo } from 'react'
 import { TableColumnType } from '@types'
-import './TableHeader.scss'
+import styles from './TableHead.module.scss'
 
-interface TableHeaderProps {
+interface TableHeadProps {
   columns: TableColumnType[]
   isRowIndex?: boolean
 }
 
-const TableHeader: React.FC<TableHeaderProps> = props => {
+const TableHead: React.FC<TableHeadProps> = props => {
   const { columns, isRowIndex } = props
 
   return (
-    <thead className={'table-head'}>
+    <thead className={styles.tableHead}>
       <tr className={'table-head-tr'}>
-        {isRowIndex && <td className={'table-head-tr-td'} />}
+        {isRowIndex && <th className={'table-head-tr-th'} />}
         {columns.map((column, index) => {
           return (
             <th className={'table-head-tr-th'} key={index}>
@@ -26,4 +26,4 @@ const TableHeader: React.FC<TableHeaderProps> = props => {
   )
 }
 
-export default memo(TableHeader)
+export default memo(TableHead)

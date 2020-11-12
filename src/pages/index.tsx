@@ -41,7 +41,7 @@ const Home: React.FC<HomeProps> = props => {
       <h2>Check all features</h2>
       <Logo style={logoStyles} />
       <h3>
-        <ul>
+        <nav data-direction="vertical" role="navigation">
           <li>
             <Link to="/typography">Typography</Link>
           </li>
@@ -61,7 +61,7 @@ const Home: React.FC<HomeProps> = props => {
               <p className="dark-blue">- yarn test --watch</p>
             </small>
           </li>
-        </ul>
+        </nav>
       </h3>
       <Image filename={'test.png'} />
       <StaticQuery<StaticImageQuery>

@@ -113,7 +113,7 @@ const Typography: React.FC<TypographyProps> = props => {
           <Link to="/">Link</Link>
         </li>
         <li>
-          <Link className="underlined" to="/">
+          <Link to="/" underlined>
             Link underlined
           </Link>
         </li>
@@ -123,7 +123,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </Link>
         </li>
         <li>
-          <Link className="underlined" to="/typography" active>
+          <Link to="/typography" active underlined>
             Link active underlined
           </Link>
         </li>
@@ -134,7 +134,7 @@ const Typography: React.FC<TypographyProps> = props => {
           <Link to="/">Link</Link>
         </li>
         <li>
-          <Link className="underlined" to="/">
+          <Link to="/" underlined>
             Link underlined
           </Link>
         </li>
@@ -144,7 +144,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </Link>
         </li>
         <li>
-          <Link className="underlined" to="/typography" active>
+          <Link to="/typography" active underlined>
             Link active underlined
           </Link>
         </li>

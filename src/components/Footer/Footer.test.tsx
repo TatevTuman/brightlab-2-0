@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, cleanup, waitFor } from '@testing-library/react'
-import Container from './Container'
+import Footer from './Footer'
 
 beforeAll(() => {})
 afterAll(() => {})
@@ -10,14 +10,11 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-describe('Container', () => {
-  const props = { children: 'children' }
-
+describe('Footer', () => {
   it('renders correctly', async () => {
-    const { container, getByText } = render(<Container {...props} />)
+    const { container } = render(<Footer />)
     const awaitedContainer = await waitFor(() => container)
 
     expect(awaitedContainer).toMatchSnapshot()
-    expect(getByText(props.children)).toBeInTheDocument()
   })
 })

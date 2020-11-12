@@ -2,6 +2,7 @@ export * from './lists'
 export * from './table'
 export * from './forms'
 export * from './apollo'
+export * from './validation'
 export * from './generated'
 
 export type SiteMetadataNavigationRoute = {

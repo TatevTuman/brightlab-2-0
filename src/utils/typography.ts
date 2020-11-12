@@ -74,14 +74,14 @@ const typography = new Typography({
         color: 'var(--black)',
         textDecoration: 'none'
       },
-      'a.active': {
+      'a[data-active="true"]': {
         color: 'var(--primary)'
       },
       'a:hover': {
         cursor: 'pointer',
         color: 'var(--primary)'
       },
-      'a.underlined:before': {
+      'a[data-underlined="true"]:before': {
         content: 'close-quote',
         display: 'block',
         position: 'absolute',
@@ -89,10 +89,10 @@ const typography = new Typography({
         left: '0',
         width: '100%'
       },
-      'a.active:before': {
+      'a[data-active="true"]:before': {
         borderTop: '2px solid var(--primary)'
       },
-      'a.underlined:hover:before': {
+      'a[data-underlined="true"]:hover:before': {
         borderTop: '2px solid var(--primary)'
       },
 

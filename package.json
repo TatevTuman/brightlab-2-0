@@ -78,10 +78,13 @@
     "@graphql-codegen/typescript": "1.17.11",
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@graphql-codegen/typescript-react-apollo": "^2.0.6",
-    "@testing-library/jest-dom": "^5.11.1",
+    "@testing-library/dom": "^7.26.5",
+    "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
+    "@testing-library/user-event": "^12.2.0",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
+    "add": "^2.0.6",
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.1.0",
     "babel-preset-gatsby": "^0.5.3",
@@ -94,7 +97,8 @@
     "sass-loader": "^10.0.5",
     "style-loader": "^2.0.0",
     "typescript": "^4.0.5",
-    "url-loader": "^4.1.0"
+    "url-loader": "^4.1.0",
+    "yarn": "^1.22.10"
   },
   "homepage": "https://gitlab.com/VladRose/brightlab-boilerplate-gatsby",
   "keywords": [
@@ -114,7 +118,7 @@
     "clean": "gatsby clean",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest --watch",
+    "test": "jest --watch --detectOpenHandles",
     "type-check": "tsc --noEmit",
     "types-generate": "graphql-codegen --config codegen.yml"
   }

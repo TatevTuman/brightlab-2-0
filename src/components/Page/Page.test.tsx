@@ -1,16 +1,23 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render, cleanup, waitFor } from '@testing-library/react'
 import Page from './Page'
 
+beforeAll(() => {})
+afterAll(() => {})
+beforeEach(() => {})
+afterEach(() => {
+  cleanup()
+  jest.clearAllMocks()
+})
+
 describe('Page', () => {
-  it('render()', () => {
-    const page = renderer
-      .create(
-        <Page>
-          <div>Hello World</div>
-        </Page>
-      )
-      .toJSON()
-    expect(page).toMatchSnapshot()
+  const props = { children: 'children' }
+
+  it('renders correctly', async () => {
+    const { container, getByText } = render(<Page {...props} />)
+    const awaitedContainer = await waitFor(() => container)
+
+    expect(awaitedContainer).toMatchSnapshot()
+    expect(getByText(props.children)).toBeInTheDocument()
   })
 })

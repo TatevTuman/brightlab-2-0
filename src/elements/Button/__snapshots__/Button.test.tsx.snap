@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button render() 1`] = `
-<button
-  className="button button__primary-lg "
-  data-centered={false}
-  data-disabled={false}
-  onClick={[Function]}
-  type="button"
->
-  Button
-</button>
+exports[`Button renders correctly 1`] = `
+<div>
+  <button
+    class="button button__primary-lg "
+    data-centered="false"
+    data-disabled="false"
+    type="button"
+  >
+    children
+  </button>
+</div>
 `;

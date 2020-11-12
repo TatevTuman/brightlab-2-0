@@ -1,21 +1,21 @@
 import React, { memo } from 'react'
-import { FieldElement, FieldError, Ref, ValidationRules } from 'react-hook-form'
+import { ValidationProps } from '@types'
 import styles from './Checkbox.module.scss'
 
-export interface CheckboxProps {
-  name?: string
+export interface CheckboxProps extends ValidationProps {
+  name: string
   label?: string
   checked?: boolean
-  validation?: ValidationRules
-  register?<TFieldElement extends FieldElement>(ref: (TFieldElement & Ref) | null, rules?: ValidationRules): void
-  error?: FieldError
+  disabled?: boolean
   onChange?: (value: boolean) => void
 }
 
 const Checkbox: React.FC<CheckboxProps> = props => {
-  const { name, label, checked, register, validation, error, onChange } = props
+  const { name, label, checked, disabled, register, validation, errors, onChange } = props
 
   const isRequired = !!validation?.required
+  const ref = register && register(validation)
+  const error = errors && errors[name]
 
   return (
     <label className={styles.checkbox}>
@@ -28,12 +28,13 @@ const Checkbox: React.FC<CheckboxProps> = props => {
         id={name}
         type="checkbox"
         name={name}
-        ref={register}
+        ref={ref}
         checked={checked}
+        disabled={disabled}
         onChange={e => onChange && onChange(!e.currentTarget.checked)}
       />
       <div className={styles.checkboxIndicator} />
-      {error && <span className="validation-error">{error.message}</span>}
+      {error && <span className={`${styles.checkboxValidationError} validation-error`}>{error.message}</span>}
     </label>
   )
 }

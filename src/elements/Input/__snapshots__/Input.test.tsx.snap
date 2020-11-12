@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input render() 1`] = `
-<div
-  className="input"
->
-  <input
-    id="name"
-    name="name"
-    onChange={[Function]}
-    type="text"
-  />
+exports[`Input renders correctly 1`] = `
+<div>
+  <div
+    class="input"
+  >
+    <input
+      id="input"
+      name="input"
+      type="text"
+      value=""
+    />
+  </div>
 </div>
 `;

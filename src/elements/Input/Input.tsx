@@ -1,22 +1,21 @@
 import React, { memo } from 'react'
-import { FieldElement, Ref, ValidationRules, FieldError } from 'react-hook-form'
+import { ValidationProps } from '@types'
 import styles from './Input.module.scss'
 
-export interface InputProps {
+export interface InputProps extends ValidationProps {
   type?: string
   name: string
   label?: string
   value?: string
-  validation?: ValidationRules
-  register?<TFieldElement extends FieldElement>(ref: (TFieldElement & Ref) | null, rules?: ValidationRules): void
-  error?: FieldError
   onChange?: (value: string) => void
 }
 
 const Input: React.FC<InputProps> = props => {
-  const { type, name, label, value, register, validation, error, onChange } = props
+  const { type, name, label, value, register, validation, errors, onChange } = props
 
   const isRequired = !!validation?.required
+  const ref = register && register(validation)
+  const error = errors && errors[name]
 
   return (
     <div className={styles.input}>
@@ -29,11 +28,15 @@ const Input: React.FC<InputProps> = props => {
         id={name}
         type={type}
         name={name}
-        ref={register}
+        ref={ref}
         value={value}
         onChange={e => onChange && onChange(e.currentTarget.value)}
       />
-      {error && <span className="validation-error">{error.message}</span>}
+      {error && (
+        <div role="input-error" className="validation-error">
+          {error.message}
+        </div>
+      )}
     </div>
   )
 }

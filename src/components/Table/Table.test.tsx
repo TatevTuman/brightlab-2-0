@@ -1,54 +1,79 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
-import Table from './Table'
+import { render, cleanup, waitFor } from '@testing-library/react'
 import { TableColumnType } from '@types'
 import { Button } from '@elements'
+import Table from './Table'
+
+beforeAll(() => {})
+afterAll(() => {})
+beforeEach(() => {})
+afterEach(() => {
+  cleanup()
+  jest.clearAllMocks()
+})
 
 describe('Table', () => {
-  it('render()', () => {
-    const columns: TableColumnType[] = [
-      {
-        title: 'Имя',
-        dataIndex: 'name',
-        key: 'name'
-      },
-      {
-        title: 'Фамилия',
-        dataIndex: 'surname',
-        key: 'surname'
-      },
-      {
-        title: 'Возраст',
-        dataIndex: 'age',
-        key: 'age'
-      },
-      {
-        title: '',
-        dataIndex: 'info',
-        key: 'info',
-        render(cell, row) {
-          return (
-            <Button type={'secondary'} size={'md'}>
-              Get Info
-            </Button>
-          )
-        }
+  const columns: TableColumnType[] = [
+    {
+      title: 'Имя',
+      key: 'name'
+    },
+    {
+      title: 'Фамилия',
+      key: 'surname'
+    },
+    {
+      title: 'Возраст',
+      key: 'age',
+      style: {
+        width: '100px'
       }
-    ]
+    },
+    {
+      title: '',
+      key: 'info',
+      render(cell, row) {
+        return (
+          <Button type={'secondary'} size={'md'}>
+            Get Info
+          </Button>
+        )
+      }
+    }
+  ]
 
-    const rows = new Array(10).fill(0).map(() => ({
-      name: 'John',
-      surname: 'Doe',
-      age: '34'
-    }))
+  const rows = new Array(10).fill(0).map((_, index) => ({
+    name: 'John',
+    surname: 'Doe',
+    age: index.toString()
+  }))
 
-    const table = renderer
-      .create(
-        <div className="story">
-          <Table columns={columns} rows={rows} isRowIndex />
-        </div>
-      )
-      .toJSON()
-    expect(table).toMatchSnapshot()
+  const props = { columns, rows }
+
+  it('renders correctly', async () => {
+    const { container } = render(<Table {...props} />)
+    const awaitedContainer = await waitFor(() => container)
+
+    expect(awaitedContainer).toMatchSnapshot()
+  })
+
+  it('renders columns correctly', () => {
+    const { getByText } = render(<Table {...props} />)
+
+    columns.forEach(column => {
+      const { title } = column
+
+      if (title) {
+        expect(getByText(title)).toBeInTheDocument()
+      }
+    })
+  })
+
+  it('renders rows correctly', () => {
+    const { container, getByText } = render(<Table {...props} />)
+
+    rows.forEach(row => {
+      const { name, surname, age } = row
+    })
   })
 })

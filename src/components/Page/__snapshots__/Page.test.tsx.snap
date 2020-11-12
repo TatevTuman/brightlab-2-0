@@ -1,19 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page render() 1`] = `
-<div
-  className="page"
-  style={
-    Object {
-      "paddingTop": "nullpx",
-    }
-  }
->
+exports[`Page renders correctly 1`] = `
+<div>
   <div
-    className="container"
+    class="page"
+    role="main"
   >
-    <div>
-      Hello World
+    <div
+      class="container"
+    >
+      children
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@ import { Row, Col } from 'react-flexbox-grid'
 import { Container } from '@components'
 import { Link } from '@elements'
 import { useSiteMetadata } from '@hooks'
-import './Header.scss'
+import styles from './Header.module.scss'
 
 interface HeaderProps {}
 
@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = props => {
   const { navigation } = useSiteMetadata()
 
   return (
-    <div className="header">
+    <div className={styles.header}>
       <Container>
         <Row middle={'xs'} between={'xs'}>
           <Col xs={8}>

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly 1`] = `
+<div>
+  <div
+    class="footer"
+    role="contentinfo"
+  >
+    <div
+      class="container"
+    >
+      <nav
+        data-direction="vertical"
+        role="navigation"
+      >
+        <li>
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/typography"
+          >
+            Typography
+          </a>
+        </li>
+        <li>
+          <a
+            href="/sign-in"
+          >
+            Sign in
+          </a>
+        </li>
+        <li>
+          <a
+            href="/sign-up"
+          >
+            Sign up
+          </a>
+        </li>
+        <li>
+          <a
+            href="/dynamic"
+          >
+            Dynamic
+          </a>
+        </li>
+      </nav>
+    </div>
+  </div>
+</div>
+`;

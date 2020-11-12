@@ -1,10 +1,20 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { render, cleanup, waitFor } from '@testing-library/react'
 import Header from './Header'
 
+beforeAll(() => {})
+afterAll(() => {})
+beforeEach(() => {})
+afterEach(() => {
+  cleanup()
+  jest.clearAllMocks()
+})
+
 describe('Header', () => {
-  it('render()', () => {
-    const header = renderer.create(<Header />).toJSON()
-    expect(header).toMatchSnapshot()
+  it('renders correctly', async () => {
+    const { container } = render(<Header />)
+    const awaitedContainer = await waitFor(() => container)
+
+    expect(awaitedContainer).toMatchSnapshot()
   })
 })
