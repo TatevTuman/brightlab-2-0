@@ -11,23 +11,11 @@ const useWindowSize = (): { width: number; height: number; breakpoint: string } 
   }
 
   const getBreakpoint = (width: number): string => {
-    if (width <= 1440) {
-      return 'desktop_lg'
-    }
-    if (width <= 1280) {
-      return 'desktop_md'
-    }
-    if (width <= 1024) {
-      return 'tablet_lg'
-    }
-    if (width <= 867) {
-      return 'tablet_md'
-    }
-    if (width <= 720) {
-      return 'tablet_sm'
-    }
+    if (width <= 576) return 'mobile'
+    if (width <= 768) return 'landscape'
+    if (width <= 992) return 'tablet'
 
-    return 'mobile'
+    return 'desktop'
   }
 
   const initialWindowSize = getSize()
@@ -37,21 +25,23 @@ const useWindowSize = (): { width: number; height: number; breakpoint: string } 
   const [windowBreakpoint, setWindowBreakpoint] = useState(initialWindowBreakpoint)
 
   useEffect(() => {
-    if (!isClient) {
-      return
-    }
+    if (!isClient) return
 
     const handleResize = () => {
       const nextWindowSize = getSize()
-      const nextWindowBreakPoint = getBreakpoint(nextWindowSize.width)
-
       setWindowSize(nextWindowSize)
-      setWindowBreakpoint(nextWindowBreakPoint)
     }
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  useEffect(() => {
+    if (!isClient) return
+
+    const nextWindowBreakPoint = getBreakpoint(windowSize.width)
+    setWindowBreakpoint(nextWindowBreakPoint)
+  }, [windowSize])
 
   return { ...windowSize, breakpoint: windowBreakpoint }
 }

@@ -13,11 +13,9 @@ export const wrapPageElement = ({ element, props }) => {
 export const wrapRootElement = ({ element }) => {
   return (
     <ApolloProvider client={client}>
-      <div role={'main'}>
-        <Header />
-        {element}
-        <Footer />
-      </div>
+      <Header />
+      {element}
+      <Footer />
     </ApolloProvider>
   )
 }

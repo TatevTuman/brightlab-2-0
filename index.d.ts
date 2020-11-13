@@ -1,3 +1,9 @@
+// type Writeable<T> = { -readonly [P in keyof T]: T[P] }
+//
+// declare namespace NodeJS {
+//   interface Global extends Writeable<{ innerWidth: number }> {}
+// }
+
 type TypographyOptions = Partial<{
   title: string
   baseFontSize: string
@@ -88,18 +94,3 @@ declare module '*.gql' {
   const value: DocumentNode
   export default value
 }
-
-// declare module '*.module.css' {
-//   const classes: { readonly [key: string]: string }
-//   export default classes
-// }
-//
-// declare module '*.module.scss' {
-//   const classes: { readonly [key: string]: string }
-//   export default classes
-// }
-//
-// declare module '*.module.sass' {
-//   const classes: { readonly [key: string]: string }
-//   export default classes
-// }
