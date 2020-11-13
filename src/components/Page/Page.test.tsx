@@ -2,9 +2,9 @@ import React from 'react'
 import { render, cleanup, waitFor } from '@testing-library/react'
 import Page from './Page'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

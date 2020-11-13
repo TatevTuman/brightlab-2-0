@@ -3,9 +3,9 @@ import { render, cleanup, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Button from './Button'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

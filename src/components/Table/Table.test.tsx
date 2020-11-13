@@ -4,9 +4,9 @@ import { TableColumnType } from '@types'
 import { Button } from '@elements'
 import Table from './Table'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

@@ -2,9 +2,9 @@ import { cleanup } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
 import useWindowSize from './useWindowSize'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

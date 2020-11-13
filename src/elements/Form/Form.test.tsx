@@ -5,9 +5,9 @@ import { Button, Input } from '@elements'
 import { emailPattern } from '@utils'
 import Form from './Form'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

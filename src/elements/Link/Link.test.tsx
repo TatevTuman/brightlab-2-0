@@ -2,9 +2,9 @@ import React from 'react'
 import { render, cleanup, waitFor } from '@testing-library/react'
 import Link from './Link'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

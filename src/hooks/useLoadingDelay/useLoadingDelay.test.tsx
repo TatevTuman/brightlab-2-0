@@ -4,9 +4,9 @@ import useLoadingDelay from './useLoadingDelay'
 
 jest.useFakeTimers()
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()

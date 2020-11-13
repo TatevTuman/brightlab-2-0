@@ -2,9 +2,9 @@ import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import useSiteMetadata from './useSiteMetadata'
 
-beforeAll(() => {})
-afterAll(() => {})
-beforeEach(() => {})
+// beforeAll(() => {})
+// afterAll(() => {})
+// beforeEach(() => {})
 afterEach(() => {
   cleanup()
   jest.clearAllMocks()
