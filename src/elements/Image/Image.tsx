@@ -63,6 +63,7 @@ const Image: React.FC<ImageProps> = props => {
 
 export default memo(Image)
 
+// All these queries will be imported to the any static query by default
 export const query = graphql`
   fragment ImageFluid on File {
     childImageSharp {

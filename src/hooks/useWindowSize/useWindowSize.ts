@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 
-const useWindowSize = (): { width: number; height: number; breakpoint: string } => {
+interface UseWindowSizeResult {
+  width: number
+  height: number
+  breakpoint: string
+  toRender: boolean
+}
+
+const useWindowSize = (breakpointsToRender?: string[]): UseWindowSizeResult => {
   const isClient = typeof window === 'object'
 
   const getSize = (): { width: number; height: number } => {
@@ -43,7 +50,9 @@ const useWindowSize = (): { width: number; height: number; breakpoint: string } 
     setWindowBreakpoint(nextWindowBreakPoint)
   }, [windowSize])
 
-  return { ...windowSize, breakpoint: windowBreakpoint }
+  const toRender = !!breakpointsToRender?.find(breakpointToRender => breakpointToRender === windowBreakpoint)
+
+  return { ...windowSize, breakpoint: windowBreakpoint, toRender }
 }
 
 export default useWindowSize

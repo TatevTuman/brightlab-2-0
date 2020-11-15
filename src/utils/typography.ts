@@ -71,7 +71,7 @@ const typography = new Typography({
         position: 'relative',
         display: 'inline-block',
         width: 'fit-content',
-        color: 'var(--black)',
+        color: 'inherit',
         textDecoration: 'none'
       },
       'a[data-active="true"]': {

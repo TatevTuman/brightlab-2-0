@@ -8,54 +8,51 @@ exports[`Header renders correctly 1`] = `
     <div
       class="container"
     >
-      <div
-        class="row middle-xs between-xs"
+      <test-file-stub
+        height="100"
+        style="position: absolute; top: 0px; right: 0px;"
+        width="100"
+      />
+      <nav
+        data-direction="horizontal"
+        role="navigation"
       >
-        <div
-          class="col-xs-8"
-        >
-          <nav
-            data-direction="horizontal"
-            role="navigation"
+        <li>
+          <a
+            href="/"
           >
-            <li>
-              <a
-                href="/"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="/typography"
-              >
-                Typography
-              </a>
-            </li>
-            <li>
-              <a
-                href="/sign-in"
-              >
-                Sign in
-              </a>
-            </li>
-            <li>
-              <a
-                href="/sign-up"
-              >
-                Sign up
-              </a>
-            </li>
-            <li>
-              <a
-                href="/dynamic"
-              >
-                Dynamic
-              </a>
-            </li>
-          </nav>
-        </div>
-      </div>
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/typography"
+          >
+            Typography
+          </a>
+        </li>
+        <li>
+          <a
+            href="/sign-in"
+          >
+            Sign in
+          </a>
+        </li>
+        <li>
+          <a
+            href="/sign-up"
+          >
+            Sign up
+          </a>
+        </li>
+        <li>
+          <a
+            href="/dynamic"
+          >
+            Dynamic
+          </a>
+        </li>
+      </nav>
     </div>
   </div>
 </div>

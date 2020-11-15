@@ -12,7 +12,7 @@ const Footer: React.FC<HeaderProps> = props => {
   return (
     <div className={styles.footer} role="contentinfo">
       <Container>
-        <nav role={'navigation'} data-direction={'vertical'}>
+        <nav role={'navigation'}>
           {navigation.map(item => {
             const { path, label } = item
 

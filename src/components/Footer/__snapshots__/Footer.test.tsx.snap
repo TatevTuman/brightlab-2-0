@@ -10,7 +10,6 @@ exports[`Footer renders correctly 1`] = `
       class="container"
     >
       <nav
-        data-direction="vertical"
         role="navigation"
       >
         <li>
