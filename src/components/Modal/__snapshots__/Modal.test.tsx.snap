@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal renders correctly 1`] = `
+<div>
+  <div
+    data-testid="modals"
+    id="modals"
+  >
+    <div
+      class="modal"
+      role="complementary"
+    >
+      <div
+        class="modalMask"
+      />
+      <div
+        class="modalContent"
+      >
+        <div
+          data-testid="modal"
+        >
+          TestModal
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="button button__primary-lg "
+    data-centered="false"
+    data-disabled="false"
+    type="button"
+  >
+    Open TestModal
+  </button>
+  <button
+    class="button button__primary-lg "
+    data-centered="false"
+    data-disabled="false"
+    type="button"
+  >
+    Close TestModal
+  </button>
+</div>
+`;

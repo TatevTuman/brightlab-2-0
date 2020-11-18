@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeModal renders correctly 1`] = `
+<div>
+  <div
+    id="modals"
+  >
+    <div
+      class="modal"
+      role="complementary"
+    >
+      <div
+        class="modalMask"
+      />
+      <div
+        class="modalContent"
+      >
+        <div
+          class="homeModal"
+        >
+          <header
+            class="modalHeader"
+          >
+            <h3>
+              Home modal
+            </h3>
+          </header>
+          <div>
+            Random number from modal state: 
+          </div>
+          <footer
+            class="modalFooter"
+          >
+            <div>
+              Close
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

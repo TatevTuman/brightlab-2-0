@@ -14,7 +14,8 @@ module.exports = {
     '@graphql': '<rootDir>/src/graphql/index.ts',
     '@fragments': '<rootDir>/src/graphql/fragments/index.ts',
     '@utils': '<rootDir>/src/utils/index.ts',
-    '@hooks': '<rootDir>/src/hooks/index.ts'
+    '@hooks': '<rootDir>/src/hooks/index.ts',
+    '@cache': '<rootDir>/gatsby-apollo-cache.ts'
   },
   testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],
   transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],

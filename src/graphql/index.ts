@@ -1,3 +1,4 @@
+export * from './fragments'
 // export * from './model'
 
 // import { gql } from '@apollo/client'
@@ -70,5 +71,3 @@
 //     signin(email: $email, password: $password)
 //   }
 // `
-
-export default {}

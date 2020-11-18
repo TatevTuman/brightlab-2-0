@@ -4,6 +4,7 @@ export * from './forms'
 export * from './apollo'
 export * from './validation'
 export * from './generated'
+export * from './cache'
 
 export type Children = JSX.Element | JSX.Element[] | string
 

@@ -1,5 +1,5 @@
-import { cleanup, act } from '@testing-library/react'
-import { renderHook } from '@testing-library/react-hooks'
+import { cleanup } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react-hooks'
 import useLoadingDelay from './useLoadingDelay'
 
 jest.useFakeTimers()

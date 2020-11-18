@@ -1,10 +1,13 @@
 import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
+import { useModal } from '@hooks'
 
 interface HomeProps extends RouteComponentProps {}
 
 const Home: React.FC<HomeProps> = props => {
+  const { openModal } = useModal('HomeModal')
+
   return (
     <section>
       <SEO title={'Home'} />
@@ -13,7 +16,7 @@ const Home: React.FC<HomeProps> = props => {
         <br />
         <strong>Gatsby</strong>
         <br />
-        Boilerplate
+        <div onClick={() => openModal({ number: Math.random() })}>Boilerplate</div>
       </h1>
     </section>
   )

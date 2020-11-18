@@ -1,7 +1,7 @@
 import React, { memo, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { SEO } from '@components'
-import { Form, Input, Button } from '@elements'
+import { Form, SEO } from '@components'
+import { Input, Button } from '@elements'
 import { SignUpForm } from '@types'
 import { FieldErrors } from 'react-hook-form'
 import { emailPattern, passwordValidation } from '@utils'
@@ -32,7 +32,7 @@ const SignUp: React.FC<SignUpProps> = props => {
         {useFormMethods => {
           return (
             <>
-              <Form.FormItem>
+              <Form.Item>
                 <Input
                   {...useFormMethods}
                   name={'firstName'}
@@ -41,8 +41,8 @@ const SignUp: React.FC<SignUpProps> = props => {
                     required: { value: true, message: 'First name is required' }
                   }}
                 />
-              </Form.FormItem>
-              <Form.FormItem>
+              </Form.Item>
+              <Form.Item>
                 <Input
                   {...useFormMethods}
                   name={'lastName'}
@@ -51,8 +51,8 @@ const SignUp: React.FC<SignUpProps> = props => {
                     required: { value: true, message: 'Last name is required' }
                   }}
                 />
-              </Form.FormItem>
-              <Form.FormItem>
+              </Form.Item>
+              <Form.Item>
                 <Input
                   {...useFormMethods}
                   type={'email'}
@@ -63,8 +63,8 @@ const SignUp: React.FC<SignUpProps> = props => {
                     pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
                   }}
                 />
-              </Form.FormItem>
-              <Form.FormItem>
+              </Form.Item>
+              <Form.Item>
                 <Input
                   {...useFormMethods}
                   type={'password'}
@@ -75,7 +75,7 @@ const SignUp: React.FC<SignUpProps> = props => {
                     ...passwordValidation
                   }}
                 />
-              </Form.FormItem>
+              </Form.Item>
               <Button type={'secondary'} size={'md'} submit centered>
                 Войти
               </Button>

@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Children } from '@types'
 import styles from './Container.module.scss'
 
-interface ContainerProps {
+export interface ContainerProps {
   children: Children
 }
 

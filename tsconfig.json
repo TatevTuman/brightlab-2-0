@@ -21,7 +21,8 @@
       "@graphql": ["src/graphql/index.ts"],
       "@fragments": ["src/graphql/fragments/index.ts"],
       "@utils": ["src/utils/index.ts"],
-      "@hooks": ["src/hooks/index.ts"]
+      "@hooks": ["src/hooks/index.ts"],
+      "@cache": ["gatsby-apollo-cache.ts"]
     }
   },
   "exclude": ["node_modules", "public", ".cache"]

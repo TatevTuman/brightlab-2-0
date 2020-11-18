@@ -1,0 +1,61 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: all 0.2s ease;
+
+  &[data-animation="true"] {
+    animation: 0.2s fade_in;
+  }
+
+  @keyframes fade_in {
+    from {
+      background: green;
+    }
+    to {
+      background: red;
+    }
+  }
+
+  &-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.4;
+  }
+
+  &-content {
+    width: 60%;
+    height: 400px;
+    background: #fff;
+    z-index: 2;
+    border-radius: 10px;
+
+    & > div {
+      height: 100%;
+    }
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-footer {
+    margin-top: auto;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

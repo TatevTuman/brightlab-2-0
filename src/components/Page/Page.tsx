@@ -5,7 +5,7 @@ import { useSiteMetadata } from '@hooks'
 import { Children } from '@types'
 import styles from './Page.module.scss'
 
-interface PageProps extends RouteComponentProps {
+export interface PageProps extends RouteComponentProps {
   children: Children
 }
 

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormItem renders correctly 1`] = `
+<div>
+  <div
+    class="formItem"
+  >
+    children
+  </div>
+</div>
+`;

@@ -1,7 +1,7 @@
 import React, { ErrorInfo, Component } from 'react'
 import styles from './ErrorBoundary.module.scss'
 
-interface ErrorBoundaryProps {}
+export interface ErrorBoundaryProps {}
 
 interface ErrorBoundaryState {
   error: Error | null

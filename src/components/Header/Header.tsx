@@ -18,7 +18,7 @@ const HomeLogo = () => {
   return <LogoImage width={100} height={100} style={logoStyles} />
 }
 
-interface HeaderProps {}
+export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = props => {
   const { navigation } = useSiteMetadata()

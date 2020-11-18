@@ -11,6 +11,3 @@ export const Image: LoadableComponent<ImageProps> = loadable(() => import('./Ima
 export const Link: LoadableComponent<LinkProps> = loadable(() => import('./Link/Link'))
 export const Input: LoadableComponent<InputProps> = loadable(() => import('./Input/Input'))
 export const Checkbox: LoadableComponent<CheckboxProps> = loadable(() => import('./Checkbox/Checkbox'))
-
-// Generic Form
-export { default as Form } from './Form/Form'

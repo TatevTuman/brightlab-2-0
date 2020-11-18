@@ -2,7 +2,9 @@
 
 exports[`Form renders correctly 1`] = `
 <div>
-  <form>
+  <form
+    class="form"
+  >
     <div
       class="input"
     >

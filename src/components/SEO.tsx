@@ -9,7 +9,7 @@ import React, { memo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-interface SeoProps {
+export interface SeoProps {
   description?: string
   lang?: string
   meta?: any[]

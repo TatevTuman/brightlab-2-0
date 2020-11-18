@@ -1,8 +1,8 @@
 import React, { memo, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
-import { SEO } from '@components'
-import { Form, Input, Checkbox, Button } from '@elements'
+import { Form, SEO } from '@components'
+import { Input, Checkbox, Button } from '@elements'
 import { SignInForm } from '@types'
 import { emailPattern } from '@utils'
 
@@ -32,7 +32,7 @@ const SignIn: React.FC<SignInProps> = props => {
         {useFormMethods => {
           return (
             <>
-              <Form.FormItem>
+              <Form.Item>
                 <Input
                   {...useFormMethods}
                   type={'email'}
@@ -43,8 +43,8 @@ const SignIn: React.FC<SignInProps> = props => {
                     pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
                   }}
                 />
-              </Form.FormItem>
-              <Form.FormItem>
+              </Form.Item>
+              <Form.Item>
                 <Input
                   {...useFormMethods}
                   type={'password'}
@@ -54,8 +54,8 @@ const SignIn: React.FC<SignInProps> = props => {
                     required: { value: true, message: 'Password is required' }
                   }}
                 />
-              </Form.FormItem>
-              <Form.FormItem>
+              </Form.Item>
+              <Form.Item>
                 <Checkbox
                   {...useFormMethods}
                   name={'remember'}
@@ -64,7 +64,7 @@ const SignIn: React.FC<SignInProps> = props => {
                     required: { value: true, message: 'Password is required' }
                   }}
                 />
-              </Form.FormItem>
+              </Form.Item>
               <Button type={'secondary'} size={'md'} submit centered>
                 Войти
               </Button>

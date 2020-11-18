@@ -10,6 +10,7 @@ import {
   UseFormMethods
 } from 'react-hook-form'
 import { Children } from '@types'
+import { FormItem } from './components'
 import styles from './Form.module.scss'
 
 export interface FormProps<F> {
@@ -26,7 +27,7 @@ const formWithForwardedRef = <F,>() => {
     const useFormMethods = useForm<F>({ defaultValues })
 
     return (
-      <form ref={ref} onSubmit={useFormMethods.handleSubmit(onSubmit, onError)}>
+      <form className={styles.form} ref={ref} onSubmit={useFormMethods.handleSubmit(onSubmit, onError)}>
         {children(useFormMethods)}
       </form>
     )
@@ -37,23 +38,11 @@ const formWithForwardedRef = <F,>() => {
   return memo(forwardRefWrapper)
 }
 
-export interface FormItemProps {
-  children: Children
-}
-
-const FormItem: React.FC<FormItemProps> = ({ children }) => {
-  return <div className={styles.formItem}>{children}</div>
-}
-
-export interface FormItemProps {
-  children: Children
-}
-
 const Form = <F,>(props: FormProps<F>) => {
   const FormWithForwardedRef = formWithForwardedRef<F>()
   return <FormWithForwardedRef {...props} />
 }
 
-Form.FormItem = FormItem
+Form.Item = FormItem
 
 export default Form

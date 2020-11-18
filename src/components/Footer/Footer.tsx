@@ -4,9 +4,9 @@ import { Link } from '@elements'
 import { useSiteMetadata } from '@hooks'
 import styles from './Footer.module.scss'
 
-interface HeaderProps {}
+export interface FooterProps {}
 
-const Footer: React.FC<HeaderProps> = props => {
+const Footer: React.FC<FooterProps> = props => {
   const { navigation } = useSiteMetadata()
 
   return (
