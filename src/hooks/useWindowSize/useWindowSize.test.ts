@@ -11,7 +11,7 @@ afterEach(() => {
 })
 
 describe('UseLoadingDelay', () => {
-  it('useLoadingDelay', () => {
+  it('useDelayEffect', () => {
     // TODO extend global interface in index.d.ts
     global.innerWidth = 994
 

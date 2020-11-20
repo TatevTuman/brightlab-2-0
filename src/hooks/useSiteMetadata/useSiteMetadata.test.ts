@@ -11,7 +11,7 @@ afterEach(() => {
 })
 
 describe('UseLoadingDelay', () => {
-  it('useLoadingDelay', () => {
+  it('useDelayEffect', () => {
     const { result } = renderHook(useSiteMetadata)
 
     expect(result.current).toMatchObject({

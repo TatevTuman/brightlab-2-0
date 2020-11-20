@@ -8,18 +8,24 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  transition: all 0.2s ease;
+  opacity: 0;
 
-  &[data-animation="true"] {
-    animation: 0.2s fade_in;
+  transition: opacity 0.2s ease;
+  will-change: opacity;
+
+  &[data-opened='true'] {
+    opacity: 1;
+
+    .modal-content {
+      transform: translateY(0);
+    }
   }
 
-  @keyframes fade_in {
-    from {
-      background: green;
-    }
-    to {
-      background: red;
+  &[data-opened='false'] {
+    opacity: 0;
+
+    .modal-content {
+      transform: translateY(-20%);
     }
   }
 
@@ -37,6 +43,9 @@
     background: #fff;
     z-index: 2;
     border-radius: 10px;
+    transform: translateY(-20%);
+    transition: all 0.2s ease;
+    will-change: transfrom, translateY;
 
     & > div {
       height: 100%;

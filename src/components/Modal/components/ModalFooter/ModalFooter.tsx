@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Children } from '@types'
-import styles from '../../Modal.module.scss'
+import '../../Modal.scss'
 
 export interface ModalFooterProps {
   children: Children
@@ -9,7 +9,7 @@ export interface ModalFooterProps {
 type ModalFooterType = React.FC<ModalFooterProps>
 
 const ModalFooter: ModalFooterType = props => {
-  return <footer className={styles.modalFooter}>{props.children}</footer>
+  return <footer className={'modal-footer'}>{props.children}</footer>
 }
 
 export default memo(ModalFooter)

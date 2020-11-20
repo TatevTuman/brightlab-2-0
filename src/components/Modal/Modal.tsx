@@ -1,9 +1,9 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { ModalHeader, ModalFooter, ModalFooterProps, ModalHeaderProps } from './components'
 import { Children } from '@types'
 import { useModal } from '@hooks'
-import styles from './Modal.module.scss'
+import './Modal.scss'
 
 export interface ModalProps {
   modalName: string
@@ -17,27 +17,23 @@ type ModalType = React.FC<ModalProps> & {
 
 const Modal: ModalType = props => {
   const { modalName, children } = props
-  const { modal, closeModal } = useModal(modalName)
+  const { modal: isModalOpened, closeModal } = useModal(modalName)
   const container = document.getElementById('modals')
 
-  const isModalOpened = !!modal
+  if (!isModalOpened) return null
 
   const ModalComponent = memo(() => {
     return (
-      <div className={styles.modal} role={'complementary'}>
-        <div className={styles.modalMask} onClick={() => closeModal()} />
-        <div className={styles.modalContent}>{children}</div>
+      <div id={modalName} className={'modal'} role={'complementary'}>
+        <div className={'modal-mask'} onClick={closeModal} />
+        <div className={'modal-content'}>{children}</div>
       </div>
     )
   })
 
   ModalComponent.displayName = modalName
 
-  if (isModalOpened) {
-    return createPortal(<ModalComponent />, container!)
-  }
-
-  return null
+  return createPortal(<ModalComponent />, container!)
 }
 
 Modal.Footer = memo(ModalFooter)

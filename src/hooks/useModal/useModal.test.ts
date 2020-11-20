@@ -2,6 +2,8 @@ import { cleanup } from '@testing-library/react'
 import { renderHook, act } from '@testing-library/react-hooks'
 import useModal from './useModal'
 
+jest.useFakeTimers()
+
 // beforeAll(() => {})
 // afterAll(() => {})
 // beforeEach(() => {})
@@ -30,6 +32,14 @@ describe('UseModal', () => {
 
     act(closeModal)
 
-    expect(result.current.modal).toBeFalsy()
+    expect(result.current.modal).toBeTruthy()
+
+    setTimeout(() => {
+      expect(result.current.modal).toBeFalsy()
+    }, 500)
+
+    act(() => {
+      jest.runAllTimers()
+    })
   })
 })

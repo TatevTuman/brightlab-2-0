@@ -3,7 +3,7 @@
 exports[`ModalHeader renders correctly 1`] = `
 <div>
   <header
-    class="modalHeader"
+    class="modal-header"
   >
     children
   </header>

@@ -7,19 +7,20 @@ exports[`HomeModal renders correctly 1`] = `
   >
     <div
       class="modal"
+      id="HomeModal"
       role="complementary"
     >
       <div
-        class="modalMask"
+        class="modal-mask"
       />
       <div
-        class="modalContent"
+        class="modal-content"
       >
         <div
           class="homeModal"
         >
           <header
-            class="modalHeader"
+            class="modal-header"
           >
             <h3>
               Home modal
@@ -29,7 +30,7 @@ exports[`HomeModal renders correctly 1`] = `
             Random number from modal state: 
           </div>
           <footer
-            class="modalFooter"
+            class="modal-footer"
           >
             <div>
               Close

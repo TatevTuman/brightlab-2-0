@@ -1,6 +1,6 @@
 import React, { memo, MouseEvent } from 'react'
 import { navigate } from 'gatsby'
-import { useLoadingDelay } from '@hooks'
+import { useDelayEffect } from '@hooks'
 import './Button.scss'
 
 export interface ButtonProps {
@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = props => {
   const { className, type, size, to, children, onClick, loading, disabled, submit, centered } = props
 
   const classNames = `button button__${type}-${size} ${className}`
-  const delayedLoading = useLoadingDelay(loading!)
+  const delayedLoading = useDelayEffect(loading!)
 
   const handleButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()

@@ -1,9 +1,11 @@
 import React from 'react'
-import { render, cleanup, waitFor } from '@testing-library/react'
+import { render, cleanup, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Button } from '@elements'
 import { useModal } from '@hooks'
 import Modal from './Modal'
+
+jest.useFakeTimers()
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -51,9 +53,15 @@ describe('Modal', () => {
     const closeButton = getByText('Close TestModal')
     userEvent.click(closeButton)
 
-    modal = awaitedContainer.querySelector('div[data-testid="modal"]')
+    setTimeout(() => {
+      modal = awaitedContainer.querySelector('div[data-testid="modal"]')
 
-    expect(modal).toBeNull()
-    expect(modalsContainer.childElementCount).toBe(0)
+      expect(modal).toBeNull()
+      expect(modalsContainer.childElementCount).toBe(0)
+    }, 1000)
+
+    act(() => {
+      jest.runAllTimers()
+    })
   })
 })

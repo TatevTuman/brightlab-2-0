@@ -8,13 +8,14 @@ exports[`Modal renders correctly 1`] = `
   >
     <div
       class="modal"
+      id="TestModal"
       role="complementary"
     >
       <div
-        class="modalMask"
+        class="modal-mask"
       />
       <div
-        class="modalContent"
+        class="modal-content"
       >
         <div
           data-testid="modal"

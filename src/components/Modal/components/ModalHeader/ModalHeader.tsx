@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Children } from '@types'
-import styles from '../../Modal.module.scss'
+import '../../Modal.scss'
 
 export interface ModalHeaderProps {
   children: Children
@@ -9,7 +9,7 @@ export interface ModalHeaderProps {
 type ModalHeaderType = React.FC<ModalHeaderProps>
 
 const ModalHeader: ModalHeaderType = props => {
-  return <header className={styles.modalHeader}>{props.children}</header>
+  return <header className={'modal-header'}>{props.children}</header>
 }
 
 export default memo(ModalHeader)
