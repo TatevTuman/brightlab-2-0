@@ -1,4 +1,4 @@
-import { rewriteURIForGET, useReactiveVar } from '@apollo/client'
+import { useReactiveVar } from '@apollo/client'
 import { CacheModal } from '@types'
 import { modalsVar } from '@cache'
 

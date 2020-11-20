@@ -39,7 +39,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
         <li>
-          <p className="dark-blue" style={{ background: 'var(--secondary)', padding: '1rem' }}>
+          <p className="primary-dark" style={{ background: 'var(--secondary)', padding: '1rem' }}>
             Donec efficitur purus velit, eu vehicula dolor posuere in. Aliquam erat volutpat. Nullam mattis neque lacus,
             nec tristique urna porta congue. Maecenas eu placerat tellus. Nunc sodales, magna eu porttitor suscipit,
             massa massa finibus augue, at sodales ante sem vitae enim. Vestibulum aliquet, dui at rhoncus condimentum,
@@ -48,7 +48,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
       </ul>
-      <p className="blue">
+      <p className="primary">
         Donec efficitur purus velit, eu vehicula dolor posuere in. Aliquam erat volutpat. Nullam mattis neque lacus, nec
         tristique urna porta congue. Maecenas eu placerat tellus. Nunc sodales, magna eu porttitor suscipit, massa massa
         finibus augue, at sodales ante sem vitae enim. Vestibulum aliquet, dui at rhoncus condimentum, purus lorem
@@ -57,7 +57,7 @@ const Typography: React.FC<TypographyProps> = props => {
       </p>
       <ul>
         <li>
-          <p className="text-xl">
+          <p className="text-30">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis interdum sollicitudin. Nunc
             malesuada at enim in ultricies. Vestibulum id malesuada massa, vel rutrum purus. Praesent dictum nibh at
             massa rhoncus, et aliquam est accumsan. Vestibulum volutpat magna vitae ipsum blandit, congue pretium metus
@@ -65,7 +65,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
         <li>
-          <p className="text-lg">
+          <p className="text-24">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis interdum sollicitudin. Nunc
             malesuada at enim in ultricies. Vestibulum id malesuada massa, vel rutrum purus. Praesent dictum nibh at
             massa rhoncus, et aliquam est accumsan. Vestibulum volutpat magna vitae ipsum blandit, congue pretium metus
@@ -73,7 +73,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
         <li>
-          <p className="text-xm">
+          <p className="text-20">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis interdum sollicitudin. Nunc
             malesuada at enim in ultricies. Vestibulum id malesuada massa, vel rutrum purus. Praesent dictum nibh at
             massa rhoncus, et aliquam est accumsan. Vestibulum volutpat magna vitae ipsum blandit, congue pretium metus
@@ -81,7 +81,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
         <li>
-          <p className="text-md">
+          <p className="text-16">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis interdum sollicitudin. Nunc
             malesuada at enim in ultricies. Vestibulum id malesuada massa, vel rutrum purus. Praesent dictum nibh at
             massa rhoncus, et aliquam est accumsan. Vestibulum volutpat magna vitae ipsum blandit, congue pretium metus
@@ -89,7 +89,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
         <li>
-          <p className="text-sm">
+          <p className="text-14">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis interdum sollicitudin. Nunc
             malesuada at enim in ultricies. Vestibulum id malesuada massa, vel rutrum purus. Praesent dictum nibh at
             massa rhoncus, et aliquam est accumsan. Vestibulum volutpat magna vitae ipsum blandit, congue pretium metus
@@ -97,7 +97,7 @@ const Typography: React.FC<TypographyProps> = props => {
           </p>
         </li>
         <li>
-          <p className="text-xs">
+          <p className="text-12">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lobortis interdum sollicitudin. Nunc
             malesuada at enim in ultricies. Vestibulum id malesuada massa, vel rutrum purus. Praesent dictum nibh at
             massa rhoncus, et aliquam est accumsan. Vestibulum volutpat magna vitae ipsum blandit, congue pretium metus
