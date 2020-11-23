@@ -11,8 +11,16 @@ type UseModalResult = {
 const useModal = (modalName: string): UseModalResult => {
   const modals = useReactiveVar(modalsVar)
   const modal = modals.find(({ name }) => name === modalName) || null
-  const html = document.querySelector('html')
 
+  if (typeof window === 'undefined') {
+    return {
+      modal,
+      openModal: () => null,
+      closeModal: () => null
+    }
+  }
+
+  const html = document.querySelector('html')
   // Modals without current modal
   const modalsWithoutCurrent = modals.filter(({ name }) => name !== modalName)
 

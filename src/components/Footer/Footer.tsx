@@ -13,15 +13,17 @@ const Footer: React.FC<FooterProps> = props => {
     <div className={styles.footer} role="contentinfo">
       <Container>
         <nav role={'navigation'}>
-          {navigation.map(item => {
-            const { path, label } = item
+          <ul>
+            {navigation.map(item => {
+              const { path, label } = item
 
-            return (
-              <li key={path}>
-                <Link to={path}>{label}</Link>
-              </li>
-            )
-          })}
+              return (
+                <li key={path}>
+                  <Link to={path}>{label}</Link>
+                </li>
+              )
+            })}
+          </ul>
         </nav>
       </Container>
     </div>

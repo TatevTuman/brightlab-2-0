@@ -111,7 +111,7 @@ ol[data-selection="true"] > li:hover {
   color: var(--primary);
 }
 
-nav {
+nav ul {
   width: fit-content;
   margin-left: 1.5rem;
   margin-right: 0;
@@ -123,17 +123,19 @@ nav {
   margin: 0 -1rem;
 }
 
-nav > li {
+nav > ul > li {
   margin: 0 1rem
 }
 
 nav[data-direction="vertical"] {
-  flex-direction: column;
-  align-items: flex-start;
-  margin: -1rem 0 1.5rem;
+  ul {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: -1rem 0 1.5rem;
+  }
 }
 
-nav[data-direction="vertical"] > li {
+nav[data-direction="vertical"] > ul > li {
   margin: 1rem 0;
 }
 

@@ -1,7 +1,8 @@
 import { InMemoryCache, makeVar } from '@apollo/client'
-import { CacheModal } from '@types'
+import { CacheModal, CacheDrawer } from '@types'
 
 export const modalsVar = makeVar<CacheModal[]>([])
+export const drawersVar = makeVar<CacheDrawer[]>([])
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -10,6 +11,11 @@ const cache = new InMemoryCache({
         modals: {
           read() {
             return modalsVar()
+          }
+        },
+        drawers: {
+          read() {
+            return drawersVar()
           }
         }
       }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { Page, Header, Footer, HomeModal } from '@components'
+import { Page, Header, Footer, HomeModal, HomeDrawer } from '@components'
 import client from './gatsby-apollo'
 import '@styles/app.scss'
 import '@styles/typography.scss'
@@ -15,6 +15,9 @@ export const wrapRootElement = ({ element }) => {
   return (
     <ApolloProvider client={client}>
       <Header />
+      <div id="drawers">
+        <HomeDrawer />
+      </div>
       <div id="modals">
         <HomeModal />
       </div>

@@ -109,45 +109,49 @@ const Typography: React.FC<TypographyProps> = props => {
       <h2>Navigation</h2>
       <h4>Horizontal</h4>
       <nav style={{ marginBottom: '2.25rem' }}>
-        <li>
-          <Link to="/">Link</Link>
-        </li>
-        <li>
-          <Link to="/" underlined>
-            Link underlined
-          </Link>
-        </li>
-        <li>
-          <Link to="/typography" active>
-            Link active
-          </Link>
-        </li>
-        <li>
-          <Link to="/typography" active underlined>
-            Link active underlined
-          </Link>
-        </li>
+        <ul>
+          <li>
+            <Link to="/">Link</Link>
+          </li>
+          <li>
+            <Link to="/" underlined>
+              Link underlined
+            </Link>
+          </li>
+          <li>
+            <Link to="/typography" active>
+              Link active
+            </Link>
+          </li>
+          <li>
+            <Link to="/typography" active underlined>
+              Link active underlined
+            </Link>
+          </li>
+        </ul>
       </nav>
       <h4>Vertical</h4>
       <nav data-direction="vertical">
-        <li>
-          <Link to="/">Link</Link>
-        </li>
-        <li>
-          <Link to="/" underlined>
-            Link underlined
-          </Link>
-        </li>
-        <li>
-          <Link to="/typography" active>
-            Link active
-          </Link>
-        </li>
-        <li>
-          <Link to="/typography" active underlined>
-            Link active underlined
-          </Link>
-        </li>
+        <ul>
+          <li>
+            <Link to="/">Link</Link>
+          </li>
+          <li>
+            <Link to="/" underlined>
+              Link underlined
+            </Link>
+          </li>
+          <li>
+            <Link to="/typography" active>
+              Link active
+            </Link>
+          </li>
+          <li>
+            <Link to="/typography" active underlined>
+              Link active underlined
+            </Link>
+          </li>
+        </ul>
       </nav>
       <hr />
       <h2>Lists</h2>

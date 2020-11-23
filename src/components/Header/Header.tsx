@@ -27,15 +27,17 @@ const Header: React.FC<HeaderProps> = props => {
       <Container>
         <HomeLogo />
         <nav role={'navigation'} data-direction="horizontal">
-          {navigation.map(item => {
-            const { path, label } = item
+          <ul>
+            {navigation.map(item => {
+              const { path, label } = item
 
-            return (
-              <li key={path}>
-                <Link to={path}>{label}</Link>
-              </li>
-            )
-          })}
+              return (
+                <li key={path}>
+                  <Link to={path}>{label}</Link>
+                </li>
+              )
+            })}
+          </ul>
         </nav>
       </Container>
     </div>

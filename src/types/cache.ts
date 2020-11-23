@@ -8,3 +8,8 @@ export type CacheModal = {
   name: string
   state?: Record<string, any>
 }
+
+export type CacheDrawer = {
+  name: string
+  state?: Record<string, any>
+}

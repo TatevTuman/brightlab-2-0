@@ -8,22 +8,22 @@ import Update from './pages/Update'
 const DynamicRouter = () => {
   return (
     <>
-      <h1>Dynamic route</h1>
+      <h1>Admin route</h1>
       <nav data-direction="vertical">
         <li>
-          <Link to={'/dynamic/view/1'}>View</Link>
+          <Link to={'/admin/view/1'}>View</Link>
         </li>
         <li>
-          <Link to={'/dynamic/create/1'}>Create</Link>
+          <Link to={'/admin/create/1'}>Create</Link>
         </li>
         <li>
-          <Link to={'/dynamic/update/1'}>Update</Link>
+          <Link to={'/admin/update/1'}>Update</Link>
         </li>
       </nav>
       <Router>
-        <View path="/dynamic/view/:id" />
-        <Create path="/dynamic/create/:id" />
-        <Update path="/dynamic/update/:id" />
+        <View path="/admin/view/:id" />
+        <Create path="/admin/create/:id" />
+        <Update path="/admin/update/:id" />
       </Router>
     </>
   )
