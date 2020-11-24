@@ -1,13 +1,11 @@
-import loadable, { LoadableComponent } from '@loadable/component'
+import loadable from '@loadable/component'
 
-import { ButtonProps } from './Button/Button'
-import { ImageProps } from './Image/Image'
-import { LinkProps } from './Link/Link'
-import { InputProps } from './Input/Input'
-import { CheckboxProps } from './Checkbox/Checkbox'
+export const Button = loadable(() => import('./Button/Button'))
+export const Image = loadable(() => import('./Image/Image'))
+export const Link = loadable(() => import('./Link/Link'))
+export const Input = loadable(() => import('./Input/Input'))
+export const Checkbox = loadable(() => import('./Checkbox/Checkbox'))
+export const Navigation = loadable(() => import('./Navigation/Navigation'))
 
-export const Button: LoadableComponent<ButtonProps> = loadable(() => import('./Button/Button'))
-export const Image: LoadableComponent<ImageProps> = loadable(() => import('./Image/Image'))
-export const Link: LoadableComponent<LinkProps> = loadable(() => import('./Link/Link'))
-export const Input: LoadableComponent<InputProps> = loadable(() => import('./Input/Input'))
-export const Checkbox: LoadableComponent<CheckboxProps> = loadable(() => import('./Checkbox/Checkbox'))
+export { default as Select } from './Select/Select'
+export { default as Dropdown } from './Dropdown/Dropdown'

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Container } from '@components'
-import { Link } from '@elements'
+import { Navigation } from '@elements'
 import { useSiteMetadata } from '@hooks'
 import styles from './Footer.module.scss'
 
@@ -12,19 +12,7 @@ const Footer: React.FC<FooterProps> = props => {
   return (
     <div className={styles.footer} role="contentinfo">
       <Container>
-        <nav role={'navigation'}>
-          <ul>
-            {navigation.map(item => {
-              const { path, label } = item
-
-              return (
-                <li key={path}>
-                  <Link to={path}>{label}</Link>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+        <Navigation navigation={navigation} />
       </Container>
     </div>
   )

@@ -21,26 +21,23 @@ export interface FormProps<F> {
   ref?: RefObject<HTMLFormElement>
 }
 
-const formWithForwardedRef = <F,>() => {
-  const forwardRefWrapper = forwardRef<HTMLFormElement, FormProps<F>>((props, ref) => {
-    const { defaultValues, onSubmit, onError, children } = props
-    const useFormMethods = useForm<F>({ defaultValues })
-
-    return (
-      <form className={styles.form} ref={ref} onSubmit={useFormMethods.handleSubmit(onSubmit, onError)}>
-        {children(useFormMethods)}
-      </form>
-    )
-  })
-
-  forwardRefWrapper.displayName = 'Form'
-
-  return memo(forwardRefWrapper)
-}
-
 const Form = <F,>(props: FormProps<F>) => {
-  const FormWithForwardedRef = formWithForwardedRef<F>()
-  return <FormWithForwardedRef {...props} />
+  const ForwardRefWrapper = memo(
+    forwardRef<HTMLFormElement, FormProps<F>>((props, ref) => {
+      const { defaultValues, onSubmit, onError, children } = props
+      const useFormMethods = useForm<F>({ defaultValues })
+
+      return (
+        <form className={styles.form} ref={ref} onSubmit={useFormMethods.handleSubmit(onSubmit, onError)}>
+          {children(useFormMethods)}
+        </form>
+      )
+    })
+  )
+
+  ForwardRefWrapper.displayName = 'Form'
+
+  return <ForwardRefWrapper {...props} />
 }
 
 Form.Item = FormItem

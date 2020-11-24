@@ -11,8 +11,6 @@ const HomeDrawer: React.FC<HomeDrawerProps> = props => {
   const { drawer, closeDrawer } = useDrawer(drawerName)
   const { navigation } = useSiteMetadata()
 
-  console.log('drawer', drawer)
-
   return (
     <Drawer drawerName={drawerName}>
       <div className={styles.homeDrawer}>

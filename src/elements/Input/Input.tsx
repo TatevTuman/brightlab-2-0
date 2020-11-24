@@ -5,13 +5,14 @@ import styles from './Input.module.scss'
 export interface InputProps extends ValidationProps {
   type?: string
   name: string
+  list?: string
   label?: string
   value?: string
   onChange?: (value: string) => void
 }
 
 const Input: React.FC<InputProps> = props => {
-  const { type, name, label, value, register, validation, errors, onChange } = props
+  const { type, name, list, label, value, register, validation, errors, onChange } = props
 
   const isRequired = !!validation?.required
   const ref = register && register(validation)
@@ -28,6 +29,7 @@ const Input: React.FC<InputProps> = props => {
         id={name}
         type={type}
         name={name}
+        list={list}
         ref={ref}
         value={value}
         onChange={e => onChange && onChange(e.currentTarget.value)}

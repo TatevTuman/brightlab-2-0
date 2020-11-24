@@ -1,8 +1,8 @@
-import React, { memo, useRef } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { Form, SEO } from '@components'
-import { Input, Checkbox, Button } from '@elements'
+import { Input, Checkbox, Button, Select } from '@elements'
 import { SignInForm } from '@types'
 import { emailPattern } from '@utils'
 
@@ -10,6 +10,7 @@ interface SignInProps extends RouteComponentProps {}
 
 const SignIn: React.FC<SignInProps> = props => {
   const signInForm = useRef<HTMLFormElement>(null)
+  const [test, handleTest] = useState('test')
 
   const handleSignIn = async (form: SignInForm) => {
     console.log('form', form)
@@ -52,6 +53,21 @@ const SignIn: React.FC<SignInProps> = props => {
                   label={'Password'}
                   validation={{
                     required: { value: true, message: 'Password is required' }
+                  }}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Select<string>
+                  {...useFormMethods}
+                  options={[
+                    { label: 'User', value: 'user' },
+                    { label: 'Admin', value: 'admin' }
+                  ]}
+                  name={'role'}
+                  label={'Role'}
+                  defaultValue={'user'}
+                  validation={{
+                    required: { value: true, message: 'Role is required' }
                   }}
                 />
               </Form.Item>

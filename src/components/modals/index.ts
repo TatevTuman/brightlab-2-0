@@ -1,5 +1,3 @@
-import loadable, { LoadableComponent } from '@loadable/component'
+import loadable from '@loadable/component'
 
-import { HomeModalProps } from './HomeModal/HomeModal'
-
-export const HomeModal: LoadableComponent<HomeModalProps> = loadable(() => import('./HomeModal/HomeModal'))
+export const HomeModal = loadable(() => import('./HomeModal/HomeModal'))

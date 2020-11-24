@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 import { Container } from '@components'
-import { Link } from '@elements'
+import { Navigation } from '@elements'
 import { useSiteMetadata, useWindowSize } from '@hooks'
-import styles from './Header.module.scss'
 import LogoImage from '@images/logo.svg'
+import styles from './Header.module.scss'
 
 const HomeLogo = () => {
   const { toRender } = useWindowSize(['desktop'])
@@ -22,23 +22,12 @@ export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = props => {
   const { navigation } = useSiteMetadata()
+
   return (
     <div className={styles.header}>
       <Container>
         <HomeLogo />
-        <nav role={'navigation'} data-direction="horizontal">
-          <ul>
-            {navigation.map(item => {
-              const { path, label } = item
-
-              return (
-                <li key={path}>
-                  <Link to={path}>{label}</Link>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+        <Navigation navigation={navigation} activeMatch />
       </Container>
     </div>
   )

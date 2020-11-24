@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react'
+import React, { memo } from 'react'
 import { createPortal } from 'react-dom'
 import { ModalHeader, ModalFooter, ModalFooterProps, ModalHeaderProps } from './components'
 import { Children } from '@types'
@@ -10,7 +10,7 @@ export interface ModalProps {
   children: Children
 }
 
-type ModalType = React.FC<ModalProps> & {
+export type ModalType = React.FC<ModalProps> & {
   Header: React.FC<ModalHeaderProps>
   Footer: React.FC<ModalFooterProps>
 }
@@ -36,7 +36,7 @@ const Modal: ModalType = props => {
   return createPortal(<ModalComponent />, container!)
 }
 
-Modal.Footer = memo(ModalFooter)
-Modal.Header = memo(ModalHeader)
+Modal.Footer = ModalFooter
+Modal.Header = ModalHeader
 
 export default Modal

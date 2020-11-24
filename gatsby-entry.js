@@ -8,13 +8,18 @@ import '@styles/typography.scss'
 // eslint-disable-next-line react/display-name
 export const wrapPageElement = ({ element, props }) => {
   // All routing logic is in the Page component
-  return <Page {...props}>{React.createElement(element.type, props)}</Page>
+  return (
+    <>
+      <Header />
+      <Page {...props}>{React.createElement(element.type, props)}</Page>
+      <Footer />
+    </>
+  )
 }
 
 export const wrapRootElement = ({ element }) => {
   return (
     <ApolloProvider client={client}>
-      <Header />
       <div id="drawers">
         <HomeDrawer />
       </div>
@@ -22,7 +27,6 @@ export const wrapRootElement = ({ element }) => {
         <HomeModal />
       </div>
       {element}
-      <Footer />
     </ApolloProvider>
   )
 }
