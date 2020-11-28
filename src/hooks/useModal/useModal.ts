@@ -12,6 +12,7 @@ const useModal = (modalName: string): UseModalResult => {
   const modals = useReactiveVar(modalsVar)
   const modal = modals.find(({ name }) => name === modalName) || null
 
+  // SSR check
   if (typeof window === 'undefined') {
     return {
       modal,

@@ -4,4 +4,3 @@ export { default as useDelayEffect } from './useDelayEffect/useDelayEffect'
 export { default as useSiteMetadata } from './useSiteMetadata/useSiteMetadata'
 
 export { default as useModal } from './useModal/useModal'
-export { default as useDrawer } from './useDrawer/useDrawer'

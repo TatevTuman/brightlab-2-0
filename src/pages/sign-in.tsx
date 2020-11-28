@@ -2,7 +2,8 @@ import React, { memo, useRef, useState } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { Form, SEO } from '@components'
-import { Input, Checkbox, Button, Select } from '@elements'
+import { Input, Checkbox, Button } from '@elements'
+import { Select } from '@components'
 import { SignInForm } from '@types'
 import { emailPattern } from '@utils'
 
@@ -57,8 +58,7 @@ const SignIn: React.FC<SignInProps> = props => {
                 />
               </Form.Item>
               <Form.Item>
-                <Select<string>
-                  {...useFormMethods}
+                <Select<'user' | 'admin'>
                   options={[
                     { label: 'User', value: 'user' },
                     { label: 'Admin', value: 'admin' }
@@ -66,8 +66,11 @@ const SignIn: React.FC<SignInProps> = props => {
                   name={'role'}
                   label={'Role'}
                   defaultValue={'user'}
-                  validation={{
-                    required: { value: true, message: 'Role is required' }
+                  useFormMethods={{
+                    ...useFormMethods,
+                    validation: {
+                      required: { value: true, message: 'Role is required' }
+                    }
                   }}
                 />
               </Form.Item>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, render, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Checkbox from './Checkbox'
 
@@ -112,6 +112,23 @@ describe('Checkbox', () => {
     userEvent.click(checkbox!)
 
     expect(props.onChange).toHaveBeenCalledTimes(1)
+    expect(checkbox.checked).toBeTruthy()
+  })
+
+  it('onkeydown', async () => {
+    const props = {
+      name: 'checkbox',
+      label: 'checkbox label'
+    }
+
+    const { getByText, getByLabelText } = render(<Checkbox {...props} />)
+    const label = getByText(props.label)
+    const checkbox = getByLabelText(props.label) as HTMLInputElement
+
+    userEvent.tab()
+
+    fireEvent.keyDown(label, { key: 'Enter' })
+
     expect(checkbox.checked).toBeTruthy()
   })
 })

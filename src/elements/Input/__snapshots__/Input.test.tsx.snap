@@ -6,8 +6,10 @@ exports[`Input renders correctly 1`] = `
     class="input"
   >
     <input
+      autocomplete="on"
       id="input"
       name="input"
+      placeholder="Type a text"
       type="text"
       value=""
     />

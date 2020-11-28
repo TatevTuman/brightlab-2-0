@@ -12,16 +12,16 @@ afterEach(() => {
 })
 
 const TestHomeModal = () => {
-  const { openModal } = useModal('HomeModal')
+  const modal = useModal('HomeModal')
 
   useEffect(() => {
-    openModal()
+    modal.openModal()
   }, [])
 
   return (
     <>
       <div id={'modals'} />
-      <HomeModal />
+      <HomeModal {...modal} />
     </>
   )
 }

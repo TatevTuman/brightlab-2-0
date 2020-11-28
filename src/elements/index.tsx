@@ -6,6 +6,4 @@ export const Link = loadable(() => import('./Link/Link'))
 export const Input = loadable(() => import('./Input/Input'))
 export const Checkbox = loadable(() => import('./Checkbox/Checkbox'))
 export const Navigation = loadable(() => import('./Navigation/Navigation'))
-
-export { default as Select } from './Select/Select'
-export { default as Dropdown } from './Dropdown/Dropdown'
+export const Dropdown = loadable(() => import('./Dropdown/Dropdown'))

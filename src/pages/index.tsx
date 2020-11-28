@@ -1,13 +1,12 @@
 import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
-import { useModal, useDrawer } from '@hooks'
+import { useModal } from '@hooks'
 
 interface HomeProps extends RouteComponentProps {}
 
 const Home: React.FC<HomeProps> = props => {
   const { openModal } = useModal('HomeModal')
-  // const { openDrawer } = useDrawer('HomeDrawer')
 
   return (
     <section>
@@ -19,7 +18,6 @@ const Home: React.FC<HomeProps> = props => {
         <br />
         <div>Boilerplate</div>
         <div onClick={() => openModal({ number: Math.random() })}>Modal</div>
-        {/*<div onClick={openDrawer}>Drawer</div>*/}
       </h1>
     </section>
   )

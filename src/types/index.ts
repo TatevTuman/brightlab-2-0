@@ -7,6 +7,7 @@ export * from './generated'
 export * from './cache'
 
 export type Children = JSX.Element | JSX.Element[] | string
+export type AnyObject = Record<string, any>
 
 export type SiteMetadataNavigationRoute = {
   path: string

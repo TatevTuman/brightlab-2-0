@@ -6,7 +6,7 @@ export interface ModalHeaderProps {
   children: Children
 }
 
-type ModalHeaderType = React.FC<ModalHeaderProps>
+export type ModalHeaderType = React.FC<ModalHeaderProps>
 
 const ModalHeader: ModalHeaderType = props => {
   return <header className={'modal-header'}>{props.children}</header>

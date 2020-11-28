@@ -2,35 +2,28 @@ import React, { memo } from 'react'
 import { OptionType } from '@types'
 import styles from './Dropdown.module.scss'
 
-export interface DropdownProps<T> {
-  id: string
-  options: OptionType<T>[]
-  onSelect: (option: OptionType<T>) => void
+export interface DropdownProps {
+  options: OptionType<any>[]
+  onSelect: (selectedOption: OptionType<any>) => void
 }
 
-const Dropdown = <T,>(props: DropdownProps<T>) => {
-  const { id, options, onSelect } = props
+const Dropdown = (props: DropdownProps) => {
+  const { options, onSelect } = props
 
-  const MemoizedDropdown = memo(() => {
-    return (
-      <ul id={id} className={styles.dropdown} tabIndex={0}>
-        {options.map((option, index) => {
-          const { label } = option
-          const key = label + index
+  return (
+    <ul className={styles.dropdown}>
+      {options.map((option, index) => {
+        const { label } = option
+        const key = label + index
 
-          return (
-            <li onClick={() => onSelect(option)} key={key} tabIndex={0}>
-              {label}
-            </li>
-          )
-        })}
-      </ul>
-    )
-  })
-
-  MemoizedDropdown.displayName = 'Dropdown'
-
-  return <MemoizedDropdown />
+        return (
+          <li onClick={() => onSelect(option)} key={key}>
+            {label}
+          </li>
+        )
+      })}
+    </ul>
+  )
 }
 
-export default Dropdown
+export default memo(Dropdown)

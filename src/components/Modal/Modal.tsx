@@ -1,39 +1,31 @@
-import React, { memo } from 'react'
-import { createPortal } from 'react-dom'
-import { ModalHeader, ModalFooter, ModalFooterProps, ModalHeaderProps } from './components'
+import React from 'react'
+import { ModalHeader, ModalFooter, ModalFooterType, ModalHeaderType } from './components'
 import { Children } from '@types'
-import { useModal } from '@hooks'
 import './Modal.scss'
 
 export interface ModalProps {
-  modalName: string
+  id: string
+  opened: boolean
+  onClose: () => void
   children: Children
 }
 
 export type ModalType = React.FC<ModalProps> & {
-  Header: React.FC<ModalHeaderProps>
-  Footer: React.FC<ModalFooterProps>
+  Footer: ModalFooterType
+  Header: ModalHeaderType
 }
 
 const Modal: ModalType = props => {
-  const { modalName, children } = props
-  const { modal: isModalOpened, closeModal } = useModal(modalName)
-  const container = document.getElementById('modals')
+  const { id, opened, children, onClose } = props
 
-  if (!isModalOpened) return null
+  if (!opened) return null
 
-  const ModalComponent = memo(() => {
-    return (
-      <div id={modalName} className={'modal'} role={'complementary'}>
-        <div className={'modal-mask'} onClick={closeModal} />
-        <div className={'modal-content'}>{children}</div>
-      </div>
-    )
-  })
-
-  ModalComponent.displayName = modalName
-
-  return createPortal(<ModalComponent />, container!)
+  return (
+    <div id={id} className={'modal'} role={'complementary'}>
+      <div className={'modal-mask'} onClick={onClose} />
+      <div className={'modal-content'}>{children}</div>
+    </div>
+  )
 }
 
 Modal.Footer = ModalFooter

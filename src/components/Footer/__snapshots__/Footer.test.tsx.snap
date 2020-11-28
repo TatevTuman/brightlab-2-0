@@ -15,6 +15,8 @@ exports[`Footer renders correctly 1`] = `
         <ul>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/"
             >
               Home
@@ -22,6 +24,8 @@ exports[`Footer renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/typography"
             >
               Typography
@@ -29,6 +33,8 @@ exports[`Footer renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/sign-in"
             >
               Sign in
@@ -36,6 +42,8 @@ exports[`Footer renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/sign-up"
             >
               Sign up
@@ -43,6 +51,8 @@ exports[`Footer renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/dynamic"
             >
               Dynamic

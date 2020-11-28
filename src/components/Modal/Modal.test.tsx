@@ -16,14 +16,15 @@ afterEach(() => {
 })
 
 const TestModal = () => {
-  const { openModal, closeModal } = useModal('TestModal')
+  const { modal, openModal, closeModal } = useModal('TestModal')
 
   return (
     <>
-      <div id={'modals'} data-testid={'modals'} />
-      <Modal modalName={'TestModal'}>
-        <div data-testid={'modal'}>TestModal</div>
-      </Modal>
+      <div id={'modals'} data-testid={'modals'}>
+        <Modal id={'TestModal'} onClose={closeModal} opened={!!modal}>
+          <div data-testid={'modal'}>TestModal</div>
+        </Modal>
+      </div>
       <Button onClick={openModal}>Open TestModal</Button>
       <Button onClick={closeModal}>Close TestModal</Button>
     </>

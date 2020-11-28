@@ -15,8 +15,10 @@ exports[`Form renders correctly 1`] = `
         Email
       </label>
       <input
+        autocomplete="on"
         id="email"
         name="email"
+        placeholder="Type a text"
         type="email"
         value=""
       />

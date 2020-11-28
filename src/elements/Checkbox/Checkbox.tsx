@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { ValidationProps } from '@types'
 import styles from './Checkbox.module.scss'
 
@@ -17,8 +17,16 @@ const Checkbox: React.FC<CheckboxProps> = props => {
   const ref = register && register(validation)
   const error = errors && errors[name]
 
+  const onEnterKeyDown = (e: { key: string }) => {
+    const checkbox = document.getElementById(name)
+    const isEnterKey = e.key === 'Enter'
+
+    if (isEnterKey && onChange) onChange(!checked)
+    else if (checkbox) (checkbox as HTMLInputElement).checked = !checked
+  }
+
   return (
-    <label className={styles.checkbox}>
+    <label className={styles.checkbox} onKeyDown={onEnterKeyDown} tabIndex={0}>
       {label && (
         <label htmlFor={name} data-required={isRequired}>
           {label}

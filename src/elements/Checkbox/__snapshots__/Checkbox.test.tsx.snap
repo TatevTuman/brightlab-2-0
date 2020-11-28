@@ -4,6 +4,7 @@ exports[`Checkbox renders correctly 1`] = `
 <div>
   <label
     class="checkbox"
+    tabindex="0"
   >
     <input
       id="checkbox"

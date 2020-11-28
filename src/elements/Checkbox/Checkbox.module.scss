@@ -7,7 +7,9 @@
   font-size: 1rem;
   user-select: none;
 
-  &:hover {
+  &:hover, &:focus {
+    outline: none;
+
     input {
       & ~ .checkbox-indicator {
         background: var(--secondary-dark);

@@ -5,14 +5,15 @@ import styles from './Input.module.scss'
 export interface InputProps extends ValidationProps {
   type?: string
   name: string
-  list?: string
   label?: string
   value?: string
+  placeholder?: string
+  autoComplete?: string
   onChange?: (value: string) => void
 }
 
 const Input: React.FC<InputProps> = props => {
-  const { type, name, list, label, value, register, validation, errors, onChange } = props
+  const { type, name, label, value, placeholder, autoComplete, onChange, register, validation, errors } = props
 
   const isRequired = !!validation?.required
   const ref = register && register(validation)
@@ -29,10 +30,11 @@ const Input: React.FC<InputProps> = props => {
         id={name}
         type={type}
         name={name}
-        list={list}
         ref={ref}
         value={value}
+        placeholder={placeholder}
         onChange={e => onChange && onChange(e.currentTarget.value)}
+        autoComplete={autoComplete}
       />
       {error && (
         <div role="input-error" className="validation-error">
@@ -44,7 +46,9 @@ const Input: React.FC<InputProps> = props => {
 }
 
 Input.defaultProps = {
-  type: 'text'
+  type: 'text',
+  placeholder: 'Type a text',
+  autoComplete: 'on'
 }
 
 export default memo(Input)

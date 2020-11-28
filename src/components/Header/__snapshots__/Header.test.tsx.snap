@@ -14,12 +14,13 @@ exports[`Header renders correctly 1`] = `
         width="100"
       />
       <nav
-        data-direction="horizontal"
         role="navigation"
       >
         <ul>
           <li>
             <a
+              data-active="true"
+              data-underlined="true"
               href="/"
             >
               Home
@@ -27,6 +28,8 @@ exports[`Header renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/typography"
             >
               Typography
@@ -34,6 +37,8 @@ exports[`Header renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/sign-in"
             >
               Sign in
@@ -41,6 +46,8 @@ exports[`Header renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/sign-up"
             >
               Sign up
@@ -48,6 +55,8 @@ exports[`Header renders correctly 1`] = `
           </li>
           <li>
             <a
+              data-active="false"
+              data-underlined="false"
               href="/dynamic"
             >
               Dynamic
