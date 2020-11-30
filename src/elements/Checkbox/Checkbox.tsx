@@ -17,16 +17,18 @@ const Checkbox: React.FC<CheckboxProps> = props => {
   const ref = register && register(validation)
   const error = errors && errors[name]
 
-  const onEnterKeyDown = (e: { key: string }) => {
+  const handleKeyDown = (e: { key: string }) => {
     const checkbox = document.getElementById(name)
     const isEnterKey = e.key === 'Enter'
 
-    if (isEnterKey && onChange) onChange(!checked)
-    else if (checkbox) (checkbox as HTMLInputElement).checked = !checked
+    if (isEnterKey) {
+      if (onChange) onChange(!checked)
+      else if (checkbox) (checkbox as HTMLInputElement).checked = !checked
+    }
   }
 
   return (
-    <label className={styles.checkbox} onKeyDown={onEnterKeyDown} tabIndex={0}>
+    <label className={styles.checkbox} onKeyDown={handleKeyDown} tabIndex={0}>
       {label && (
         <label htmlFor={name} data-required={isRequired}>
           {label}
@@ -40,6 +42,7 @@ const Checkbox: React.FC<CheckboxProps> = props => {
         checked={checked}
         disabled={disabled}
         onChange={e => onChange && onChange(!e.currentTarget.checked)}
+        tabIndex={-1}
       />
       <div className={styles.checkboxIndicator} />
       {error && <span className={`${styles.checkboxValidationError} validation-error`}>{error.message}</span>}

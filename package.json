@@ -65,7 +65,7 @@
     "react-dom": "^17.0.1",
     "react-flexbox-grid": "^2.1.2",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^6.5.3",
+    "react-hook-form": "^6.12.1",
     "react-typography": "^0.16.19",
     "resolve-url-loader": "^3.1.1",
     "typography": "^0.16.19"

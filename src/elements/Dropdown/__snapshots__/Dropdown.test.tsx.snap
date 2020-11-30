@@ -6,7 +6,16 @@ exports[`Dropdown renders correctly 1`] = `
     class="dropdown"
   >
     <li>
-      Test
+      Page0
+    </li>
+    <li>
+      Page1
+    </li>
+    <li>
+      Page2
+    </li>
+    <li>
+      Page3
     </li>
   </ul>
 </div>

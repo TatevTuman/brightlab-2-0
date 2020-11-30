@@ -27,6 +27,7 @@ exports[`Form renders correctly 1`] = `
       class="button button__secondary-md "
       data-centered="true"
       data-disabled="false"
+      tabindex="0"
       type="submit"
     >
       Submit

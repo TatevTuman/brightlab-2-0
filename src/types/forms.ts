@@ -1,6 +1,9 @@
+export type RoleOptionValue = { test: string }
+
 export type SignInForm = {
   email: string
   password: string
+  role: RoleOptionValue
   remember: boolean
 }
 

@@ -1,11 +1,8 @@
 // Breakpoints
 $breakpoints: (
-  'desktop_lg': 1440px,
-  'desktop_md': 1280px,
-  'tablet_lg': 1024px,
-  'tablet_md': 867px,
-  'tablet_sm': 720px,
-  'mobile': 414px,
+  'mobile': 576px,
+  'landscape': 768px,
+  'tablet': 992px,
 ) !default;
 
 //Mixins

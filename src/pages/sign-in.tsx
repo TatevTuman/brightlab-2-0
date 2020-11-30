@@ -1,17 +1,16 @@
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { Form, SEO } from '@components'
 import { Input, Checkbox, Button } from '@elements'
 import { Select } from '@components'
-import { SignInForm } from '@types'
+import { SignInForm, RoleOptionValue } from '@types'
 import { emailPattern } from '@utils'
 
 interface SignInProps extends RouteComponentProps {}
 
 const SignIn: React.FC<SignInProps> = props => {
   const signInForm = useRef<HTMLFormElement>(null)
-  const [test, handleTest] = useState('test')
 
   const handleSignIn = async (form: SignInForm) => {
     console.log('form', form)
@@ -26,11 +25,29 @@ const SignIn: React.FC<SignInProps> = props => {
     console.log('errors', errors)
   }
 
+  const roleOptions = [
+    { label: 'User', value: { test: 'user' } },
+    { label: 'Admin', value: { test: 'admin' } },
+    { label: 'Guest', value: { test: 'guest' } },
+    { label: 'Manager', value: { test: 'manager' } },
+    { label: 'Devops', value: { test: 'devops' } },
+    { label: 'Client', value: { test: 'client' } }
+  ]
+
   return (
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      <Form<SignInForm> ref={signInForm} onSubmit={handleSignIn} onError={handleSignInError}>
+      <Form<SignInForm>
+        ref={signInForm}
+        defaultValues={{
+          email: 'test@email.com',
+          password: '123Gghj1',
+          remember: true
+        }}
+        onSubmit={handleSignIn}
+        onError={handleSignInError}
+      >
         {useFormMethods => {
           return (
             <>
@@ -58,18 +75,14 @@ const SignIn: React.FC<SignInProps> = props => {
                 />
               </Form.Item>
               <Form.Item>
-                <Select<'user' | 'admin'>
-                  options={[
-                    { label: 'User', value: 'user' },
-                    { label: 'Admin', value: 'admin' }
-                  ]}
+                <Select<RoleOptionValue>
+                  options={roleOptions}
                   name={'role'}
                   label={'Role'}
-                  defaultValue={'user'}
                   useFormMethods={{
                     ...useFormMethods,
                     validation: {
-                      required: { value: true, message: 'Role is required' }
+                      required: { value: true, message: 'Role is required' },
                     }
                   }}
                 />
@@ -84,7 +97,7 @@ const SignIn: React.FC<SignInProps> = props => {
                   }}
                 />
               </Form.Item>
-              <Button type={'secondary'} size={'md'} submit centered>
+              <Button type={'primary'} size={'md'} submit centered>
                 Войти
               </Button>
             </>

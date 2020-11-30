@@ -26,19 +26,14 @@ const typography = new Typography({
     const { bodyFontFamily, baseLineHeight } = options
 
     return {
-      '@media(max-width: 1280px)': {
+      '@media(min-width: 992px)': {
         html: {
           font: `100%/${baseLineHeight} ${bodyFontFamily}`
         }
       },
-      '@media(max-width: 720px)': {
+      '@media(max-width: 992px)': {
         html: {
           font: `80%/${baseLineHeight} ${bodyFontFamily}`
-        }
-      },
-      '@media(max-width: 414px)': {
-        html: {
-          font: `60%/${baseLineHeight} ${bodyFontFamily}`
         }
       }
     }

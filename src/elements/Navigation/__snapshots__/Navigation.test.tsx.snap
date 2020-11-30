@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation renders correctly 1`] = `
+<div>
+  <nav
+    role="navigation"
+  >
+    <ul>
+      <li>
+        <a
+          data-active="false"
+          data-underlined="false"
+          href="/page0"
+        >
+          Page0
+        </a>
+      </li>
+      <li>
+        <a
+          data-active="false"
+          data-underlined="false"
+          href="/page1"
+        >
+          Page1
+        </a>
+      </li>
+      <li>
+        <a
+          data-active="false"
+          data-underlined="false"
+          href="/page2"
+        >
+          Page2
+        </a>
+      </li>
+      <li>
+        <a
+          data-active="false"
+          data-underlined="false"
+          href="/page3"
+        >
+          Page3
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, cleanup, waitFor } from '@testing-library/react'
+import { render, cleanup, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Button from './Button'
 
@@ -75,5 +75,21 @@ describe('Button', () => {
     userEvent.click(inner!)
 
     expect(props.onClick).toHaveBeenCalledTimes(0)
+  })
+
+  it('onkeydown', () => {
+    const { container } = render(<Button {...props} />)
+    const inner = container.querySelector('button')
+
+    userEvent.tab()
+
+    fireEvent.keyDown(inner!, { key: 'Tab' })
+    expect(props.onClick).toHaveBeenCalledTimes(0)
+
+    fireEvent.keyDown(inner!, { key: 'Esc' })
+    expect(props.onClick).toHaveBeenCalledTimes(0)
+
+    fireEvent.keyDown(inner!, { key: 'Enter' })
+    expect(props.onClick).toHaveBeenCalledTimes(1)
   })
 })

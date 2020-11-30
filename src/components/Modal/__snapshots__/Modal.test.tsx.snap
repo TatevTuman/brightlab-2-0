@@ -29,6 +29,7 @@ exports[`Modal renders correctly 1`] = `
     class="button button__primary-lg "
     data-centered="false"
     data-disabled="false"
+    tabindex="0"
     type="button"
   >
     Open TestModal
@@ -37,6 +38,7 @@ exports[`Modal renders correctly 1`] = `
     class="button button__primary-lg "
     data-centered="false"
     data-disabled="false"
+    tabindex="0"
     type="button"
   >
     Close TestModal

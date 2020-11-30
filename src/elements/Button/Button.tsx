@@ -3,6 +3,10 @@ import { navigate } from 'gatsby'
 import { useDelayEffect } from '@hooks'
 import './Button.scss'
 
+type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement>
+type ButtonMouseEvent = MouseEvent<HTMLButtonElement>
+type ButtonEvents = ButtonKeyboardEvent | ButtonMouseEvent
+
 export interface ButtonProps {
   children: string
   className?: string
@@ -22,7 +26,7 @@ const Button: React.FC<ButtonProps> = props => {
   const classNames = `button button__${type}-${size} ${className}`
   const delayedLoading = useDelayEffect(loading!)
 
-  const handleButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = async (e: ButtonEvents) => {
     e.stopPropagation()
 
     if (delayedLoading || disabled) return
@@ -31,13 +35,23 @@ const Button: React.FC<ButtonProps> = props => {
     else onClick!()
   }
 
+  const handleKeyDown = async (e: ButtonKeyboardEvent) => {
+    const isEnterKey = e.key === 'Enter'
+
+    if (isEnterKey) {
+      await handleClick(e)
+    }
+  }
+
   return (
     <button
       className={classNames}
       type={submit ? 'submit' : 'button'}
       data-disabled={delayedLoading || disabled}
       data-centered={centered}
-      onClick={handleButtonClick}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
     >
       {delayedLoading ? 'Загрузка...' : children}
     </button>

@@ -12,13 +12,29 @@ afterEach(() => {
 })
 
 describe('Dropdown', () => {
-  const options = [{ value: 'test', label: 'Test' }]
+  const options = new Array(4).fill(0).map((_, index) => ({
+    label: `Page${index}`,
+    value: `/page${index}`
+  }))
+
+  const props = {
+    options,
+    onSelect: jest.fn()
+  }
 
   it('renders correctly', async () => {
-    // const { container } = render(<Dropdown options={options} onSelect={() => null} />)
-    // const awaitedContainer = await waitFor(() => container)
-    //
-    // expect(awaitedContainer).toMatchSnapshot()
-    expect(0).toBe(1)
+    const { container, getByText } = render(<Dropdown {...props} />)
+    const awaitedContainer = await waitFor(() => container)
+
+    expect(awaitedContainer).toMatchSnapshot()
+
+    options.forEach((option, index) => {
+      const label = getByText(option.label)
+      expect(label).toBeInTheDocument()
+
+      userEvent.click(label)
+
+      expect(props.onSelect).toHaveBeenCalledTimes(++index)
+    })
   })
 })

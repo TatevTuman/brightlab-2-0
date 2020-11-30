@@ -75,6 +75,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -123,6 +124,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -171,6 +173,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -219,6 +222,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -267,6 +271,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -315,6 +320,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -363,6 +369,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -411,6 +418,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -459,6 +467,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info
@@ -507,6 +516,7 @@ exports[`Table renders correctly 1`] = `
               class="button button__secondary-md "
               data-centered="false"
               data-disabled="false"
+              tabindex="0"
               type="button"
             >
               Get Info

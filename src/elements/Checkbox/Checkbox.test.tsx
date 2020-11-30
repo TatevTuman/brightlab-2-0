@@ -127,6 +127,12 @@ describe('Checkbox', () => {
 
     userEvent.tab()
 
+    fireEvent.keyDown(label, { key: 'Tab' })
+    expect(checkbox.checked).toBeFalsy()
+
+    fireEvent.keyDown(label, { key: 'Esc' })
+    expect(checkbox.checked).toBeFalsy()
+
     fireEvent.keyDown(label, { key: 'Enter' })
 
     expect(checkbox.checked).toBeTruthy()
