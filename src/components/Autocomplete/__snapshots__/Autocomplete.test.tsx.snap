@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Select renders correctly 1`] = `
+exports[`Autocomplete renders correctly 1`] = `
 <div>
   <div
     class="select"
@@ -10,15 +10,15 @@ exports[`Select renders correctly 1`] = `
     >
       <label
         data-required="false"
-        for="select"
+        for="autocomplete"
       >
-        Select
+        Autocomplete
       </label>
       <input
         autocomplete="off"
         class="selectInputInner"
-        data-cursor="false"
-        id="select"
+        data-cursor="true"
+        id="autocomplete"
         placeholder="Select an option"
         tabindex="0"
         type="text"

@@ -1,7 +1,7 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Select } from '@components'
+import { Autocomplete } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
@@ -14,15 +14,15 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-describe('Select', () => {
+describe('Autocomplete', () => {
   const testOptions = [
     { label: 'User', value: { test: 'user' } },
     { label: 'Admin', value: { test: 'admin' } }
   ]
 
   const props = {
-    name: 'select',
-    label: 'Select',
+    name: 'autocomplete',
+    label: 'Autocomplete',
     defaultValue: { test: 'admin' },
     options: testOptions,
     onSelect: jest.fn(),
@@ -30,7 +30,7 @@ describe('Select', () => {
   }
 
   it('renders correctly', async () => {
-    const { container, getByText, getByLabelText } = render(<Select<TestOptionValue> {...props} />)
+    const { container, getByText, getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
     const awaitedContainer = await waitFor(() => container)
 
     expect(awaitedContainer).toMatchSnapshot()
@@ -40,25 +40,25 @@ describe('Select', () => {
     })
 
     const input = getByLabelText(props.label) as HTMLInputElement
-    expect(input).toHaveAttribute('data-cursor', 'false')
+    expect(input).toHaveAttribute('data-cursor', 'true')
   })
 
   it('renders no label correctly', () => {
-    const { container } = render(<Select<TestOptionValue> {...props} label={undefined} />)
+    const { container } = render(<Autocomplete<TestOptionValue> {...props} label={undefined} />)
     const label = container.querySelector('label') || null
 
     expect(label).toBe(null)
   })
 
   it('renders label correctly', () => {
-    const { getByText } = render(<Select<TestOptionValue> {...props} />)
+    const { getByText } = render(<Autocomplete<TestOptionValue> {...props} />)
 
     expect(getByText(props.label)).toBeInTheDocument()
   })
 
   it('renders required label correctly', () => {
     const { getByText } = render(
-      <Select<TestOptionValue> {...props} useFormMethods={{ validation: { required: true } }} />
+      <Autocomplete<TestOptionValue> {...props} useFormMethods={{ validation: { required: true } }} />
     )
     const label = getByText(props.label)
 
@@ -68,25 +68,25 @@ describe('Select', () => {
 
   it('renders validation error correctly', () => {
     const { getByText } = render(
-      <Select<TestOptionValue>
+      <Autocomplete<TestOptionValue>
         {...props}
-        useFormMethods={{ errors: { select: { type: 'required', message: 'Select is required' } } }}
+        useFormMethods={{ errors: { autocomplete: { type: 'required', message: 'Autocomplete is required' } } }}
       />
     )
 
-    const error = getByText('Select is required')
+    const error = getByText('Autocomplete is required')
     expect(error).toBeInTheDocument()
   })
 
   it('renders no validation error correctly', () => {
-    const { container } = render(<Select<TestOptionValue> {...props} />)
+    const { container } = render(<Autocomplete<TestOptionValue> {...props} />)
     const error = container.querySelector('.validation-error')
 
     expect(error).toBe(null)
   })
 
   it('renders default value correctly', () => {
-    const { getByLabelText } = render(<Select<TestOptionValue> {...props} />)
+    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
     expect(input.value).toBe('Admin')
@@ -94,7 +94,7 @@ describe('Select', () => {
 
   it('renders default value correctly if component is uncontrolled', () => {
     const { getByLabelText } = render(
-      <Select<TestOptionValue> {...props} value={{ test: 'user' }} onSelect={undefined} />
+      <Autocomplete<TestOptionValue> {...props} value={{ test: 'user' }} onSelect={undefined} />
     )
     const input = getByLabelText(props.label) as HTMLInputElement
 
@@ -103,7 +103,7 @@ describe('Select', () => {
 
   it('renders value correctly', async () => {
     const { getByLabelText } = render(
-      <Select<TestOptionValue> {...props} value={{ test: 'user' }} defaultValue={undefined} />
+      <Autocomplete<TestOptionValue> {...props} value={{ test: 'user' }} defaultValue={undefined} />
     )
     const input = getByLabelText(props.label) as HTMLInputElement
 
@@ -111,14 +111,14 @@ describe('Select', () => {
   })
 
   it('renders value correctly if component is controlled', () => {
-    const { getByLabelText } = render(<Select<TestOptionValue> {...props} value={{ test: 'user' }} />)
+    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} value={{ test: 'user' }} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
     expect(input.value).toBe('User')
   })
 
   it('handles uncontrolled select', async () => {
-    const { getByText, getByLabelText } = render(<Select<TestOptionValue> {...props} onSelect={undefined} />)
+    const { getByText, getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} onSelect={undefined} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
     const userOption = await waitFor(() => getByText('User'))
@@ -136,7 +136,7 @@ describe('Select', () => {
   })
 
   it('handles controlled select', async () => {
-    const { getByText, getByLabelText } = render(<Select<TestOptionValue> {...props} />)
+    const { getByText, getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
     const userOption = await waitFor(() => getByText('User'))
@@ -154,7 +154,7 @@ describe('Select', () => {
   })
 
   it('handles uncontrolled backspace', async () => {
-    const { getByLabelText } = render(<Select<TestOptionValue> {...props} onSelect={undefined} />)
+    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
     expect(input.value).toBe('Admin')
@@ -166,33 +166,14 @@ describe('Select', () => {
 
     /* Select value check */
     expect(input.value).toBe('')
-  })
-
-  it('handles controlled backspace', async () => {
-    const { getByLabelText, rerender } = render(<Select<TestOptionValue> {...props} value={{ test: 'user' }} />)
-    const input = getByLabelText(props.label) as HTMLInputElement
-
-    expect(input.value).toBe('User')
-
-    /* Simulate backspace key down */
-    act(() => {
-      fireEvent.keyDown(input, { key: 'Backspace' })
-    })
-
     expect(props.onSelect).toHaveBeenCalledTimes(1)
-
-    /* Simulate rerender with null */
-    rerender(<Select<TestOptionValue> {...props} value={null} />)
-
-    /* Select value check */
-    expect(input.value).toBe('')
   })
 
   it('sets from value and triggers validation after select', async () => {
     const setValue = jest.fn()
     const trigger = jest.fn()
 
-    const { getByText } = render(<Select<TestOptionValue> {...props} useFormMethods={{ setValue, trigger }} />)
+    const { getByText } = render(<Autocomplete<TestOptionValue> {...props} useFormMethods={{ setValue, trigger }} />)
     const adminOption = await waitFor(() => getByText('Admin'))
 
     /* Simulate click */
@@ -205,7 +186,7 @@ describe('Select', () => {
   })
 
   it('has no change handler', async () => {
-    const { getByLabelText } = render(<Select<TestOptionValue> {...props} />)
+    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
     expect(input.value).toBe('Admin')
@@ -217,7 +198,7 @@ describe('Select', () => {
   })
 
   it('handles select focus with timeout', async () => {
-    const { getByTestId } = render(<Select<TestOptionValue> {...props} />)
+    const { getByTestId } = render(<Autocomplete<TestOptionValue> {...props} />)
     const list = await waitFor(() => getByTestId('dropdown'))
 
     /* No focus check */

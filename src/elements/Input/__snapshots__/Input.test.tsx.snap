@@ -5,14 +5,22 @@ exports[`Input renders correctly 1`] = `
   <div
     class="input"
   >
-    <input
-      autocomplete="on"
-      id="input"
-      name="input"
-      placeholder="Type a text"
-      type="text"
-      value=""
-    />
+    <div
+      class="inputInner"
+    >
+      <input
+        autocomplete="on"
+        data-cursor="true"
+        id="input"
+        name="input"
+        placeholder="Type a text"
+        type="text"
+        value=""
+      />
+      <div
+        class="inputInnerSuffix"
+      />
+    </div>
   </div>
 </div>
 `;

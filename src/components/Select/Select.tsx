@@ -8,8 +8,8 @@ import styles from './Select.module.scss'
 
 export interface SelectProps<T> {
   name: string
-  label: string
-  value?: T
+  label?: string
+  value?: T | null
   defaultValue?: T
   placeholder?: string
   options: OptionType<T>[]
@@ -20,32 +20,30 @@ export interface SelectProps<T> {
 export interface SelectState<T> {
   active: boolean
   selectedOption: OptionType<T> | null
+  search: string // For autocomplete
+  options: OptionType<T>[]
 }
 
 class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
+  state: SelectState<T>
+  /* Enables input caret */
+  isAutocomplete = false
+
   static defaultProps = {
     placeholder: 'Select an option'
   }
 
-  state: SelectState<T> = {
-    active: false,
-    selectedOption: null
-  }
+  constructor(props: SelectProps<T>) {
+    super(props)
 
-  /*
-    Handles props default value
-  */
-  componentDidMount() {
-    const { options, defaultValue } = this.props
-
-    if (defaultValue) {
-      // Select default value option
-      const selectedOption = options.find(option => isEqual(option.value, defaultValue))
-
-      if (selectedOption) {
-        this.setState({ selectedOption })
-      }
+    this.state = {
+      active: false,
+      selectedOption: null,
+      search: '',
+      options: []
     }
+
+    return this
   }
 
   /*
@@ -56,7 +54,7 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
     const { selectedOption } = state
 
     /* If select is controlled */
-    const isControlled = value && onSelect && selectedOption
+    const isControlled = onSelect && value !== undefined
 
     if (isControlled) {
       /* If new value was passed */
@@ -76,6 +74,24 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   }
 
   /*
+    Handles props default value
+  */
+  componentDidMount() {
+    const { options, defaultValue } = this.props
+
+    if (defaultValue) {
+      /* Select default value option */
+      const selectedOption = options.find(option => isEqual(option.value, defaultValue))
+
+      if (selectedOption) {
+        this.setState({ selectedOption })
+      }
+    }
+
+    this.setState({ options })
+  }
+
+  /*
     Handles option selecting and calls props.onSelect or setValue in parent form state
   */
   handleSelect = (selectedOption: OptionType<T> | null) => {
@@ -84,10 +100,9 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
     if (onSelect) {
       /* If onSelect func exists select is controlled */
       onSelect(selectedOption)
-    } else {
-      /* set value into form state */
-      this.handleSelectFormValue(selectedOption)
     }
+
+    this.handleSelectFormValue(selectedOption)
   }
 
   /*
@@ -98,15 +113,19 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   handleSelectFormValue = (selectedOption: OptionType<T> | null) => {
     const {
       name,
-      useFormMethods: { setValue }
+      useFormMethods: { setValue, trigger }
     } = this.props
 
     if (setValue) {
+      /* Set form value */
       setValue(name, selectedOption, {
         shouldValidate: false,
         shouldDirty: true
       })
     }
+
+    /* Trigger validation */
+    if (trigger) trigger(name)
   }
 
   /*
@@ -119,7 +138,7 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   /*
     Mocks input change
   */
-  handleInputChange = () => null
+  handleInputChange = (value: string): void => {}
 
   /*
     Clears selected option on Backspace
@@ -137,25 +156,22 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
     because clicking the option from dropdown calls
     onBlur method that closes the Dropdown before the option is selected
   */
-  handleSelectFocus = () => setTimeout(() => this.setState(prevState => ({ active: !prevState.active })), 100)
+  handleSelectFocus = () => {
+    setTimeout(() => this.setState(prevState => ({ active: !prevState.active })), 100)
+  }
 
   /*
-    Renders selected option label or placeholder
+    Gets selected option label or placeholder
   */
-  renderSelectedOptionLabel = () => {
+  getInputValue = () => {
     const { selectedOption } = this.state
-    const { placeholder } = this.props
 
-    if (!selectedOption) {
-      return <div className={styles.selectInputInnerPlaceholder}>{placeholder}</div>
-    }
-
-    return selectedOption.label
+    return selectedOption ? selectedOption.label : ''
   }
 
   render() {
-    const { active } = this.state
-    const { name, label, options, useFormMethods, onSelect } = this.props
+    const { active, options } = this.state
+    const { name, label, placeholder, useFormMethods, onSelect } = this.props
     const { control, errors, validation } = useFormMethods
 
     const error = errors && errors[name]
@@ -163,32 +179,36 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
 
     return (
       <div className={styles.select}>
+        {/* Should be rendered if select is not controlled - depends on this.handleSelectFormValue */}
+        {!onSelect && control && <Controller render={() => <></>} name={name} control={control} rules={validation} />}
         <div className={styles.selectInput}>
           {label && (
             <label htmlFor={name} data-required={isRequired}>
               {label}
             </label>
           )}
-          <div
+          <input
+            type={'text'}
+            id={name}
             className={styles.selectInputInner}
-            onChange={this.handleInputChange}
+            value={this.getInputValue()}
+            onChange={e => this.handleInputChange(e.currentTarget.value)}
             onFocus={this.handleSelectFocus}
             onBlur={this.handleSelectFocus}
             onKeyDown={this.handleInputKeyDown}
+            placeholder={placeholder}
             tabIndex={0}
-          >
-            {this.renderSelectedOptionLabel()}
-            {/* Should be rendered if select is not controlled - depends on this.handleSelectFormValue */}
-            {!onSelect && <Controller render={() => <></>} name={name} control={control} rules={validation} />}
-          </div>
-          {error && (
-            <div role="input-error" className="validation-error">
-              {error.message}
-            </div>
-          )}
+            autoComplete={'off'}
+            data-cursor={this.isAutocomplete}
+          />
+          <SelectArrow className={styles.selectArrow} data-active={active} />
+          <Dropdown options={options} onSelect={this.handleOptionSelect} opened={active} />
         </div>
-        <Dropdown options={options} onSelect={this.handleOptionSelect} opened={active} />
-        <SelectArrow className={styles.selectArrow} data-active={active} />
+        {error && (
+          <div role="input-error" className="validation-error">
+            {error.message}
+          </div>
+        )}
       </div>
     )
   }

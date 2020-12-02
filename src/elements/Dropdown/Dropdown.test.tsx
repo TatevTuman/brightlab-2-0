@@ -17,16 +17,21 @@ describe('Dropdown', () => {
     value: `/page${index}`
   }))
 
-  const props = {
+  let props = {
     options,
-    onSelect: jest.fn()
+    onSelect: jest.fn(),
+    opened: false
   }
 
   it('renders correctly', async () => {
-    const { container, getByText } = render(<Dropdown {...props} />)
+    const { container, getByText, rerender } = render(<Dropdown {...props} />)
     const awaitedContainer = await waitFor(() => container)
 
     expect(awaitedContainer).toMatchSnapshot()
+
+    const list = awaitedContainer.querySelector('ul')
+
+    expect(list).toHaveAttribute('data-opened', 'false')
 
     options.forEach((option, index) => {
       const label = getByText(option.label)
@@ -36,5 +41,15 @@ describe('Dropdown', () => {
 
       expect(props.onSelect).toHaveBeenCalledTimes(++index)
     })
+
+    props = {
+      options,
+      onSelect: jest.fn(),
+      opened: true
+    }
+
+    rerender(<Dropdown {...props} />)
+
+    expect(list).toHaveAttribute('data-opened', 'true')
   })
 })

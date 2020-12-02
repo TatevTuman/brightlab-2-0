@@ -15,20 +15,25 @@
       color: var(--black);
       cursor: pointer;
 
+      &[data-cursor='false'] {
+        text-shadow: 0 0 0 var(--black);
+        color: transparent;
+      }
+
       &:hover, &:active, &:focus {
         outline: none;
         border-color: var(--secondary-dark);
       }
 
-      &-placeholder {
-        color: #757575;
-      }
+      //&-placeholder {
+      //  color: #757575;
+      //}
     }
   }
 
   &-arrow {
     position: absolute;
-    top: calc(50% + 0.375rem);
+    top: 2.75rem;
     right: 1rem;
     width: 0.625rem;
     height: 0.375rem;

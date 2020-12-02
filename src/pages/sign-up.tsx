@@ -1,8 +1,8 @@
 import React, { memo, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { Form, SEO } from '@components'
+import { Autocomplete, Form, Select, SEO } from '@components'
 import { Input, Button } from '@elements'
-import { SignUpForm } from '@types'
+import { JobOptionValue, RoleOptionValue, SignUpForm } from '@types'
 import { FieldErrors } from 'react-hook-form'
 import { emailPattern, passwordValidation } from '@utils'
 
@@ -23,6 +23,21 @@ const SignUp: React.FC<SignUpProps> = props => {
   const handleSignUpError = (errors: FieldErrors<SignUpForm>) => {
     console.log('errors', errors)
   }
+
+  const roleOptions = [
+    { label: 'User', value: { name: 'user' } },
+    { label: 'Admin', value: { name: 'admin' } },
+    { label: 'Guest', value: { name: 'guest' } },
+    { label: 'Manager', value: { name: 'manager' } },
+    { label: 'Devops', value: { name: 'devops' } },
+    { label: 'Client', value: { name: 'client' } }
+  ]
+
+  const jobOptions = [
+    { label: 'Developer', value: { name: 'developer' } },
+    { label: 'Project Manager', value: { name: 'manager' } },
+    { label: 'Data-Science engineer', value: { name: 'engineer' } }
+  ]
 
   return (
     <section>
@@ -73,6 +88,32 @@ const SignUp: React.FC<SignUpProps> = props => {
                   validation={{
                     required: { value: true, message: 'Password is required' },
                     ...passwordValidation
+                  }}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Autocomplete<RoleOptionValue>
+                  options={roleOptions}
+                  name={'role'}
+                  label={'Select your profile role'}
+                  useFormMethods={{
+                    ...useFormMethods,
+                    validation: {
+                      required: { value: true, message: 'Role is required' }
+                    }
+                  }}
+                />
+              </Form.Item>
+              <Form.Item>
+                <Select<JobOptionValue>
+                  options={jobOptions}
+                  name={'job'}
+                  label={'What about your job?'}
+                  useFormMethods={{
+                    ...useFormMethods,
+                    validation: {
+                      required: { value: true, message: 'Job is required' }
+                    }
                   }}
                 />
               </Form.Item>

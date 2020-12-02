@@ -9,7 +9,7 @@ export interface InputProps extends ValidationProps {
   label?: string
   value?: string
   placeholder?: string
-  autoComplete?: string
+  autoComplete?: 'on' | 'off'
   suffix?: InputSuffixProp
   onChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void

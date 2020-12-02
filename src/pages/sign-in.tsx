@@ -3,8 +3,7 @@ import { RouteComponentProps } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { Form, SEO } from '@components'
 import { Input, Checkbox, Button } from '@elements'
-import { Select } from '@components'
-import { SignInForm, RoleOptionValue } from '@types'
+import { SignInForm } from '@types'
 import { emailPattern } from '@utils'
 
 interface SignInProps extends RouteComponentProps {}
@@ -24,15 +23,6 @@ const SignIn: React.FC<SignInProps> = props => {
   const handleSignInError = (errors: FieldErrors<SignInForm>) => {
     console.log('errors', errors)
   }
-
-  const roleOptions = [
-    { label: 'User', value: { test: 'user' } },
-    { label: 'Admin', value: { test: 'admin' } },
-    { label: 'Guest', value: { test: 'guest' } },
-    { label: 'Manager', value: { test: 'manager' } },
-    { label: 'Devops', value: { test: 'devops' } },
-    { label: 'Client', value: { test: 'client' } }
-  ]
 
   return (
     <section>
@@ -74,26 +64,13 @@ const SignIn: React.FC<SignInProps> = props => {
                   }}
                 />
               </Form.Item>
-              <Form.Item>
-                <Select<RoleOptionValue>
-                  options={roleOptions}
-                  name={'role'}
-                  label={'Role'}
-                  useFormMethods={{
-                    ...useFormMethods,
-                    validation: {
-                      required: { value: true, message: 'Role is required' },
-                    }
-                  }}
-                />
-              </Form.Item>
-              <Form.Item>
+              <Form.Item justify={'flex-end'}>
                 <Checkbox
                   {...useFormMethods}
                   name={'remember'}
                   label={'Remember me'}
                   validation={{
-                    required: { value: true, message: 'Password is required' }
+                    required: { value: true, message: 'Required' }
                   }}
                 />
               </Form.Item>

@@ -18,7 +18,7 @@ const Dropdown = (props: DropdownProps) => {
   }
 
   return (
-    <ul className={styles.dropdown} data-opened={opened} data-selection={true}>
+    <ul className={styles.dropdown} data-opened={opened} data-selection={true} data-testid={'dropdown'}>
       {options.map((option, index) => {
         const { label } = option
         const key = label + index

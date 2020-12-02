@@ -70,18 +70,6 @@ describe('Input', () => {
     expect(error).toBeInTheDocument()
   })
 
-  it('renders validation error correctly', () => {
-    const props = {
-      name: 'input',
-      errors: { input: { type: 'required', message: 'Input is required' } }
-    }
-
-    const { getByText } = render(<Input {...props} />)
-    const error = getByText('Input is required')
-
-    expect(error).toBeInTheDocument()
-  })
-
   it('change on label', () => {
     const props = {
       name: 'input',
