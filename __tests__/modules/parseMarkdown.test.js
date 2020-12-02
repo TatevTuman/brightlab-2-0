@@ -1,8 +1,8 @@
-import parseMarkdown from './parseMarkdown';
+import { Parser, HtmlRenderer } from 'commonmark';
 
-describe('parseMarkdown.js', () => {
-  test('it returns HTML when passed a string of Markdown', () => {
-    const html = parseMarkdown('### Testing\n**Markdown** is working.');
-    expect(html).toBe('<h3>Testing</h3>\n<p><strong>Markdown</strong> is working.</p>\n');
-  });
-});
+export default (markdown, options) => {
+  const reader = new Parser();
+  const writer = options ? new HtmlRenderer(options) : new HtmlRenderer();
+  const parsed = reader.parse(markdown);
+  return writer.render(parsed);
+};

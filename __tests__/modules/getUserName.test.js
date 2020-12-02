@@ -1,13 +1,7 @@
-import getUserName from './getUserName';
+const getUserName = (name) =>
+  ({
+    string: name,
+    object: `${name.first} ${name.last}`,
+  }[typeof name]);
 
-describe('getUserName.js', () => {
-  test('it returns a string when passed an object', () => {
-    const name = getUserName({ first: 'Andy', last: 'Warhol' });
-    expect(name).toBe('Andy Warhol');
-  });
-
-  test('it returns a string when passed a string', () => {
-    const name = getUserName('Andy Warhol');
-    expect(name).toBe('Andy Warhol');
-  });
-});
+export default getUserName;

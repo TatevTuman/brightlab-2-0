@@ -70,7 +70,5 @@ yarn-error.log
 
 .idea
 
-__stories__/
-__tests__/
 /backup/
 graphql.schema.json
