@@ -1,7 +1,7 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Autocomplete } from '@components'
+import { Autocomplete, Select } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
@@ -147,26 +147,24 @@ describe('Autocomplete', () => {
     expect(input.value).toBe('User')
     expect(props.onSelect).toHaveBeenCalledTimes(1)
 
-    /* Change value check */
+    /* Simulate backspace and autocomplete options */
     userEvent.click(adminOption)
     expect(input.value).toBe('Admin')
     expect(props.onSelect).toHaveBeenCalledTimes(2)
   })
 
-  it('handles uncontrolled backspace', async () => {
-    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
+  it('handles input change', async () => {
+    const { getByLabelText, getByTestId } = render(<Autocomplete<TestOptionValue> {...props} />)
+    // const list = await waitFor(() => getByTestId('dropdown'))
     const input = getByLabelText(props.label) as HTMLInputElement
 
     expect(input.value).toBe('Admin')
 
     /* Simulate backspace key down */
-    act(() => {
-      fireEvent.keyDown(input, { key: 'Backspace' })
-    })
+    fireEvent.change(input, { target: { value: '' } })
 
-    /* Select value check */
+    // TODO check options
     expect(input.value).toBe('')
-    expect(props.onSelect).toHaveBeenCalledTimes(1)
   })
 
   it('sets from value and triggers validation after select', async () => {
@@ -183,18 +181,6 @@ describe('Autocomplete', () => {
     expect(setValue).toHaveBeenCalledTimes(1)
     /* Trigger check */
     expect(trigger).toHaveBeenCalledTimes(1)
-  })
-
-  it('has no change handler', async () => {
-    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
-    const input = getByLabelText(props.label) as HTMLInputElement
-
-    expect(input.value).toBe('Admin')
-
-    /* User event type clicks before typing */
-    userEvent.type(input, 'Test', { skipClick: true })
-
-    expect(input.value).toBe('Admin')
   })
 
   it('handles select focus with timeout', async () => {

@@ -1,27 +1,39 @@
 import React, { memo, useRef } from 'react'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, useNavigate } from '@reach/router'
+import { FieldErrors } from 'react-hook-form'
+import { useAlert } from 'react-alert'
 import { Autocomplete, Form, Select, SEO } from '@components'
 import { Input, Button } from '@elements'
 import { JobOptionValue, RoleOptionValue, SignUpForm } from '@types'
-import { FieldErrors } from 'react-hook-form'
 import { emailPattern, passwordValidation } from '@utils'
 
 interface SignUpProps extends RouteComponentProps {}
 
 const SignUp: React.FC<SignUpProps> = props => {
+  const alert = useAlert()
+  const navigate = useNavigate()
   const signUpForm = useRef<HTMLFormElement>(null)
 
   const handleSignUp = async (form: SignUpForm) => {
     console.log('form', form)
 
-    if (signUpForm && signUpForm.current) {
-      const { firstName } = signUpForm.current
-      console.log('firstName', firstName.value)
-    }
+    if (signUpForm && signUpForm.current) {}
+
+    alert.show('Welcome! Can you sign in?', {
+      type: 'success',
+      onOpen: async () => await navigate('/sign-in'),
+      onClose: () => {}
+    })
   }
 
   const handleSignUpError = (errors: FieldErrors<SignUpForm>) => {
     console.log('errors', errors)
+
+    alert.show(`Validation errors`, {
+      type: 'error',
+      onOpen: () => {},
+      onClose: () => {}
+    })
   }
 
   const roleOptions = [

@@ -1,6 +1,8 @@
 import React from 'react'
 import { ApolloProvider } from '@apollo/client'
+import { Provider as AlertProvider, transitions } from 'react-alert'
 import { Page, Header, Footer, Modals } from '@components'
+import { Alert } from '@elements'
 import client from './gatsby-apollo'
 import '@styles/app.scss'
 import '@styles/typography.scss'
@@ -18,10 +20,19 @@ export const wrapPageElement = ({ element, props }) => {
 }
 
 export const wrapRootElement = ({ element }) => {
+  const alertOptions = {
+    position: 'top right',
+    timeout: 2000,
+    offset: '25px 30px -10px',
+    transition: transitions.SCALE
+  }
+
   return (
     <ApolloProvider client={client}>
-      <Modals />
-      {element}
+      <AlertProvider template={Alert} {...alertOptions}>
+        <Modals />
+        {element}
+      </AlertProvider>
     </ApolloProvider>
   )
 }

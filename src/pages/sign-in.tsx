@@ -1,6 +1,7 @@
 import React, { memo, useRef } from 'react'
-import { RouteComponentProps } from '@reach/router'
+import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
+import { useAlert } from 'react-alert'
 import { Form, SEO } from '@components'
 import { Input, Checkbox, Button } from '@elements'
 import { SignInForm } from '@types'
@@ -9,19 +10,30 @@ import { emailPattern } from '@utils'
 interface SignInProps extends RouteComponentProps {}
 
 const SignIn: React.FC<SignInProps> = props => {
+  const alert = useAlert()
+  const navigate = useNavigate()
   const signInForm = useRef<HTMLFormElement>(null)
 
   const handleSignIn = async (form: SignInForm) => {
     console.log('form', form)
 
-    if (signInForm && signInForm.current) {
-      const { email } = signInForm.current
-      console.log('email', email.value)
-    }
+    if (signInForm && signInForm.current) {}
+
+    alert.show('Hey! What`s up?', {
+      type: 'success',
+      onOpen: async () => await navigate('/'),
+      onClose: () => {}
+    })
   }
 
   const handleSignInError = (errors: FieldErrors<SignInForm>) => {
     console.log('errors', errors)
+
+    alert.show(`Validation errors`, {
+      type: 'error',
+      onOpen: () => {},
+      onClose: () => {}
+    })
   }
 
   return (
