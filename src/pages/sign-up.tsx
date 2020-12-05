@@ -3,7 +3,7 @@ import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Autocomplete, Form, Select, SEO } from '@components'
-import { Input, Button } from '@elements'
+import { Input, Button, Loader } from '@elements'
 import { JobOptionValue, RoleOptionValue, SignUpForm } from '@types'
 import { emailPattern, passwordValidation } from '@utils'
 

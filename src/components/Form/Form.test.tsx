@@ -76,4 +76,6 @@ describe('Form', () => {
 
     expect(props.onSubmit).toHaveBeenCalledTimes(1)
   })
+
+  // TODO with different types of elements
 })

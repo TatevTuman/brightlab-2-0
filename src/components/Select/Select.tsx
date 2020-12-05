@@ -154,10 +154,18 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   /*
     Handles select focus with 100ms timeout
     because clicking the option from dropdown calls
-    onBlur method that closes the Dropdown before the option is selected
+    onBlur method that closes the Dropdown before the option is selected.
+    Triggers validation
   */
   handleSelectFocus = () => {
-    setTimeout(() => this.setState(prevState => ({ active: !prevState.active })), 100)
+    const { active } = this.state
+    const isBlur = active
+
+    if (isBlur) this.validate()
+
+    setTimeout(() => {
+      this.setState(prevState => ({ active: !prevState.active }))
+    }, 100)
   }
 
   /*
@@ -169,6 +177,15 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
     return selectedOption ? selectedOption.label : ''
   }
 
+  validate = () => {
+    const {
+      name,
+      useFormMethods: { trigger }
+    } = this.props
+
+    trigger && trigger(name)
+  }
+
   render() {
     const { active, options } = this.state
     const { name, label, placeholder, useFormMethods, onSelect } = this.props
@@ -176,6 +193,8 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
 
     const error = errors && errors[name]
     const isRequired = !!validation?.required
+
+    const loading = !options.length
 
     return (
       <div className={styles.select}>
@@ -202,7 +221,7 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
             data-cursor={this.isAutocomplete}
           />
           <SelectArrow className={styles.selectArrow} data-active={active} />
-          <Dropdown options={options} onSelect={this.handleOptionSelect} opened={active} />
+          <Dropdown options={options} onSelect={this.handleOptionSelect} opened={active} loading={loading} />
         </div>
         {error && (
           <div role="input-error" className="validation-error">

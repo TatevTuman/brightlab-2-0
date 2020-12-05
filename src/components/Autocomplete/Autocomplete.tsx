@@ -39,7 +39,12 @@ class Autocomplete<T> extends Select<T> {
     Resets search and options in state on focus
   */
   handleSelectFocus = () => {
+    const { active } = this.state
     const { options } = this.props
+    // TODO blur test
+    const isBlur = active
+
+    if (isBlur) this.validate()
 
     setTimeout(
       () =>

@@ -34,12 +34,18 @@ const Input: React.FC<InputProps> = props => {
     onKeyDown,
     register,
     validation,
-    errors
+    errors,
+    trigger
   } = props
 
   const isRequired = !!validation?.required
   const ref = register && register(validation)
   const error = errors && errors[name]
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    onBlur && onBlur(e)
+    trigger && trigger(name)
+  }
 
   return (
     <div className={styles.input}>
@@ -58,7 +64,7 @@ const Input: React.FC<InputProps> = props => {
           placeholder={placeholder}
           onChange={e => onChange && onChange(e.currentTarget.value)}
           onFocus={e => onFocus && onFocus(e)}
-          onBlur={e => onBlur && onBlur(e)}
+          onBlur={handleBlur}
           onKeyDown={e => onKeyDown && onKeyDown(e)}
           autoComplete={autoComplete}
           data-cursor={!noCursor}
