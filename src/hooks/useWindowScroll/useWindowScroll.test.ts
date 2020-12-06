@@ -16,7 +16,6 @@ describe('UseLoadingDelay', () => {
 
     expect(result.current).toBe(0)
 
-    // TODO extend global interface in index.d.ts
     global.pageYOffset = 100
 
     act(() => {

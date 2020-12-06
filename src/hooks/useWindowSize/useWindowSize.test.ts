@@ -12,7 +12,6 @@ afterEach(() => {
 
 describe('UseLoadingDelay', () => {
   it('useDelayEffect', () => {
-    // TODO extend global interface in index.d.ts
     global.innerWidth = 994
 
     const { result } = renderHook(useWindowSize)
@@ -28,7 +27,7 @@ describe('UseLoadingDelay', () => {
 
     Object.keys(breakpoints).forEach(breakpoint => {
       const width = breakpoints[breakpoint]
-      // TODO extend global interface in index.d.ts
+
       global.innerWidth = width
 
       act(() => {

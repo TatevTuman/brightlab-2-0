@@ -1,7 +1,7 @@
 import React from 'react'
 import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Select } from '@components'
+import { Autocomplete, Select } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
@@ -202,6 +202,37 @@ describe('Select', () => {
     expect(setValue).toHaveBeenCalledTimes(1)
     /* Trigger check */
     expect(trigger).toHaveBeenCalledTimes(1)
+  })
+
+  it('triggers validation after blur', async () => {
+    const setValue = jest.fn()
+    const trigger = jest.fn()
+
+    render(<Autocomplete<TestOptionValue> {...props} useFormMethods={{ setValue, trigger }} />)
+
+    /* Focus */
+    userEvent.tab()
+
+    setTimeout(() => {
+      /* SetValue check */
+      expect(setValue).toHaveBeenCalledTimes(0)
+      /* Trigger check */
+      expect(trigger).toHaveBeenCalledTimes(0)
+    }, 100)
+
+    jest.runOnlyPendingTimers()
+
+    /* Blur */
+    userEvent.tab()
+
+    setTimeout(async () => {
+      /* SetValue check */
+      expect(setValue).toHaveBeenCalledTimes(0)
+      /* Trigger check */
+      expect(trigger).toHaveBeenCalledTimes(1)
+    }, 100)
+
+    jest.runOnlyPendingTimers()
   })
 
   it('has no change handler', async () => {

@@ -15,7 +15,10 @@ class Autocomplete<T> extends Select<T> {
     const { options } = this.props
 
     this.setState({
-      options: options.filter(({ label }) => label.toLowerCase().includes(search.toLowerCase()))
+      options: options.filter(({ label, value }) => {
+        const isLabelMatched = label.toLowerCase().includes(search.toLowerCase())
+        return isLabelMatched
+      })
     })
   }
 
@@ -41,7 +44,7 @@ class Autocomplete<T> extends Select<T> {
   handleSelectFocus = () => {
     const { active } = this.state
     const { options } = this.props
-    // TODO blur test
+    /* If select was active - validate */
     const isBlur = active
 
     if (isBlur) this.validate()

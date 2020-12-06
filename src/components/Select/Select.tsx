@@ -125,7 +125,7 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
     }
 
     /* Trigger validation */
-    if (trigger) trigger(name)
+    this.validate()
   }
 
   /*
@@ -159,6 +159,7 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   */
   handleSelectFocus = () => {
     const { active } = this.state
+    /* If select was active - validate */
     const isBlur = active
 
     if (isBlur) this.validate()

@@ -1,7 +1,9 @@
 import React from 'react'
-import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Autocomplete, Select } from '@components'
+import { renderHook } from '@testing-library/react-hooks'
+import { useForm } from 'react-hook-form'
+import { Autocomplete } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
@@ -153,21 +155,7 @@ describe('Autocomplete', () => {
     expect(props.onSelect).toHaveBeenCalledTimes(2)
   })
 
-  it('handles input change', async () => {
-    const { getByLabelText, getByTestId } = render(<Autocomplete<TestOptionValue> {...props} />)
-    // const list = await waitFor(() => getByTestId('dropdown'))
-    const input = getByLabelText(props.label) as HTMLInputElement
-
-    expect(input.value).toBe('Admin')
-
-    /* Simulate backspace key down */
-    fireEvent.change(input, { target: { value: '' } })
-
-    // TODO check options
-    expect(input.value).toBe('')
-  })
-
-  it('sets from value and triggers validation after select', async () => {
+  it('sets form value and triggers validation after select', async () => {
     const setValue = jest.fn()
     const trigger = jest.fn()
 
@@ -181,6 +169,56 @@ describe('Autocomplete', () => {
     expect(setValue).toHaveBeenCalledTimes(1)
     /* Trigger check */
     expect(trigger).toHaveBeenCalledTimes(1)
+  })
+
+  it('sets triggers validation after blur', async () => {
+    const setValue = jest.fn()
+    const trigger = jest.fn()
+
+    render(<Autocomplete<TestOptionValue> {...props} useFormMethods={{ setValue, trigger }} />)
+
+    /* Focus */
+    userEvent.tab()
+
+    setTimeout(() => {
+      /* SetValue check */
+      expect(setValue).toHaveBeenCalledTimes(0)
+      /* Trigger check */
+      expect(trigger).toHaveBeenCalledTimes(0)
+    }, 100)
+
+    jest.runOnlyPendingTimers()
+
+    /* Blur */
+    userEvent.tab()
+
+    setTimeout(async () => {
+      /* SetValue check */
+      expect(setValue).toHaveBeenCalledTimes(0)
+      /* Trigger check */
+      expect(trigger).toHaveBeenCalledTimes(1)
+    }, 100)
+
+    jest.runOnlyPendingTimers()
+  })
+
+  it('handles input change', async () => {
+    const { getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} />)
+    const input = getByLabelText(props.label) as HTMLInputElement
+
+    expect(input.value).toBe('Admin')
+
+    /* Simulate backspace key down */
+    fireEvent.change(input, { target: { value: 'Admi' } })
+
+    const autocompleteOptions = props.options.filter(({ label }) =>
+      label.toLowerCase().includes(input.value.toLowerCase())
+    )
+
+    expect(input.value).toBe('Admi')
+    expect(autocompleteOptions).toHaveLength(1)
+    expect(autocompleteOptions[0]).toBeTruthy()
+    expect(autocompleteOptions[1]).toBeUndefined()
   })
 
   it('handles select focus with timeout', async () => {
