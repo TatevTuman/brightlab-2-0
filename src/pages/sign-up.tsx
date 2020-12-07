@@ -3,7 +3,7 @@ import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Autocomplete, Form, Select, SEO } from '@components'
-import { Input, Button, Loader } from '@elements'
+import { Input } from '@elements'
 import { JobOptionValue, RoleOptionValue, SignUpForm } from '@types'
 import { emailPattern, passwordValidation } from '@utils'
 
@@ -16,24 +16,30 @@ const SignUp: React.FC<SignUpProps> = props => {
 
   const handleSignUp = async (form: SignUpForm) => {
     console.log('form', form)
+    if (signUpForm && signUpForm.current) {
+    }
 
-    if (signUpForm && signUpForm.current) {}
-
-    alert.show('Welcome! Can you sign in?', {
-      type: 'success',
-      onOpen: async () => await navigate('/sign-in'),
-      onClose: () => {}
-    })
+    setTimeout(() => {
+      alert.show('Welcome! Can you sign in?', {
+        type: 'success',
+        onOpen: async () => await navigate('/sign-in'),
+        onClose: () => {}
+      })
+    }, 1000)
   }
 
-  const handleSignUpError = (errors: FieldErrors<SignUpForm>) => {
+  const handleSignUpError = async (errors: FieldErrors<SignUpForm>) => {
     console.log('errors', errors)
+    if (signUpForm && signUpForm.current) {
+    }
 
-    alert.show(`Validation errors`, {
-      type: 'error',
-      onOpen: () => {},
-      onClose: () => {}
-    })
+    setTimeout(() => {
+      alert.show(`Validation errors`, {
+        type: 'error',
+        onOpen: () => {},
+        onClose: () => {}
+      })
+    }, 1000)
   }
 
   const roleOptions = [
@@ -129,9 +135,7 @@ const SignUp: React.FC<SignUpProps> = props => {
                   }}
                 />
               </Form.Item>
-              <Button type={'secondary'} size={'md'} submit centered>
-                Войти
-              </Button>
+              <Form.Submit useFormMethods={useFormMethods}>Sign up</Form.Submit>
             </>
           )
         }}

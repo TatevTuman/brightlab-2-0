@@ -13,9 +13,9 @@ afterEach(() => {
 describe('FormItem', () => {
   it('renders correctly', async () => {
     const { container, getByText } = render(<FormItem>children</FormItem>)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
     expect(getByText('children')).toBeInTheDocument()
   })
 })

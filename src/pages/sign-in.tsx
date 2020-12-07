@@ -3,7 +3,7 @@ import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Form, SEO } from '@components'
-import { Input, Checkbox, Button } from '@elements'
+import { Input, Checkbox } from '@elements'
 import { SignInForm } from '@types'
 import { emailPattern } from '@utils'
 
@@ -17,39 +17,35 @@ const SignIn: React.FC<SignInProps> = props => {
   const handleSignIn = async (form: SignInForm) => {
     console.log('form', form)
 
-    if (signInForm && signInForm.current) {}
+    if (signInForm && signInForm.current) {
+    }
 
-    alert.show('Hey! What`s up?', {
-      type: 'success',
-      onOpen: async () => await navigate('/'),
-      onClose: () => {}
-    })
+    setTimeout(() => {
+      alert.show('Hey! What`s up?', {
+        type: 'success',
+        onOpen: async () => await navigate('/'),
+        onClose: () => {}
+      })
+    }, 1000)
   }
 
   const handleSignInError = (errors: FieldErrors<SignInForm>) => {
     console.log('errors', errors)
 
-    alert.show(`Validation errors`, {
-      type: 'error',
-      onOpen: () => {},
-      onClose: () => {}
-    })
+    setTimeout(() => {
+      alert.show(`Validation errors`, {
+        type: 'error',
+        onOpen: () => {},
+        onClose: () => {}
+      })
+    }, 1000)
   }
 
   return (
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      <Form<SignInForm>
-        ref={signInForm}
-        defaultValues={{
-          email: 'test@email.com',
-          password: '123Gghj1',
-          remember: true
-        }}
-        onSubmit={handleSignIn}
-        onError={handleSignInError}
-      >
+      <Form<SignInForm> ref={signInForm} onSubmit={handleSignIn} onError={handleSignInError}>
         {useFormMethods => {
           return (
             <>
@@ -86,9 +82,7 @@ const SignIn: React.FC<SignInProps> = props => {
                   }}
                 />
               </Form.Item>
-              <Button type={'primary'} size={'md'} submit centered>
-                Войти
-              </Button>
+              <Form.Submit useFormMethods={useFormMethods}>Sign in</Form.Submit>
             </>
           )
         }}

@@ -1,6 +1,6 @@
 import { RegisterOptions, UseFormMethods } from 'react-hook-form'
 
-export type ValidationProps = Partial<
+export type ReactHookFormProps = Partial<
   {
     validation: RegisterOptions
   } & UseFormMethods
