@@ -13,8 +13,9 @@ afterEach(() => {
 describe('Modals', () => {
   it('renders correctly', async () => {
     const { container } = render(<Modals />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    // TODO
+    expect(container).toMatchSnapshot()
   })
 })

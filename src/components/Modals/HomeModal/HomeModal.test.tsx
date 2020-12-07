@@ -29,8 +29,8 @@ const TestHomeModal = () => {
 describe('HomeModal', () => {
   it('renders correctly', async () => {
     const { container } = render(<TestHomeModal />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 })

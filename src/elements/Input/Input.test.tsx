@@ -2,6 +2,7 @@ import React from 'react'
 import { cleanup, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Input from './Input'
+import Button from '../Button/Button'
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -14,9 +15,9 @@ afterEach(() => {
 describe('Input', () => {
   it('renders correctly', async () => {
     const { container } = render(<Input name={'input'} />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 
   it('renders no label correctly', () => {
@@ -68,6 +69,23 @@ describe('Input', () => {
     const error = getByText('Input is required')
 
     expect(error).toBeInTheDocument()
+  })
+
+  it('renders disabled correctly', () => {
+    const props = {
+      name: 'input',
+      label: 'input label',
+      disabled: true
+    }
+
+    const { getByLabelText, rerender } = render(<Input {...props} />)
+    const input = getByLabelText(props.label) as HTMLInputElement
+
+    expect(input).toHaveAttribute('data-disabled', 'true')
+
+    rerender(<Input {...props} disabled={false} />)
+
+    expect(input).toHaveAttribute('data-disabled', 'false')
   })
 
   it('change on label', () => {

@@ -14,9 +14,9 @@ afterEach(() => {
 describe('Checkbox', () => {
   it('renders correctly', async () => {
     const { container } = render(<Checkbox name={'checkbox'} />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 
   it('renders no label correctly', () => {

@@ -13,8 +13,8 @@ afterEach(() => {
 describe('Header', () => {
   it('renders correctly', async () => {
     const { container } = render(<Header />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 })

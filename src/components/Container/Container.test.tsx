@@ -15,9 +15,9 @@ describe('Container', () => {
 
   it('renders correctly', async () => {
     const { container, getByText } = render(<Container {...props} />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
     expect(getByText(props.children)).toBeInTheDocument()
   })
 })

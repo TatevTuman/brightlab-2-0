@@ -1,8 +1,8 @@
 import React, { memo, useEffect } from 'react'
-import { ValidationProps } from '@types'
+import { ReactHookFormProps } from '@types'
 import styles from './Checkbox.module.scss'
 
-export interface CheckboxProps extends ValidationProps {
+export interface CheckboxProps extends ReactHookFormProps {
   name: string
   label?: string
   checked?: boolean

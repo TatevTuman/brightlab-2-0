@@ -9,3 +9,5 @@ export const Navigation = loadable(() => import('./Navigation/Navigation'))
 export const Dropdown = loadable(() => import('./Dropdown/Dropdown'))
 export const Alert = loadable(() => import('./Alert/Alert'))
 export const Loader = loadable(() => import('./Loader/Loader'))
+
+export * from './Button/Button'

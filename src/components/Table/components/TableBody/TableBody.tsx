@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { TableColumnType, TableRowType } from '@types'
 import styles from './TableBody.module.scss'
+import { handleEvent } from '@utils'
 
 interface TableBodyProps {
   columns: TableColumnType[]
@@ -43,7 +44,7 @@ const TableBody: React.FC<TableBodyProps> = props => {
             className={'table-body-tr'}
             key={index}
             data-disabled={row.disabled}
-            onClick={() => handleRowClick && handleRowClick(row)}
+            onClick={() => handleEvent(handleRowClick, { value: row, disabled: row.disabled })}
           >
             {isRowIndex && <TableBodyRowIndex index={index} />}
             {cells.map((cell, index) => {

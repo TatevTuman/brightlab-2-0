@@ -21,9 +21,16 @@ describe('Alert', () => {
 
   it('renders correctly', async () => {
     const { container, getByText } = render(<Alert {...props} />)
+    await waitFor(() => container)
+
+    expect(container).toMatchSnapshot()
+    expect(getByText(props.message)).toBeInTheDocument()
+  })
+
+  it('renders correctly', async () => {
+    const { container, getByText } = render(<Alert {...props} />)
     const awaitedAlert = await waitFor(() => container)
 
-    // TODO
     expect(awaitedAlert).toMatchSnapshot()
     expect(getByText(props.message)).toBeInTheDocument()
   })

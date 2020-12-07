@@ -31,11 +31,9 @@ const Dropdown = (props: DropdownProps) => {
       )
     })
 
-  const renderLoading = () => <Loader visible={loading} />
-
   return (
     <ul className={styles.dropdown} data-opened={opened} data-selection={true} data-testid={'dropdown'}>
-      {loading ? renderLoading() : renderOptions()}
+      {loading ? <Loader /> : renderOptions()}
     </ul>
   )
 }

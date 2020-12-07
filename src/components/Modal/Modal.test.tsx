@@ -34,10 +34,11 @@ const TestModal = () => {
 describe('Modal', () => {
   it('renders correctly', async () => {
     const { container, getByText, getByTestId } = render(<TestModal />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
+
     const modalsContainer = getByTestId('modals')
 
-    let modal = awaitedContainer.querySelector('div[data-testid="modal"]')
+    let modal = container.querySelector('div[data-testid="modal"]')
 
     expect(modal).toBeNull()
     expect(modalsContainer.childElementCount).toBe(0)
@@ -45,17 +46,17 @@ describe('Modal', () => {
     const openButton = getByText('Open TestModal')
     userEvent.click(openButton)
 
-    modal = awaitedContainer.querySelector('div[data-testid="modal"]')
+    modal = container.querySelector('div[data-testid="modal"]')
 
     expect(modal).toBeInTheDocument()
     expect(modalsContainer.childElementCount).toBe(1)
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
 
     const closeButton = getByText('Close TestModal')
     userEvent.click(closeButton)
 
     setTimeout(() => {
-      modal = awaitedContainer.querySelector('div[data-testid="modal"]')
+      modal = container.querySelector('div[data-testid="modal"]')
 
       expect(modal).toBeNull()
       expect(modalsContainer.childElementCount).toBe(0)

@@ -9,3 +9,13 @@ exports[`Alert renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`Alert renders correctly 2`] = `
+<div>
+  <div
+    class="alert"
+  >
+    Test message
+  </div>
+</div>
+`;

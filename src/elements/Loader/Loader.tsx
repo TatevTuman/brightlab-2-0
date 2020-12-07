@@ -30,7 +30,6 @@ interface LoaderProps {
   secondaryColor?: string
   timeout?: number // in milliseconds
   type?: LoaderTypes
-  visible?: boolean | string
   width?: number
   className?: string
   style?: CSSProperties
@@ -38,19 +37,20 @@ interface LoaderProps {
 }
 
 const Loader: React.FC<LoaderProps> = props => {
-  const { noMessage, ...otherProps } = props
-  const [loaded, handleLoading] = useState(false)
+  const { noMessage, style, ...otherProps } = props
+  const [loaded, handleLoad] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => {
-      handleLoading(true)
+    const timeout = setTimeout(() => {
+      handleLoad(true)
     }, 5000)
+
+    return () => clearTimeout(timeout)
   }, [])
 
   return (
-    <div className={styles.loader}>
-      <LoaderComponent {...otherProps} />
-      {loaded && <em>{noMessage}</em>}
+    <div className={styles.loader} style={style}>
+      {loaded ? <em>{noMessage}</em> : <LoaderComponent {...otherProps} />}
     </div>
   )
 }
@@ -61,7 +61,7 @@ Loader.defaultProps = {
   height: 60,
   width: 60,
   timeout: 5000,
-  noMessage: 'Failed to find'
+  noMessage: 'Failed to load'
 }
 
 export default Loader

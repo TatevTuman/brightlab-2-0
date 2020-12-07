@@ -13,10 +13,10 @@ afterEach(() => {
 describe('Link', () => {
   it('renders correctly', async () => {
     const { container, getByText } = render(<Link to={'/'}>Link</Link>)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
     expect(getByText('Link')).toBeInTheDocument()
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 
   it('renders active correctly', () => {

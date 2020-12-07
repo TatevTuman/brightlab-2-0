@@ -13,9 +13,9 @@ afterEach(() => {
 describe('ModalHeader', () => {
   it('renders correctly', async () => {
     const { container, getByText } = render(<ModalHeader>children</ModalHeader>)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
     expect(getByText('children')).toBeInTheDocument()
   })
 })

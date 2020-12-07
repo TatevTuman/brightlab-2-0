@@ -1,7 +1,7 @@
 import React, { Dispatch, PureComponent, SetStateAction } from 'react'
 import { isEqual } from 'lodash'
 import { Controller } from 'react-hook-form'
-import { OptionType, ValidationProps } from '@types'
+import { OptionType, ReactHookFormProps } from '@types'
 import { Dropdown } from '@elements'
 import SelectArrow from '@images/select-arrow.svg'
 import styles from './Select.module.scss'
@@ -14,7 +14,9 @@ export interface SelectProps<T> {
   placeholder?: string
   options: OptionType<T>[]
   onSelect?: (selectedOption: OptionType<T> | null) => void | Dispatch<SetStateAction<OptionType<T> | null>>
-  useFormMethods: ValidationProps
+  loading?: boolean
+  disabled?: boolean
+  useFormMethods: ReactHookFormProps
 }
 
 export interface SelectState<T> {
@@ -189,18 +191,25 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
 
   render() {
     const { active, options } = this.state
-    const { name, label, placeholder, useFormMethods, onSelect } = this.props
+    // TODO disabled and tests
+    const { name, label, placeholder, defaultValue, loading, disabled, useFormMethods, onSelect } = this.props
     const { control, errors, validation } = useFormMethods
 
     const error = errors && errors[name]
     const isRequired = !!validation?.required
 
-    const loading = !options.length
-
     return (
       <div className={styles.select}>
         {/* Should be rendered if select is not controlled - depends on this.handleSelectFormValue */}
-        {!onSelect && control && <Controller render={() => <></>} name={name} control={control} rules={validation} />}
+        {!onSelect && control && (
+          <Controller
+            render={() => <></>}
+            name={name}
+            control={control}
+            rules={validation}
+            defaultValue={defaultValue || null}
+          />
+        )}
         <div className={styles.selectInput}>
           {label && (
             <label htmlFor={name} data-required={isRequired}>

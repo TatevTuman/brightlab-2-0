@@ -13,8 +13,8 @@ afterEach(() => {
 describe('Footer', () => {
   it('renders correctly', async () => {
     const { container } = render(<Footer />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 })

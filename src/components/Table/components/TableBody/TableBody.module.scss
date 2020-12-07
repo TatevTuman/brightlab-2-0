@@ -8,9 +8,7 @@
     will-change: transform, background-color;
     background-color: var(--secondary);
 
-    &[data-disabled="true"] {
-      opacity: 0.5;
-    }
+    @include disabled($background: false, $opacity: true, $pointerEvents: false);
 
     &:hover {
       transform: translateY(-5%);

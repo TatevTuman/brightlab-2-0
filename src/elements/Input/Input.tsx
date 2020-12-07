@@ -1,9 +1,10 @@
 import React, { memo } from 'react'
-import { ValidationProps } from '@types'
+import { ReactHookFormProps } from '@types'
+import { handleEvent } from '@utils'
 import styles from './Input.module.scss'
 
 type InputSuffixProp = JSX.Element | string | number
-export interface InputProps extends ValidationProps {
+export interface InputProps extends ReactHookFormProps {
   type?: string
   name: string
   label?: string
@@ -16,6 +17,7 @@ export interface InputProps extends ValidationProps {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
   noCursor?: boolean
+  disabled?: boolean
 }
 
 const Input: React.FC<InputProps> = props => {
@@ -35,7 +37,8 @@ const Input: React.FC<InputProps> = props => {
     register,
     validation,
     errors,
-    trigger
+    trigger,
+    disabled
   } = props
 
   const isRequired = !!validation?.required
@@ -43,12 +46,12 @@ const Input: React.FC<InputProps> = props => {
   const error = errors && errors[name]
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    onBlur && onBlur(e)
-    trigger && trigger(name)
+    handleEvent(onBlur, { value: e, disabled })
+    handleEvent(trigger, { value: name, disabled })
   }
 
   return (
-    <div className={styles.input}>
+    <div className={styles.input} data-disabled={disabled}>
       {label && (
         <label htmlFor={name} data-required={isRequired}>
           {label}
@@ -62,11 +65,12 @@ const Input: React.FC<InputProps> = props => {
           ref={ref}
           value={value}
           placeholder={placeholder}
-          onChange={e => onChange && onChange(e.currentTarget.value)}
-          onFocus={e => onFocus && onFocus(e)}
+          onChange={e => handleEvent(onChange, { value: e.currentTarget.value, disabled })}
+          onFocus={e => handleEvent(onFocus, { value: e, disabled })}
+          onKeyDown={e => handleEvent(onKeyDown, { value: e, disabled })}
           onBlur={handleBlur}
-          onKeyDown={e => onKeyDown && onKeyDown(e)}
           autoComplete={autoComplete}
+          data-disabled={disabled}
           data-cursor={!noCursor}
         />
         <div className={styles.inputInnerSuffix}>{suffix}</div>

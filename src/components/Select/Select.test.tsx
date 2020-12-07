@@ -31,9 +31,9 @@ describe('Select', () => {
 
   it('renders correctly', async () => {
     const { container, getByText, getByLabelText } = render(<Select<TestOptionValue> {...props} />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
 
     testOptions.forEach(({ label }) => {
       expect(getByText(label)).toBeInTheDocument()
@@ -225,7 +225,7 @@ describe('Select', () => {
     /* Blur */
     userEvent.tab()
 
-    setTimeout(async () => {
+    setTimeout(() => {
       /* SetValue check */
       expect(setValue).toHaveBeenCalledTimes(0)
       /* Trigger check */

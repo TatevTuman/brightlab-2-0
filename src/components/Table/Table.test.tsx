@@ -52,9 +52,9 @@ describe('Table', () => {
 
   it('renders correctly', async () => {
     const { container } = render(<Table {...props} />)
-    const awaitedContainer = await waitFor(() => container)
+    await waitFor(() => container)
 
-    expect(awaitedContainer).toMatchSnapshot()
+    expect(container).toMatchSnapshot()
   })
 
   it('renders columns correctly', () => {
@@ -76,4 +76,6 @@ describe('Table', () => {
       const { name, surname, age } = row
     })
   })
+
+  // TODO
 })
