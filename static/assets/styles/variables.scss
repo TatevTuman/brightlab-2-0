@@ -35,3 +35,23 @@ $breakpoints: (
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
   }
 }
+
+@mixin disabled($background, $opacity, $pointerEvents) {
+  transition: opacity 0.2s ease;
+  will-change: opacity;
+
+  &[data-disabled='true'] {
+    @if $background {
+      background: var(--grey);
+      border: var(--grey);
+    }
+
+    @if $opacity {
+      opacity: 0.6;
+    }
+
+    @if $pointerEvents {
+      pointer-events: none;
+    }
+  }
+}
