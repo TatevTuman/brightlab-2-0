@@ -3,12 +3,12 @@ interface handleEventOptions {
   disabled?: boolean
 }
 
-export const handleEvent = (handler: (...args: any) => void, options: handleEventOptions = {}) => {
+export const handleEvent = (handler?: (...args: any) => void, options: handleEventOptions = {}) => {
   const { disabled, value } = options
 
   if (disabled !== undefined) {
-    return !disabled && handler(value)
+    return !disabled && handler && handler(value)
   }
 
-  return handler(value)
+  return handler && handler(value)
 }
