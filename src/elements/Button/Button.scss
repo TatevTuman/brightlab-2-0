@@ -16,22 +16,12 @@
     opacity: 0.6;
   }
 
-  &[data-disabled='true'] {
-    background-color: var(--secondary-dark);
-    border: 2px solid var(--secondary-dark);
-    cursor: not-allowed;
-    color: var(--white);
-
-    &:hover, &:active {
-      background-color: var(--secondary-dark);
-      border: 2px solid var(--secondary-dark);
-    }
-  }
-
   &[data-centered='true'] {
     margin: 0 auto;
     align-self: center;
   }
+
+  @include disabled($background: true, $opacity: true, $pointerEvents: true);
 
   @include breakpoint_max('mobile') {
     height: 32px;

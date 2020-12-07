@@ -1,6 +1,7 @@
 import React, { memo, MouseEvent } from 'react'
 import { navigate } from 'gatsby'
-import { useDelayEffect } from '@hooks'
+import { Loader } from '@elements'
+import { handleEvent } from '@utils'
 import './Button.scss'
 
 type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement>
@@ -12,7 +13,7 @@ export interface ButtonProps {
   className?: string
   type?: string
   size?: string
-  onClick?(): void
+  onClick?(e: ButtonEvents): void
   disabled?: boolean
   loading?: boolean
   to?: string
@@ -21,19 +22,23 @@ export interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const { className, type, size, to, children, onClick, loading, disabled, submit, centered } = props
+  const { className, type, size, to, children, onClick, loading, submit, centered } = props
 
   const classNames = `button button__${type}-${size} ${className}`
-  const delayedLoading = useDelayEffect(loading!)
+  const disabled = props.disabled || loading
 
-  const handleClick = async (e: ButtonEvents) => {
-    e.stopPropagation()
+  const handleClick = async (e: ButtonEvents) =>
+    await handleEvent(
+      async (e: ButtonEvents) => {
+        e.stopPropagation()
 
-    if (delayedLoading || disabled) return
-
-    if (to) await navigate(to)
-    else onClick!()
-  }
+        if (to) await navigate(to)
+        else {
+          onClick && onClick(e)
+        }
+      },
+      { value: e, disabled }
+    )
 
   const handleKeyDown = async (e: ButtonKeyboardEvent) => {
     const isEnterKey = e.key === 'Enter'
@@ -47,13 +52,13 @@ const Button: React.FC<ButtonProps> = props => {
     <button
       className={classNames}
       type={submit ? 'submit' : 'button'}
-      data-disabled={delayedLoading || disabled}
+      data-disabled={loading || disabled}
       data-centered={centered}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {delayedLoading ? 'Загрузка...' : children}
+      {loading ? <Loader type={'Oval'} width={20} height={20} style={{ padding: '0.5rem' }} /> : children}
     </button>
   )
 }
@@ -62,7 +67,6 @@ Button.defaultProps = {
   className: '',
   type: 'primary',
   size: 'lg',
-  onClick: () => null,
   loading: false,
   disabled: false,
   submit: false,
