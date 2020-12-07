@@ -73,14 +73,7 @@ const SignIn: React.FC<SignInProps> = props => {
                 />
               </Form.Item>
               <Form.Item justify={'flex-end'}>
-                <Checkbox
-                  {...useFormMethods}
-                  name={'remember'}
-                  label={'Remember me'}
-                  validation={{
-                    required: { value: true, message: 'Required' }
-                  }}
-                />
+                <Checkbox {...useFormMethods} name={'remember'} label={'Remember me'} />
               </Form.Item>
               <Form.Submit useFormMethods={useFormMethods}>Sign in</Form.Submit>
             </>
