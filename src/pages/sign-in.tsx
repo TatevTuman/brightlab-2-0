@@ -20,25 +20,21 @@ const SignIn: React.FC<SignInProps> = props => {
     if (signInForm && signInForm.current) {
     }
 
-    setTimeout(() => {
-      alert.show('Hey! What`s up?', {
-        type: 'success',
-        onOpen: async () => await navigate('/'),
-        onClose: () => {}
-      })
-    }, 1000)
+    alert.show('Hey! What`s up?', {
+      type: 'success',
+      onOpen: async () => await navigate('/'),
+      onClose: () => {}
+    })
   }
 
   const handleSignInError = (errors: FieldErrors<SignInForm>) => {
     console.log('errors', errors)
 
-    setTimeout(() => {
-      alert.show(`Validation errors`, {
-        type: 'error',
-        onOpen: () => {},
-        onClose: () => {}
-      })
-    }, 1000)
+    alert.show(`Validation errors`, {
+      type: 'error',
+      onOpen: () => {},
+      onClose: () => {}
+    })
   }
 
   return (

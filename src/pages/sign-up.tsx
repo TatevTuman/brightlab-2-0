@@ -19,13 +19,11 @@ const SignUp: React.FC<SignUpProps> = props => {
     if (signUpForm && signUpForm.current) {
     }
 
-    setTimeout(() => {
-      alert.show('Welcome! Can you sign in?', {
-        type: 'success',
-        onOpen: async () => await navigate('/sign-in'),
-        onClose: () => {}
-      })
-    }, 1000)
+    alert.show('Welcome! Can you sign in?', {
+      type: 'success',
+      onOpen: async () => await navigate('/sign-in'),
+      onClose: () => {}
+    })
   }
 
   const handleSignUpError = async (errors: FieldErrors<SignUpForm>) => {
@@ -33,13 +31,11 @@ const SignUp: React.FC<SignUpProps> = props => {
     if (signUpForm && signUpForm.current) {
     }
 
-    setTimeout(() => {
-      alert.show(`Validation errors`, {
-        type: 'error',
-        onOpen: () => {},
-        onClose: () => {}
-      })
-    }, 1000)
+    alert.show(`Validation errors`, {
+      type: 'error',
+      onOpen: () => {},
+      onClose: () => {}
+    })
   }
 
   const roleOptions = [
