@@ -23,6 +23,7 @@ exports[`Form renders correctly 1`] = `
           id="email"
           name="email"
           placeholder="Type a text"
+          tabindex="0"
           type="email"
           value=""
         />

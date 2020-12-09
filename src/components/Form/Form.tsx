@@ -46,14 +46,14 @@ const Form = <F,>(props: FormProps<F>) => {
       const handleFormSubmit: SubmitHandler<F> = async (form, event) => {
         await onSubmit(form, event)
         /* Set FormSubmit loading to false */
-        setTimeout(() => setFormLoading(), 500)
+        setFormLoading()
       }
 
       /* Custom form error handler */
       const handleFormError: SubmitErrorHandler<F> = async (errors, event) => {
         await onError(errors, event)
         /* Set FormSubmit loading to false */
-        setTimeout(() => setFormLoading(), 500)
+        setFormLoading()
       }
 
       return (
