@@ -37,8 +37,7 @@ $breakpoints: (
 }
 
 @mixin disabled($background, $opacity, $pointerEvents) {
-  transition: opacity 0.2s ease;
-  will-change: opacity;
+  transition: all 0.2s ease;
 
   &[data-disabled='true'] {
     @if $background {
