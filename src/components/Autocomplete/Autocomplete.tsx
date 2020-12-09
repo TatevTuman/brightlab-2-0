@@ -1,34 +1,56 @@
+import { Select, SelectProps, SelectState } from '@components'
 import React from 'react'
-import { Select, SelectProps } from '@components'
 
-class Autocomplete<T> extends Select<T> {
+export interface AutocompleteProps<T> extends SelectProps<T> {
+  onChange?: (value: string) => void
+}
+
+export interface AutocompleteState<T> extends SelectState<T> {
+  search: string
+}
+
+class Autocomplete<T> extends Select<T, AutocompleteProps<T>, AutocompleteState<T>> {
   isAutocomplete = true
 
-  constructor(props: SelectProps<T>) {
+  constructor(props: AutocompleteProps<T>) {
     super(props)
+
+    this.state = {
+      active: false,
+      selectedOption: null,
+      options: [],
+      search: ''
+    }
   }
 
   /*
     Filters state options to autocomplete
   */
   handleAutocomplete = (search: string) => {
-    const { options } = this.props
+    const { options, onChange } = this.props
 
-    this.setState({
-      options: options.filter(({ label, value }) => {
-        const isLabelMatched = label.toLowerCase().includes(search.toLowerCase())
-        return isLabelMatched
-      })
-    })
+    this.setState(
+      {
+        options: options.filter(({ label, value }) => {
+          const isLabelMatched = label.toLowerCase().includes(search.toLowerCase())
+          return isLabelMatched
+        })
+      },
+      () => {
+        /* Clears form field state */
+        this.handleSelectFormValue(null)
+        /* Runs onChange after state is changed */
+        onChange && onChange(search)
+      }
+    )
   }
 
   /*
+    Sorts option, set state search
     Overwrites Select handle change mock
   */
   handleInputChange = (value: string) => {
     this.setState({ selectedOption: null, search: value }, () => {
-      /* Clears form field state */
-      this.handleSelectFormValue(null)
       this.handleAutocomplete(value)
     })
   }
@@ -41,13 +63,19 @@ class Autocomplete<T> extends Select<T> {
   /*
     Resets search and options in state on focus
   */
-  handleSelectFocus = () => {
+  handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const { active } = this.state
-    const { options } = this.props
+    const { options, onBlur, onFocus } = this.props
+
     /* If select was active - validate */
     const isBlur = active
 
-    if (isBlur) this.validate()
+    if (isBlur) {
+      this.validate()
+      onBlur && onBlur(e)
+    } else {
+      onFocus && onFocus(e)
+    }
 
     setTimeout(
       () =>

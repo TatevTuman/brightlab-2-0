@@ -8,8 +8,8 @@
   border: 2px solid var(--grey);
   border-top: 0;
   font-size: 0.9rem;
-  background: var(--white);
   z-index: 1;
+  background: var(--white);
   list-style: none;
   transition: max-height 0.2s ease, opacity 0.3s ease;
   will-change: max-height, opacity;

@@ -1,8 +1,6 @@
 import React from 'react'
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { renderHook } from '@testing-library/react-hooks'
-import { useForm } from 'react-hook-form'
 import { Autocomplete } from '@components'
 import { TestOptionValue } from '@types'
 
@@ -260,4 +258,6 @@ describe('Autocomplete', () => {
     /* run timers */
     jest.runOnlyPendingTimers()
   })
+
+  // TODO sync with Select
 })

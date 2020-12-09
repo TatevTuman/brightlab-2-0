@@ -14,6 +14,8 @@ export interface SelectProps<T> {
   placeholder?: string
   options: OptionType<T>[]
   onSelect?: (selectedOption: OptionType<T> | null) => void | Dispatch<SetStateAction<OptionType<T> | null>>
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   loading?: boolean
   disabled?: boolean
   useFormMethods: ReactHookFormProps
@@ -22,30 +24,31 @@ export interface SelectProps<T> {
 export interface SelectState<T> {
   active: boolean
   selectedOption: OptionType<T> | null
-  search: string // For autocomplete
   options: OptionType<T>[]
 }
 
-class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
-  state: SelectState<T>
+class Select<
+  T,
+  P extends SelectProps<T> = SelectProps<T>,
+  S extends SelectState<T> = SelectState<T>
+> extends PureComponent<P, S> {
   /* Enables input caret */
   isAutocomplete = false
+  /* Focus timeout to choose option before dropdown closes */
+  focusTimeout: NodeJS.Timeout | number = 0
 
   static defaultProps = {
     placeholder: 'Select an option'
   }
 
-  constructor(props: SelectProps<T>) {
+  constructor(props: P) {
     super(props)
 
     this.state = {
       active: false,
       selectedOption: null,
-      search: '',
       options: []
-    }
-
-    return this
+    } as SelectState<T>
   }
 
   /*
@@ -94,6 +97,13 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   }
 
   /*
+    Cancels all subscriptions
+  */
+  componentWillUnmount() {
+    clearTimeout(this.focusTimeout as number)
+  }
+
+  /*
     Handles option selecting and calls props.onSelect or setValue in parent form state
   */
   handleSelect = (selectedOption: OptionType<T> | null) => {
@@ -115,7 +125,7 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
   handleSelectFormValue = (selectedOption: OptionType<T> | null) => {
     const {
       name,
-      useFormMethods: { setValue, trigger }
+      useFormMethods: { setValue }
     } = this.props
 
     if (setValue) {
@@ -159,14 +169,22 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
     onBlur method that closes the Dropdown before the option is selected.
     Triggers validation
   */
-  handleSelectFocus = () => {
+  handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const { active } = this.state
+    const { onFocus, onBlur } = this.props
+
     /* If select was active - validate */
     const isBlur = active
 
-    if (isBlur) this.validate()
+    if (isBlur) {
+      this.validate()
+      onBlur && onBlur(e)
+    } else {
+      onFocus && onFocus(e)
+    }
 
-    setTimeout(() => {
+    clearTimeout(this.focusTimeout as number)
+    this.focusTimeout = setTimeout(() => {
       this.setState(prevState => ({ active: !prevState.active }))
     }, 100)
   }
@@ -191,15 +209,18 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
 
   render() {
     const { active, options } = this.state
-    // TODO disabled and tests
     const { name, label, placeholder, defaultValue, loading, disabled, useFormMethods, onSelect } = this.props
     const { control, errors, validation } = useFormMethods
 
-    const error = errors && errors[name]
+    /* Is required check */
     const isRequired = !!validation?.required
+    /* Error from useForm methods */
+    const error = errors && errors[name]
+    /* If disabled no focus */
+    const tabIndex = disabled ? -1 : 0
 
     return (
-      <div className={styles.select}>
+      <div className={styles.select} data-disabled={disabled}>
         {/* Should be rendered if select is not controlled - depends on this.handleSelectFormValue */}
         {!onSelect && control && (
           <Controller
@@ -226,8 +247,9 @@ class Select<T> extends PureComponent<SelectProps<T>, SelectState<T>> {
             onBlur={this.handleSelectFocus}
             onKeyDown={this.handleInputKeyDown}
             placeholder={placeholder}
-            tabIndex={0}
+            tabIndex={tabIndex}
             autoComplete={'off'}
+            data-disabled={disabled}
             data-cursor={this.isAutocomplete}
           />
           <SelectArrow className={styles.selectArrow} data-active={active} />

@@ -117,6 +117,29 @@ describe('Select', () => {
     expect(input.value).toBe('User')
   })
 
+  it('renders disabled correctly', async () => {
+    const onFocus = jest.fn()
+    const onBlur = jest.fn()
+
+    const { getByLabelText, rerender } = render(
+      <Select<TestOptionValue> {...props} disabled={true} onFocus={onFocus} onBlur={onBlur} />
+    )
+
+    const select = getByLabelText(props.label) as HTMLInputElement
+
+    userEvent.tab()
+    expect(onFocus).toHaveBeenCalledTimes(0)
+
+    userEvent.tab()
+    expect(onBlur).toHaveBeenCalledTimes(0)
+
+    expect(select).toHaveAttribute('data-disabled', 'true')
+
+    rerender(<Select<TestOptionValue> {...props} disabled={false} />)
+
+    expect(select).toHaveAttribute('data-disabled', 'false')
+  })
+
   it('handles uncontrolled select', async () => {
     const { getByText, getByLabelText } = render(<Select<TestOptionValue> {...props} onSelect={undefined} />)
     const input = getByLabelText(props.label) as HTMLInputElement
@@ -188,6 +211,26 @@ describe('Select', () => {
     expect(input.value).toBe('')
   })
 
+  it('handles focus/blur', async () => {
+    const onFocus = jest.fn()
+    const onBlur = jest.fn()
+
+    render(<Select<TestOptionValue> {...props} onFocus={onFocus} onBlur={onBlur} />)
+
+    /* Simulate tab */
+    userEvent.tab()
+    expect(onFocus).toHaveBeenCalledTimes(1)
+
+    /* After state is updated */
+    setTimeout(() => {
+      /* Simulate tab */
+      userEvent.tab()
+      expect(onBlur).toHaveBeenCalledTimes(1)
+    }, 100)
+
+    jest.runOnlyPendingTimers()
+  })
+
   it('sets from value and triggers validation after select', async () => {
     const setValue = jest.fn()
     const trigger = jest.fn()
@@ -247,7 +290,7 @@ describe('Select', () => {
     expect(input.value).toBe('Admin')
   })
 
-  it('handles select focus with timeout', async () => {
+  it('opens dropdown after focus with timeout', async () => {
     const { getByTestId } = render(<Select<TestOptionValue> {...props} />)
     const list = await waitFor(() => getByTestId('dropdown'))
 
@@ -286,4 +329,6 @@ describe('Select', () => {
     /* run timers */
     jest.runOnlyPendingTimers()
   })
+
+  // TODO disabled tests
 })
