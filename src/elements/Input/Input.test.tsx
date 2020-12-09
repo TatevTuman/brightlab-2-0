@@ -2,7 +2,6 @@ import React from 'react'
 import { cleanup, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Input from './Input'
-import Button from '../Button/Button'
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -75,20 +74,27 @@ describe('Input', () => {
     const props = {
       name: 'input',
       label: 'input label',
+      onFocus: jest.fn(),
       disabled: true
     }
 
     const { getByLabelText, rerender } = render(<Input {...props} />)
     const input = getByLabelText(props.label) as HTMLInputElement
 
+    userEvent.tab()
+
+    expect(props.onFocus).toHaveBeenCalledTimes(0)
     expect(input).toHaveAttribute('data-disabled', 'true')
 
     rerender(<Input {...props} disabled={false} />)
 
+    userEvent.tab()
+
+    expect(props.onFocus).toHaveBeenCalledTimes(1)
     expect(input).toHaveAttribute('data-disabled', 'false')
   })
 
-  it('change on label', () => {
+  it('handles change on label', () => {
     const props = {
       name: 'input',
       label: 'input label',
@@ -106,7 +112,7 @@ describe('Input', () => {
     expect(input.value).toBe('test')
   })
 
-  it('change', () => {
+  it('handles change', () => {
     const props = {
       name: 'input',
       label: 'input label',
@@ -121,4 +127,6 @@ describe('Input', () => {
     expect(props.onChange).toHaveBeenCalledTimes(4)
     expect(input.value).toBe('test')
   })
+
+  // TODO focus test sync with Select tests
 })

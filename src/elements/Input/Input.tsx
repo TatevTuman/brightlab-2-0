@@ -41,9 +41,14 @@ const Input: React.FC<InputProps> = props => {
     disabled
   } = props
 
+  /* Is required check */
   const isRequired = !!validation?.required
+  /* Register input in parent form */
   const ref = register && register(validation)
+  /* Error from useForm methods */
   const error = errors && errors[name]
+  /* If disabled no focus */
+  const tabIndex = disabled ? -1 : 0
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     handleEvent(onBlur, { value: e, disabled })
@@ -72,6 +77,7 @@ const Input: React.FC<InputProps> = props => {
           autoComplete={autoComplete}
           data-disabled={disabled}
           data-cursor={!noCursor}
+          tabIndex={tabIndex}
         />
         <div className={styles.inputInnerSuffix}>{suffix}</div>
       </div>

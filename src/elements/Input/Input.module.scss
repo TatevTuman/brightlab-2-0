@@ -33,8 +33,6 @@
       color: transparent;
     }
 
-    @include disabled($background: true, $opacity: false, $pointerEvents: false);
-
     &:hover, &:active, &:focus {
       border-color: var(--secondary-dark);
     }
