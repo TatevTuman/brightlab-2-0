@@ -3,8 +3,6 @@ import { cleanup, fireEvent, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Checkbox from './Checkbox'
 
-jest.mock('../ValidationErrorMessage/ValidationErrorMessage.tsx')
-
 // beforeAll(() => {})
 // afterAll(() => {})
 // beforeEach(() => {})

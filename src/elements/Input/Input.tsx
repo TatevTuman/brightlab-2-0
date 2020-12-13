@@ -1,11 +1,11 @@
 import React, { memo } from 'react'
-import { ReactHookFormProps } from '@types'
+import { useFormContext, RegisterOptions } from 'react-hook-form'
 import { handleEvent } from '@utils'
 import { ValidationErrorMessage } from '@elements'
 import styles from './Input.module.scss'
 
 type InputSuffixProp = JSX.Element | string | number
-export interface InputProps extends ReactHookFormProps {
+export interface InputProps {
   type?: string
   name: string
   label?: string
@@ -13,6 +13,7 @@ export interface InputProps extends ReactHookFormProps {
   placeholder?: string
   autoComplete?: 'on' | 'off'
   suffix?: InputSuffixProp
+  validation?: RegisterOptions
   onChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -30,17 +31,16 @@ const Input: React.FC<InputProps> = props => {
     placeholder,
     autoComplete,
     suffix,
+    validation,
     onChange,
     noCursor,
     onFocus,
     onBlur,
     onKeyDown,
-    register,
-    validation,
-    errors,
-    trigger,
     disabled
   } = props
+
+  const { register, trigger } = useFormContext()
 
   /* Is required check */
   const isRequired = !!validation?.required
@@ -80,7 +80,7 @@ const Input: React.FC<InputProps> = props => {
         />
         <div className={styles.inputInnerSuffix}>{suffix}</div>
       </div>
-      <ValidationErrorMessage name={name} errors={errors} />
+      <ValidationErrorMessage name={name} />
     </div>
   )
 }

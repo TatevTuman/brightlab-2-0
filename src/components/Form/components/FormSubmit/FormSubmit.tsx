@@ -1,12 +1,9 @@
 import React, { memo } from 'react'
-import { Controller } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 import { Button, ButtonProps } from '@elements'
-import { ReactHookFormProps } from '@types'
 import styles from '../../Form.module.scss'
 
-export type FormSubmitProps = {
-  useFormMethods: Omit<ReactHookFormProps, 'validation'>
-} & Omit<ButtonProps, 'submit'>
+export type FormSubmitProps = {} & Omit<ButtonProps, 'submit'>
 
 /*
   Component controls form loading state to render different state.
@@ -16,8 +13,8 @@ export type FormSubmitProps = {
   TODO Research
 */
 const FormSubmit: React.FC<FormSubmitProps> = props => {
-  const { useFormMethods, children, ...buttonProps } = props
-  const { setValue, watch, control } = useFormMethods
+  const { children, ...buttonProps } = props
+  const { setValue, watch, control } = useFormContext()
   const loading = watch && watch('loading')
 
   /* Component renders */

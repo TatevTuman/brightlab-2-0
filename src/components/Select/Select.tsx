@@ -1,7 +1,7 @@
 import React, { Dispatch, PureComponent, SetStateAction } from 'react'
 import { isEqual } from 'lodash'
-import { Controller } from 'react-hook-form'
-import { OptionType, ReactHookFormProps } from '@types'
+import { Controller, RegisterOptions, UseFormMethods } from 'react-hook-form'
+import { OptionType } from '@types'
 import { Dropdown, ValidationErrorMessage } from '@elements'
 import SelectArrow from '@images/select-arrow.svg'
 import styles from './Select.module.scss'
@@ -13,12 +13,13 @@ export interface SelectProps<T> {
   defaultValue?: T
   placeholder?: string
   options: OptionType<T>[]
+  validation?: RegisterOptions
+  useFormMethods?: Partial<UseFormMethods<any>>
   onSelect?: (selectedOption: OptionType<T> | null) => void | Dispatch<SetStateAction<OptionType<T> | null>>
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   loading?: boolean
   disabled?: boolean
-  useFormMethods?: ReactHookFormProps
 }
 
 export interface SelectState<T> {
@@ -168,7 +169,7 @@ class Select<
     onBlur method that closes the Dropdown before the option is selected.
     Triggers validation
   */
-  handleSelectFocus = async (e: React.FocusEvent<HTMLInputElement>) => {
+  handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const { active } = this.state
     const { onFocus, onBlur } = this.props
 
@@ -207,11 +208,19 @@ class Select<
 
   render() {
     const { active, options } = this.state
-    const { name, label, placeholder, defaultValue, loading, disabled, useFormMethods, onSelect } = this.props
+    const {
+      name,
+      label,
+      placeholder,
+      defaultValue,
+      validation,
+      loading,
+      disabled,
+      useFormMethods,
+      onSelect
+    } = this.props
 
     const control = useFormMethods && useFormMethods.control
-    const validation = useFormMethods && useFormMethods.validation
-    const errors = useFormMethods && useFormMethods.errors
 
     /* Is required check */
     const isRequired = !!validation?.required
@@ -254,7 +263,7 @@ class Select<
           <SelectArrow className={styles.selectArrow} data-active={active} />
           <Dropdown options={options} onSelect={this.handleOptionSelect} opened={active} loading={loading} />
         </div>
-        <ValidationErrorMessage name={name} errors={errors} />
+        <ValidationErrorMessage name={name} />
       </div>
     )
   }

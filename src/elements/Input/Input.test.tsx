@@ -3,8 +3,6 @@ import { cleanup, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Input from './Input'
 
-jest.mock('../ValidationErrorMessage/ValidationErrorMessage.tsx')
-
 // beforeAll(() => {})
 // afterAll(() => {})
 // beforeEach(() => {})

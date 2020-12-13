@@ -38,10 +38,14 @@ const Form = <F,>(props: FormProps<F>) => {
 
       /* FormSubmit component controls loading field, so we can manage button state with react-hook-form */
       const setFormLoading = () =>
-        useFormMethods.setValue('loading' as FieldName<F>, false, {
-          shouldValidate: false,
-          shouldDirty: true
-        })
+        setTimeout(
+          () =>
+            useFormMethods.setValue('loading' as FieldName<F>, false, {
+              shouldValidate: false,
+              shouldDirty: true
+            }),
+          500
+        )
 
       /* Custom form submit handler */
       const handleFormSubmit: SubmitHandler<F> = async (form, event) => {

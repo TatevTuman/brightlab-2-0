@@ -63,7 +63,6 @@ const SignUp: React.FC<SignUpProps> = props => {
             <>
               <Form.Item>
                 <Input
-                  {...useFormMethods}
                   name={'firstName'}
                   label={'First name'}
                   validation={{
@@ -73,7 +72,6 @@ const SignUp: React.FC<SignUpProps> = props => {
               </Form.Item>
               <Form.Item>
                 <Input
-                  {...useFormMethods}
                   name={'lastName'}
                   label={'Last name'}
                   validation={{
@@ -83,7 +81,6 @@ const SignUp: React.FC<SignUpProps> = props => {
               </Form.Item>
               <Form.Item>
                 <Input
-                  {...useFormMethods}
                   type={'email'}
                   name={'email'}
                   label={'Email'}
@@ -95,7 +92,6 @@ const SignUp: React.FC<SignUpProps> = props => {
               </Form.Item>
               <Form.Item>
                 <Input
-                  {...useFormMethods}
                   type={'password'}
                   name={'password'}
                   label={'Password'}
@@ -110,11 +106,9 @@ const SignUp: React.FC<SignUpProps> = props => {
                   options={roleOptions}
                   name={'role'}
                   label={'Select your profile role'}
-                  useFormMethods={{
-                    ...useFormMethods,
-                    validation: {
-                      required: { value: true, message: 'Role is required' }
-                    }
+                  useFormMethods={useFormMethods}
+                  validation={{
+                    required: { value: true, message: 'Role is required' }
                   }}
                 />
               </Form.Item>
@@ -123,15 +117,13 @@ const SignUp: React.FC<SignUpProps> = props => {
                   options={jobOptions}
                   name={'job'}
                   label={'What about your job?'}
-                  useFormMethods={{
-                    ...useFormMethods,
-                    validation: {
-                      required: { value: true, message: 'Job is required' }
-                    }
+                  useFormMethods={useFormMethods}
+                  validation={{
+                    required: { value: true, message: 'Job is required' }
                   }}
                 />
               </Form.Item>
-              <Form.Submit useFormMethods={useFormMethods}>Sign up</Form.Submit>
+              <Form.Submit>Sign up</Form.Submit>
             </>
           )
         }}

@@ -1,20 +1,11 @@
 import React from 'react'
-import { FieldErrors } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
-import { AnyObject, Children } from '@types'
+import { Children } from '@types'
 import styles from './ValidationErrorMessage.module.scss'
-
-/*
-  ValidationErrorMessage component should have FormProvider as a DOM parent to get context -
-  so all tests where ValidationErrorMessage is used will throw an error 'Can't read property errors of null'.
-  This why i mocked this component in __mocks__.
-
-  Use jest.mock('./ValidationErrorMessage.tsx') every time when ValidationErrorMessage is used in test component
-*/
 
 export type ValidationErrorMessageType = { message: string }
 export interface ValidationErrorMessageProps {
-  errors?: FieldErrors<AnyObject>
   name: string
   render?(error: ValidationErrorMessageType, className: string): Children
 }
@@ -43,7 +34,8 @@ export interface ValidationErrorMessageProps {
 */
 
 const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
-  const { errors, name, render } = props
+  const { name, render } = props
+  const { errors } = useFormContext()
 
   /* Gets error from errors object by name and passes it in render */
   const renderErrorMessage = (error: ValidationErrorMessageType) => {

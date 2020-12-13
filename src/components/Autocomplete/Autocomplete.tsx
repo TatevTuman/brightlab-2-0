@@ -10,6 +10,7 @@ export interface AutocompleteState<T> extends SelectState<T> {
 }
 
 class Autocomplete<T> extends Select<T, AutocompleteProps<T>, AutocompleteState<T>> {
+  state: AutocompleteState<T>
   isAutocomplete = true
 
   constructor(props: AutocompleteProps<T>) {

@@ -1,18 +1,20 @@
 import React, { memo } from 'react'
-import { ReactHookFormProps } from '@types'
+import { RegisterOptions, useFormContext } from 'react-hook-form'
 import { ValidationErrorMessage } from '@elements'
 import styles from './Checkbox.module.scss'
 
-export interface CheckboxProps extends ReactHookFormProps {
+export interface CheckboxProps {
   name: string
   label?: string
   checked?: boolean
   disabled?: boolean
+  validation?: RegisterOptions
   onChange?: (value: boolean) => void
 }
 
 const Checkbox: React.FC<CheckboxProps> = props => {
-  const { name, label, checked, disabled, register, validation, errors, onChange } = props
+  const { name, label, checked, disabled, validation, onChange } = props
+  const { register } = useFormContext()
 
   const isRequired = !!validation?.required
   const ref = register && register(validation)
@@ -47,7 +49,6 @@ const Checkbox: React.FC<CheckboxProps> = props => {
       <div className={styles.checkboxIndicator} />
       <ValidationErrorMessage
         name={name}
-        errors={errors}
         render={(error, className) => {
           return <span className={`${styles.checkboxValidationError} ${className}`}>{error.message}</span>
         }}

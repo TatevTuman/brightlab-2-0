@@ -47,7 +47,6 @@ const SignIn: React.FC<SignInProps> = props => {
             <>
               <Form.Item>
                 <Input
-                  {...useFormMethods}
                   type={'email'}
                   name={'email'}
                   label={'Email'}
@@ -59,7 +58,6 @@ const SignIn: React.FC<SignInProps> = props => {
               </Form.Item>
               <Form.Item>
                 <Input
-                  {...useFormMethods}
                   type={'password'}
                   name={'password'}
                   label={'Password'}
@@ -69,16 +67,9 @@ const SignIn: React.FC<SignInProps> = props => {
                 />
               </Form.Item>
               <Form.Item justify={'flex-end'}>
-                <Checkbox
-                  {...useFormMethods}
-                  name={'remember'}
-                  label={'Remember me'}
-                  validation={{
-                    required: { value: true, message: 'Password is required' }
-                  }}
-                />
+                <Checkbox name={'remember'} label={'Remember me'} />
               </Form.Item>
-              <Form.Submit useFormMethods={useFormMethods}>Sign in</Form.Submit>
+              <Form.Submit>Sign in</Form.Submit>
             </>
           )
         }}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { cleanup, render, waitFor } from '@testing-library/react'
-import ValidationErrorMessage from './ValidationErrorMessage'
+import ValidationErrorMessage, { ValidationErrorMessageType } from './ValidationErrorMessage'
 
 jest.useFakeTimers()
 
@@ -29,5 +29,12 @@ describe('ValidationErrorMessage', () => {
 
     expect(container).toMatchSnapshot()
     expect(getByText(props.errors.test.message)).toBeInTheDocument()
+  })
+
+  it('uses render prop', async () => {
+    const renderProp = (error: ValidationErrorMessageType) => <div data-testid={'error'}>{error.message}</div>
+    const { getByTestId } = render(<ValidationErrorMessage {...props} render={renderProp} />)
+
+    expect(getByTestId('error')).toBeInTheDocument()
   })
 })

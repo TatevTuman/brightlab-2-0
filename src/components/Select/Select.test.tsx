@@ -5,7 +5,6 @@ import { Autocomplete, Select } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
-jest.mock('../../elements/ValidationErrorMessage/ValidationErrorMessage.tsx')
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -57,9 +56,7 @@ describe('Select', () => {
   })
 
   it('renders required label correctly', () => {
-    const { getByText } = render(
-      <Select<TestOptionValue> {...props} useFormMethods={{ validation: { required: true } }} />
-    )
+    const { getByText } = render(<Select<TestOptionValue> {...props} validation={{ required: true }} />)
     const label = getByText(props.label)
 
     expect(label).toBeInTheDocument()
