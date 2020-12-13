@@ -5,6 +5,7 @@ import { Autocomplete, Select } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
+jest.mock('../../elements/ValidationErrorMessage/ValidationErrorMessage.tsx')
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -25,8 +26,7 @@ describe('Select', () => {
     label: 'Select',
     defaultValue: { test: 'admin' },
     options: testOptions,
-    onSelect: jest.fn(),
-    useFormMethods: {}
+    onSelect: jest.fn()
   }
 
   it('renders correctly', async () => {
@@ -64,25 +64,6 @@ describe('Select', () => {
 
     expect(label).toBeInTheDocument()
     expect(label).toHaveAttribute('data-required', 'true')
-  })
-
-  it('renders validation error correctly', () => {
-    const { getByText } = render(
-      <Select<TestOptionValue>
-        {...props}
-        useFormMethods={{ errors: { select: { type: 'required', message: 'Select is required' } } }}
-      />
-    )
-
-    const error = getByText('Select is required')
-    expect(error).toBeInTheDocument()
-  })
-
-  it('renders no validation error correctly', () => {
-    const { container } = render(<Select<TestOptionValue> {...props} />)
-    const error = container.querySelector('.validation-error')
-
-    expect(error).toBe(null)
   })
 
   it('renders default value correctly', () => {

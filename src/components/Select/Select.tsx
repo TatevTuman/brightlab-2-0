@@ -2,7 +2,7 @@ import React, { Dispatch, PureComponent, SetStateAction } from 'react'
 import { isEqual } from 'lodash'
 import { Controller } from 'react-hook-form'
 import { OptionType, ReactHookFormProps } from '@types'
-import { Dropdown } from '@elements'
+import { Dropdown, ValidationErrorMessage } from '@elements'
 import SelectArrow from '@images/select-arrow.svg'
 import styles from './Select.module.scss'
 
@@ -18,7 +18,7 @@ export interface SelectProps<T> {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   loading?: boolean
   disabled?: boolean
-  useFormMethods: ReactHookFormProps
+  useFormMethods?: ReactHookFormProps
 }
 
 export interface SelectState<T> {
@@ -32,6 +32,7 @@ class Select<
   P extends SelectProps<T> = SelectProps<T>,
   S extends SelectState<T> = SelectState<T>
 > extends PureComponent<P, S> {
+  state: SelectState<T>
   /* Enables input caret */
   isAutocomplete = false
   /* Focus timeout to choose option before dropdown closes */
@@ -48,7 +49,7 @@ class Select<
       active: false,
       selectedOption: null,
       options: []
-    } as SelectState<T>
+    }
   }
 
   /*
@@ -123,14 +124,11 @@ class Select<
     Object or string for example. Depends on Controller component in render()
   */
   handleSelectFormValue = (selectedOption: OptionType<T> | null) => {
-    const {
-      name,
-      useFormMethods: { setValue }
-    } = this.props
+    const { name, useFormMethods } = this.props
 
-    if (setValue) {
+    if (useFormMethods && useFormMethods.setValue) {
       /* Set form value */
-      setValue(name, selectedOption, {
+      useFormMethods.setValue(name, selectedOption, {
         shouldValidate: false,
         shouldDirty: true
       })
@@ -150,6 +148,7 @@ class Select<
   /*
     Mocks input change
   */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleInputChange = (value: string): void => {}
 
   /*
@@ -169,7 +168,7 @@ class Select<
     onBlur method that closes the Dropdown before the option is selected.
     Triggers validation
   */
-  handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+  handleSelectFocus = async (e: React.FocusEvent<HTMLInputElement>) => {
     const { active } = this.state
     const { onFocus, onBlur } = this.props
 
@@ -199,23 +198,23 @@ class Select<
   }
 
   validate = () => {
-    const {
-      name,
-      useFormMethods: { trigger }
-    } = this.props
+    const { name, useFormMethods } = this.props
 
-    trigger && trigger(name)
+    if (useFormMethods && useFormMethods.trigger) {
+      useFormMethods.trigger(name)
+    }
   }
 
   render() {
     const { active, options } = this.state
     const { name, label, placeholder, defaultValue, loading, disabled, useFormMethods, onSelect } = this.props
-    const { control, errors, validation } = useFormMethods
+
+    const control = useFormMethods && useFormMethods.control
+    const validation = useFormMethods && useFormMethods.validation
+    const errors = useFormMethods && useFormMethods.errors
 
     /* Is required check */
     const isRequired = !!validation?.required
-    /* Error from useForm methods */
-    const error = errors && errors[name]
     /* If disabled no focus */
     const tabIndex = disabled ? -1 : 0
 
@@ -255,11 +254,7 @@ class Select<
           <SelectArrow className={styles.selectArrow} data-active={active} />
           <Dropdown options={options} onSelect={this.handleOptionSelect} opened={active} loading={loading} />
         </div>
-        {error && (
-          <div role="input-error" className="validation-error">
-            {error.message}
-          </div>
-        )}
+        <ValidationErrorMessage name={name} errors={errors} />
       </div>
     )
   }

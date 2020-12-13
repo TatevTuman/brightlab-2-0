@@ -9,7 +9,12 @@
   padding: 0 30px;
 
   &[data-type="success"] {
-    background: var(--primary);
+    background: var(--success);
+    color: var(--white);
+  }
+
+  &[data-type="info"] {
+    background: var(--info);
     color: var(--white);
   }
 

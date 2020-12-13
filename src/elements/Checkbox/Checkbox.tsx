@@ -1,5 +1,6 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo } from 'react'
 import { ReactHookFormProps } from '@types'
+import { ValidationErrorMessage } from '@elements'
 import styles from './Checkbox.module.scss'
 
 export interface CheckboxProps extends ReactHookFormProps {
@@ -15,7 +16,6 @@ const Checkbox: React.FC<CheckboxProps> = props => {
 
   const isRequired = !!validation?.required
   const ref = register && register(validation)
-  const error = errors && errors[name]
 
   const handleKeyDown = (e: { key: string }) => {
     const checkbox = document.getElementById(name)
@@ -45,7 +45,13 @@ const Checkbox: React.FC<CheckboxProps> = props => {
         tabIndex={-1}
       />
       <div className={styles.checkboxIndicator} />
-      {error && <span className={`${styles.checkboxValidationError} validation-error`}>{error.message}</span>}
+      <ValidationErrorMessage
+        name={name}
+        errors={errors}
+        render={(error, className) => {
+          return <span className={`${styles.checkboxValidationError} ${className}`}>{error.message}</span>
+        }}
+      />
     </label>
   )
 }

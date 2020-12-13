@@ -1,7 +1,9 @@
 import React from 'react'
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Checkbox from './Checkbox'
+
+jest.mock('../ValidationErrorMessage/ValidationErrorMessage.tsx')
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -14,13 +16,12 @@ afterEach(() => {
 describe('Checkbox', () => {
   it('renders correctly', async () => {
     const { container } = render(<Checkbox name={'checkbox'} />)
-    await waitFor(() => container)
-
     expect(container).toMatchSnapshot()
   })
 
   it('renders no label correctly', () => {
     const { container } = render(<Checkbox name={'checkbox'} />)
+
     const label = container.querySelector('label')?.querySelector('label')
 
     expect(label).toBe(null)
@@ -49,37 +50,6 @@ describe('Checkbox', () => {
 
     expect(label).toBeInTheDocument()
     expect(label).toHaveAttribute('data-required', 'true')
-  })
-
-  it('renders no validation error correctly', () => {
-    const { container } = render(<Checkbox name={'checkbox'} />)
-    const error = container.querySelector('.validation-error')
-
-    expect(error).toBe(null)
-  })
-
-  it('renders validation error correctly', () => {
-    const props = {
-      name: 'checkbox',
-      errors: { checkbox: { type: 'required', message: 'Checkbox is required' } }
-    }
-
-    const { getByText } = render(<Checkbox {...props} />)
-    const error = getByText('Checkbox is required')
-
-    expect(error).toBeInTheDocument()
-  })
-
-  it('renders validation error correctly', () => {
-    const props = {
-      name: 'checkbox',
-      errors: { checkbox: { type: 'required', message: 'Checkbox is required' } }
-    }
-
-    const { getByText } = render(<Checkbox {...props} />)
-    const error = getByText('Checkbox is required')
-
-    expect(error).toBeInTheDocument()
   })
 
   it('change on label', () => {

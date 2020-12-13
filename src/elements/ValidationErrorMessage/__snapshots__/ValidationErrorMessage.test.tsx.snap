@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidationErrorMessage renders correctly 1`] = `
+<div>
+  <div
+    class="validationError"
+    role="validation-error"
+  >
+    Test is required
+  </div>
+</div>
+`;

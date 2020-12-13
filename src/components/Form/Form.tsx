@@ -6,7 +6,8 @@ import {
   UnpackNestedValue,
   DeepPartial,
   UseFormMethods,
-  FieldName
+  FieldName,
+  FormProvider
 } from 'react-hook-form'
 import { Children } from '@types'
 import { FormItem, FormSubmit } from './components'
@@ -57,13 +58,15 @@ const Form = <F,>(props: FormProps<F>) => {
       }
 
       return (
-        <form
-          className={styles.form}
-          ref={ref}
-          onSubmit={useFormMethods.handleSubmit<F>(handleFormSubmit, handleFormError)}
-        >
-          {children(useFormMethods)}
-        </form>
+        <FormProvider {...useFormMethods}>
+          <form
+            className={styles.form}
+            ref={ref}
+            onSubmit={useFormMethods.handleSubmit<F>(handleFormSubmit, handleFormError)}
+          >
+            {children(useFormMethods)}
+          </form>
+        </FormProvider>
       )
     })
   )

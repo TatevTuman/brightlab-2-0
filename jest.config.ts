@@ -1,4 +1,8 @@
-module.exports = {
+// jest.config.ts
+import type { Config } from '@jest/types'
+
+// Sync object
+const config: Config.InitialOptions = {
   transform: {
     '^.+\\.tsx?$': '<rootDir>/.jest/jest-preprocess.ts'
   },
@@ -26,3 +30,5 @@ module.exports = {
   setupFiles: ['<rootDir>/.jest/setupFiles/index.ts'],
   setupFilesAfterEnv: ['<rootDir>/.jest/setupFilesAfterEnv/index.ts']
 }
+
+export default config

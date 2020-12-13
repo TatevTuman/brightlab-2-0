@@ -12,7 +12,7 @@ const Alert: React.FC<AlertProps> = props => {
   const { style, options, message, close } = props
 
   return (
-    <div className={styles.alert} data-type={options.type} style={style}>
+    <div className={styles.alert} data-type={options.type} style={style} onClick={close} data-testid={'alert'}>
       {message}
     </div>
   )

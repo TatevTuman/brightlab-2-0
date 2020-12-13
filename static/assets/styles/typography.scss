@@ -17,6 +17,14 @@
   color: var(--secondary);
 }
 
+.secondary-light {
+  color: var(--secondary-light);
+}
+
+.secondary-dark {
+  color: var(--secondary-dark);
+}
+
 .primary {
   color: var(--primary);
 }
@@ -36,6 +44,23 @@
 .white {
   color: var(--white);
 }
+
+.grey {
+  color: var(--white);
+}
+
+.danger {
+  color: var(--danger);
+}
+
+.info {
+  color: var(--info);
+}
+
+.success {
+  color: var(--success);
+}
+
 
 ul:focus, li:focus, a:focus {
   outline: none;

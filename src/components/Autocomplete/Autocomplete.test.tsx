@@ -5,6 +5,7 @@ import { Autocomplete } from '@components'
 import { TestOptionValue } from '@types'
 
 jest.useFakeTimers()
+jest.mock('../../elements/ValidationErrorMessage/ValidationErrorMessage.tsx')
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -64,25 +65,6 @@ describe('Autocomplete', () => {
 
     expect(label).toBeInTheDocument()
     expect(label).toHaveAttribute('data-required', 'true')
-  })
-
-  it('renders validation error correctly', () => {
-    const { getByText } = render(
-      <Autocomplete<TestOptionValue>
-        {...props}
-        useFormMethods={{ errors: { autocomplete: { type: 'required', message: 'Autocomplete is required' } } }}
-      />
-    )
-
-    const error = getByText('Autocomplete is required')
-    expect(error).toBeInTheDocument()
-  })
-
-  it('renders no validation error correctly', () => {
-    const { container } = render(<Autocomplete<TestOptionValue> {...props} />)
-    const error = container.querySelector('.validation-error')
-
-    expect(error).toBe(null)
   })
 
   it('renders default value correctly', () => {

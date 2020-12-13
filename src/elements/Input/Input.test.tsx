@@ -3,6 +3,8 @@ import { cleanup, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Input from './Input'
 
+jest.mock('../ValidationErrorMessage/ValidationErrorMessage.tsx')
+
 // beforeAll(() => {})
 // afterAll(() => {})
 // beforeEach(() => {})
@@ -49,25 +51,6 @@ describe('Input', () => {
 
     expect(label).toBeInTheDocument()
     expect(label).toHaveAttribute('data-required', 'true')
-  })
-
-  it('renders no validation error correctly', () => {
-    const { container } = render(<Input name={'input'} />)
-    const error = container.querySelector('.validation-error')
-
-    expect(error).toBe(null)
-  })
-
-  it('renders validation error correctly', () => {
-    const props = {
-      name: 'input',
-      errors: { input: { type: 'required', message: 'Input is required' } }
-    }
-
-    const { getByText } = render(<Input {...props} />)
-    const error = getByText('Input is required')
-
-    expect(error).toBeInTheDocument()
   })
 
   it('renders disabled correctly', () => {

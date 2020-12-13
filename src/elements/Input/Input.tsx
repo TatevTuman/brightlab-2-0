@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { ReactHookFormProps } from '@types'
 import { handleEvent } from '@utils'
+import { ValidationErrorMessage } from '@elements'
 import styles from './Input.module.scss'
 
 type InputSuffixProp = JSX.Element | string | number
@@ -45,8 +46,6 @@ const Input: React.FC<InputProps> = props => {
   const isRequired = !!validation?.required
   /* Register input in parent form */
   const ref = register && register(validation)
-  /* Error from useForm methods */
-  const error = errors && errors[name]
   /* If disabled no focus */
   const tabIndex = disabled ? -1 : 0
 
@@ -81,11 +80,7 @@ const Input: React.FC<InputProps> = props => {
         />
         <div className={styles.inputInnerSuffix}>{suffix}</div>
       </div>
-      {error && (
-        <div role="input-error" className="validation-error">
-          {error.message}
-        </div>
-      )}
+      <ValidationErrorMessage name={name} errors={errors} />
     </div>
   )
 }
