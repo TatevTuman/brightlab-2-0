@@ -130,6 +130,7 @@
     "test": "jest --watch --detectOpenHandles",
     "type-check": "tsc --noEmit",
     "types-generate": "graphql-codegen --config codegen.yml",
+    "types-fetch": "node ./gatsby-fetch-apollo-cache-types.js",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {

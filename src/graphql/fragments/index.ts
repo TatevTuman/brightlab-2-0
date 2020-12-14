@@ -1,1 +1,1 @@
-export * from './cache'
+export { default as golfClubModelFragments } from './golfClubModel'

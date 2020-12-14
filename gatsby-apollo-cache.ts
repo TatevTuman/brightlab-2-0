@@ -1,10 +1,11 @@
 import { InMemoryCache, makeVar } from '@apollo/client'
-import { CacheModal, CacheDrawer } from '@types'
+import { CacheModal } from '@types'
+import possibleTypes from './gatsby-apollo-cache-types.json';
 
 export const modalsVar = makeVar<CacheModal[]>([])
-export const drawersVar = makeVar<CacheDrawer[]>([])
 
 const cache = new InMemoryCache({
+  possibleTypes,
   typePolicies: {
     Query: {
       fields: {
@@ -13,11 +14,16 @@ const cache = new InMemoryCache({
             return modalsVar()
           }
         },
-        drawers: {
-          read() {
-            return drawersVar()
-          }
-        }
+        // feed: {
+        //   // Don't cache separate results based on
+        //   // any of this field's arguments.
+        //   keyArgs: false,
+        //   // Concatenate the incoming list items with
+        //   // the existing list items.
+        //   merge(existing = [], incoming) {
+        //     return [...existing, ...incoming];
+        //   },
+        // }
       }
     }
   }

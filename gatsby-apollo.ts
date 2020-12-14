@@ -25,8 +25,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     networkError = {
       name,
       message,
-      stack,
-      graphQLErrors
+      stack
     }
   }
 })

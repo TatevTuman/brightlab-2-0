@@ -47,7 +47,7 @@ const SignIn: React.FC<SignInProps> = props => {
             <>
               <Form.Item>
                 <Input
-                  type={'email'}
+                  type={'text'}
                   name={'email'}
                   label={'Email'}
                   validation={{
