@@ -1,6 +1,6 @@
 import { InMemoryCache, makeVar } from '@apollo/client'
 import { CacheModal } from '@types'
-import possibleTypes from './gatsby-apollo-cache-types.json';
+import possibleTypes from './gatsby-apollo-cache-types.json'
 
 export const modalsVar = makeVar<CacheModal[]>([])
 
@@ -13,7 +13,7 @@ const cache = new InMemoryCache({
           read() {
             return modalsVar()
           }
-        },
+        }
         // feed: {
         //   // Don't cache separate results based on
         //   // any of this field's arguments.

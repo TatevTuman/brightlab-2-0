@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Button, ButtonProps } from '@elements'
+import { Button, ButtonProps, ButtonEvents } from '@elements'
 import styles from '../../Form.module.scss'
 
 export type FormSubmitProps = Omit<ButtonProps, 'submit'>
@@ -18,7 +18,7 @@ const FormSubmit: React.FC<FormSubmitProps> = props => {
   const loading = watch && watch('loading')
 
   /* Component renders */
-  const submitForm = e => {
+  const submitForm = (e: ButtonEvents) => {
     setValue &&
       setValue('loading', true, {
         shouldValidate: false,

@@ -94,3 +94,8 @@ declare module '*.gql' {
   const value: DocumentNode
   export default value
 }
+
+declare module '*.json' {
+  const value: any;
+  export default value;
+}

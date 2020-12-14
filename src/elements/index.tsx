@@ -11,6 +11,6 @@ export const Alert = loadable(() => import('./Alert/Alert'))
 export const Loader = loadable(() => import('./Loader/Loader'))
 export const ValidationErrorMessage = loadable(() => import('./ValidationErrorMessage/ValidationErrorMessage'))
 
-export type { ButtonProps } from './Button/Button'
+export type { ButtonProps, ButtonEvents } from './Button/Button'
 export type { CheckboxProps } from './Checkbox/Checkbox'
 export type { ValidationErrorMessageProps } from './ValidationErrorMessage/ValidationErrorMessage'

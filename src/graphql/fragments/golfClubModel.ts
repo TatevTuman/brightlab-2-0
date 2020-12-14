@@ -10,14 +10,22 @@ export default gql`
     flex
     dexterity
     category {
-      id
-      name
+      ...CategoryAttrs
     }
     brand {
-      id
-      name
+      ...BrandAttrs
     }
     categoryId
     brandId
+  }
+
+  fragment BrandAttrs on Brand {
+    id
+    name
+  }
+
+  fragment CategoryAttrs on Category {
+    id
+    name
   }
 `

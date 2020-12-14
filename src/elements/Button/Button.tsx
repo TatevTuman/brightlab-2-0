@@ -6,7 +6,7 @@ import './Button.scss'
 
 type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement>
 type ButtonMouseEvent = MouseEvent<HTMLButtonElement>
-type ButtonEvents = ButtonKeyboardEvent | ButtonMouseEvent
+export type ButtonEvents = ButtonKeyboardEvent | ButtonMouseEvent
 
 export interface ButtonProps {
   children: string
