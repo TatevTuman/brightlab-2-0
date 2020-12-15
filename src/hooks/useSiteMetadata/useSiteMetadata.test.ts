@@ -10,8 +10,8 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-describe('UseLoadingDelay', () => {
-  it('useDelayEffect', () => {
+describe('UseSiteMetadata', () => {
+  it('useSiteMetadata', () => {
     const { result } = renderHook(useSiteMetadata)
 
     expect(result.current).toMatchObject({

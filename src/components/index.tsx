@@ -14,5 +14,6 @@ export { default as Select } from './Select/Select'
 export { default as Autocomplete } from './Autocomplete/Autocomplete'
 export { default as Modal } from './Modal/Modal'
 export { default as Form } from './Form/Form'
+export { default as List } from './List/List'
 
 export type { SelectState, SelectProps } from './Select/Select'

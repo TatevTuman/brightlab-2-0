@@ -1,0 +1,18 @@
+@import "static/assets/styles/variables";
+
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: calculateRem(100);
+  margin-bottom: 4rem;
+
+  &-item {
+
+  }
+
+  &-empty {
+    margin: 0 auto;
+  }
+}

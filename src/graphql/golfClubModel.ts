@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client'
-import { golfClubModelFragments } from './fragments'
+import fragments, { golfClubModelFragments } from './fragments'
 
 export const FetchAll = gql`
   query FetchGolfClubModels {
-    golfClubModels {
+    res: golfClubModels {
       ...GolfClubModelAttrs
     }
   }
@@ -11,9 +11,25 @@ export const FetchAll = gql`
   ${golfClubModelFragments}
 `
 
+export const FetchPaginated = gql`
+  query FetchPaginatedGolfClubModels($pagination: PaginationArgs!) {
+    res: paginateGolfClubModels(pagination: $pagination) {
+      content {
+        ...GolfClubModelAttrs
+      }
+      pagination {
+        ...PaginationAttrs
+      }
+    }
+  }
+
+  ${golfClubModelFragments}
+  ${fragments}
+`
+
 export const FetchOne = gql`
   query FetchGolfClubModel($id: String!) {
-    golfClubModel(id: $id) {
+    res: golfClubModel(id: $id) {
       ...GolfClubModelAttrs
     }
   }

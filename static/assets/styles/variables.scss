@@ -54,3 +54,12 @@ $breakpoints: (
     }
   }
 }
+
+@function calculateRem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+  font-size: calculateRem($size);
+}

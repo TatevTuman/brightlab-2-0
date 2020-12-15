@@ -10,8 +10,8 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-describe('UseLoadingDelay', () => {
-  it('useDelayEffect', () => {
+describe('UseWindowScroll', () => {
+  it('useWindowScroll', () => {
     const { result } = renderHook(useWindowScroll)
 
     expect(result.current).toBe(0)

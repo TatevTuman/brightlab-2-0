@@ -10,7 +10,7 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-describe('UseLoadingDelay', () => {
+describe('UseWindowSize', () => {
   it('useDelayEffect', () => {
     global.innerWidth = 994
 

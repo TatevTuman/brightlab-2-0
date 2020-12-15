@@ -1,18 +1,40 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { useQuery } from '@apollo/client'
-import { SEO } from '@components'
-import { useModal } from '@hooks'
-import { GolfClubModel } from '@types'
+import { SEO, List } from '@components'
+import { Pagination } from '@elements'
+import { useModal, usePagination, useDelayedState } from '@hooks'
 import { golfClubModel } from '@graphql'
+import { GolfClubModel, PaginateGolfClubModelResponse, QueryPaginateGolfClubModelsArgs } from '@types'
+
+type UsePaginationData = PaginateGolfClubModelResponse
+type UsePaginationArgs = Omit<QueryPaginateGolfClubModelsArgs, 'pagination'>
 
 interface HomeProps extends RouteComponentProps {}
 
 const Home: React.FC<HomeProps> = props => {
-  const { data, loading, error } = useQuery<GolfClubModel[]>(golfClubModel.FetchAll)
   const { openModal } = useModal('HomeModal')
 
-  console.log('data', data)
+  const { data, loading, fetchMore } = usePagination<UsePaginationData, UsePaginationArgs>(
+    golfClubModel.FetchPaginated,
+    {},
+    1,
+    20
+  )
+  const pagination = data?.res.pagination
+
+  const test = async (page: number) => await fetchMore({}, page)
+
+  const [delayedLoading, setDelayedLoading] = useDelayedState(loading)
+
+  useEffect(() => {
+    setDelayedLoading(loading)
+  }, [loading])
+
+  const items = (data && data.res && data.res.content) || []
+
+  const RenderItem = (props: GolfClubModel) => {
+    return <div>{props.name}</div>
+  }
 
   return (
     <section>
@@ -25,14 +47,19 @@ const Home: React.FC<HomeProps> = props => {
         <div>Boilerplate</div>
         <div onClick={() => openModal({ number: Math.random() })}>Modal</div>
       </h1>
-      <ul>
-        <li>Сделать инпут для телефона</li>
-        <li>Сделать lazy load с пагинацией</li>
-        <li>
-          <del>Починить loading submit-а в форме</del>
-        </li>
-        <li>Introspection fragment matcher</li>
-      </ul>
+      <List<GolfClubModel | null>
+        items={items}
+        columns={{
+          mobile: 1,
+          landscape: 2,
+          tablet: 3,
+          desktop: 4
+        }}
+        offset={20}
+        Component={RenderItem}
+        loading={delayedLoading}
+      />
+      <Pagination {...pagination} onClick={test} />
     </section>
   )
 }

@@ -1,11 +1,4 @@
-@function calculateRem($size) {
-  $remSize: $size / 16;
-  @return #{$remSize}rem;
-}
-
-@mixin fontSize($size) {
-  font-size: calculateRem($size);
-}
+@import './variables';
 
 @for $font_size from 8 through 30 {
   .text-#{$font_size} {
