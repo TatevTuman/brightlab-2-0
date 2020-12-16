@@ -4,6 +4,7 @@ exports[`Loader renders correctly 1`] = `
 <div>
   <div
     class="loader"
+    data-testid="loader"
   >
     <div
       aria-busy="true"

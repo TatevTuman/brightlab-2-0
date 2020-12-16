@@ -14,7 +14,7 @@ interface ListProps<T> {
   items: T[]
   columns: ListPropsColumnsType
   offset: number
-  Component: React.ComponentType<T> | React.FunctionComponent<T>
+  Component: React.ComponentType<{ listData: T }> | React.FunctionComponent<{ listData: T }>
   onItemClick?: (item: T) => void
   loading?: boolean
   error?: Error
@@ -56,7 +56,7 @@ const List = <T,>(props: ListProps<T>) => {
     return items!.map((item, index) => {
       return (
         <div key={index} className={styles.listItem} style={itemStyle} onClick={() => onItemClick && onItemClick(item)}>
-          <Component {...item} />
+          <Component listData={item} />
         </div>
       )
     })

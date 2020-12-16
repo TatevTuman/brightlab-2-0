@@ -16,8 +16,8 @@ interface GolfClubModelsPaginatedProps {
   onItemClick?: (item: AnyObject) => void
 }
 
-const GolfClubModelPaginated = (props: GolfClubModel) => {
-  return <div>{props.name}</div>
+const GolfClubModelPaginated = (props: { listData: GolfClubModel }) => {
+  return <div>{props.listData.name}</div>
 }
 
 const GolfClubModelsPaginated: React.FC<GolfClubModelsPaginatedProps> = props => {

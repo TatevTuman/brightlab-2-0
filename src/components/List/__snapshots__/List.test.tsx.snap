@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders correctly 1`] = `
+<div>
+  <div
+    class="list"
+  >
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+    <div
+      class="listItem"
+      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+    >
+      <div />
+    </div>
+  </div>
+</div>
+`;

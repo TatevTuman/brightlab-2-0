@@ -61,6 +61,7 @@ const Pagination: React.FC<PaginationProps> = props => {
       if (page > end) return
 
       const isActive = page === current
+      // TODO Enter and tab logic + test
 
       return (
         <li

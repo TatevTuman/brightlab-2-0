@@ -7,7 +7,7 @@ export type FormSubmitProps = Omit<ButtonProps, 'submit'>
 
 /*
   Component controls form loading state to render different state.
-  Handling loading with usual state is doesn't work because of inner react-hook-form logic.
+  Handling loading with usual state doesn't work because of inner react-hook-form logic.
 
   Renders button component with setValue logic on click
   TODO Research

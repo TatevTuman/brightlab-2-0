@@ -23,7 +23,7 @@ export interface FormProps<F> {
 
 /*
   Form component that uses react-hook-form lib to manage form state without React state.
-  Forward ref is used in awkward way because of Typescript genetic argument to pass it in useForm hook.
+  Forward ref is used in awkward way because of Typescript generic argument.
   TODO Research
 
   Loading state is implemented via FormSubmit component that controls loading field like input in the form

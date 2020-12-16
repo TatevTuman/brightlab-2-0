@@ -44,6 +44,7 @@ const Dropdown = (props: DropdownProps) => {
     return options.map((option, index) => {
       const { label } = option
       const key = label + index
+      // TODO Enter, Arrows and tab logic + test
 
       return (
         <li onClick={e => handleClick(e, option)} key={key}>

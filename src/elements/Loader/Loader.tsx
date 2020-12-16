@@ -41,7 +41,7 @@ const Loader: React.FC<LoaderProps> = props => {
   const { style, ...otherProps } = props
 
   return (
-    <div className={styles.loader} style={style}>
+    <div className={styles.loader} style={style} data-testid={'loader'}>
       <LoaderComponent {...otherProps} />
     </div>
   )
