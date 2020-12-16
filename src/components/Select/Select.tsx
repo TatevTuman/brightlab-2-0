@@ -33,6 +33,8 @@ class Select<
   P extends SelectProps<T> = SelectProps<T>,
   S extends SelectState<T> = SelectState<T>
 > extends PureComponent<P, S> {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   state: SelectState<T>
   /* Enables input caret */
   isAutocomplete = false

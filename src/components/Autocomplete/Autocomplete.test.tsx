@@ -25,8 +25,7 @@ describe('Autocomplete', () => {
     label: 'Autocomplete',
     defaultValue: { test: 'admin' },
     options: testOptions,
-    onSelect: jest.fn(),
-    useFormMethods: {}
+    onSelect: jest.fn()
   }
 
   it('renders correctly', async () => {
@@ -96,6 +95,29 @@ describe('Autocomplete', () => {
     expect(input.value).toBe('User')
   })
 
+  it('renders disabled correctly', async () => {
+    const onFocus = jest.fn()
+    const onBlur = jest.fn()
+
+    const { getByLabelText, rerender } = render(
+      <Autocomplete<TestOptionValue> {...props} disabled={true} onFocus={onFocus} onBlur={onBlur} />
+    )
+
+    const select = getByLabelText(props.label) as HTMLInputElement
+
+    userEvent.tab()
+    expect(onFocus).toHaveBeenCalledTimes(0)
+
+    userEvent.tab()
+    expect(onBlur).toHaveBeenCalledTimes(0)
+
+    expect(select).toHaveAttribute('data-disabled', 'true')
+
+    rerender(<Autocomplete<TestOptionValue> {...props} disabled={false} />)
+
+    expect(select).toHaveAttribute('data-disabled', 'false')
+  })
+
   it('handles uncontrolled select', async () => {
     const { getByText, getByLabelText } = render(<Autocomplete<TestOptionValue> {...props} onSelect={undefined} />)
     const input = getByLabelText(props.label) as HTMLInputElement
@@ -126,10 +148,30 @@ describe('Autocomplete', () => {
     expect(input.value).toBe('User')
     expect(props.onSelect).toHaveBeenCalledTimes(1)
 
-    /* Simulate backspace and autocomplete options */
+    /* Change value check */
     userEvent.click(adminOption)
     expect(input.value).toBe('Admin')
     expect(props.onSelect).toHaveBeenCalledTimes(2)
+  })
+
+  it('handles focus/blur', async () => {
+    const onFocus = jest.fn()
+    const onBlur = jest.fn()
+
+    render(<Autocomplete<TestOptionValue> {...props} onFocus={onFocus} onBlur={onBlur} />)
+
+    /* Simulate tab */
+    userEvent.tab()
+    expect(onFocus).toHaveBeenCalledTimes(1)
+
+    /* After state is updated */
+    setTimeout(() => {
+      /* Simulate tab */
+      userEvent.tab()
+      expect(onBlur).toHaveBeenCalledTimes(1)
+    }, 100)
+
+    jest.runOnlyPendingTimers()
   })
 
   it('sets form value and triggers validation after select', async () => {
@@ -148,7 +190,7 @@ describe('Autocomplete', () => {
     expect(trigger).toHaveBeenCalledTimes(1)
   })
 
-  it('sets triggers validation after blur', async () => {
+  it('triggers validation after blur', async () => {
     const setValue = jest.fn()
     const trigger = jest.fn()
 
@@ -237,6 +279,4 @@ describe('Autocomplete', () => {
     /* run timers */
     jest.runOnlyPendingTimers()
   })
-
-  // TODO sync with Select
 })

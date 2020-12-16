@@ -78,7 +78,8 @@ class Autocomplete<T> extends Select<T, AutocompleteProps<T>, AutocompleteState<
       onFocus && onFocus(e)
     }
 
-    setTimeout(
+    clearTimeout(this.focusTimeout as number)
+    this.focusTimeout = setTimeout(
       () =>
         this.setState(prevState => ({
           active: !prevState.active,

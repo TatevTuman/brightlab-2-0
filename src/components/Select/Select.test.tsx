@@ -307,6 +307,4 @@ describe('Select', () => {
     /* run timers */
     jest.runOnlyPendingTimers()
   })
-
-  // TODO disabled tests
 })
