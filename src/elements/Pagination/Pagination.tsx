@@ -4,19 +4,20 @@ import styles from './Pagination.module.scss'
 
 interface PaginationProps extends PaginationResponse {
   limit?: number
-  onClick(page: number): void
+  onPageClick(page: number): void
 }
 
 const Pagination: React.FC<PaginationProps> = props => {
-  const { current, total: totalItems, limit = 7, onClick } = props
-  if (!current || !totalItems) return null
+  const { current, totalPages = 1, limit = 7, onPageClick } = props
+  if (!current) return null
 
+  /* Pages from the left and right to render */
   const pagesOffset = Math.floor(limit / 2)
 
-  /* if current is less than a half of limit */
+  /* If current page is in page offset so current in first pages */
   const isFirstPages = current <= pagesOffset
-  /* if current is greater than totalItems a half of limit subtraction */
-  const isLastPages = current > totalItems - pagesOffset
+  /* If current page + page offset greater than total pages the current is in last pages */
+  const isLastPages = current + pagesOffset > totalPages!
 
   /* Start page */
   let start: number
@@ -27,38 +28,48 @@ const Pagination: React.FC<PaginationProps> = props => {
     /*
       If first pages:
         start: 1
-        end: limit
+        end: limit or total pages
     */
     start = 1
-    end = limit
+    end = Math.min(limit, totalPages!)
   } else if (isLastPages) {
     /*
       If last pages:
-        start: total - limit
-        end: total
+        start: total pages - limit without inclusion or 1
+        end: total pages
 
       - 1 because of last page inclusion
     */
-    start = totalItems - (limit - 1)
-    end = totalItems
+
+    start = Math.max(totalPages! - (limit - 1), 1)
+    end = totalPages!
   } else {
     /*
       Else:
         start: current - page offset
-        end: current + page offset
+        end: last page in a row or total pages
     */
     start = current - pagesOffset
-    end = current + pagesOffset
+    end = Math.min(current + pagesOffset, totalPages!)
   }
 
   const renderPages = () => {
-    const pages = new Array(limit).fill(0).map((_, index) => start + index)
+    return new Array(limit).fill(0).map((_, index) => {
+      const page = start + index
 
-    return pages.map((page, index) => {
+      /* End constrait */
+      if (page > end) return
+
       const isActive = page === current
 
       return (
-        <li key={index} tabIndex={0} className={styles.paginationListItem} onClick={() => onClick(page)} data-active={isActive}>
+        <li
+          key={index}
+          tabIndex={0}
+          className={styles.paginationListItem}
+          onClick={() => onPageClick(page)}
+          data-active={isActive}
+        >
           {page}
         </li>
       )

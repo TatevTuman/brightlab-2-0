@@ -35,7 +35,9 @@ export interface ValidationErrorMessageProps {
 
 const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
   const { name, render } = props
-  const { errors } = useFormContext()
+  const formContext = useFormContext()
+
+  if (!formContext) return null
 
   /* Gets error from errors object by name and passes it in render */
   const renderErrorMessage = (error: ValidationErrorMessageType) => {
@@ -49,7 +51,7 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
     }
   }
 
-  return <ErrorMessage errors={errors} name={name} render={renderErrorMessage} />
+  return <ErrorMessage errors={formContext.errors} name={name} render={renderErrorMessage} />
 }
 
 export default ValidationErrorMessage

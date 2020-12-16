@@ -4480,6 +4480,11 @@ apollo-graphql@^0.6.0:
     apollo-env "^0.6.5"
     lodash.sortby "^4.7.0"
 
+apollo-link-timeout@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/apollo-link-timeout/-/apollo-link-timeout-3.0.0.tgz#5434f3eb0b19e926603d7dd4e84901c92bcc540e"
+  integrity sha512-H6FRQRBevUeQDxoB2MrGLMsuudOg5JZKbN+eXpTaUyEJoxQcDX0Sktl3QS3GCYv9lShusMlpoqApMBcTgjucMA==
+
 apollo-link@^1.2.14:
   version "1.2.14"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.14.tgz#3feda4b47f9ebba7f4160bef8b977ba725b684d9"

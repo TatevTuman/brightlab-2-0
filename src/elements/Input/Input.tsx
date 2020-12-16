@@ -12,6 +12,7 @@ export interface InputProps {
   value?: string
   placeholder?: string
   autoComplete?: 'on' | 'off'
+  prefix?: InputSuffixProp
   suffix?: InputSuffixProp
   validation?: RegisterOptions
   onChange?: (value: string) => void
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = props => {
     value,
     placeholder,
     autoComplete,
+    prefix,
     suffix,
     validation,
     onChange,
@@ -40,7 +42,9 @@ const Input: React.FC<InputProps> = props => {
     disabled
   } = props
 
-  const { register, trigger } = useFormContext()
+  const formContext = useFormContext()
+  const register = formContext && formContext.register
+  const trigger = formContext && formContext.trigger
 
   /* Is required check */
   const isRequired = !!validation?.required
@@ -76,9 +80,16 @@ const Input: React.FC<InputProps> = props => {
           autoComplete={autoComplete}
           data-disabled={disabled}
           data-cursor={!noCursor}
+          data-prefix={!!prefix}
+          data-suffix={!!suffix}
           tabIndex={tabIndex}
         />
-        <div className={styles.inputInnerSuffix}>{suffix}</div>
+        <div className={styles.inputInnerPrefix} data-prefix={!!prefix}>
+          {prefix}
+        </div>
+        <div className={styles.inputInnerSuffix} data-suffix={!!suffix}>
+          {suffix}
+        </div>
       </div>
       <ValidationErrorMessage name={name} />
     </div>

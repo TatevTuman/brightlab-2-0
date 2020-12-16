@@ -18,8 +18,7 @@ describe('Loader', () => {
     color: 'var(--primary)',
     height: 60,
     width: 60,
-    timeout: 5000,
-    noMessage: 'Failed to load'
+    timeout: 15000
   }
 
   it('renders correctly', async () => {
@@ -40,18 +39,5 @@ describe('Loader', () => {
     const svg = container.querySelector('svg')
     expect(svg).toHaveAttribute('width', props.width.toString())
     expect(svg).toHaveAttribute('height', props.height.toString())
-  })
-
-  it('renders loaded state correctly', async () => {
-    const { getByText } = render(<Loader {...props} />)
-
-    setTimeout(() => {
-      const noMessage = getByText(props.noMessage)
-      expect(noMessage).toBeInTheDocument()
-    }, props.timeout)
-
-    act(() => {
-      jest.runAllTimers()
-    })
   })
 })

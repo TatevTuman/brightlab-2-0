@@ -20,6 +20,8 @@ exports[`Form renders correctly 1`] = `
         <input
           autocomplete="on"
           data-cursor="true"
+          data-prefix="false"
+          data-suffix="false"
           id="email"
           name="email"
           placeholder="Type a text"
@@ -28,7 +30,12 @@ exports[`Form renders correctly 1`] = `
           value=""
         />
         <div
+          class="inputInnerPrefix"
+          data-prefix="false"
+        />
+        <div
           class="inputInnerSuffix"
+          data-suffix="false"
         />
       </div>
     </div>

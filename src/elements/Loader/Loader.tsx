@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react'
+import React, { CSSProperties } from 'react'
 import LoaderComponent from 'react-loader-spinner'
 import styles from './Loader.module.scss'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
@@ -33,24 +33,16 @@ interface LoaderProps {
   width?: number
   className?: string
   style?: CSSProperties
-  noMessage?: string
 }
 
+const TIMEOUT = 15000
+
 const Loader: React.FC<LoaderProps> = props => {
-  const { noMessage, style, ...otherProps } = props
-  const [loaded, handleLoad] = useState(false)
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      handleLoad(true)
-    }, 5000)
-
-    return () => clearTimeout(timeout)
-  }, [])
+  const { style, ...otherProps } = props
 
   return (
     <div className={styles.loader} style={style}>
-      {loaded ? <em>{noMessage}</em> : <LoaderComponent {...otherProps} />}
+      <LoaderComponent {...otherProps} />
     </div>
   )
 }
@@ -60,8 +52,7 @@ Loader.defaultProps = {
   color: 'var(--primary)',
   height: 60,
   width: 60,
-  timeout: 5000,
-  noMessage: 'Failed to load'
+  timeout: TIMEOUT
 }
 
 export default Loader

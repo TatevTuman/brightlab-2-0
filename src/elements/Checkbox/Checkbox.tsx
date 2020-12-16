@@ -14,7 +14,10 @@ export interface CheckboxProps {
 
 const Checkbox: React.FC<CheckboxProps> = props => {
   const { name, label, checked, disabled, validation, onChange } = props
-  const { register } = useFormContext()
+
+  const formContext = useFormContext()
+
+  const register = formContext && formContext.register
 
   const isRequired = !!validation?.required
   const ref = register && register(validation)

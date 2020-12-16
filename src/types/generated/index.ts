@@ -9,6 +9,7 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  Upload: any
 }
 
 export type ErrorResponse = {
@@ -28,8 +29,10 @@ export type Query = {
   _empty?: Maybe<Scalars['String']>
   signIn?: Maybe<SignResponse>
   forgotPassword?: Maybe<StatusResponse>
+  currentUser?: Maybe<User>
   golfClub?: Maybe<GolfClub>
   golfClubs?: Maybe<Array<Maybe<GolfClub>>>
+  golfClubConditions?: Maybe<GolfClubConditionsResponse>
   brand?: Maybe<Brand>
   brands?: Maybe<Array<Maybe<Brand>>>
   golfClubModel?: Maybe<GolfClubModel>
@@ -51,6 +54,15 @@ export type QueryForgotPasswordArgs = {
 
 export type QueryGolfClubArgs = {
   id: Scalars['String']
+}
+
+export type QueryGolfClubsArgs = {
+  golfClubModelId: Scalars['String']
+}
+
+export type QueryGolfClubConditionsArgs = {
+  golfClubModelId: Scalars['String']
+  golfClubFilters?: Maybe<GolfClubFilterArgs>
 }
 
 export type QueryBrandArgs = {
@@ -76,6 +88,7 @@ export type Mutation = {
   null?: Maybe<Scalars['Boolean']>
   signUp?: Maybe<SignResponse>
   updateCurrentUser?: Maybe<StatusResponse>
+  updateCurrentPassword?: Maybe<StatusResponse>
   createGolfClub?: Maybe<GolfClubResponse>
   deleteGolfClub?: Maybe<GolfClubResponse>
   updateGolfClub?: Maybe<GolfClubResponse>
@@ -99,6 +112,11 @@ export type MutationSignUpArgs = {
 
 export type MutationUpdateCurrentUserArgs = {
   user?: Maybe<UserArgs>
+}
+
+export type MutationUpdateCurrentPasswordArgs = {
+  newPassword: Scalars['String']
+  oldPassword: Scalars['String']
 }
 
 export type MutationCreateGolfClubArgs = {
@@ -160,8 +178,8 @@ export type User = {
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   userName?: Maybe<Scalars['String']>
-  GripSize?: Maybe<Scalars['Int']>
-  Height?: Maybe<Scalars['Int']>
+  avatar?: Maybe<Scalars['String']>
+  basicInfo?: Maybe<BasicInfo>
 }
 
 export type UserArgs = {
@@ -170,8 +188,23 @@ export type UserArgs = {
   firstName?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
   userName?: Maybe<Scalars['String']>
-  GripSize?: Maybe<Scalars['Int']>
-  Height?: Maybe<Scalars['Int']>
+  basicInfo?: Maybe<BasicInfoArgs>
+  avatarFile?: Maybe<Scalars['Upload']>
+}
+
+export type BasicInfo = {
+  __typename?: 'BasicInfo'
+  gripSize?: Maybe<Scalars['Int']>
+  height?: Maybe<Scalars['Int']>
+  dexterity?: Maybe<Scalars['String']>
+  flex?: Maybe<Scalars['String']>
+}
+
+export type BasicInfoArgs = {
+  gripSize?: Maybe<Scalars['Int']>
+  height?: Maybe<Scalars['Int']>
+  dexterity?: Maybe<Scalars['String']>
+  flex?: Maybe<Scalars['String']>
 }
 
 export type SignResponse = {
@@ -187,6 +220,7 @@ export type GolfClub = {
   condition?: Maybe<Scalars['String']>
   loft?: Maybe<Scalars['Float']>
   price?: Maybe<Scalars['Float']>
+  name?: Maybe<Scalars['String']>
   golfClubModel?: Maybe<GolfClubModel>
 }
 
@@ -198,11 +232,23 @@ export type GolfClubArgs = {
   golfClubModelId?: Maybe<Scalars['String']>
 }
 
+export type GolfClubFilterArgs = {
+  flexes?: Maybe<Array<Maybe<Scalars['String']>>>
+  dexterities?: Maybe<Array<Maybe<Scalars['String']>>>
+}
+
 export type GolfClubResponse = {
   __typename?: 'GolfClubResponse'
   status?: Maybe<Scalars['String']>
   error?: Maybe<ErrorResponse>
   result?: Maybe<GolfClub>
+}
+
+export type GolfClubConditionsResponse = {
+  __typename?: 'GolfClubConditionsResponse'
+  excellent?: Maybe<Array<Maybe<GolfClub>>>
+  good?: Maybe<Array<Maybe<GolfClub>>>
+  new?: Maybe<Array<Maybe<GolfClub>>>
 }
 
 export type Brand = {
@@ -233,8 +279,8 @@ export type GolfClubModel = {
   dexterity?: Maybe<Scalars['String']>
   category?: Maybe<Category>
   brand?: Maybe<Brand>
-  categoryId?: Maybe<Scalars['String']>
-  brandId?: Maybe<Scalars['String']>
+  golfClubs?: Maybe<Array<Maybe<GolfClub>>>
+  avatar?: Maybe<Scalars['String']>
 }
 
 export type GolfClubModelArgs = {
@@ -246,6 +292,7 @@ export type GolfClubModelArgs = {
   dexterity?: Maybe<Scalars['String']>
   categoryId?: Maybe<Scalars['String']>
   brandId?: Maybe<Scalars['String']>
+  avatarFile?: Maybe<Scalars['Upload']>
 }
 
 export type PaginationArgs = {
@@ -317,38 +364,60 @@ export type FilterResponse = {
 
 export type GolfClubModelAttrsFragment = { __typename?: 'GolfClubModel' } & Pick<
   GolfClubModel,
-  'id' | 'name' | 'description' | 'releaseYear' | 'retailPrice' | 'flex' | 'dexterity' | 'categoryId' | 'brandId'
+  'id' | 'name' | 'description' | 'releaseYear' | 'retailPrice' | 'flex' | 'dexterity'
 > & {
-    category?: Maybe<{ __typename?: 'Category' } & Pick<Category, 'id' | 'name'>>
-    brand?: Maybe<{ __typename?: 'Brand' } & Pick<Brand, 'id' | 'name'>>
+    category?: Maybe<{ __typename?: 'Category' } & CategoryAttrsFragment>
+    brand?: Maybe<{ __typename?: 'Brand' } & BrandAttrsFragment>
   }
 
-export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>
+export type BrandAttrsFragment = { __typename?: 'Brand' } & Pick<Brand, 'id' | 'name'>
 
-export type Unnamed_1_Query = { __typename?: 'Query' } & {
-  golfClubModels?: Maybe<
-    Array<
-      Maybe<
-        { __typename?: 'GolfClubModel' } & Pick<
-          GolfClubModel,
-          | 'id'
-          | 'name'
-          | 'description'
-          | 'releaseYear'
-          | 'retailPrice'
-          | 'flex'
-          | 'dexterity'
-          | 'categoryId'
-          | 'brandId'
-        > & {
-            category?: Maybe<{ __typename?: 'Category' } & Pick<Category, 'id' | 'name'>>
-            brand?: Maybe<{ __typename?: 'Brand' } & Pick<Brand, 'id' | 'name'>>
-          }
-      >
-    >
+export type CategoryAttrsFragment = { __typename?: 'Category' } & Pick<Category, 'id' | 'name'>
+
+export type PaginationAttrsFragment = { __typename?: 'PaginationResponse' } & Pick<
+  PaginationResponse,
+  'itemCount' | 'total' | 'pageSize' | 'totalPages' | 'current'
+>
+
+export type FetchGolfClubModelsQueryVariables = Exact<{ [key: string]: never }>
+
+export type FetchGolfClubModelsQuery = { __typename?: 'Query' } & {
+  res?: Maybe<Array<Maybe<{ __typename?: 'GolfClubModel' } & GolfClubModelAttrsFragment>>>
+}
+
+export type FetchPaginatedGolfClubModelsQueryVariables = Exact<{
+  pagination: PaginationArgs
+}>
+
+export type FetchPaginatedGolfClubModelsQuery = { __typename?: 'Query' } & {
+  res?: Maybe<
+    { __typename?: 'PaginateGolfClubModelResponse' } & {
+      content?: Maybe<Array<Maybe<{ __typename?: 'GolfClubModel' } & GolfClubModelAttrsFragment>>>
+      pagination?: Maybe<{ __typename?: 'PaginationResponse' } & PaginationAttrsFragment>
+    }
   >
 }
 
+export type FetchGolfClubModelQueryVariables = Exact<{
+  id: Scalars['String']
+}>
+
+export type FetchGolfClubModelQuery = { __typename?: 'Query' } & {
+  res?: Maybe<{ __typename?: 'GolfClubModel' } & GolfClubModelAttrsFragment>
+}
+
+export const CategoryAttrsFragmentDoc = gql`
+  fragment CategoryAttrs on Category {
+    id
+    name
+  }
+`
+export const BrandAttrsFragmentDoc = gql`
+  fragment BrandAttrs on Brand {
+    id
+    name
+  }
+`
 export const GolfClubModelAttrsFragmentDoc = gql`
   fragment GolfClubModelAttrs on GolfClubModel {
     id
@@ -359,65 +428,175 @@ export const GolfClubModelAttrsFragmentDoc = gql`
     flex
     dexterity
     category {
-      id
-      name
+      ...CategoryAttrs
     }
     brand {
-      id
-      name
+      ...BrandAttrs
     }
-    categoryId
-    brandId
+  }
+  ${CategoryAttrsFragmentDoc}
+  ${BrandAttrsFragmentDoc}
+`
+export const PaginationAttrsFragmentDoc = gql`
+  fragment PaginationAttrs on PaginationResponse {
+    itemCount
+    total
+    pageSize
+    totalPages
+    current
   }
 `
-export const Document = gql`
-  {
-    golfClubModels {
-      id
-      name
-      description
-      releaseYear
-      retailPrice
-      flex
-      dexterity
-      category {
-        id
-        name
-      }
-      brand {
-        id
-        name
-      }
-      categoryId
-      brandId
+export const FetchGolfClubModelsDocument = gql`
+  query FetchGolfClubModels {
+    res: golfClubModels {
+      ...GolfClubModelAttrs
     }
   }
+  ${GolfClubModelAttrsFragmentDoc}
 `
 
 /**
- * __useQuery__
+ * __useFetchGolfClubModelsQuery__
  *
- * To run a query within a React component, call `useQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useFetchGolfClubModelsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchGolfClubModelsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useQuery({
+ * const { data, loading, error } = useFetchGolfClubModelsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useQuery(baseOptions?: Apollo.QueryHookOptions<Query, QueryVariables>) {
-  return Apollo.useQuery<Query, QueryVariables>(Document, baseOptions)
+export function useFetchGolfClubModelsQuery(
+  baseOptions?: Apollo.QueryHookOptions<FetchGolfClubModelsQuery, FetchGolfClubModelsQueryVariables>
+) {
+  return Apollo.useQuery<FetchGolfClubModelsQuery, FetchGolfClubModelsQueryVariables>(
+    FetchGolfClubModelsDocument,
+    baseOptions
+  )
 }
-export function useLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Query, QueryVariables>) {
-  return Apollo.useLazyQuery<Query, QueryVariables>(Document, baseOptions)
+export function useFetchGolfClubModelsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<FetchGolfClubModelsQuery, FetchGolfClubModelsQueryVariables>
+) {
+  return Apollo.useLazyQuery<FetchGolfClubModelsQuery, FetchGolfClubModelsQueryVariables>(
+    FetchGolfClubModelsDocument,
+    baseOptions
+  )
 }
-export type QueryHookResult = ReturnType<typeof useQuery>
-export type LazyQueryHookResult = ReturnType<typeof useLazyQuery>
-export type QueryResult = Apollo.QueryResult<Query, QueryVariables>
+export type FetchGolfClubModelsQueryHookResult = ReturnType<typeof useFetchGolfClubModelsQuery>
+export type FetchGolfClubModelsLazyQueryHookResult = ReturnType<typeof useFetchGolfClubModelsLazyQuery>
+export type FetchGolfClubModelsQueryResult = Apollo.QueryResult<
+  FetchGolfClubModelsQuery,
+  FetchGolfClubModelsQueryVariables
+>
+export const FetchPaginatedGolfClubModelsDocument = gql`
+  query FetchPaginatedGolfClubModels($pagination: PaginationArgs!) {
+    res: paginateGolfClubModels(pagination: $pagination) {
+      content {
+        ...GolfClubModelAttrs
+      }
+      pagination {
+        ...PaginationAttrs
+      }
+    }
+  }
+  ${GolfClubModelAttrsFragmentDoc}
+  ${PaginationAttrsFragmentDoc}
+`
+
+/**
+ * __useFetchPaginatedGolfClubModelsQuery__
+ *
+ * To run a query within a React component, call `useFetchPaginatedGolfClubModelsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchPaginatedGolfClubModelsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchPaginatedGolfClubModelsQuery({
+ *   variables: {
+ *      pagination: // value for 'pagination'
+ *   },
+ * });
+ */
+export function useFetchPaginatedGolfClubModelsQuery(
+  baseOptions: Apollo.QueryHookOptions<FetchPaginatedGolfClubModelsQuery, FetchPaginatedGolfClubModelsQueryVariables>
+) {
+  return Apollo.useQuery<FetchPaginatedGolfClubModelsQuery, FetchPaginatedGolfClubModelsQueryVariables>(
+    FetchPaginatedGolfClubModelsDocument,
+    baseOptions
+  )
+}
+export function useFetchPaginatedGolfClubModelsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FetchPaginatedGolfClubModelsQuery,
+    FetchPaginatedGolfClubModelsQueryVariables
+  >
+) {
+  return Apollo.useLazyQuery<FetchPaginatedGolfClubModelsQuery, FetchPaginatedGolfClubModelsQueryVariables>(
+    FetchPaginatedGolfClubModelsDocument,
+    baseOptions
+  )
+}
+export type FetchPaginatedGolfClubModelsQueryHookResult = ReturnType<typeof useFetchPaginatedGolfClubModelsQuery>
+export type FetchPaginatedGolfClubModelsLazyQueryHookResult = ReturnType<
+  typeof useFetchPaginatedGolfClubModelsLazyQuery
+>
+export type FetchPaginatedGolfClubModelsQueryResult = Apollo.QueryResult<
+  FetchPaginatedGolfClubModelsQuery,
+  FetchPaginatedGolfClubModelsQueryVariables
+>
+export const FetchGolfClubModelDocument = gql`
+  query FetchGolfClubModel($id: String!) {
+    res: golfClubModel(id: $id) {
+      ...GolfClubModelAttrs
+    }
+  }
+  ${GolfClubModelAttrsFragmentDoc}
+`
+
+/**
+ * __useFetchGolfClubModelQuery__
+ *
+ * To run a query within a React component, call `useFetchGolfClubModelQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFetchGolfClubModelQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFetchGolfClubModelQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFetchGolfClubModelQuery(
+  baseOptions: Apollo.QueryHookOptions<FetchGolfClubModelQuery, FetchGolfClubModelQueryVariables>
+) {
+  return Apollo.useQuery<FetchGolfClubModelQuery, FetchGolfClubModelQueryVariables>(
+    FetchGolfClubModelDocument,
+    baseOptions
+  )
+}
+export function useFetchGolfClubModelLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<FetchGolfClubModelQuery, FetchGolfClubModelQueryVariables>
+) {
+  return Apollo.useLazyQuery<FetchGolfClubModelQuery, FetchGolfClubModelQueryVariables>(
+    FetchGolfClubModelDocument,
+    baseOptions
+  )
+}
+export type FetchGolfClubModelQueryHookResult = ReturnType<typeof useFetchGolfClubModelQuery>
+export type FetchGolfClubModelLazyQueryHookResult = ReturnType<typeof useFetchGolfClubModelLazyQuery>
+export type FetchGolfClubModelQueryResult = Apollo.QueryResult<
+  FetchGolfClubModelQuery,
+  FetchGolfClubModelQueryVariables
+>
 
 export interface PossibleTypesResultData {
   possibleTypes: {

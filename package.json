@@ -28,6 +28,7 @@
     "@types/react-test-renderer": "^16.9.2",
     "@types/vfile-message": "^2.0.0",
     "and": "^0.0.3",
+    "apollo-link-timeout": "^3.0.0",
     "apollo-server-express": "^2.16.1",
     "babel": "^6.23.0",
     "babel-preset-react-app": "^10.0.0",

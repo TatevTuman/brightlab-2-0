@@ -2,10 +2,9 @@
 
 .list {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  min-height: calculateRem(100);
+  min-height: calculateRem(400);
+  padding: 1rem 0 0;
   margin-bottom: 4rem;
 
   &-item {

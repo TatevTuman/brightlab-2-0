@@ -15,8 +15,6 @@ export default gql`
     brand {
       ...BrandAttrs
     }
-    categoryId
-    brandId
   }
 
   fragment BrandAttrs on Brand {
