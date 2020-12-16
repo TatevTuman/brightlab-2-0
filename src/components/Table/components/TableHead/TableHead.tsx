@@ -13,7 +13,7 @@ const TableHead: React.FC<TableHeadProps> = props => {
   return (
     <thead className={styles.tableHead}>
       <tr className={'table-head-tr'}>
-        {isRowIndex && <th className={'table-head-tr-th'} />}
+        {isRowIndex && <th className={'table-head-tr-th'} data-testid={'thead-row-index'} />}
         {columns.map((column, index) => {
           return (
             <th className={'table-head-tr-th'} key={index}>

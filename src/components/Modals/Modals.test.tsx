@@ -15,7 +15,6 @@ describe('Modals', () => {
     const { container } = render(<Modals />)
     await waitFor(() => container)
 
-    // TODO
     expect(container).toMatchSnapshot()
   })
 })

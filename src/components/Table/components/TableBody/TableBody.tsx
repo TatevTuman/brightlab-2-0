@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { TableColumnType, TableRowType } from '@types'
-import styles from './TableBody.module.scss'
 import { handleEvent } from '@utils'
+import styles from './TableBody.module.scss'
 
 interface TableBodyProps {
   columns: TableColumnType[]
@@ -15,7 +15,7 @@ const TableBodyRowIndex: React.FC<{ index: number }> = props => {
   let { index } = props
 
   return (
-    <td className={'table-body-tr-td'} key={index} style={{ width: '20px' }}>
+    <td className={'table-body-tr-td'} key={index} style={{ width: '20px' }} data-testid={'tbody-row-index'}>
       <div className={'table-body-tr-td__inner'}>{++index}.</div>
     </td>
   )
@@ -26,7 +26,7 @@ const TableBody: React.FC<TableBodyProps> = props => {
 
   const renderFunctions = columns.map(column => column.render)
   const filteredRows = filters
-    ? rows.filter((row: any) => {
+    ? rows.filter((row: TableRowType) => {
         return filters.every(filter => {
           const { handleFilter, field } = filter
           return handleFilter(row[field])
@@ -36,7 +36,7 @@ const TableBody: React.FC<TableBodyProps> = props => {
 
   return (
     <tbody className={styles.tableBody}>
-      {filteredRows.map((row: any, index) => {
+      {filteredRows.map((row: TableRowType, index) => {
         const cells = columns
 
         return (

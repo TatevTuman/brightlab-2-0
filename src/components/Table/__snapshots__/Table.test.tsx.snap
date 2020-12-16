@@ -36,6 +36,7 @@ exports[`Table renders correctly 1`] = `
     >
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -43,7 +44,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John0
           </div>
         </td>
         <td
@@ -52,7 +53,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe0
           </div>
         </td>
         <td
@@ -70,21 +71,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -92,7 +84,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John1
           </div>
         </td>
         <td
@@ -101,7 +93,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe1
           </div>
         </td>
         <td
@@ -119,21 +111,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -141,7 +124,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John2
           </div>
         </td>
         <td
@@ -150,7 +133,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe2
           </div>
         </td>
         <td
@@ -168,21 +151,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -190,7 +164,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John3
           </div>
         </td>
         <td
@@ -199,7 +173,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe3
           </div>
         </td>
         <td
@@ -217,21 +191,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="true"
       >
         <td
           class="table-body-tr-td"
@@ -239,7 +204,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John4
           </div>
         </td>
         <td
@@ -248,7 +213,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe4
           </div>
         </td>
         <td
@@ -266,21 +231,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -288,7 +244,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John5
           </div>
         </td>
         <td
@@ -297,7 +253,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe5
           </div>
         </td>
         <td
@@ -315,21 +271,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -337,7 +284,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John6
           </div>
         </td>
         <td
@@ -346,7 +293,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe6
           </div>
         </td>
         <td
@@ -364,21 +311,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -386,7 +324,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John7
           </div>
         </td>
         <td
@@ -395,7 +333,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe7
           </div>
         </td>
         <td
@@ -413,21 +351,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -435,7 +364,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John8
           </div>
         </td>
         <td
@@ -444,7 +373,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe8
           </div>
         </td>
         <td
@@ -462,21 +391,12 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
       <tr
         class="table-body-tr"
+        data-disabled="false"
       >
         <td
           class="table-body-tr-td"
@@ -484,7 +404,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            John
+            John9
           </div>
         </td>
         <td
@@ -493,7 +413,7 @@ exports[`Table renders correctly 1`] = `
           <div
             class="table-body-tr-td__inner"
           >
-            Doe
+            Doe9
           </div>
         </td>
         <td
@@ -511,17 +431,7 @@ exports[`Table renders correctly 1`] = `
         >
           <div
             class="table-body-tr-td__inner"
-          >
-            <button
-              class="button button__secondary-md "
-              data-centered="false"
-              data-disabled="false"
-              tabindex="0"
-              type="button"
-            >
-              Get Info
-            </button>
-          </div>
+          />
         </td>
       </tr>
     </tbody>

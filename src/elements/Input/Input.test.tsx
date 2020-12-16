@@ -109,5 +109,21 @@ describe('Input', () => {
     expect(input.value).toBe('test')
   })
 
-  // TODO focus test sync with Select tests
+  it('handles focus/blur', async () => {
+    const props = {
+      name: 'input',
+      label: 'input label',
+      onFocus: jest.fn(),
+      onBlur: jest.fn()
+    }
+
+    render(<Input {...props} />)
+
+    /* Simulate tab */
+    userEvent.tab()
+    expect(props.onFocus).toHaveBeenCalledTimes(1)
+
+    userEvent.tab()
+    expect(props.onBlur).toHaveBeenCalledTimes(1)
+  })
 })

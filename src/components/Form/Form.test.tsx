@@ -20,26 +20,9 @@ describe('Form', () => {
     onSubmit: jest.fn(),
     onError: jest.fn(),
     defaultValues: {
-      email: '',
-      // role: undefined,
-      // job: undefined
+      email: ''
     }
   }
-
-  const roleOptions = [
-    { label: 'User', value: { name: 'user' } },
-    { label: 'Admin', value: { name: 'admin' } },
-    { label: 'Guest', value: { name: 'guest' } },
-    { label: 'Manager', value: { name: 'manager' } },
-    { label: 'Devops', value: { name: 'devops' } },
-    { label: 'Client', value: { name: 'client' } }
-  ]
-
-  const jobOptions = [
-    { label: 'Developer', value: { name: 'developer' } },
-    { label: 'Project Manager', value: { name: 'manager' } },
-    { label: 'Data-Science engineer', value: { name: 'engineer' } }
-  ]
 
   const form = () =>
     render(
@@ -56,38 +39,12 @@ describe('Form', () => {
                   pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
                 }}
               />
-              {/*<Autocomplete<RoleOptionValue>*/}
-              {/*  options={roleOptions}*/}
-              {/*  name={'role'}*/}
-              {/*  label={'Select your role'}*/}
-              {/*  useFormMethods={{*/}
-              {/*    ...useFormMethods,*/}
-              {/*    validation: {*/}
-              {/*      required: { value: true, message: 'Role is required' }*/}
-              {/*    }*/}
-              {/*  }}*/}
-              {/*/>*/}
-              {/*<Select<RoleOptionValue>*/}
-              {/*  options={jobOptions}*/}
-              {/*  name={'job'}*/}
-              {/*  label={'Select your job'}*/}
-              {/*  useFormMethods={{*/}
-              {/*    ...useFormMethods,*/}
-              {/*    validation: {*/}
-              {/*      required: { value: true, message: 'Job is required' }*/}
-              {/*    }*/}
-              {/*  }}*/}
-              {/*/>*/}
-              <Button type={'secondary'} size={'md'} submit centered>
-                Submit
-              </Button>
+              <Form.Submit>Submit</Form.Submit>
             </>
           )
         }}
       </Form>
     )
-
-  const requiredErrors = ['Email is required', 'Role is required', 'Job is required']
 
   it('renders correctly', async () => {
     const { container } = form()
@@ -95,20 +52,6 @@ describe('Form', () => {
 
     expect(container).toMatchSnapshot()
   })
-
-  // TODO useFormContext
-  // it('submit on invalid fields', async () => {
-  //   const { getByText } = form()
-  //
-  //   await act(async () => {
-  //     const submit = await waitFor(() => getByText('Submit'))
-  //     userEvent.click(submit)
-  //   })
-  //
-  //   // requiredErrors.forEach(error => expect(getByText(error)).toBeInTheDocument())
-  //
-  //   expect(props.onSubmit).toHaveBeenCalledTimes(0)
-  // })
 
   it('submit on valid fields', async () => {
     const { getByText, getByLabelText } = form()
@@ -120,8 +63,7 @@ describe('Form', () => {
       userEvent.click(submit)
     })
 
+    expect(props.onError).toHaveBeenCalledTimes(0)
     expect(props.onSubmit).toHaveBeenCalledTimes(1)
   })
-
-  // TODO with different types of elements
 })

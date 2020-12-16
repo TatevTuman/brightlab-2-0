@@ -39,15 +39,19 @@ exports[`Form renders correctly 1`] = `
         />
       </div>
     </div>
-    <button
-      class="button button__secondary-md "
-      data-centered="true"
-      data-disabled="false"
-      tabindex="0"
-      type="submit"
+    <div
+      class="formSubmit"
     >
-      Submit
-    </button>
+      <button
+        class="button button__primary-md "
+        data-centered="true"
+        data-disabled="false"
+        tabindex="0"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
   </form>
 </div>
 `;
