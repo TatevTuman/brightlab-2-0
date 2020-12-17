@@ -51,7 +51,7 @@ class Select<
     this.state = {
       active: false,
       selectedOption: null,
-      options: []
+      options: [],
     }
   }
 

@@ -1,27 +1,29 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import React, { memo } from 'react'
 import { Loader } from '@elements'
 import { useWindowSize } from '@hooks'
 import styles from './List.module.scss'
 
-interface ListPropsColumnsType {
+export interface ListPropsColumnsType {
   mobile?: number
   landscape?: number
   tablet?: number
   desktop: number
 }
 
-interface ListProps<T> {
-  items: T[]
+interface ListProps {
+  items: any[]
   columns: ListPropsColumnsType
   offset: number
-  Component: React.ComponentType<{ listData: T }> | React.FunctionComponent<{ listData: T }>
-  onItemClick?: (item: T) => void
+  Component: React.ComponentType<{ listData: any }> | React.FunctionComponent<{ listData: any }>
+  onItemClick?: (item: any) => void
   loading?: boolean
   error?: Error
   noMessage?: string
 }
 
-const List = <T,>(props: ListProps<T>) => {
+const List: React.FC<ListProps> = props => {
   const { breakpoint } = useWindowSize()
   const { items, columns, offset, Component, onItemClick, noMessage = 'Not found', loading = false, error } = props
 
@@ -65,4 +67,4 @@ const List = <T,>(props: ListProps<T>) => {
   return <div className={styles.list}>{renderItems()}</div>
 }
 
-export default List
+export default memo(List)

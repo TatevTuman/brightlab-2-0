@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { PaginationResponse } from '@types'
 import styles from './Pagination.module.scss'
 
 interface PaginationProps extends PaginationResponse {
   limit?: number
-  onPageClick(page: number): void
+  onClick(page: number): void
 }
 
 const Pagination: React.FC<PaginationProps> = props => {
-  const { current, totalPages = 1, limit = 7, onPageClick } = props
+  const { current, totalPages = 1, limit = 7, onClick } = props
   if (!current) return null
 
   /* Pages from the left and right to render */
@@ -68,7 +68,7 @@ const Pagination: React.FC<PaginationProps> = props => {
           key={index}
           tabIndex={0}
           className={styles.paginationListItem}
-          onClick={() => onPageClick(page)}
+          onClick={() => onClick(page)}
           data-active={isActive}
         >
           {page}
@@ -84,4 +84,4 @@ const Pagination: React.FC<PaginationProps> = props => {
   )
 }
 
-export default Pagination
+export default memo(Pagination)

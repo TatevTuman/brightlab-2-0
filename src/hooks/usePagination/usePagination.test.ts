@@ -15,6 +15,7 @@ afterEach(() => {
 })
 
 describe('UsePagination', () => {
+  // TODO tests
   it('usePagination', async () => {
     const { result } = renderHook(() => usePagination(2 as any, 5))
 
