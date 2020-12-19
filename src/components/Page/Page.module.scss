@@ -1,4 +1,6 @@
+@import 'static/assets/styles/variables.scss';
+
 .page {
-  padding-top: 116px; // Header height
+  padding-top: calculateRem(116); // Header height
   min-height: 100vh;
 }

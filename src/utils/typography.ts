@@ -35,6 +35,11 @@ const typography = new Typography({
         html: {
           font: `80%/${baseLineHeight} ${bodyFontFamily}`
         }
+      },
+      '@media(max-width: 768px)': {
+        html: {
+          font: `70%/${baseLineHeight} ${bodyFontFamily}`
+        }
       }
     }
   }

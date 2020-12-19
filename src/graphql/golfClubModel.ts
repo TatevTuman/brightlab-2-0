@@ -12,8 +12,8 @@ export const FetchAll = gql`
 `
 
 export const FetchPaginated = gql`
-  query FetchPaginatedGolfClubModels($pagination: PaginationArgs!, $filters: FilterArgs) {
-    res: paginateGolfClubModels(pagination: $pagination, filters: $filters) {
+  query FetchPaginatedGolfClubModels($pagination: PaginationArgs!, $filters: FilterArgs, $sortBy: String) {
+    res: paginateGolfClubModels(pagination: $pagination, filters: $filters, sortBy: $sortBy) {
       content {
         ...GolfClubModelAttrs
       }

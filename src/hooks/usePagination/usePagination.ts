@@ -1,6 +1,14 @@
 import { useState } from 'react'
 import { useQuery, DocumentNode, QueryHookOptions } from '@apollo/client'
-import { QueryPaginationResponse, QueryPaginationArgs, FilterArgs } from '@types'
+import { QueryPaginationResponse, QueryPaginationArgs } from '@types'
+
+export type UsePaginationArgs<TVariables> = {
+  query: DocumentNode
+  variables: TVariables
+  options?: Omit<QueryHookOptions, 'variables'>
+  initialPage: number
+  initialPageSize: number
+}
 
 const usePagination = <TData, TVariables extends Omit<QueryPaginationArgs, 'pagination'>>(
   query: DocumentNode,
@@ -19,52 +27,38 @@ const usePagination = <TData, TVariables extends Omit<QueryPaginationArgs, 'pagi
 
   /* Defines fetchMore function to control pagination */
   const fetchMore = async (variables: TVariables, forcePage?: number, forcePageSize?: number) => {
-    setPage([forcePage || page + 1, forcePageSize || pageSize])
+    const isVariables = Object.keys(variables).length > 0
 
-    return paginatedQueryData.fetchMore({
-      variables: {
-        ...variables,
-        pagination: { page: forcePage || page + 1, pageSize: forcePageSize || pageSize }
-      }
-    })
-  }
+    if (isVariables) {
+      /* When any variable is passed resets the page */
+      const nextPage = 1
+      const nextPageSize = forcePageSize || pageSize
 
-  const refetch = async (filters: FilterArgs) => {
-    /* Refetch the same query with filters */
-    const refetchedPaginatedQueryData = await paginatedQueryData.refetch({
-      ...variables,
-      filters: {
-        ...variables.filters,
-        ...filters
-      }
-    })
+      setPage([nextPage, nextPageSize])
 
-    const { data } = refetchedPaginatedQueryData
-    const content = data?.res.content
-    const pagination = data?.res.pagination
-
-    /*
-      If after filtering we have no content, we should use fetchMore to set a new page.
-    */
-    if (content && !content.length && pagination) {
-      const lastPage = pagination.totalPages! || 1
-      return fetchMore(
-        {
+      return paginatedQueryData.fetchMore({
+        variables: {
           ...variables,
-          filters: {
-            ...variables.filters,
-            ...filters
-          }
-        },
-        lastPage
-      )
-    }
+          pagination: { page: nextPage, pageSize: nextPageSize }
+        }
+      })
+    } else {
+      const nextPage = forcePage || page + 1
+      const nextPageSize = forcePageSize || pageSize
 
-    return refetchedPaginatedQueryData
+      setPage([nextPage, nextPageSize])
+
+      return paginatedQueryData.fetchMore({
+        variables: {
+          ...variables,
+          pagination: { page: nextPage, pageSize: nextPageSize }
+        }
+      })
+    }
   }
 
   /* Removes unnecessary data */
-  const { fetchMore: _, refetch: __, data, ...usePaginationData } = paginatedQueryData
+  const { fetchMore: _, data, ...usePaginationData } = paginatedQueryData
 
   const content = data?.res.content
   const pagination = data?.res.pagination
@@ -73,8 +67,7 @@ const usePagination = <TData, TVariables extends Omit<QueryPaginationArgs, 'pagi
     ...usePaginationData,
     content,
     pagination,
-    fetchMore,
-    refetch
+    fetchMore
   }
 }
 

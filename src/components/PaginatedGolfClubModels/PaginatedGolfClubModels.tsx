@@ -27,16 +27,10 @@ const PaginatedGolfClubModels: React.FC<PaginatedGolfClubModelsProps> = () => {
     Inits usePagination hook with query, variables, options, initialPage and initialPageSize.
     Pay attention for variables without pagination [see UsePaginationArgs type].
   */
-  const { content, pagination, loading, error, fetchMore, refetch } = usePagination<GolfClubModel, {}>(
-    golfClubModel.FetchPaginated,
-    {},
-    { fetchPolicy: 'cache-and-network' },
-    1,
-    10
-  )
+  const { content, pagination, loading, error, fetchMore } = usePagination<GolfClubModel, {}>(golfClubModel.FetchPaginated, {}, { fetchPolicy: 'cache-and-network' }, 1, 10)
 
   const handleGolfClubModelsPageClick = (page: number) => fetchMore({}, page)
-  const handleGolfClubModelsSearch = (search: string) => refetch({ term: search })
+  const handleGolfClubModelsSearch = (search: string) => fetchMore({ filters: { term: search } })
   const handleGolfClubModelClick = (golfClubModel: GolfClubModel) => navigate(`/admin/view/${golfClubModel.id}`)
 
   return (
