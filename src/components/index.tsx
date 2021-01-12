@@ -6,6 +6,7 @@ export const Header = loadable(() => import('./Header/Header'))
 export const Footer = loadable(() => import('./Footer/Footer'))
 export const List = loadable(() => import('./List/List'))
 export const Paginated = loadable(() => import('./Paginated/Paginated'))
+export const Calendar = loadable(() => import('./Calendar/Calendar'))
 export const PaginatedGolfClubModels = loadable(() => import('./PaginatedGolfClubModels/PaginatedGolfClubModels'))
 
 export const SEO = loadable(() => import('./SEO'))

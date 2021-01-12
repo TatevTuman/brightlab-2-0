@@ -3,7 +3,7 @@ import { isEqual } from 'lodash'
 import { Controller, RegisterOptions, UseFormMethods } from 'react-hook-form'
 import { OptionType } from '@types'
 import { Dropdown, ValidationErrorMessage } from '@elements'
-import SelectArrow from '@images/select-arrow.svg'
+import SelectArrow from '@images/arrow.svg'
 import styles from './Select.module.scss'
 
 export interface SelectProps<T> {

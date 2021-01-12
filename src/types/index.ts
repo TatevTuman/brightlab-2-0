@@ -4,6 +4,7 @@ export * from './forms'
 export * from './apollo'
 export * from './generated'
 export * from './cache'
+export * from './dates'
 
 export type Children = JSX.Element | JSX.Element[] | string
 export type AnyObject = Record<string, any>

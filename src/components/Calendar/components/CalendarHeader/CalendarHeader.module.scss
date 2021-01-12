@@ -1,0 +1,40 @@
+@import "static/assets/styles/variables";
+
+.calendar {
+
+  &-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-month {
+      font-size: 20px;
+      color: var(--primary);
+      text-align: center;
+      padding: 0.5rem 0.25rem;
+      word-spacing: 5px;
+      user-select: none;
+    }
+
+    &-next, &-prev {
+      position: absolute;
+      top: calc(25% + 10px);
+      cursor: pointer;
+
+      path {
+        fill: var(--secondary-dark);
+      }
+    }
+
+    &-prev {
+      left: 1rem;
+      transform: rotate(-90deg);
+    }
+
+    &-next {
+      right: 1rem;
+      transform: rotate(90deg);
+    }
+  }
+}
