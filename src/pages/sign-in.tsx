@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react'
+import React, { memo } from 'react'
 import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
@@ -12,18 +12,14 @@ interface SignInProps extends RouteComponentProps {}
 const SignIn: React.FC<SignInProps> = props => {
   const alert = useAlert()
   const navigate = useNavigate()
-  const signInForm = useRef<HTMLFormElement>(null)
 
   const handleSignIn = async (form: SignInForm) => {
     console.log('form', form)
 
-    if (signInForm && signInForm.current) {
-    }
-
     alert.show('Hey! What`s up?', {
       type: 'success',
       onOpen: async () => await navigate('/'),
-      onClose: () => {}
+      onClose: () => null
     })
   }
 
@@ -32,8 +28,8 @@ const SignIn: React.FC<SignInProps> = props => {
 
     alert.show(`Validation errors`, {
       type: 'error',
-      onOpen: () => {},
-      onClose: () => {}
+      onOpen: () => null,
+      onClose: () => null
     })
   }
 
@@ -41,7 +37,7 @@ const SignIn: React.FC<SignInProps> = props => {
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      <Form<SignInForm> ref={signInForm} onSubmit={handleSignIn} onError={handleSignInError}>
+      <Form<SignInForm> onSubmit={handleSignIn} onError={handleSignInError}>
         {useFormMethods => {
           return (
             <>

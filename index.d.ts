@@ -1,9 +1,3 @@
-// type Writeable<T> = { -readonly [P in keyof T]: T[P] }
-//
-// declare namespace NodeJS {
-//   interface Global extends Writeable<{ innerWidth: number }> {}
-// }
-
 type TypographyOptions = Partial<{
   title: string
   baseFontSize: string
@@ -78,7 +72,6 @@ declare module '*.webp' {
 
 declare module '*.svg' {
   import * as React from 'react'
-
   export const ReactComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
   export default ReactComponent
 }
@@ -96,6 +89,6 @@ declare module '*.gql' {
 }
 
 declare module '*.json' {
-  const value: any;
-  export default value;
+  const value: any
+  export default value
 }

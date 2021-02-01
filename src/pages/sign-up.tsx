@@ -1,10 +1,10 @@
-import React, { memo, useRef } from 'react'
+import React, { memo } from 'react'
 import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
-import { Autocomplete, Form, Select, SEO } from '@components'
+import { Form, SEO } from '@components'
 import { Input } from '@elements'
-import { JobOptionValue, RoleOptionValue, SignUpForm } from '@types'
+import { SignUpForm } from '@types'
 import { emailPattern, passwordValidation } from '@utils'
 
 interface SignUpProps extends RouteComponentProps {}
@@ -12,52 +12,32 @@ interface SignUpProps extends RouteComponentProps {}
 const SignUp: React.FC<SignUpProps> = props => {
   const alert = useAlert()
   const navigate = useNavigate()
-  const signUpForm = useRef<HTMLFormElement>(null)
 
   const handleSignUp = async (form: SignUpForm) => {
     console.log('form', form)
-    if (signUpForm && signUpForm.current) {
-    }
 
     alert.show('Welcome! Can you sign in?', {
       type: 'success',
       onOpen: async () => await navigate('/sign-in'),
-      onClose: () => {}
+      onClose: () => null
     })
   }
 
   const handleSignUpError = async (errors: FieldErrors<SignUpForm>) => {
     console.log('errors', errors)
-    if (signUpForm && signUpForm.current) {
-    }
 
     alert.show(`Validation errors`, {
       type: 'error',
-      onOpen: () => {},
-      onClose: () => {}
+      onOpen: () => null,
+      onClose: () => null
     })
   }
-
-  const roleOptions = [
-    { label: 'User', value: { name: 'user' } },
-    { label: 'Admin', value: { name: 'admin' } },
-    { label: 'Guest', value: { name: 'guest' } },
-    { label: 'Manager', value: { name: 'manager' } },
-    { label: 'Devops', value: { name: 'devops' } },
-    { label: 'Client', value: { name: 'client' } }
-  ]
-
-  const jobOptions = [
-    { label: 'Developer', value: { name: 'developer' } },
-    { label: 'Project Manager', value: { name: 'manager' } },
-    { label: 'Data-Science engineer', value: { name: 'engineer' } }
-  ]
 
   return (
     <section>
       <SEO title={'SignUp'} />
       <h1>SignUp</h1>
-      <Form<SignUpForm> ref={signUpForm} onSubmit={handleSignUp} onError={handleSignUpError}>
+      <Form<SignUpForm> onSubmit={handleSignUp} onError={handleSignUpError}>
         {useFormMethods => {
           return (
             <>
@@ -98,28 +78,6 @@ const SignUp: React.FC<SignUpProps> = props => {
                   validation={{
                     required: { value: true, message: 'Password is required' },
                     ...passwordValidation
-                  }}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Autocomplete<RoleOptionValue>
-                  options={roleOptions}
-                  name={'role'}
-                  label={'Select your profile role'}
-                  useFormMethods={useFormMethods}
-                  validation={{
-                    required: { value: true, message: 'Role is required' }
-                  }}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Select<JobOptionValue>
-                  options={jobOptions}
-                  name={'job'}
-                  label={'What about your job?'}
-                  useFormMethods={useFormMethods}
-                  validation={{
-                    required: { value: true, message: 'Job is required' }
                   }}
                 />
               </Form.Item>
