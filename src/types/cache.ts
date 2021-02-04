@@ -4,9 +4,9 @@ export type Context = {
   cache: InMemoryCache
 }
 
-export type CacheModal = {
+export type CacheModal<S = any> = {
   name: string
-  state?: Record<string, any>
+  state?: S
 }
 
 export type CacheDrawer = {

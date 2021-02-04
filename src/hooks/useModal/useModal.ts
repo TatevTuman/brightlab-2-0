@@ -2,13 +2,13 @@ import { useReactiveVar } from '@apollo/client'
 import { CacheModal } from '@types'
 import { modalsVar } from '@cache'
 
-type UseModalResult = {
-  modal: CacheModal | null
-  openModal: (state?: Record<string, any>) => void
+type UseModalResult<S> = {
+  modal: CacheModal<S> | null
+  openModal: (state?: S) => void
   closeModal: () => void
 }
 
-const useModal = (modalName: string): UseModalResult => {
+const useModal = <S = Record<string, unknown>>(modalName: string): UseModalResult<S> => {
   const modals = useReactiveVar(modalsVar)
   const modal = modals.find(({ name }) => name === modalName) || null
 
@@ -30,7 +30,7 @@ const useModal = (modalName: string): UseModalResult => {
     // Disable scroll
     html!.style.overflow = 'hidden'
     // Add modal to cache
-    modalsVar([...modalsWithoutCurrent, { name: modalName, state }])
+    modalsVar([...modalsWithoutCurrent, { name: modalName, state: state || {} }])
 
     // After 100ms start animation
     setTimeout(() => {

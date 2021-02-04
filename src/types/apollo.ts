@@ -1,7 +1,10 @@
 import { ApolloClient } from '@apollo/client'
-import { FilterArgs } from './generated'
 
 export type Client = ApolloClient<Record<string, any>>
+
+export type ResponseType<T> = {
+  res: T
+}
 
 export type PaginationType = {
   itemCount: number
@@ -18,11 +21,19 @@ export type PaginationArgs = {
 
 export type QueryPaginationArgs = {
   pagination?: PaginationArgs
-  filters?: FilterArgs
+  filters?: any // TODO
   sortBy?: string
 }
 
 export type QueryPaginationResponse<T> = {
   content: T[]
   pagination: PaginationType
+}
+
+export type MutationResponse = {
+  status: string
+  error: {
+    code?: string
+    detail?: string
+  }
 }
