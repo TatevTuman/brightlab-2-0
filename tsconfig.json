@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["src/components/index.tsx"], // also check gatsby-node.js onCreateWebpackConfig aliases
-      "@elements": ["src/elements/index.tsx"], // and jest.config.js with moduleNameMapper
+      "@elements": ["src/elements/index.tsx"], // and jest.config.ts with moduleNameMapper
       "@images": ["static/assets/images"], // and .storybook/main.js
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
@@ -22,6 +22,7 @@
       "@fragments": ["src/graphql/fragments/index.ts"],
       "@utils": ["src/utils/index.ts"],
       "@hooks": ["src/hooks/index.ts"],
+      "@hocs": ["src/hocs/index.ts"],
       "@cache": ["gatsby-apollo-cache.ts"]
     }
   },

@@ -52,6 +52,7 @@ module.exports = {
       '@fragments': path.resolve(__dirname, '../src/graphql/fragments/index.ts'),
       '@utils': path.resolve(__dirname, '../src/utils/index.ts'),
       '@hooks': path.resolve(__dirname, '../src/hooks/index.ts'),
+      '@hocs': path.resolve(__dirname, '../src/hocs/index.ts'),
       '@cache': path.resolve(__dirname, '../gatsby-apollo-cache.ts')
     }
     // add scss handling

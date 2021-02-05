@@ -1,103 +1,148 @@
-import { Select, SelectProps, SelectState } from '@components'
-import React from 'react'
+import React, { useState, RefObject } from 'react'
+import {
+  withOptionSelect,
+  WithOptionSelectProps,
+  WithOptionSelectPropsPassed,
+  withToggle,
+  WithToggleProps,
+  WithTogglePropsPassed
+} from '@hocs'
 
-export interface AutocompleteProps<T> extends SelectProps<T> {
-  onChange?: (value: string) => void
-}
+import { Dropdown, Input, InputSuffixProp } from '@elements'
+import { OptionType } from '@types'
+import AutocompleteArrow from '@images/select-arrow.svg'
+import styles from './Autocomplete.module.scss'
 
-export interface AutocompleteState<T> extends SelectState<T> {
-  search: string
-}
+export type AutocompleteProps = {
+  disabled?: boolean
+  clearable?: boolean
+  error?: boolean
+  innerRef?: RefObject<HTMLInputElement>
 
-class Autocomplete<T> extends Select<T, AutocompleteProps<T>, AutocompleteState<T>> {
-  state: AutocompleteState<T>
-  isAutocomplete = true
+  input?: {
+    label?: string
+    placeholder?: string
+    role?: string
+    direction?: 'horizontal' | 'vertical'
+    suffix?: InputSuffixProp
+    prefix?: InputSuffixProp
+  }
 
-  constructor(props: AutocompleteProps<T>) {
-    super(props)
+  onInputChange?: (value: string) => void
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  onClear?: () => void
+} & WithToggleProps &
+  WithOptionSelectProps
 
-    this.state = {
-      active: false,
-      selectedOption: null,
-      options: [],
-      search: ''
+export type AutocompletePropsWithHocs = AutocompleteProps & WithOptionSelectPropsPassed & WithTogglePropsPassed
+
+const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
+  const {
+    input = {},
+    innerRef,
+    options,
+    selectedOption,
+    toggle,
+    error,
+    disabled,
+    clearable,
+    handleOptionSelect,
+    handleToggle,
+    onInputChange,
+    onFocus,
+    onBlur,
+    onKeyDown,
+    onClear
+  } = props
+
+  const { label, placeholder, role, suffix, prefix, ...otherInputProps } = input
+
+  const [autocomplete, setAutocomplete] = useState('')
+
+  const handleInputChange = (value: string) => {
+    handleOptionSelect(null)
+    setAutocomplete(value)
+    if (onInputChange) onInputChange(value)
+  }
+
+  const handleAutocompleteFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    handleToggle(true)
+    if (onFocus) onFocus(e)
+  }
+
+  const handleAutocompleteBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      handleToggle(false)
+      if (onBlur) onBlur(e)
     }
   }
 
-  /*
-    Filters state options to autocomplete
-  */
-  handleAutocomplete = (search: string) => {
-    const { options, onChange } = this.props
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (onKeyDown) onKeyDown(e)
+    else {
+      const isBackspaceKey = e.key === 'Backspace'
 
-    this.setState(
-      {
-        options: options.filter(({ label, value }) => {
-          const isLabelMatched = label.toLowerCase().includes(search.toLowerCase())
-          return isLabelMatched
-        })
-      },
-      () => {
-        /* Clears form field state */
-        this.handleSelectFormValue(null)
-        /* Runs onChange after state is changed */
-        onChange && onChange(search)
+      if (isBackspaceKey && clearable) {
+        handleOptionSelect(null)
       }
-    )
-  }
-
-  /*
-    Sorts option, set state search
-    Overwrites Select handle change mock
-  */
-  handleInputChange = (value: string) => {
-    this.setState({ selectedOption: null, search: value }, () => {
-      this.handleAutocomplete(value)
-    })
-  }
-
-  /*
-    Overwrites Select backspace logic
-  */
-  handleInputKeyDown = () => null
-
-  /*
-    Resets search and options in state on focus
-  */
-  handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    const { active } = this.state
-    const { options, onBlur, onFocus } = this.props
-
-    /* If select was active - validate */
-    const isBlur = active
-
-    if (isBlur) {
-      this.validate()
-      onBlur && onBlur(e)
-    } else {
-      onFocus && onFocus(e)
     }
-
-    clearTimeout(this.focusTimeout as number)
-    this.focusTimeout = setTimeout(
-      () =>
-        this.setState(prevState => ({
-          active: !prevState.active,
-          search: '',
-          options
-        })),
-      100
-    )
   }
 
-  /*
-    Gets autocomplete search or option label
-  */
-  getInputValue = () => {
-    const { selectedOption, search } = this.state
-
-    return selectedOption ? selectedOption.label : search
+  const handleInputClear = () => {
+    handleOptionSelect(null)
+    setAutocomplete('')
+    if (onClear) onClear()
   }
+
+  const handleDropdownSelect = (option: OptionType) => {
+    handleOptionSelect(option)
+    setAutocomplete(option.label)
+    handleToggle(false)
+  }
+
+  /* If disabled no focus */
+  const tabIndex = disabled ? -1 : 0
+
+  return (
+    <div
+      className={styles.autocomplete}
+      tabIndex={tabIndex}
+      onFocus={handleAutocompleteFocus}
+      onBlur={handleAutocompleteBlur}
+      data-disabled={disabled}
+    >
+      <Input
+        label={label}
+        value={autocomplete}
+        placeholder={placeholder}
+        ref={innerRef}
+        onChange={handleInputChange}
+        onKeyDown={handleInputKeyDown}
+        onClear={handleInputClear}
+        disabled={disabled}
+        error={error}
+        role={role}
+        clearable={clearable}
+        focusable={false}
+        prefix={prefix}
+        suffix={
+          <div className={styles.autocompleteInputSuffix}>
+            <AutocompleteArrow className={styles.autocompleteArrow} data-toggle={toggle} />
+            {suffix}
+          </div>
+        }
+        {...otherInputProps}
+      />
+      <Dropdown options={options} onSelect={handleDropdownSelect} toggle={toggle} direction={input.direction} />
+    </div>
+  )
 }
 
-export default Autocomplete
+Autocomplete.displayName = 'Autocomplete'
+Autocomplete.defaultProps = {
+  input: {}
+}
+
+export default withOptionSelect(withToggle(Autocomplete))

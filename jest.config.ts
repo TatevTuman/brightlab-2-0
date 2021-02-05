@@ -19,6 +19,7 @@ const config: Config.InitialOptions = {
     '@fragments': '<rootDir>/src/graphql/fragments/index.ts',
     '@utils': '<rootDir>/src/utils/index.ts',
     '@hooks': '<rootDir>/src/hooks/index.ts',
+    '@hocs': '<rootDir>/src/hocs/index.ts',
     '@cache': '<rootDir>/gatsby-apollo-cache.ts'
   },
   testPathIgnorePatterns: ['node_modules', '\\.cache', '<rootDir>.*/public'],
