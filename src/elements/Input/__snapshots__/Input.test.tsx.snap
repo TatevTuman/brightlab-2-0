@@ -4,6 +4,7 @@ exports[`Input renders correctly 1`] = `
 <div>
   <div
     class="input"
+    data-direction="vertical"
   >
     <div
       class="inputInner"
@@ -11,8 +12,10 @@ exports[`Input renders correctly 1`] = `
       <input
         autocomplete="on"
         data-cursor="true"
+        data-error="false"
         data-prefix="false"
         data-suffix="false"
+        data-times="true"
         id="input"
         name="input"
         placeholder="Type a text"
@@ -27,7 +30,11 @@ exports[`Input renders correctly 1`] = `
       <div
         class="inputInnerSuffix"
         data-suffix="false"
-      />
+      >
+        <test-file-stub
+          classname="inputInnerSuffixTimes"
+        />
+      </div>
     </div>
   </div>
 </div>

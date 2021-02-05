@@ -9,12 +9,13 @@ import {
   FieldName,
   FormProvider
 } from 'react-hook-form'
-
 import { Children } from '@types'
-import { FormItem, FormSubmit } from './components'
+import { FormControl, FormItem, FormSubmit } from './components'
 import styles from './Form.module.scss'
 
 export interface FormProps<F> {
+  id?: string
+  className?: string
   defaultValues?: UnpackNestedValue<DeepPartial<F>>
   children: (props: UseFormMethods<F>) => Children
   onSubmit: SubmitHandler<F>
@@ -29,7 +30,7 @@ export interface FormProps<F> {
 */
 
 const Form = <F,>(props: FormProps<F>) => {
-  const { defaultValues, onSubmit, onError, children } = props
+  const { id, className, defaultValues, onSubmit, onError, children } = props
   const useFormMethods = useForm<F>({ defaultValues })
 
   /* FormSubmit component controls loading field, so we can manage button state with react-hook-form */
@@ -59,7 +60,12 @@ const Form = <F,>(props: FormProps<F>) => {
 
   return (
     <FormProvider {...useFormMethods}>
-      <form className={styles.form} onSubmit={useFormMethods.handleSubmit<F>(handleFormSubmit, handleFormError)}>
+      <form
+        id={id}
+        className={styles.form + ' ' + className}
+        onSubmit={useFormMethods.handleSubmit<F>(handleFormSubmit, handleFormError)}
+        noValidate
+      >
         {children(useFormMethods)}
       </form>
     </FormProvider>
@@ -67,6 +73,7 @@ const Form = <F,>(props: FormProps<F>) => {
 }
 
 Form.Item = FormItem
+Form.Control = FormControl
 Form.Submit = FormSubmit
 
 export default Form

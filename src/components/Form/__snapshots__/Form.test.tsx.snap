@@ -3,10 +3,12 @@
 exports[`Form renders correctly 1`] = `
 <div>
   <form
-    class="form"
+    class="form undefined"
+    novalidate=""
   >
     <div
       class="input"
+      data-direction="vertical"
     >
       <label
         data-required="true"
@@ -20,8 +22,10 @@ exports[`Form renders correctly 1`] = `
         <input
           autocomplete="on"
           data-cursor="true"
+          data-error="false"
           data-prefix="false"
           data-suffix="false"
+          data-times="true"
           id="email"
           name="email"
           placeholder="Type a text"
@@ -36,22 +40,23 @@ exports[`Form renders correctly 1`] = `
         <div
           class="inputInnerSuffix"
           data-suffix="false"
-        />
+        >
+          <test-file-stub
+            classname="inputInnerSuffixTimes"
+          />
+        </div>
       </div>
     </div>
-    <div
-      class="formSubmit"
+    <button
+      class="button button__primary-md formSubmit"
+      data-centered="true"
+      data-disabled="false"
+      data-size="md"
+      tabindex="0"
+      type="submit"
     >
-      <button
-        class="button button__primary-md "
-        data-centered="true"
-        data-disabled="false"
-        tabindex="0"
-        type="submit"
-      >
-        Submit
-      </button>
-    </div>
+      Submit
+    </button>
   </form>
 </div>
 `;

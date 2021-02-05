@@ -3,7 +3,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Button, ButtonProps, ButtonEvents } from '@elements'
 import styles from '../../Form.module.scss'
 
-export type FormSubmitProps = Omit<ButtonProps, 'submit'>
+export type FormSubmitProps = {} & Omit<ButtonProps, 'submit'>
 
 /*
   Component controls form loading state to render different state.
@@ -13,29 +13,36 @@ export type FormSubmitProps = Omit<ButtonProps, 'submit'>
   TODO Research
 */
 const FormSubmit: React.FC<FormSubmitProps> = props => {
-  const { children, ...buttonProps } = props
+  const { form, children, onClick, ...buttonProps } = props
   const { setValue, watch, control } = useFormContext()
-  const loading = watch && watch('loading')
+  const loading = buttonProps.loading !== undefined ? buttonProps.loading : watch && watch('loading')
 
   /* Component renders */
   const submitForm = (e: ButtonEvents) => {
+    buttonProps.loading !== undefined && e.preventDefault()
+
     setValue &&
       setValue('loading', true, {
         shouldValidate: false,
         shouldDirty: true
       })
 
-    buttonProps.onClick && buttonProps.onClick(e)
+    onClick && onClick(e)
   }
 
   return (
     <Controller
       render={() => (
-        <div className={styles.formSubmit}>
-          <Button onClick={submitForm} loading={loading} submit {...buttonProps}>
-            {children}
-          </Button>
-        </div>
+        <Button
+          {...buttonProps}
+          className={styles.formSubmit}
+          onClick={submitForm}
+          loading={loading}
+          submit
+          form={form}
+        >
+          {children}
+        </Button>
       )}
       name={'loading'}
       control={control}

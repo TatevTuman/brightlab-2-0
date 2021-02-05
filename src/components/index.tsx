@@ -12,8 +12,9 @@ export const ErrorBoundary = loadable(() => import('./ErrorBoundary/ErrorBoundar
 
 export const Modals = loadable(() => import('./Modals/Modals'))
 
-export { default as Select } from './Select/Select'
-export { default as Autocomplete } from './Autocomplete/Autocomplete'
+export const Select = loadable(() => import('./Select/Select'))
+export const Autocomplete = loadable(() => import('./Autocomplete/Autocomplete'))
+
 export { default as Modal } from './Modal/Modal'
 
 export const Form = loadable(() => import('./Form/Form'))

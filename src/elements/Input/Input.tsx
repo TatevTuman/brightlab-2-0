@@ -1,67 +1,82 @@
-import React, { memo } from 'react'
-import { useFormContext, RegisterOptions } from 'react-hook-form'
+import React, { memo, forwardRef } from 'react'
 import { handleEvent } from '@utils'
-import { ValidationErrorMessage } from '@elements'
+import TimesImage from '@images/times.svg'
+import NotAllowedImage from '@images/not-allowed.svg'
 import styles from './Input.module.scss'
 
-type InputSuffixProp = JSX.Element | string | number
+export type InputSuffixProp = JSX.Element | string | number
 export interface InputProps {
+  value: string
   type?: string
-  name: string
   label?: string
-  value?: string
+  defaultValue?: string
   placeholder?: string
-  autoComplete?: 'on' | 'off'
   prefix?: InputSuffixProp
   suffix?: InputSuffixProp
-  validation?: RegisterOptions
+
+  direction?: 'horizontal' | 'vertical'
+  autoComplete?: 'on' | 'off'
+  disabled?: boolean
+  error?: boolean
+  clearable?: boolean
+  required?: boolean
+  focusable?: boolean
+  role?: string
+  min?: number
+
   onChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
-  noCursor?: boolean
-  disabled?: boolean
+  onClear?: () => void
 }
 
-const Input: React.FC<InputProps> = props => {
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
-    type,
-    name,
-    label,
     value,
+    type,
+    label,
+    defaultValue,
     placeholder,
-    autoComplete,
     prefix,
     suffix,
-    validation,
+    direction,
+    autoComplete,
+    disabled,
+    error,
+    clearable,
+    required,
+    focusable,
+    role,
+    min,
     onChange,
-    noCursor,
     onFocus,
     onBlur,
     onKeyDown,
-    disabled
+    onClear
   } = props
 
-  const formContext = useFormContext()
-  const register = formContext && formContext.register
-  const trigger = formContext && formContext.trigger
-
-  /* Is required check */
-  const isRequired = !!validation?.required
-  /* Register input in parent form */
-  const ref = register && register(validation)
   /* If disabled no focus */
-  const tabIndex = disabled ? -1 : 0
+  const tabIndex = focusable && !disabled ? 0 : -1
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     handleEvent(onBlur, { value: e, disabled })
-    handleEvent(trigger, { value: name, disabled })
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    handleEvent(onChange, { value: e.currentTarget.value, disabled })
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onFocus, { value: e, disabled })
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => handleEvent(onKeyDown, { value: e, disabled })
+  const handleClear = () => {
+    if (!disabled) {
+      onChange && onChange('')
+    }
   }
 
   return (
-    <div className={styles.input} data-disabled={disabled}>
+    <div className={styles.input} data-disabled={disabled} data-direction={direction}>
       {label && (
-        <label htmlFor={name} data-required={isRequired}>
+        <label htmlFor={name} data-required={required}>
           {label}
         </label>
       )}
@@ -72,34 +87,42 @@ const Input: React.FC<InputProps> = props => {
           name={name}
           ref={ref}
           value={value}
+          defaultValue={defaultValue}
           placeholder={placeholder}
-          onChange={e => handleEvent(onChange, { value: e.currentTarget.value, disabled })}
-          onFocus={e => handleEvent(onFocus, { value: e, disabled })}
-          onKeyDown={e => handleEvent(onKeyDown, { value: e, disabled })}
-          onBlur={handleBlur}
           autoComplete={autoComplete}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
+          onBlur={handleBlur}
           data-disabled={disabled}
-          data-cursor={!noCursor}
+          data-cursor={autoComplete !== 'off'}
           data-prefix={!!prefix}
           data-suffix={!!suffix}
+          data-error={!!error}
+          data-clearable={clearable}
+          role={role}
           tabIndex={tabIndex}
+          min={min}
         />
-        <div className={styles.inputInnerPrefix} data-prefix={!!prefix}>
-          {prefix}
-        </div>
-        <div className={styles.inputInnerSuffix} data-suffix={!!suffix}>
+        <div className={styles.inputInnerPrefix}>{prefix}</div>
+        <div className={styles.inputInnerSuffix}>
+          {clearable && <TimesImage className={styles.inputInnerSuffixTimes} onClick={onClear || handleClear} />}
+          {disabled && <NotAllowedImage className={styles.inputInnerSuffixNotAllowed} />}
           {suffix}
         </div>
       </div>
-      <ValidationErrorMessage name={name} />
     </div>
   )
-}
+})
 
 Input.defaultProps = {
   type: 'text',
   placeholder: 'Type a text',
-  autoComplete: 'on'
+  autoComplete: 'on',
+  direction: 'vertical',
+  focusable: true
 }
+
+Input.displayName = 'Input'
 
 export default memo(Input)

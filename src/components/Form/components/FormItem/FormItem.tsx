@@ -5,13 +5,15 @@ import styles from '../../Form.module.scss'
 export interface FormItemProps {
   children: Children
   justify?: string
+  margin?: string
 }
 
-const FormItem: React.FC<FormItemProps> = ({ children, justify }) => {
+const FormItem: React.FC<FormItemProps> = props => {
+  const { children, justify, margin } = props
   const justifyContent = justify
 
   return (
-    <div className={styles.formItem} style={{ justifyContent }}>
+    <div className={styles.formItem} style={{ justifyContent, margin }}>
       {children}
     </div>
   )

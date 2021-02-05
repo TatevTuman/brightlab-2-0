@@ -1,24 +1,82 @@
 @import "static/assets/styles/variables";
 
+@mixin horizontal() {
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .input-inner {
+    flex: 1;
+  }
+
+  label {
+    /*
+      If change - Check ButtonWithRefresh, ButtonWithPlus, Input, Dropdown horizontals
+    */
+    font-size: toRem(12);
+    min-width: toRem(125);
+    margin-right: toRem(65);
+    margin-bottom: unset;
+
+    @include breakpoint_max('tablet') {
+      margin-right: toRem(40);
+    }
+  }
+
+  div[role="validation-error"] {
+    width: 100%;
+    text-align: right;
+  }
+}
+
 .input {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
   @include disabled($background: false, $opacity: true, $pointerEvents: true);
 
+  &[data-direction='horizontal'] {
+    @include breakpoint_min('tablet') {
+      @include horizontal;
+    }
+  }
+
+  label {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--grey);
+    margin-bottom: 1rem;
+  }
+
   &-inner {
+    width: 100%;
     position: relative;
 
     input {
       width: 100%;
-      border-radius: 4px;
-      border: 2px solid var(--grey);
-      padding: 0.5rem 1rem;
-      transition: all 0.2s ease;
+      background: var(--white-dark);
+      border: 1px solid var(--white-dark);
+      border-radius: 8px;
+      padding: 0.5rem 1rem 0.5rem;
       color: var(--black);
+      transition: all 0.2s ease;
+      will-change: color, background, border, padding;
 
       &[data-prefix='true'] {
-        padding-left: 2.5rem;
+        padding-left: 3.2rem;
+      }
+
+      &[data-suffix='true'], &[data-clearable='true'] {
+        padding-right: 4rem;
+      }
+
+      &[data-suffix='true'][data-clearable='true'] {
+        padding-right: 5rem;
+      }
+
+      &[data-suffix='true'][data-clearable='true'][data-disabled='true'] {
+        padding-right: 7rem;
       }
 
       &[data-cursor='false'] {
@@ -26,29 +84,47 @@
         color: transparent;
       }
 
-      &:hover, &:active, &:focus {
-        border-color: var(--secondary-dark);
+      &[data-error='true'] {
+        border-color: var(--white-dark);
+        background: var(--danger-light);
+      }
+
+      &:hover {
+        border-color: var(--grey);
+      }
+
+      &:active, &:focus {
+        border-color: var(--black);
+        background: var(--white-dark);
+      }
+
+      &::placeholder {
+        color: var(--grey);
       }
     }
 
-    input:hover + &-prefix,
     input:active + &-prefix,
     input:focus + &-prefix {
       svg {
-        fill: var(--secondary-dark);
 
-        path {
-          fill: var(--secondary-dark);
+        path, circle {
         }
       }
     }
 
+    input:not(:placeholder-shown) + &-prefix + &-suffix {
+      .input-inner-suffix-times {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
     &-prefix {
-      max-width: calculateRem(26);
-      min-width: calculateRem(26);
+      max-width: toRem(26);
+      min-width: toRem(26);
       position: absolute;
-      left: 0.5rem;
-      top: 0;
+      left: 1rem;
+      top: -1px;
       height: 100%;
       display: flex;
       align-items: center;
@@ -56,24 +132,57 @@
       overflow: hidden;
 
       svg {
-        transition: fill 0.2s ease;
-        fill: var(--grey);
+        max-width: toRem(16);
 
-        path {
-          transition: fill 0.2s ease;
-          fill: var(--grey);
+        path, circle {
+          transition: stroke 0.2s ease;
         }
       }
     }
 
     &-suffix {
+      height: 100%;
       position: absolute;
       right: 1rem;
       top: 0;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &-times {
+        @include absolute_vertical_center;
+
+        width: toRem(10);
+        left: -1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease, transform 0.3s ease;
+        visibility: hidden;
+        opacity: 0;
+        will-change: opacity, visability, color, transform;
+        margin-right: 1rem;
+
+        &:active {
+          transform: scale(1.05) translate(0, -50%);
+        }
+      }
+
+      &-not-allowed {
+        margin-right: 1rem;
+      }
+
+      a {
+        height: toRem(20);
+      }
+
+      button {
+        width: fit-content;
+        margin-right: -1rem;
+        border-radius: 8px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: toRem(8) toRem(28);
+        height: 100%;
+      }
     }
   }
 }

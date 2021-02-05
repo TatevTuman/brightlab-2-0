@@ -1,6 +1,6 @@
 @import "static/assets/styles/variables";
 
-.select {
+.autocomplete {
   width: 100%;
   position: relative;
   @include disabled($background: false, $opacity: true, $pointerEvents: true);
