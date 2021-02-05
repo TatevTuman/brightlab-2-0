@@ -10,7 +10,7 @@ import {
 
 import { Dropdown, Input, InputSuffixProp } from '@elements'
 import { OptionType } from '@types'
-import AutocompleteArrow from '@images/select-arrow.svg'
+import AutocompleteArrow from '@images/arrow.svg'
 import styles from './Autocomplete.module.scss'
 
 export type AutocompleteProps = {

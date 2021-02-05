@@ -38,6 +38,7 @@ $breakpoints: (
 
 @mixin disabled($background, $opacity, $pointerEvents) {
   transition: all 0.2s ease;
+  user-select: none;
 
   &[data-disabled='true'] {
     @if $background {
@@ -53,6 +54,25 @@ $breakpoints: (
       pointer-events: none;
     }
   }
+}
+
+@mixin absolute_center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute_vertical_center() {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@mixin absolute_horizontal_center() {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 @function calculateRem($size) {

@@ -1,7 +1,6 @@
 import React, { memo, forwardRef } from 'react'
 import { handleEvent } from '@utils'
 import TimesImage from '@images/times.svg'
-import NotAllowedImage from '@images/not-allowed.svg'
 import styles from './Input.module.scss'
 
 export type InputSuffixProp = JSX.Element | string | number
@@ -107,7 +106,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         <div className={styles.inputInnerPrefix}>{prefix}</div>
         <div className={styles.inputInnerSuffix}>
           {clearable && <TimesImage className={styles.inputInnerSuffixTimes} onClick={onClear || handleClear} />}
-          {disabled && <NotAllowedImage className={styles.inputInnerSuffixNotAllowed} />}
           {suffix}
         </div>
       </div>

@@ -10,7 +10,7 @@ import {
 
 import { Dropdown, Input, InputSuffixProp } from '@elements'
 import { OptionType } from '@types'
-import SelectArrow from '@images/select-arrow.svg'
+import SelectArrow from '@images/arrow.svg'
 import styles from './Select.module.scss'
 
 export type SelectProps = {
