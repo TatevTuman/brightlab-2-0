@@ -131,7 +131,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
   )
 }
 
-Select.displayName = 'Select'
 Select.defaultProps = {
   input: {}
 }

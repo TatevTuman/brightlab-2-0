@@ -1,49 +1,44 @@
 import React, { memo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Button, ButtonProps, ButtonEvents } from '@elements'
+import { Button, ButtonProps } from '@elements'
 import styles from '../../Form.module.scss'
 
-export type FormSubmitProps = {} & Omit<ButtonProps, 'submit'>
+export type FormSubmitProps = {} & Omit<ButtonProps, 'submit' | 'loading'>
 
 /*
   Component controls form loading state to render different state.
   Handling loading with usual state doesn't work because of inner react-hook-form logic.
 
   Renders button component with setValue logic on click
-  TODO Research
 */
 const FormSubmit: React.FC<FormSubmitProps> = props => {
-  const { form, children, onClick, ...buttonProps } = props
-  const { setValue, watch, control } = useFormContext()
-  const loading = buttonProps.loading !== undefined ? buttonProps.loading : watch && watch('loading')
-
-  /* Component renders */
-  const submitForm = (e: ButtonEvents) => {
-    buttonProps.loading !== undefined && e.preventDefault()
-
-    setValue &&
-      setValue('loading', true, {
-        shouldValidate: false,
-        shouldDirty: true
-      })
-
-    onClick && onClick(e)
-  }
+  const { children, onClick, ...buttonProps } = props
+  const { control } = useFormContext()
 
   return (
     <Controller
-      render={() => (
-        <Button
-          {...buttonProps}
-          className={styles.formSubmit}
-          onClick={submitForm}
-          loading={loading}
-          submit
-          form={form}
-        >
-          {children}
-        </Button>
-      )}
+      render={props => {
+        const { value, onChange } = props
+
+        return (
+          <Button
+            {...buttonProps}
+            className={styles.formSubmit}
+            onClick={e => {
+              onChange(true)
+
+              if (onClick) {
+                e.preventDefault()
+                onClick(e)
+              }
+            }}
+            loading={value}
+            submit
+          >
+            {children}
+          </Button>
+        )
+      }}
       name={'loading'}
       control={control}
       defaultValue={false}

@@ -1,9 +1,9 @@
-import React, { ErrorInfo, Component } from 'react'
+import React, { memo, ErrorInfo, Component } from 'react'
 import styles from './ErrorBoundary.module.scss'
 
 export interface ErrorBoundaryProps {}
 
-interface ErrorBoundaryState {
+export interface ErrorBoundaryState {
   error: Error | null
   errorInfo: ErrorInfo | null
 }
@@ -42,4 +42,4 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 }
 
-export default ErrorBoundary
+export default memo(ErrorBoundary)

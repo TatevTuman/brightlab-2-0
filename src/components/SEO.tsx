@@ -9,14 +9,14 @@ import React, { memo } from 'react'
 import { Helmet } from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
-export interface SeoProps {
+export interface SEOProps {
   description?: string
   lang?: string
   meta?: any[]
   title: string
 }
 
-const SEO: React.FC<SeoProps> = props => {
+const SEO: React.FC<SEOProps> = props => {
   const { description, lang, meta = [], title } = props
 
   const { site } = useStaticQuery(

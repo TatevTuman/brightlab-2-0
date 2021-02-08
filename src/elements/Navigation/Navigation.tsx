@@ -3,7 +3,7 @@ import { useMatch } from '@reach/router'
 import { Link } from '@elements'
 import { NavigationType, NavigationItemType } from '@types'
 
-interface NavigationItemProps extends NavigationItemType {
+export interface NavigationItemProps extends NavigationItemType {
   activeMatch?: boolean
 }
 
@@ -22,7 +22,7 @@ const NavigationItem: React.FC<NavigationItemProps> = props => {
   )
 }
 
-interface NavigationProps {
+export interface NavigationProps {
   navigation: NavigationType
   direction?: string
   activeMatch?: boolean

@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo, forwardRef, RefObject } from 'react'
 import { handleEvent } from '@utils'
 import TimesImage from '@images/times.svg'
 import styles from './Input.module.scss'
@@ -22,6 +22,7 @@ export interface InputProps {
   focusable?: boolean
   role?: string
   min?: number
+  ref?: RefObject<HTMLInputElement>
 
   onChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -113,6 +114,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   )
 })
 
+Input.displayName = 'Input'
 Input.defaultProps = {
   type: 'text',
   placeholder: 'Type a text',
@@ -120,7 +122,5 @@ Input.defaultProps = {
   direction: 'vertical',
   focusable: true
 }
-
-Input.displayName = 'Input'
 
 export default memo(Input)

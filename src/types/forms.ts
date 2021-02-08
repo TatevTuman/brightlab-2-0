@@ -1,13 +1,13 @@
 export type TestOptionValue = { test: string }
 export type RoleOptionValue = { name: string }
 
-export type SignInForm = {
+export type SignInFormType = {
   email: string
   password: string
   remember: boolean
 }
 
-export type SignUpForm = {
+export type SignUpFormType = {
   firstName: string
   lastName: string
   email: string

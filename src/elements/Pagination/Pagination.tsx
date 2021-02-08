@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { PaginationResponse } from '@types'
 import styles from './Pagination.module.scss'
 
-interface PaginationProps extends PaginationResponse {
+export interface PaginationProps extends PaginationResponse {
   limit?: number
   onClick(page: number): void
 }

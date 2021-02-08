@@ -6,9 +6,7 @@ export interface ModalFooterProps {
   children: Children
 }
 
-export type ModalFooterType = React.FC<ModalFooterProps>
-
-const ModalFooter: ModalFooterType = props => {
+const ModalFooter: React.FC<ModalFooterProps> = props => {
   return <footer className={'modal-footer'}>{props.children}</footer>
 }
 

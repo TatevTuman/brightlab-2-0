@@ -12,7 +12,7 @@ export interface CheckboxProps {
   onChange?: (value: boolean) => void
 }
 
-const Checkbox: React.FC<CheckboxProps> = props => {
+const Checkbox = (props: CheckboxProps) => {
   const { name, label, checked, disabled, validation, onChange } = props
 
   const formContext = useFormContext()

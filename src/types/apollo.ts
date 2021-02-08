@@ -19,6 +19,14 @@ export type PaginationArgs = {
   pageSize: number
 }
 
+export type PaginationResponse = {
+  itemCount: number
+  total: number
+  pageSize: number
+  totalPages: number
+  current: number
+}
+
 export type QueryPaginationArgs = {
   pagination?: PaginationArgs
   filters?: any // TODO

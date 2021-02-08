@@ -3,7 +3,7 @@ import { getNextMonth, getPreviousMonth, isSameDay } from '@utils'
 import { CalendarHeader, CalendarDaysLabels, CalendarDays } from './components'
 import styles from './Calendar.module.scss'
 
-interface CalendarProps {
+export interface CalendarProps {
   date?: Date
   onDateChanged: (date: Date) => void
 }

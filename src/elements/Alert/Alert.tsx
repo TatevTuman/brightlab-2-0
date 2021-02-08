@@ -2,7 +2,7 @@ import React from 'react'
 import { AlertComponentPropsWithStyle } from 'react-alert'
 import styles from './Alert.module.scss'
 
-interface AlertProps extends AlertComponentPropsWithStyle {}
+export interface AlertProps extends AlertComponentPropsWithStyle {}
 
 // the style contains only the margin given as offset
 // options contains all alert given options

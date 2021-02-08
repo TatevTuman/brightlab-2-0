@@ -10,7 +10,7 @@ const HomeModal: React.FC<HomeModalProps> = props => {
   const number = modal?.state?.number
 
   return (
-    <Modal id={'HomeModal'} opened={!!modal} onClose={closeModal}>
+    <Modal id={'HomeModal'} opened={!!modal} onClose={closeModal} width={400}>
       <div className={styles.homeModal}>
         <Modal.Header>
           <h3>Home modal</h3>

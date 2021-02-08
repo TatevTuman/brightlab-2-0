@@ -20,7 +20,7 @@ export type WithOptionSelectPropsPassed = {
 }
 
 const withOptionSelect = <P,>(WrappedComponent: React.ComponentType<WithOptionSelectPropsPassed & P>) => {
-  const OptionSelect: React.FC<WithOptionSelectProps & P> = props => {
+  const WithOptionSelect: React.FC<WithOptionSelectProps & P> = props => {
     const { value, defaultValue, options, onChange, ...parentProps } = props
 
     const [state, changeState] = useState<WithOptionSelectState>({
@@ -70,13 +70,13 @@ const withOptionSelect = <P,>(WrappedComponent: React.ComponentType<WithOptionSe
     )
   }
 
-  OptionSelect.defaultProps = ({
+  WithOptionSelect.defaultProps = ({
     value: null,
     options: [],
     onSelect: () => null
   } as unknown) as WithOptionSelectProps & P
 
-  return OptionSelect
+  return WithOptionSelect
 }
 
 export default withOptionSelect

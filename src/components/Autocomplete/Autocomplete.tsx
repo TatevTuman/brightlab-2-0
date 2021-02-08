@@ -140,7 +140,6 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   )
 }
 
-Autocomplete.displayName = 'Autocomplete'
 Autocomplete.defaultProps = {
   input: {}
 }

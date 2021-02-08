@@ -1,16 +1,13 @@
-import loadable from '@loadable/component'
 import React, { memo } from 'react'
+import { HomeModal } from './modals/index'
 
-const HomeModal = loadable(() => import('./HomeModal/HomeModal'))
-// here should be next modals
-
-type Modal = typeof HomeModal // | here should be next modals
+type Modal = typeof HomeModal // | Here should be next modals
 type Modals = Modal[]
 
 // Modals
 const modals: Modals = [
   HomeModal
-  // here should be next modals
+  // Here should be next modals
 ]
 
 // Modals container

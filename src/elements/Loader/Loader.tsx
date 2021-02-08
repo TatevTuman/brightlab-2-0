@@ -23,7 +23,7 @@ type LoaderTypes =
   | 'Triangle'
   | 'Watch'
 
-interface LoaderProps {
+export interface LoaderProps {
   color?: string
   height?: number
   radius?: number

@@ -3,9 +3,12 @@ import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Form, SEO } from '@components'
-import { Input, Checkbox } from '@elements'
-import { SignInForm } from '@types'
+import { Input, Checkbox, InputProps } from '@elements'
+import { SignInFormType } from '@types'
+import { withFormControl } from '@hocs'
 import { emailPattern } from '@utils'
+
+const SignInForm = Form<SignInFormType>({ fallback: { height: '100rem' } })
 
 interface SignInProps extends RouteComponentProps {}
 
@@ -13,7 +16,7 @@ const SignIn: React.FC<SignInProps> = props => {
   const alert = useAlert()
   const navigate = useNavigate()
 
-  const handleSignIn = async (form: SignInForm) => {
+  const handleSignIn = async (form: SignInFormType) => {
     console.log('form', form)
 
     alert.show('Hey! What`s up?', {
@@ -23,7 +26,7 @@ const SignIn: React.FC<SignInProps> = props => {
     })
   }
 
-  const handleSignInError = (errors: FieldErrors<SignInForm>) => {
+  const handleSignInError = (errors: FieldErrors<SignInFormType>) => {
     console.log('errors', errors)
 
     alert.show(`Validation errors`, {
@@ -37,39 +40,39 @@ const SignIn: React.FC<SignInProps> = props => {
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      <Form<SignInForm> onSubmit={handleSignIn} onError={handleSignInError}>
+      <SignInForm onSubmit={handleSignIn} onError={handleSignInError}>
         {useFormMethods => {
           return (
             <>
-              <Form.Item>
-                <Input
-                  type={'text'}
-                  name={'email'}
-                  label={'Email'}
-                  validation={{
-                    required: { value: true, message: 'Email is required' },
-                    pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
-                  }}
-                />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  type={'password'}
-                  name={'password'}
-                  label={'Password'}
-                  validation={{
-                    required: { value: true, message: 'Password is required' }
-                  }}
-                />
-              </Form.Item>
-              <Form.Item justify={'flex-end'}>
-                <Checkbox name={'remember'} label={'Remember me'} />
-              </Form.Item>
-              <Form.Submit>Sign in</Form.Submit>
+              <SignInForm.Item>
+                {/*<Input*/}
+                {/*  type={'text'}*/}
+                {/*  name={'email'}*/}
+                {/*  label={'Email'}*/}
+                {/*  validation={{*/}
+                {/*    required: { value: true, message: 'Email is required' },*/}
+                {/*    pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }*/}
+                {/*  }}*/}
+                {/*/>*/}
+              </SignInForm.Item>
+              {/*<SignInForm.Item>*/}
+                {/*<Input*/}
+                {/*  type={'password'}*/}
+                {/*  name={'password'}*/}
+                {/*  label={'Password'}*/}
+                {/*  validation={{*/}
+                {/*    required: { value: true, message: 'Password is required' }*/}
+                {/*  }}*/}
+                {/*/>*/}
+              {/*</SignInForm.Item>*/}
+              {/*<SignInForm.Item justify={'flex-end'}>*/}
+              {/*  <Checkbox name={'remember'} label={'Remember me'} />*/}
+              {/*</SignInForm.Item>*/}
+              {/*<SignInForm.Submit>Sign in</SignInForm.Submit>*/}
             </>
           )
         }}
-      </Form>
+      </SignInForm>
     </section>
   )
 }

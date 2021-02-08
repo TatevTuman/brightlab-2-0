@@ -4,8 +4,9 @@ import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Form, SEO } from '@components'
 import { Input } from '@elements'
-import { SignUpForm } from '@types'
+import { withFormControl } from '@hocs'
 import { emailPattern, passwordValidation } from '@utils'
+import { SignUpFormType } from '@types'
 
 interface SignUpProps extends RouteComponentProps {}
 
@@ -13,7 +14,7 @@ const SignUp: React.FC<SignUpProps> = props => {
   const alert = useAlert()
   const navigate = useNavigate()
 
-  const handleSignUp = async (form: SignUpForm) => {
+  const handleSignUp = async (form: SignUpFormType) => {
     console.log('form', form)
 
     alert.show('Welcome! Can you sign in?', {
@@ -23,7 +24,7 @@ const SignUp: React.FC<SignUpProps> = props => {
     })
   }
 
-  const handleSignUpError = async (errors: FieldErrors<SignUpForm>) => {
+  const handleSignUpError = async (errors: FieldErrors<SignUpFormType>) => {
     console.log('errors', errors)
 
     alert.show(`Validation errors`, {
@@ -37,30 +38,30 @@ const SignUp: React.FC<SignUpProps> = props => {
     <section>
       <SEO title={'SignUp'} />
       <h1>SignUp</h1>
-      <Form<SignUpForm> onSubmit={handleSignUp} onError={handleSignUpError}>
+      <Form<SignUpFormType> onSubmit={handleSignUp} onError={handleSignUpError}>
         {useFormMethods => {
           return (
             <>
               <Form.Item>
-                <Input
+                {/*<Input
                   name={'firstName'}
                   label={'First name'}
                   validation={{
                     required: { value: true, message: 'First name is required' }
                   }}
-                />
+                />*/}
               </Form.Item>
               <Form.Item>
-                <Input
+                {/*<Input
                   name={'lastName'}
                   label={'Last name'}
                   validation={{
                     required: { value: true, message: 'Last name is required' }
                   }}
-                />
+                />*/}
               </Form.Item>
               <Form.Item>
-                <Input
+                {/*<Input
                   type={'email'}
                   name={'email'}
                   label={'Email'}
@@ -68,10 +69,10 @@ const SignUp: React.FC<SignUpProps> = props => {
                     required: { value: true, message: 'Email is required' },
                     pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
                   }}
-                />
+                />*/}
               </Form.Item>
               <Form.Item>
-                <Input
+                {/*<Input
                   type={'password'}
                   name={'password'}
                   label={'Password'}
@@ -79,7 +80,7 @@ const SignUp: React.FC<SignUpProps> = props => {
                     required: { value: true, message: 'Password is required' },
                     ...passwordValidation
                   }}
-                />
+                />*/}
               </Form.Item>
               <Form.Submit>Sign up</Form.Submit>
             </>

@@ -1,36 +1,51 @@
 import React, { RefObject } from 'react'
+import { FieldValue, ControllerRenderProps } from 'react-hook-form'
 import { Form, FormControlProps } from '@components'
 
-export type WithFormControlProps<T> = {
-  onChange?: (value: T) => void
-} & Omit<FormControlProps, 'render'>
+export type WithFormControlProps<F> = {
+  onChange?: (value: FieldValue<F>) => void
+} & Omit<FormControlProps<F>, 'render'>
 
-export type WithFormControlPropsPassed<T> = {
-  value: T
+export type WithFormControlPropsPassed<F> = {
+  value: FieldValue<F>
   innerRef?: RefObject<any>
-  onChange: (value: T) => void
+  onChange: (value: FieldValue<F>) => void
 }
 
-export default <T, P>(WrappedComponent: React.ComponentType<WithFormControlPropsPassed<T> & P>) => {
-  const FormControl: React.FC<WithFormControlProps<T> & Omit<P, 'value' | 'onChange'>> = props => {
-    const { name, validation, ...parentProps } = props
+/* Create generic Form component and use it's Control component to pass WithFormControlPropsPassed */
+export default <F, P>(WrappedComponent: React.ComponentType<WithFormControlPropsPassed<F> & P>) => {
+  const GenericForm = Form<F>()
+
+  const WithFormControl: React.FC<WithFormControlProps<F> & Omit<P, 'value' | 'onChange'>> = props => {
+    const { name, validation, onChange, ...parentProps } = props
 
     return (
-      <Form.Control
-        name={name}
+      <GenericForm.Control
+        name={name as never}
         validation={validation}
-        render={props => {
+        render={(props: ControllerRenderProps) => {
           const { value, ref, onChange } = props
 
+          /* TODO */
+          const handleChange = (value: any) => {
+            onChange(value)
+            props.onChange(value)
+          }
+
           return (
-            <WrappedComponent value={value} innerRef={ref} onChange={onChange} {...((parentProps as unknown) as P)} />
+            <WrappedComponent
+              value={value}
+              innerRef={ref}
+              onChange={handleChange}
+              {...((parentProps as unknown) as P)}
+            />
           )
         }}
       />
     )
   }
 
-  FormControl.defaultProps = ({} as unknown) as WithFormControlProps<T> & P
+  WithFormControl.defaultProps = ({} as unknown) as WithFormControlProps<F> & P
 
-  return FormControl
+  return WithFormControl
 }

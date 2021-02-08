@@ -11,7 +11,7 @@ export type WithTogglePropsPassed = {
 }
 
 export default <P,>(WrappedComponent: React.ComponentType<WithTogglePropsPassed & P>) => {
-  const Toggle: React.FC<WithToggleProps & P> = props => {
+  const WithToggle: React.FC<WithToggleProps & P> = props => {
     const { defaultToggle, ...parentProps } = props
 
     const [toggle, setToggle] = useState<WithToggleState>(false)
@@ -28,7 +28,7 @@ export default <P,>(WrappedComponent: React.ComponentType<WithTogglePropsPassed 
     return <WrappedComponent handleToggle={handleToggle} toggle={toggle} {...(parentProps as P)} />
   }
 
-  Toggle.defaultProps = ({} as unknown) as WithToggleProps & P
+  WithToggle.defaultProps = ({} as unknown) as WithToggleProps & P
 
-  return Toggle
+  return WithToggle
 }

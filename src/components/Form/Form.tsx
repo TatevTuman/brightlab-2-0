@@ -9,9 +9,17 @@ import {
   FieldName,
   FormProvider
 } from 'react-hook-form'
+
 import { Children } from '@types'
+import { genericMemo } from '@hocs'
 import { FormControl, FormItem, FormSubmit } from './components'
 import styles from './Form.module.scss'
+
+export interface FormModule {
+  Item: typeof FormItem
+  Control: typeof FormControl
+  Submit: typeof FormSubmit
+}
 
 export interface FormProps<F> {
   id?: string
@@ -72,8 +80,4 @@ const Form = <F,>(props: FormProps<F>) => {
   )
 }
 
-Form.Item = FormItem
-Form.Control = FormControl
-Form.Submit = FormSubmit
-
-export default Form
+export default genericMemo(Form)

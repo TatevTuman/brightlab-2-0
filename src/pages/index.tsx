@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { SEO, Calendar } from '@components'
+import { SEO } from '@components'
 import { useModal } from '@hooks'
 
 interface HomeProps extends RouteComponentProps {}
@@ -19,7 +19,7 @@ const Home: React.FC<HomeProps> = props => {
         <div>Boilerplate</div>
         <div onClick={() => openModal({ number: Math.random() })}>Modal</div>
       </h1>
-      <Calendar onDateChanged={() => null} />
+      {/*<Calendar onDateChanged={() => null} />*/}
     </section>
   )
 }
