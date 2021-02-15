@@ -19,10 +19,11 @@ export interface ButtonProps {
   to?: string
   submit?: boolean
   centered?: boolean
+  form?: string
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const { className, type, size, to, children, onClick, loading, submit, centered } = props
+  const { className, type, size, to, children, onClick, loading, submit, centered, form } = props
 
   const classNames = `button button__${type}-${size} ${className}`
   const disabled = props.disabled || loading
@@ -56,6 +57,7 @@ const Button: React.FC<ButtonProps> = props => {
       data-centered={centered}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
+      form={form}
       tabIndex={0}
     >
       {loading ? <Loader type={'Oval'} width={20} height={20} style={{ padding: '0.5rem' }} /> : children}

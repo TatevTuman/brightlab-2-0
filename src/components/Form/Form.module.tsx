@@ -1,7 +1,7 @@
 import React from 'react'
 import { LoadableComponent } from '@loadable/component'
 import { withLoadableFallback, WithLoadableFallbackOptions } from '@hocs'
-import { FormControlProps, Autocomplete, Select, SelectProps } from '@components'
+import { FormControlProps, Autocomplete, AutocompleteProps, Select, SelectProps } from '@components'
 import { Input, InputProps, Checkbox, CheckboxProps } from '@elements'
 import { FormControl, FormItem, FormSubmit } from './components'
 
@@ -24,6 +24,7 @@ export type FormModule<F> = {
   Submit: typeof FormSubmit
   Input: FormModuleComponent<InputProps, F>
   Select: FormModuleComponent<SelectProps, F>
+  Autocomplete: FormModuleComponent<AutocompleteProps, F>
   Checkbox: FormModuleComponent<CheckboxProps, F>
 }
 /* Form we get from loadable */
@@ -88,6 +89,35 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
   }
 
   FormModule.Select.displayName = 'FormSelect'
+
+  FormModule.Autocomplete = props => {
+    const { name, validation, defaultValue, ...autocompleteProps } = props
+    const required = !!validation?.required
+
+    return (
+      <FormModule.Control
+        name={name}
+        validation={validation}
+        defaultValue={defaultValue || null}
+        render={(props: ControllerRenderProps) => {
+          const { value, ref, onChange } = props
+
+          return (
+            <Autocomplete
+              id={name}
+              value={value}
+              innerRef={ref}
+              onChange={onChange}
+              required={required}
+              {...autocompleteProps}
+            />
+          )
+        }}
+      />
+    )
+  }
+
+  FormModule.Autocomplete.displayName = 'FormAutocomplete'
 
   FormModule.Checkbox = props => {
     const { name, validation, defaultChecked, ...checkboxProps } = props

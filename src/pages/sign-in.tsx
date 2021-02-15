@@ -38,7 +38,7 @@ const SignIn: React.FC<SignInProps> = props => {
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      <SignInForm onSubmit={handleSignIn} onError={handleSignInError} defaultValues={{ email: '', password: '' }}>
+      <SignInForm onSubmit={handleSignIn} onError={handleSignInError}>
         {useFormMethods => {
           return (
             <>

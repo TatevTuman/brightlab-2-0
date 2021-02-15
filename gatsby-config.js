@@ -27,8 +27,8 @@ module.exports = {
         label: 'Sign up'
       },
       {
-        path: '/admin',
-        label: 'Admin'
+        path: '/form',
+        label: 'Form'
       }
     ]
   },

@@ -8,27 +8,46 @@ import {
   WithTogglePropsPassed
 } from '@hocs'
 
-import { Dropdown, Input, InputSuffixProp } from '@elements'
+import { Dropdown, DropdownProps, Input, InputProps } from '@elements'
 import { OptionType } from '@types'
 import SelectArrow from '@images/arrow.svg'
 import styles from './Select.module.scss'
 
+type SelectInputProps = Omit<
+  InputProps,
+  | 'id'
+  | 'label'
+  | 'value'
+  | 'type'
+  | 'defaultValue'
+  | 'autoComplete'
+  | 'disabled'
+  | 'error'
+  | 'clearable'
+  | 'required'
+  | 'focusable'
+  | 'min'
+  | 'ref'
+  | 'onChange'
+  | 'onFocus'
+  | 'onBlur'
+  | 'onKeyDown'
+  | 'onClear'
+>
+type SelectDropdownProps = Omit<DropdownProps, 'options' | 'onSelect' | 'toggle'>
+
 export type SelectProps = {
   id: string
+  label?: string
   disabled?: boolean
   required?: boolean
   clearable?: boolean
+  focusable?: boolean
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
-  input?: {
-    label?: string
-    placeholder?: string
-    role?: string
-    direction?: 'horizontal' | 'vertical'
-    suffix?: InputSuffixProp
-    prefix?: InputSuffixProp
-  }
+  input?: SelectInputProps
+  dropdown?: SelectDropdownProps
 
   onInputChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -43,7 +62,9 @@ export type SelectPropsWithHocs = SelectProps & WithOptionSelectPropsPassed & Wi
 const Select: React.FC<SelectPropsWithHocs> = props => {
   const {
     id,
+    label,
     input = {},
+    dropdown = {},
     innerRef,
     options,
     selectedOption,
@@ -52,6 +73,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
     disabled,
     required,
     clearable,
+    focusable,
     handleOptionSelect,
     handleToggle,
     onFocus,
@@ -59,8 +81,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
     onKeyDown,
     onClear
   } = props
-
-  const { label, placeholder, role, suffix, prefix, ...otherInputProps } = input
 
   const handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     handleToggle(true)
@@ -97,8 +117,11 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
   }
 
   /* If disabled no focus */
-  const tabIndex = disabled ? -1 : 0
+  const tabIndex = focusable && !disabled ? 0 : -1
   const inputValue = (selectedOption && selectedOption.label) || ''
+
+  const { suffix, ...otherInputProps } = input
+  const { ...otherDropdownProps } = dropdown
 
   return (
     <div
@@ -112,18 +135,15 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         id={id}
         label={label}
         value={inputValue}
-        placeholder={placeholder}
         ref={innerRef}
         onKeyDown={handleInputKeyDown}
         onClear={handleInputClear}
         disabled={disabled}
         autoComplete={'off'}
         error={error}
-        role={role}
         clearable={clearable}
         required={required}
         focusable={false}
-        prefix={prefix}
         suffix={
           <div className={styles.selectInputSuffix}>
             <SelectArrow className={styles.selectArrow} data-toggle={toggle} />
@@ -132,13 +152,21 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         }
         {...otherInputProps}
       />
-      <Dropdown options={options} onSelect={handleDropdownSelect} toggle={toggle} direction={input.direction} />
+      <Dropdown
+        options={options}
+        onSelect={handleDropdownSelect}
+        toggle={toggle}
+        direction={input.direction}
+        {...otherDropdownProps}
+      />
     </div>
   )
 }
 
 Select.defaultProps = {
-  input: {}
+  focusable: true,
+  input: {},
+  dropdown: {}
 }
 
 export default withOptionSelect(withToggle(Select))

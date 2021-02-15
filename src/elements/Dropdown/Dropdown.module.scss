@@ -39,13 +39,13 @@
     display: block;
   }
 
-  &[data-opened="false"] {
+  &[data-toggle="false"] {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
   }
 
-  &[data-opened="true"] {
+  &[data-toggle="true"] {
     overflow: auto;
     max-height: 194px;
     opacity: 1;

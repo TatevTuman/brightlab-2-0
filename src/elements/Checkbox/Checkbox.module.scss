@@ -1,5 +1,10 @@
+@import "static/assets/styles/variables";
+
+$size: toRem(20);
+
 .checkbox {
   display: block;
+  height: $size;
   position: relative;
   padding-left: 30px;
   margin-bottom: 5px;
@@ -25,8 +30,8 @@
     position: absolute;
     top: 2px;
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: $size;
+    width: $size;
     background: var(--grey);
     border: 0 solid #000000;
     border-radius: 5px;
@@ -37,12 +42,12 @@
       box-sizing: unset;
       content: '';
       position: absolute;
-      left: 8px;
-      top: 4px;
-      width: 3px;
-      height: 8px;
+      left: toRem(8);
+      top: toRem(4);
+      width: toRem(3);
+      height: toRem(8);
       border: solid #ffffff;
-      border-width: 0 2px 2px 0;
+      border-width: 0 toRem(2) toRem(2) 0;
       transform: rotate(45deg);
     }
   }

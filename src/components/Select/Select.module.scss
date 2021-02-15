@@ -13,6 +13,19 @@
     cursor: pointer;
   }
 
+  &:hover {
+    input {
+      border-color: var(--grey);
+    }
+  }
+
+  &:active, &:focus {
+    input {
+      border-color: var(--black);
+      background: var(--white-dark);
+    }
+  }
+
   &-input {
 
     &-suffix {

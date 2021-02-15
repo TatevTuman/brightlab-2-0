@@ -8,26 +8,46 @@ import {
   WithTogglePropsPassed
 } from '@hocs'
 
-import { Dropdown, Input, InputSuffixProp } from '@elements'
+import { Dropdown, DropdownProps, Input, InputProps } from '@elements'
 import { OptionType } from '@types'
 import AutocompleteArrow from '@images/arrow.svg'
 import styles from './Autocomplete.module.scss'
 
+type AutocompleteInputProps = Omit<
+  InputProps,
+  | 'id'
+  | 'label'
+  | 'value'
+  | 'type'
+  | 'defaultValue'
+  | 'autoComplete'
+  | 'disabled'
+  | 'error'
+  | 'clearable'
+  | 'required'
+  | 'focusable'
+  | 'min'
+  | 'ref'
+  | 'onChange'
+  | 'onFocus'
+  | 'onBlur'
+  | 'onKeyDown'
+  | 'onClear'
+>
+type AutocompleteDropdownProps = Omit<DropdownProps, 'options' | 'onSelect' | 'toggle'>
+
 export type AutocompleteProps = {
   id: string
+  label?: string
   disabled?: boolean
+  required?: boolean
   clearable?: boolean
+  focusable?: boolean
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
-  input?: {
-    label?: string
-    placeholder?: string
-    role?: string
-    direction?: 'horizontal' | 'vertical'
-    suffix?: InputSuffixProp
-    prefix?: InputSuffixProp
-  }
+  input?: AutocompleteInputProps
+  dropdown?: AutocompleteDropdownProps
 
   onInputChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -42,14 +62,18 @@ export type AutocompletePropsWithHocs = AutocompleteProps & WithOptionSelectProp
 const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   const {
     id,
+    label,
     input = {},
+    dropdown = {},
     innerRef,
     options,
     selectedOption,
     toggle,
     error,
     disabled,
+    required,
     clearable,
+    focusable,
     handleOptionSelect,
     handleToggle,
     onInputChange,
@@ -58,8 +82,6 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
     onKeyDown,
     onClear
   } = props
-
-  const { label, placeholder, role, suffix, prefix, ...otherInputProps } = input
 
   const [autocomplete, setAutocomplete] = useState('')
 
@@ -71,12 +93,16 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
 
   const handleAutocompleteFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     handleToggle(true)
+    innerRef?.current?.focus()
     if (onFocus) onFocus(e)
   }
 
   const handleAutocompleteBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+      if (!selectedOption) setAutocomplete('')
+
       handleToggle(false)
+      innerRef?.current?.blur()
       if (onBlur) onBlur(e)
     }
   }
@@ -105,7 +131,12 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   }
 
   /* If disabled no focus */
-  const tabIndex = disabled ? -1 : 0
+  const tabIndex = focusable && !disabled ? 0 : -1
+
+  const { suffix, ...otherInputProps } = input
+  const { ...otherDropdownProps } = dropdown
+
+  const filteredOptions = options.filter(option => option.label.toLowerCase().includes(autocomplete.toLowerCase()))
 
   return (
     <div
@@ -119,17 +150,15 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
         id={id}
         label={label}
         value={autocomplete}
-        placeholder={placeholder}
         ref={innerRef}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
         onClear={handleInputClear}
         disabled={disabled}
         error={error}
-        role={role}
         clearable={clearable}
+        required={required}
         focusable={false}
-        prefix={prefix}
         suffix={
           <div className={styles.autocompleteInputSuffix}>
             <AutocompleteArrow className={styles.autocompleteArrow} data-toggle={toggle} />
@@ -138,13 +167,21 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
         }
         {...otherInputProps}
       />
-      <Dropdown options={options} onSelect={handleDropdownSelect} toggle={toggle} direction={input.direction} />
+      <Dropdown
+        options={filteredOptions}
+        onSelect={handleDropdownSelect}
+        toggle={toggle}
+        direction={input.direction}
+        {...otherDropdownProps}
+      />
     </div>
   )
 }
 
 Autocomplete.defaultProps = {
-  input: {}
+  focusable: true,
+  input: {},
+  dropdown: {}
 }
 
 export default withOptionSelect(withToggle(Autocomplete))
