@@ -13,11 +13,6 @@ export interface ModalProps {
   customContent?: boolean
 }
 
-export type ModalModule = {
-  Footer: typeof ModalHeader
-  Header: typeof ModalFooter
-}
-
 const Modal = (props: ModalProps) => {
   const { id, opened, children, onClose, customContent } = props
 

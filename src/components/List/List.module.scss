@@ -3,7 +3,7 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  min-height: calculateRem(300);
+  min-height: toRem(300);
   margin-bottom: 4rem;
 
   &-item {

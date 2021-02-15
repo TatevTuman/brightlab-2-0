@@ -7,22 +7,24 @@ import styles from '../../Form.module.scss'
 export interface FormControlProps<F> {
   name: FieldName<F>
   validation?: RegisterOptions
+  defaultValue: string | boolean | null
   render: (props: ControllerRenderProps & { validation?: RegisterOptions }) => React.ReactElement
 }
 
 const FormControl = <F,>(props: FormControlProps<F>) => {
-  const { name, validation, render } = props
+  const { name, validation, defaultValue, render } = props
   const { control } = useFormContext()
 
   return (
     <div className={styles.formControl}>
       <Controller
         render={props => render({ ...props, validation })}
-        name={name as string}
+        name={name}
         rules={validation}
+        defaultValue={defaultValue}
         control={control}
       />
-      <ValidationErrorMessage name={name as string} />
+      <ValidationErrorMessage name={name} />
     </div>
   )
 }

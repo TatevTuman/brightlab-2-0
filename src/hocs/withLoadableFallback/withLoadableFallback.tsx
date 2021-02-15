@@ -17,7 +17,8 @@ export default <Props, Module extends DefaultComponent<Props> = DefaultComponent
   options?: WithLoadableFallbackOptions,
   loadableOptions?: OptionsWithResolver<Props, Module>
 ) => {
-  const { delay, timeout, fallback } = { ...defaultOptions, ...options }
+  const propsOptions = { ...defaultOptions, ...options }
+  const { delay, timeout, fallback } = propsOptions
 
   const delayedHandler = pMinDelay(moduleImport, delay)
   const timeoutHandler = pMinTimeout(delayedHandler, timeout)

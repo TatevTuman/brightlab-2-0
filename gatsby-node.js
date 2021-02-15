@@ -23,8 +23,8 @@ exports.onCreatePage = async ({ page, actions }) => {
   }
 }
 
-exports.onCreateWebpackConfig = function ({ plugins, actions }) {
-  actions.setWebpackConfig({
+exports.onCreateWebpackConfig = function ({ stage, loaders, actions, plugins }) {
+  const config = {
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, 'src/components/index.tsx'),
@@ -40,5 +40,18 @@ exports.onCreateWebpackConfig = function ({ plugins, actions }) {
         '@cache': path.resolve(__dirname, 'gatsby-apollo-cache.ts')
       }
     }
-  })
+  }
+
+  if (stage === 'build-html') {
+    config.module = {
+      rules: [
+        {
+          test: /bad-module/,
+          use: loaders.null()
+        }
+      ]
+    }
+  }
+
+  actions.setWebpackConfig(config)
 }

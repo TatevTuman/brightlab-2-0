@@ -3,10 +3,10 @@ import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Form, SEO } from '@components'
-import { Input } from '@elements'
-import { withFormControl } from '@hocs'
 import { emailPattern, passwordValidation } from '@utils'
 import { SignUpFormType } from '@types'
+
+const SignUpForm = Form<SignUpFormType>()
 
 interface SignUpProps extends RouteComponentProps {}
 
@@ -38,30 +38,30 @@ const SignUp: React.FC<SignUpProps> = props => {
     <section>
       <SEO title={'SignUp'} />
       <h1>SignUp</h1>
-      <Form<SignUpFormType> onSubmit={handleSignUp} onError={handleSignUpError}>
+      <SignUpForm onSubmit={handleSignUp} onError={handleSignUpError}>
         {useFormMethods => {
           return (
             <>
-              <Form.Item>
-                {/*<Input
+              <SignUpForm.Item>
+                <SignUpForm.Input
                   name={'firstName'}
                   label={'First name'}
                   validation={{
                     required: { value: true, message: 'First name is required' }
                   }}
-                />*/}
-              </Form.Item>
-              <Form.Item>
-                {/*<Input
+                />
+              </SignUpForm.Item>
+              <SignUpForm.Item>
+                <SignUpForm.Input
                   name={'lastName'}
                   label={'Last name'}
                   validation={{
                     required: { value: true, message: 'Last name is required' }
                   }}
-                />*/}
-              </Form.Item>
-              <Form.Item>
-                {/*<Input
+                />
+              </SignUpForm.Item>
+              <SignUpForm.Item>
+                <SignUpForm.Input
                   type={'email'}
                   name={'email'}
                   label={'Email'}
@@ -69,10 +69,10 @@ const SignUp: React.FC<SignUpProps> = props => {
                     required: { value: true, message: 'Email is required' },
                     pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
                   }}
-                />*/}
-              </Form.Item>
-              <Form.Item>
-                {/*<Input
+                />
+              </SignUpForm.Item>
+              <SignUpForm.Item>
+                <SignUpForm.Input
                   type={'password'}
                   name={'password'}
                   label={'Password'}
@@ -80,13 +80,13 @@ const SignUp: React.FC<SignUpProps> = props => {
                     required: { value: true, message: 'Password is required' },
                     ...passwordValidation
                   }}
-                />*/}
-              </Form.Item>
-              <Form.Submit>Sign up</Form.Submit>
+                />
+              </SignUpForm.Item>
+              <SignUpForm.Submit>Sign up</SignUpForm.Submit>
             </>
           )
         }}
-      </Form>
+      </SignUpForm>
     </section>
   )
 }

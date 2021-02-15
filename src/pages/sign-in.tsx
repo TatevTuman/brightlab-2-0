@@ -3,9 +3,7 @@ import { RouteComponentProps, useNavigate } from '@reach/router'
 import { FieldErrors } from 'react-hook-form'
 import { useAlert } from 'react-alert'
 import { Form, SEO } from '@components'
-import { Input, Checkbox, InputProps } from '@elements'
 import { SignInFormType } from '@types'
-import { withFormControl } from '@hocs'
 import { emailPattern } from '@utils'
 
 const SignInForm = Form<SignInFormType>({ fallback: { height: '100rem' } })
@@ -40,35 +38,34 @@ const SignIn: React.FC<SignInProps> = props => {
     <section>
       <SEO title={'SignIn'} />
       <h1>SignIn</h1>
-      <SignInForm onSubmit={handleSignIn} onError={handleSignInError}>
+      <SignInForm onSubmit={handleSignIn} onError={handleSignInError} defaultValues={{ email: '', password: '' }}>
         {useFormMethods => {
           return (
             <>
               <SignInForm.Item>
-                {/*<Input*/}
-                {/*  type={'text'}*/}
-                {/*  name={'email'}*/}
-                {/*  label={'Email'}*/}
-                {/*  validation={{*/}
-                {/*    required: { value: true, message: 'Email is required' },*/}
-                {/*    pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }*/}
-                {/*  }}*/}
-                {/*/>*/}
+                <SignInForm.Input
+                  name={'email'}
+                  label={'Email'}
+                  validation={{
+                    required: { value: true, message: 'Email is required' },
+                    pattern: { value: emailPattern, message: 'It doesn`t seems to be an email' }
+                  }}
+                />
               </SignInForm.Item>
-              {/*<SignInForm.Item>*/}
-                {/*<Input*/}
-                {/*  type={'password'}*/}
-                {/*  name={'password'}*/}
-                {/*  label={'Password'}*/}
-                {/*  validation={{*/}
-                {/*    required: { value: true, message: 'Password is required' }*/}
-                {/*  }}*/}
-                {/*/>*/}
-              {/*</SignInForm.Item>*/}
-              {/*<SignInForm.Item justify={'flex-end'}>*/}
-              {/*  <Checkbox name={'remember'} label={'Remember me'} />*/}
-              {/*</SignInForm.Item>*/}
-              {/*<SignInForm.Submit>Sign in</SignInForm.Submit>*/}
+              <SignInForm.Item>
+                <SignInForm.Input
+                  type={'password'}
+                  name={'password'}
+                  label={'Password'}
+                  validation={{
+                    required: { value: true, message: 'Password is required' }
+                  }}
+                />
+              </SignInForm.Item>
+              <SignInForm.Item justify={'flex-end'}>
+                <SignInForm.Checkbox name={'remember'} label={'Remember me'} />
+              </SignInForm.Item>
+              <SignInForm.Submit>Sign in</SignInForm.Submit>
             </>
           )
         }}

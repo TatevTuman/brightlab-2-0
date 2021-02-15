@@ -14,6 +14,7 @@ import AutocompleteArrow from '@images/arrow.svg'
 import styles from './Autocomplete.module.scss'
 
 export type AutocompleteProps = {
+  id: string
   disabled?: boolean
   clearable?: boolean
   error?: boolean
@@ -40,6 +41,7 @@ export type AutocompletePropsWithHocs = AutocompleteProps & WithOptionSelectProp
 
 const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   const {
+    id,
     input = {},
     innerRef,
     options,
@@ -114,6 +116,7 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
       data-disabled={disabled}
     >
       <Input
+        id={id}
         label={label}
         value={autocomplete}
         placeholder={placeholder}

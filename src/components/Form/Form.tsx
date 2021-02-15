@@ -15,12 +15,6 @@ import { genericMemo } from '@hocs'
 import { FormControl, FormItem, FormSubmit } from './components'
 import styles from './Form.module.scss'
 
-export interface FormModule {
-  Item: typeof FormItem
-  Control: typeof FormControl
-  Submit: typeof FormSubmit
-}
-
 export interface FormProps<F> {
   id?: string
   className?: string

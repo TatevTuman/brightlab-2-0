@@ -5,6 +5,7 @@ import styles from './Input.module.scss'
 
 export type InputSuffixProp = JSX.Element | string | number
 export interface InputProps {
+  id: string
   value: string
   type?: string
   label?: string
@@ -33,6 +34,7 @@ export interface InputProps {
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
+    id,
     value,
     type,
     label,
@@ -56,15 +58,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     onClear
   } = props
 
-  /* If disabled no focus */
+  /* If disabled or not focusable no focus */
   const tabIndex = focusable && !disabled ? 0 : -1
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    handleEvent(onBlur, { value: e, disabled })
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleEvent(onChange, { value: e.currentTarget.value, disabled })
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onBlur, { value: e, disabled })
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onFocus, { value: e, disabled })
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => handleEvent(onKeyDown, { value: e, disabled })
   const handleClear = () => {
@@ -76,15 +75,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div className={styles.input} data-disabled={disabled} data-direction={direction}>
       {label && (
-        <label htmlFor={name} data-required={required}>
+        <label htmlFor={id} data-required={required}>
           {label}
         </label>
       )}
       <div className={styles.inputInner}>
         <input
-          id={name}
+          id={id}
           type={type}
-          name={name}
+          name={id}
           ref={ref}
           value={value}
           defaultValue={defaultValue}

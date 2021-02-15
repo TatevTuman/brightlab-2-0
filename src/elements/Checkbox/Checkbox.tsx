@@ -1,63 +1,76 @@
-import React, { memo } from 'react'
-import { RegisterOptions, useFormContext } from 'react-hook-form'
-import { ValidationErrorMessage } from '@elements'
+import React, { memo, forwardRef } from 'react'
 import styles from './Checkbox.module.scss'
+import { handleEvent } from '@utils'
 
 export interface CheckboxProps {
-  name: string
+  id: string
+  checked: boolean
+  defaultChecked?: boolean
   label?: string
-  checked?: boolean
   disabled?: boolean
-  validation?: RegisterOptions
+  required?: boolean
+  focusable?: boolean
   onChange?: (value: boolean) => void
+  onFocus?: (e: React.FocusEvent<HTMLLabelElement>) => void
+  onBlur?: (e: React.FocusEvent<HTMLLabelElement>) => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLLabelElement>) => void
 }
 
-const Checkbox = (props: CheckboxProps) => {
-  const { name, label, checked, disabled, validation, onChange } = props
+const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
+  const {
+    id,
+    label,
+    checked,
+    defaultChecked,
+    disabled,
+    required,
+    focusable,
+    onChange,
+    onFocus,
+    onBlur,
+    onKeyDown
+  } = props
 
-  const formContext = useFormContext()
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => handleEvent(onChange, { value: !checked, disabled })
+  const handleBlur = (e: React.FocusEvent<HTMLLabelElement>) => handleEvent(onBlur, { value: e, disabled })
+  const handleFocus = (e: React.FocusEvent<HTMLLabelElement>) => handleEvent(onFocus, { value: e, disabled })
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => handleEvent(onKeyDown, { value: e, disabled })
 
-  const register = formContext && formContext.register
-
-  const isRequired = !!validation?.required
-  const ref = register && register(validation)
-
-  const handleKeyDown = (e: { key: string }) => {
-    const checkbox = document.getElementById(name)
-    const isEnterKey = e.key === 'Enter'
-
-    if (isEnterKey) {
-      if (onChange) onChange(!checked)
-      else if (checkbox) (checkbox as HTMLInputElement).checked = !checked
-    }
-  }
+  /* If disabled or not focusable no focus */
+  const tabIndex = focusable && !disabled ? 0 : -1
 
   return (
-    <label className={styles.checkbox} onKeyDown={handleKeyDown} tabIndex={0}>
+    <label
+      className={styles.checkbox}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+      tabIndex={tabIndex}
+    >
       {label && (
-        <label htmlFor={name} data-required={isRequired}>
+        <label htmlFor={id} data-required={required}>
           {label}
         </label>
       )}
       <input
-        id={name}
-        type="checkbox"
-        name={name}
+        id={id}
+        name={id}
         ref={ref}
+        type="checkbox"
         checked={checked}
+        defaultChecked={defaultChecked}
         disabled={disabled}
-        onChange={e => onChange && onChange(!e.currentTarget.checked)}
+        onChange={handleChange}
         tabIndex={-1}
       />
       <div className={styles.checkboxIndicator} />
-      <ValidationErrorMessage
-        name={name}
-        render={(error, className) => {
-          return <span className={`${styles.checkboxValidationError} ${className}`}>{error.message}</span>
-        }}
-      />
     </label>
   )
+})
+
+Checkbox.displayName = 'Checkbox'
+Checkbox.defaultProps = {
+  focusable: true
 }
 
 export default memo(Checkbox)

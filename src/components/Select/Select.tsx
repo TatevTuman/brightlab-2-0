@@ -14,7 +14,9 @@ import SelectArrow from '@images/arrow.svg'
 import styles from './Select.module.scss'
 
 export type SelectProps = {
+  id: string
   disabled?: boolean
+  required?: boolean
   clearable?: boolean
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
@@ -40,6 +42,7 @@ export type SelectPropsWithHocs = SelectProps & WithOptionSelectPropsPassed & Wi
 
 const Select: React.FC<SelectPropsWithHocs> = props => {
   const {
+    id,
     input = {},
     innerRef,
     options,
@@ -47,6 +50,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
     toggle,
     error,
     disabled,
+    required,
     clearable,
     handleOptionSelect,
     handleToggle,
@@ -105,6 +109,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
       data-disabled={disabled}
     >
       <Input
+        id={id}
         label={label}
         value={inputValue}
         placeholder={placeholder}
@@ -116,6 +121,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         error={error}
         role={role}
         clearable={clearable}
+        required={required}
         focusable={false}
         prefix={prefix}
         suffix={

@@ -75,11 +75,11 @@ $breakpoints: (
   transform: translate(-50%, 0);
 }
 
-@function calculateRem($size) {
+@function toRem($size) {
   $remSize: $size / 16;
   @return #{$remSize}rem;
 }
 
 @mixin fontSize($size) {
-  font-size: calculateRem($size);
+  font-size: toRem($size);
 }

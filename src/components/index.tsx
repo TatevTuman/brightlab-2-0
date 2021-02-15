@@ -46,7 +46,16 @@ const Modals = withLoadableFallback(import('./Modals/Modals'), {
 })
 
 export { default as Form } from './Form/Form.module'
+import type {
+  LoadableForm,
+  FormModule,
+  FormModuleComponent,
+  FormModuleComponentControlledFields
+} from './Form/Form.module'
+
 export { default as Modal } from './Modal/Modal.module'
+import type { LoadableModal } from './Modal/Modal.module'
+
 export { Page, Container, Header, Footer, Calendar, SEO, List, Select, Autocomplete, Modals }
 
 export type {
@@ -65,5 +74,7 @@ export type {
   AutocompleteProps,
   ModalProps,
   ModalHeaderProps,
-  ModalFooterProps
+  ModalFooterProps,
+  LoadableForm,
+  LoadableModal
 }
