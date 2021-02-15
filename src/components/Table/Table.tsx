@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { TableColumnType, TableRowType } from '@types'
 import { TableHead, TableBody } from './components'
-import styles from './Table.module.scss'
+import './Table.scss'
 
 interface TableProps {
   columns: TableColumnType[]
@@ -16,7 +16,7 @@ const Table: React.FC<TableProps> = props => {
   const { columns, rows, filters, handleRowClick, isRowIndex, minWidth } = props
 
   return (
-    <table className={styles.table} style={{ minWidth }}>
+    <table className={'table'} style={{ minWidth }}>
       <TableHead columns={columns} isRowIndex={isRowIndex} />
       <TableBody
         rows={rows}

@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { PaginationResponse } from '@types'
-import styles from './Pagination.module.scss'
+import './Pagination.scss'
 
 export interface PaginationProps extends PaginationResponse {
   limit?: number
@@ -67,7 +67,7 @@ const Pagination: React.FC<PaginationProps> = props => {
         <li
           key={index}
           tabIndex={0}
-          className={styles.paginationListItem}
+          className={'pagination-list-item'}
           onClick={() => onClick(page)}
           data-active={isActive}
         >
@@ -78,8 +78,8 @@ const Pagination: React.FC<PaginationProps> = props => {
   }
 
   return (
-    <nav role="pagination" className={styles.pagination}>
-      <ul className={styles.paginationList}>{renderPages()}</ul>
+    <nav role="pagination" className={'pagination'}>
+      <ul className={'pagination-list'}>{renderPages()}</ul>
     </nav>
   )
 }

@@ -103,8 +103,8 @@
       }
     }
 
-    input:active + &-prefix,
-    input:focus + &-prefix {
+    input:active + &__prefix,
+    input:focus + &__prefix {
       svg {
 
         path, circle {
@@ -112,14 +112,14 @@
       }
     }
 
-    input:not(:placeholder-shown) + &-prefix + &-suffix {
+    input:not(:placeholder-shown) + &__prefix + &__suffix {
       .input-inner-suffix-times {
         visibility: visible;
         opacity: 1;
       }
     }
 
-    &-prefix {
+    &__prefix {
       max-width: toRem(26);
       min-width: toRem(26);
       position: absolute;
@@ -140,7 +140,7 @@
       }
     }
 
-    &-suffix {
+    &__suffix {
       height: 100%;
       position: absolute;
       right: 1rem;
@@ -164,10 +164,6 @@
         &:active {
           transform: scale(1.05) translate(0, -50%);
         }
-      }
-
-      &-not-allowed {
-        margin-right: 1rem;
       }
 
       a {

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Button, ButtonProps } from '@elements'
-import styles from '../../Form.module.scss'
+import '../../Form.scss'
 
 export type FormSubmitProps = {} & Omit<ButtonProps, 'submit' | 'loading'>
 
@@ -23,7 +23,7 @@ const FormSubmit: React.FC<FormSubmitProps> = props => {
         return (
           <Button
             {...buttonProps}
-            className={styles.formSubmit}
+            className={'form-submit'}
             onClick={e => {
               onChange(true)
 

@@ -1,6 +1,6 @@
 @import "static/assets/styles/variables";
 
-.autocomplete {
+.select {
   width: 100%;
   position: relative;
   @include disabled($background: false, $opacity: true, $pointerEvents: true);
@@ -13,9 +13,22 @@
     cursor: pointer;
   }
 
+  &:hover {
+    input {
+      border-color: var(--grey);
+    }
+  }
+
+  &:active, &:focus {
+    input {
+      border-color: var(--black);
+      background: var(--white-dark);
+    }
+  }
+
   &-input {
 
-    &-suffix {
+    &__suffix {
       display: flex;
       align-items: center;
       height: 100%;

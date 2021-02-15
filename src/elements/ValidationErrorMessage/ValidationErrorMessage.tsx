@@ -2,12 +2,12 @@ import React from 'react'
 import { useFormContext } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 import { Children } from '@types'
-import styles from './ValidationErrorMessage.module.scss'
+import './ValidationErrorMessage.scss'
 
 export type ValidationErrorMessageType = { message: string }
 export interface ValidationErrorMessageProps {
   name: string
-  render?(error: ValidationErrorMessageType, className: string): Children
+  render?(error: ValidationErrorMessageType): Children
 }
 
 /*
@@ -41,10 +41,10 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
 
   /* Gets error from errors object by name and passes it in render */
   const renderErrorMessage = (error: ValidationErrorMessageType) => {
-    if (render) return render(error, styles.validationError)
+    if (render) return render(error)
     else {
       return (
-        <div role="validation-error" className={styles.validationError}>
+        <div role="validation-error" className={'validationError'}>
           {error.message}
         </div>
       )

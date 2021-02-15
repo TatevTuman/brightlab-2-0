@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getNextMonth, getPreviousMonth, isSameDay } from '@utils'
 import { CalendarHeader, CalendarDaysLabels, CalendarDays } from './components'
-import styles from './Calendar.module.scss'
+import './Calendar.scss'
 
 export interface CalendarProps {
   date?: Date
@@ -85,9 +85,9 @@ const Calendar: React.FC<CalendarProps> = props => {
   }
 
   return (
-    <div className={styles.calendar}>
+    <div className={'calendar'}>
       <CalendarHeader nextMonth={nextMonth} previousMonth={previousMonth} {...state} />
-      <div className={styles.calendarGrid}>
+      <div className={'calendar-grid'}>
         <CalendarDaysLabels />
         <CalendarDays {...state} gotoDate={gotoDate} />
       </div>

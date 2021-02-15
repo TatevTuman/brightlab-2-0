@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Fallback.module.scss'
+import './Fallback.scss'
 
 export interface FallbackProps {
   height: string
@@ -8,7 +8,7 @@ export interface FallbackProps {
 
 const Fallback: React.FC<FallbackProps> = ({ height, render }) => {
   if (render) return render()
-  return <div className={styles.fallback} style={{ height }} />
+  return <div className={'fallback'} style={{ height }} />
 }
 
 export default Fallback

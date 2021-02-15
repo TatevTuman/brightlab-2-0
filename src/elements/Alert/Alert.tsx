@@ -1,6 +1,6 @@
 import React from 'react'
 import { AlertComponentPropsWithStyle } from 'react-alert'
-import styles from './Alert.module.scss'
+import './Alert.scss'
 
 export interface AlertProps extends Omit<AlertComponentPropsWithStyle, 'id'> {}
 
@@ -13,7 +13,7 @@ const Alert: React.FC<AlertProps> = props => {
   const { type } = options
 
   return (
-    <div className={styles.alert} data-type={type} style={style} onClick={close} data-testid={'alert'}>
+    <div className={'alert'} data-type={type} style={style} onClick={close} data-testid={'alert'}>
       {message}
     </div>
   )

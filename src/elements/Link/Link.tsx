@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import { LinkGetProps } from '@reach/router'
 import { Children } from '@types'
-import styles from './Link.module.scss'
+import './Link.scss'
 
 export interface LinkProps {
   to: string
@@ -18,7 +18,7 @@ const Link: React.FC<LinkProps> = props => {
 
   const handleGetProps = (linkProps: LinkGetProps) => {
     return {
-      className: styles.link + ' ' + props.className
+      className: 'link ' + props.className
     }
   }
 

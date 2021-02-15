@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { OptionType } from '@types'
 import { Loader } from '@elements'
-import styles from './Dropdown.module.scss'
+import './Dropdown.scss'
 
 export interface DropdownProps {
   options: OptionType[]
@@ -35,7 +35,7 @@ const Dropdown = (props: DropdownProps) => {
 
     if (error) {
       return (
-        <div className={styles.dropdownError}>
+        <div className={'dropdown__error'}>
           <p className="danger">{error.message}</p>
           {JSON.stringify(error)}
         </div>
@@ -44,14 +44,14 @@ const Dropdown = (props: DropdownProps) => {
 
     if (loading) {
       return (
-        <div className={styles.dropdownLoading}>
+        <div className={'dropdown__loading'}>
           <Loader />
         </div>
       )
     }
 
     if (!isOptions) {
-      return <i className={styles.dropdownEmpty}>{noMessage}</i>
+      return <i className={'dropdown__empty'}>{noMessage}</i>
     }
 
     return options.map((option, index) => {
@@ -69,7 +69,7 @@ const Dropdown = (props: DropdownProps) => {
 
   return (
     <ul
-      className={styles.dropdown}
+      className={'dropdown'}
       data-toggle={toggle}
       data-selection={true}
       data-direction={direction}

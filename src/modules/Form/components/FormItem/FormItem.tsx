@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { Children } from '@types'
-import styles from '../../Form.module.scss'
+import '../../Form.scss'
 
 export interface FormItemProps {
   children: Children
@@ -13,7 +13,7 @@ const FormItem: React.FC<FormItemProps> = props => {
   const justifyContent = justify
 
   return (
-    <div className={styles.formItem} style={{ justifyContent, margin }}>
+    <div className={'form-item'} style={{ justifyContent, margin }}>
       {children}
     </div>
   )

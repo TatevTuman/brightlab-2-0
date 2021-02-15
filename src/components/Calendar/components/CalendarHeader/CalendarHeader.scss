@@ -17,7 +17,7 @@
       user-select: none;
     }
 
-    &-next, &-prev {
+    &__next, &__prev {
       position: absolute;
       top: calc(25% + 10px);
       cursor: pointer;
@@ -27,12 +27,12 @@
       }
     }
 
-    &-prev {
+    &__prev {
       left: 1rem;
       transform: rotate(-90deg);
     }
 
-    &-next {
+    &__next {
       right: 1rem;
       transform: rotate(90deg);
     }

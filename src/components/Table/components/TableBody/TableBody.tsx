@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { TableColumnType, TableRowType } from '@types'
 import { handleEvent } from '@utils'
-import styles from './TableBody.module.scss'
+import './TableBody.scss'
 
 interface TableBodyProps {
   columns: TableColumnType[]
@@ -35,7 +35,7 @@ const TableBody: React.FC<TableBodyProps> = props => {
     : rows
 
   return (
-    <tbody className={styles.tableBody}>
+    <tbody className={'table-body'}>
       {filteredRows.map((row: TableRowType, index) => {
         const cells = columns
 

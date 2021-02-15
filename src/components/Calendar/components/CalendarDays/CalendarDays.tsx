@@ -1,7 +1,7 @@
 import React from 'react'
 import { calendar, getDateISO, isSameDay, isSameMonth } from '@utils'
 import { CalendarState } from '../../Calendar'
-import styles from './CalendarDays.module.scss'
+import './CalendarDays.scss'
 
 interface CalendarDayProps extends CalendarState {
   day: Date
@@ -13,7 +13,7 @@ const CalendarDay: React.FC<CalendarDayProps> = props => {
   const { day, today, current, month, year, index, gotoDate } = props
 
   /* ClassName + space for extra class */
-  let className = styles.calendarDay + ' '
+  let className = 'calendar-day' + ' '
 
   // Check if calendar date is same day as today
   const isToday = isSameDay(day, today)
@@ -22,11 +22,11 @@ const CalendarDay: React.FC<CalendarDayProps> = props => {
   const isCurrent = current && isSameDay(day, current)
 
   if (isToday) {
-    className += styles.calendarDay__today + ' '
+    className += 'calendar-day__today' + ' '
   }
 
   if (isCurrent) {
-    className += styles.calendarDay__selected + ' '
+    className += 'calendar-day__selected' + ' '
   }
 
   // Check if calendar date is in the same month as the state month and year
@@ -75,7 +75,7 @@ const CalendarDays: React.FC<CalendarDaysProps> = props => {
   const dates = calendar(calendarMonth, calendarYear)
 
   return (
-    <div className={styles.calendarDays}>
+    <div className={'calendar-days'}>
       {dates.map((date: (string | number)[], index) => {
         const day = new Date(date.join('-'))
 

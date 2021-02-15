@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Modal } from '@modules'
 import { useModal } from '@hooks'
-import styles from './HomeModal.module.scss'
+import './HomeModal.scss'
 
 export interface HomeModalProps {}
 
@@ -11,7 +11,7 @@ const HomeModal: React.FC<HomeModalProps> = props => {
 
   return (
     <Modal id={'HomeModal'} opened={!!modal} onClose={closeModal} width={400}>
-      <div className={styles.homeModal}>
+      <div className={'home-modal'}>
         <Modal.Header>
           <h3>Home modal</h3>
         </Modal.Header>

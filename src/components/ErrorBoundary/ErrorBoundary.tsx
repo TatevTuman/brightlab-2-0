@@ -1,5 +1,5 @@
 import React, { memo, ErrorInfo, Component } from 'react'
-import styles from './ErrorBoundary.module.scss'
+import './ErrorBoundary.scss'
 
 export interface ErrorBoundaryProps {}
 
@@ -27,7 +27,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (errorInfo) {
       // Error path
       return (
-        <div className={styles.errorBoundary}>
+        <div className={'error-boundary'}>
           <h2>Something went wrong</h2>
           <details style={{ whiteSpace: 'pre-wrap' }}>
             {error && error.toString()}

@@ -2,7 +2,7 @@ import React from 'react'
 import { CALENDAR_MONTHS } from '@utils'
 import { CalendarState } from '../../Calendar'
 import MonthArrow from '@images/arrow.svg'
-import styles from './CalendarHeader.module.scss'
+import './CalendarHeader.scss'
 
 interface CalendarHeaderProps extends CalendarState {
   nextMonth: (e: React.MouseEvent<HTMLOrSVGElement>) => void
@@ -19,12 +19,12 @@ const CalendarHeader = (props: CalendarHeaderProps) => {
   const monthname = Object.keys(CALENDAR_MONTHS)[Math.max(0, Math.min(month - 1, 11))]
 
   return (
-    <div className={styles.calendarHeader}>
-      <MonthArrow className={styles.calendarHeaderPrev} onClick={previousMonth} />
-      <div className={styles.calendarHeaderMonth}>
+    <div className={'calendar-header'}>
+      <MonthArrow className={'calendar-header__prev'} onClick={previousMonth} />
+      <div className={'calendarHeaderMonth'}>
         {monthname} {year}
       </div>
-      <MonthArrow className={styles.calendarHeaderNext} onClick={nextMonth} />
+      <MonthArrow className={'calendar-header__next'} onClick={nextMonth} />
     </div>
   )
 }

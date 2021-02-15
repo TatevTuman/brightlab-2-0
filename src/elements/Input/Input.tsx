@@ -1,7 +1,7 @@
 import React, { memo, forwardRef, RefObject } from 'react'
 import { handleEvent } from '@utils'
 import TimesImage from '@images/times.svg'
-import styles from './Input.module.scss'
+import './Input.scss'
 
 export type InputSuffixProp = JSX.Element | string | number
 export interface InputProps {
@@ -73,13 +73,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   }
 
   return (
-    <div className={styles.input} data-disabled={disabled} data-direction={direction}>
+    <div className={'input'} data-disabled={disabled} data-direction={direction}>
       {label && (
         <label htmlFor={id} data-required={required}>
           {label}
         </label>
       )}
-      <div className={styles.inputInner}>
+      <div className={'input-inner'}>
         <input
           id={id}
           type={type}
@@ -103,9 +103,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           tabIndex={tabIndex}
           min={min}
         />
-        <div className={styles.inputInnerPrefix}>{prefix}</div>
-        <div className={styles.inputInnerSuffix}>
-          {clearable && <TimesImage className={styles.inputInnerSuffixTimes} onClick={onClear || handleClear} />}
+        <div className={'input-inner__prefix'}>{prefix}</div>
+        <div className={'input-inner__suffix'}>
+          {clearable && <TimesImage className={'input-inner__suffix-times'} onClick={onClear || handleClear} />}
           {suffix}
         </div>
       </div>

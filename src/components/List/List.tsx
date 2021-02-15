@@ -3,7 +3,7 @@
 import React, { memo } from 'react'
 import { Loader } from '@elements'
 import { useWindowSize } from '@hooks'
-import styles from './List.module.scss'
+import './List.scss'
 
 export interface ListPropsColumnsType<T = number> {
   mobile?: T
@@ -59,7 +59,7 @@ const List: React.FC<ListProps> = props => {
 
     if (error) {
       return (
-        <div className="">
+        <div className={'list__error'}>
           <p className="danger">{error.message}</p>
           {JSON.stringify(error)}
         </div>
@@ -72,7 +72,7 @@ const List: React.FC<ListProps> = props => {
 
     if (!isItems) {
       return (
-        <div className={styles.listEmpty} style={{ margin: `${marginVertical}rem ${marginHorizontal}rem` }}>
+        <div className={'list__empty'} style={{ margin: `${marginVertical}rem ${marginHorizontal}rem` }}>
           <i>{noMessage}</i>
         </div>
       )
@@ -85,7 +85,7 @@ const List: React.FC<ListProps> = props => {
 
     return list!.map((item, index) => {
       return (
-        <div key={index} className={styles.listItem} style={itemStyle} onClick={() => onItemClick && onItemClick(item)}>
+        <div key={index} className={'list-item'} style={itemStyle} onClick={() => onItemClick && onItemClick(item)}>
           <Component listData={item} />
         </div>
       )
@@ -97,7 +97,7 @@ const List: React.FC<ListProps> = props => {
   }
 
   return (
-    <div style={itemListStyle} className={styles.list}>
+    <div style={itemListStyle} className={'list'}>
       {renderItems()}
     </div>
   )

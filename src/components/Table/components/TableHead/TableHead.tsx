@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { TableColumnType } from '@types'
-import styles from './TableHead.module.scss'
+import './TableHead.scss'
 
 interface TableHeadProps {
   columns: TableColumnType[]
@@ -11,7 +11,7 @@ const TableHead: React.FC<TableHeadProps> = props => {
   const { columns, isRowIndex } = props
 
   return (
-    <thead className={styles.tableHead}>
+    <thead className={'table-head'}>
       <tr className={'table-head-tr'}>
         {isRowIndex && <th className={'table-head-tr-th'} data-testid={'thead-row-index'} />}
         {columns.map((column, index) => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormContext, Controller, ControllerRenderProps, RegisterOptions, FieldName } from 'react-hook-form'
 import { ValidationErrorMessage } from '@elements'
 import { genericMemo } from '@hocs'
-import styles from '../../Form.module.scss'
+import '../../Form.scss'
 
 export interface FormControlProps<F> {
   name: FieldName<F>
@@ -16,7 +16,7 @@ const FormControl = <F,>(props: FormControlProps<F>) => {
   const { control } = useFormContext()
 
   return (
-    <div className={styles.formControl}>
+    <div className={'form-control'}>
       <Controller
         render={props => render({ ...props, validation })}
         name={name}

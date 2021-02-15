@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react'
 import LoaderComponent from 'react-loader-spinner'
-import styles from './Loader.module.scss'
+import './Loader.scss'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 type LoaderTypes =
@@ -41,7 +41,7 @@ const Loader: React.FC<LoaderProps> = props => {
   const { style, ...otherProps } = props
 
   return (
-    <div className={styles.loader} style={style} data-testid={'loader'}>
+    <div className={'loader'} style={style} data-testid={'loader'}>
       <LoaderComponent {...otherProps} />
     </div>
   )

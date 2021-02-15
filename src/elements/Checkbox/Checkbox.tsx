@@ -1,6 +1,6 @@
 import React, { memo, forwardRef } from 'react'
-import styles from './Checkbox.module.scss'
 import { handleEvent } from '@utils'
+import './Checkbox.scss'
 
 export interface CheckboxProps {
   id: string
@@ -41,7 +41,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
 
   return (
     <label
-      className={styles.checkbox}
+      className={'checkbox'}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
@@ -63,7 +63,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
         onChange={handleChange}
         tabIndex={-1}
       />
-      <div className={styles.checkboxIndicator} />
+      <div className={'checkbox-indicator'} />
     </label>
   )
 })

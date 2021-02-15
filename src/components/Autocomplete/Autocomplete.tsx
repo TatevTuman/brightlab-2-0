@@ -11,7 +11,7 @@ import {
 import { Dropdown, DropdownProps, Input, InputProps } from '@elements'
 import { OptionType } from '@types'
 import AutocompleteArrow from '@images/arrow.svg'
-import styles from './Autocomplete.module.scss'
+import './Autocomplete.scss'
 
 type AutocompleteInputProps = Omit<
   InputProps,
@@ -140,7 +140,7 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
 
   return (
     <div
-      className={styles.autocomplete}
+      className={'autocomplete'}
       tabIndex={tabIndex}
       onFocus={handleAutocompleteFocus}
       onBlur={handleAutocompleteBlur}
@@ -160,8 +160,8 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
         required={required}
         focusable={false}
         suffix={
-          <div className={styles.autocompleteInputSuffix}>
-            <AutocompleteArrow className={styles.autocompleteArrow} data-toggle={toggle} />
+          <div className={'autocomplete-input__suffix'}>
+            <AutocompleteArrow className={'autocomplete-arrow'} data-toggle={toggle} />
             {suffix}
           </div>
         }

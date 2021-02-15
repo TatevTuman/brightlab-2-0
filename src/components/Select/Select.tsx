@@ -11,7 +11,7 @@ import {
 import { Dropdown, DropdownProps, Input, InputProps } from '@elements'
 import { OptionType } from '@types'
 import SelectArrow from '@images/arrow.svg'
-import styles from './Select.module.scss'
+import './Select.scss'
 
 type SelectInputProps = Omit<
   InputProps,
@@ -125,7 +125,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
 
   return (
     <div
-      className={styles.select}
+      className={'select'}
       tabIndex={tabIndex}
       onFocus={handleSelectFocus}
       onBlur={handleSelectBlur}
@@ -145,8 +145,8 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         required={required}
         focusable={false}
         suffix={
-          <div className={styles.selectInputSuffix}>
-            <SelectArrow className={styles.selectArrow} data-toggle={toggle} />
+          <div className={'select-input__suffix'}>
+            <SelectArrow className={'select-arrow'} data-toggle={toggle} />
             {suffix}
           </div>
         }

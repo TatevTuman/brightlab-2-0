@@ -12,7 +12,7 @@ import {
 
 import { Children } from '@types'
 import { genericMemo } from '@hocs'
-import styles from './Form.module.scss'
+import './Form.scss'
 
 export interface FormProps<F> {
   id?: string
@@ -63,7 +63,7 @@ const Form = <F,>(props: FormProps<F>) => {
     <FormProvider {...useFormMethods}>
       <form
         id={id}
-        className={styles.form + ' ' + className}
+        className={'form ' + className}
         onSubmit={useFormMethods.handleSubmit<F>(handleFormSubmit, handleFormError)}
         noValidate
       >

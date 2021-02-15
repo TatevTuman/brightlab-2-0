@@ -3,7 +3,7 @@ import { Container } from '@components'
 import { Navigation } from '@elements'
 import { useSiteMetadata, useWindowSize } from '@hooks'
 import LogoImage from '@images/logo.svg'
-import styles from './Header.module.scss'
+import './Header.scss'
 
 const HomeLogo = () => {
   const { toRender } = useWindowSize(['desktop'])
@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = props => {
   const { navigation } = useSiteMetadata()
 
   return (
-    <div className={styles.header}>
+    <div className={'header'}>
       <Container>
         <HomeLogo />
         <Navigation navigation={navigation} activeMatch />
