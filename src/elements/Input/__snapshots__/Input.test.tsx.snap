@@ -15,9 +15,6 @@ exports[`Input renders correctly 1`] = `
         data-error="false"
         data-prefix="false"
         data-suffix="false"
-        data-times="true"
-        id="input"
-        name="input"
         placeholder="Type a text"
         tabindex="0"
         type="text"
@@ -25,16 +22,10 @@ exports[`Input renders correctly 1`] = `
       />
       <div
         class="inputInnerPrefix"
-        data-prefix="false"
       />
       <div
         class="inputInnerSuffix"
-        data-suffix="false"
-      >
-        <test-file-stub
-          classname="inputInnerSuffixTimes"
-        />
-      </div>
+      />
     </div>
   </div>
 </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { ModalHeader, ModalFooter } from './components'
 import { Children } from '@types'
 import './Modal.scss'
 

@@ -6,65 +6,9 @@ exports[`Header renders correctly 1`] = `
     class="header"
   >
     <div
-      class="container"
-    >
-      <test-file-stub
-        height="100"
-        style="position: absolute; top: 0px; right: 0px;"
-        width="100"
-      />
-      <nav
-        role="navigation"
-      >
-        <ul>
-          <li>
-            <a
-              data-active="true"
-              data-underlined="true"
-              href="/"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/typography"
-            >
-              Typography
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/sign-in"
-            >
-              Sign in
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/sign-up"
-            >
-              Sign up
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/dynamic"
-            >
-              Dynamic
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      class="fallback"
+      style="height: 10rem;"
+    />
   </div>
 </div>
 `;

@@ -7,12 +7,8 @@ import type { FooterProps } from './Footer/Footer'
 import type { CalendarProps } from './Calendar/Calendar'
 import type { SEOProps } from './SEO'
 import type { ListProps, ListPropsColumnsType } from './List/List'
-import type { FormProps } from './Form/Form'
-import type { FormItemProps, FormSubmitProps, FormControlProps } from './Form/components'
 import type { SelectProps } from './Select/Select'
 import type { AutocompleteProps } from './Autocomplete/Autocomplete'
-import type { ModalProps } from './Modal/Modal'
-import type { ModalHeaderProps, ModalFooterProps } from './Modal/components'
 
 const Page = withLoadableFallback<PageProps>(import('./Page/Page'), {
   fallback: { height: '100vh' }
@@ -45,17 +41,6 @@ const Modals = withLoadableFallback(import('./Modals/Modals'), {
   fallback: { height: '10rem' }
 })
 
-export { default as Form } from './Form/Form.module'
-import type {
-  LoadableForm,
-  FormModule,
-  FormModuleComponent,
-  FormModuleComponentControlledFields
-} from './Form/Form.module'
-
-export { default as Modal } from './Modal/Modal.module'
-import type { LoadableModal } from './Modal/Modal.module'
-
 export { Page, Container, Header, Footer, Calendar, SEO, List, Select, Autocomplete, Modals }
 
 export type {
@@ -66,15 +51,6 @@ export type {
   CalendarProps,
   SEOProps,
   ListPropsColumnsType,
-  FormProps,
-  FormItemProps,
-  FormSubmitProps,
-  FormControlProps,
   SelectProps,
-  AutocompleteProps,
-  ModalProps,
-  ModalHeaderProps,
-  ModalFooterProps,
-  LoadableForm,
-  LoadableModal
+  AutocompleteProps
 }

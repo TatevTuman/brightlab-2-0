@@ -7,60 +7,9 @@ exports[`Footer renders correctly 1`] = `
     role="contentinfo"
   >
     <div
-      class="container"
-    >
-      <nav
-        role="navigation"
-      >
-        <ul>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/"
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/typography"
-            >
-              Typography
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/sign-in"
-            >
-              Sign in
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/sign-up"
-            >
-              Sign up
-            </a>
-          </li>
-          <li>
-            <a
-              data-active="false"
-              data-underlined="false"
-              href="/dynamic"
-            >
-              Dynamic
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      class="fallback"
+      style="height: 10rem;"
+    />
   </div>
 </div>
 `;

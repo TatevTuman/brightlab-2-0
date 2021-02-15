@@ -12,6 +12,7 @@ const config: Config.InitialOptions = {
       '<rootDir>/__mocks__/file-mock.ts',
     '@components': '<rootDir>/src/components/index.tsx',
     '@elements': '<rootDir>/src/elements/index.tsx',
+    '@modules': '<rootDir>/src/modules/index.tsx',
     '@images': '<rootDir>/static/assets/images',
     '@styles': '<rootDir>/static/assets/styles',
     '@types': '<rootDir>/src/types/index.ts',

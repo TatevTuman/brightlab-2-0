@@ -4,7 +4,7 @@ exports[`Dropdown renders correctly 1`] = `
 <div>
   <ul
     class="dropdown"
-    data-opened="false"
+    data-direction="vertical"
     data-selection="true"
     data-testid="dropdown"
   >

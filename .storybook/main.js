@@ -8,7 +8,9 @@ module.exports = {
   ],
   addons: [
     '@storybook/addon-actions',
-    '@storybook/addon-links'
+    '@storybook/addon-links',
+    '@storybook/addon-docs',
+    '@storybook/addon-controls'
   ],
   webpackFinal: async config => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
@@ -45,6 +47,7 @@ module.exports = {
     config.resolve.alias = {
       '@components': path.resolve(__dirname, '../src/components/index.tsx'),
       '@elements': path.resolve(__dirname, '../src/elements/index.tsx'),
+      '@modules': path.resolve(__dirname, '../src/modules/index.tsx'),
       '@images': path.resolve(__dirname, '../static/assets/images'),
       '@styles': path.resolve(__dirname, '../static/assets/styles'),
       '@types': path.resolve(__dirname, '../src/types/index.ts'),

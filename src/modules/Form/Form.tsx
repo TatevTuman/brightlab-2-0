@@ -12,7 +12,6 @@ import {
 
 import { Children } from '@types'
 import { genericMemo } from '@hocs'
-import { FormControl, FormItem, FormSubmit } from './components'
 import styles from './Form.module.scss'
 
 export interface FormProps<F> {

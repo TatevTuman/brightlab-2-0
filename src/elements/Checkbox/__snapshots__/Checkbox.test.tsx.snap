@@ -7,8 +7,6 @@ exports[`Checkbox renders correctly 1`] = `
     tabindex="0"
   >
     <input
-      id="checkbox"
-      name="checkbox"
       tabindex="-1"
       type="checkbox"
     />

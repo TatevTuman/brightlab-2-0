@@ -18,7 +18,11 @@ describe('Alert', () => {
   const props = {
     id: 'test',
     message: 'Test message',
-    options: {},
+    options: {
+      onClose: jest.fn(),
+      onOpen: jest.fn(),
+      timeout: 1000
+    },
     close: jest.fn(),
     style: {}
   }
@@ -31,7 +35,7 @@ describe('Alert', () => {
     expect(getByText(props.message)).toBeInTheDocument()
   })
 
-  it('renders different types correctly', async () => {
+  it('props[type] works correctly', async () => {
     const { getByTestId, rerender } = render(<Alert {...props} />)
     const types: AlertType[] = ['success', 'info', 'error']
 
@@ -42,7 +46,7 @@ describe('Alert', () => {
     })
   })
 
-  it('closes', async () => {
+  it('props[close] works correctly', async () => {
     const { getByTestId } = render(<Alert {...props} />)
     const alert = getByTestId('alert')
 

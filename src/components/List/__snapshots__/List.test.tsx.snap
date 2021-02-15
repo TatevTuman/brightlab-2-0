@@ -4,54 +4,15 @@ exports[`List renders correctly 1`] = `
 <div>
   <div
     class="list"
+    style="margin: -1.4285714285714286rem -0.7142857142857143rem;"
   >
     <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
+      class="listEmpty"
+      style="margin: 1.4285714285714286rem 0.7142857142857143rem;"
     >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
-    </div>
-    <div
-      class="listItem"
-      style="width: calc(25% - 20px); margin: 0px 10px 1rem;"
-    >
-      <div />
+      <i>
+        Not found
+      </i>
     </div>
   </div>
 </div>

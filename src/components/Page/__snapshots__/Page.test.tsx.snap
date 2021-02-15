@@ -7,10 +7,9 @@ exports[`Page renders correctly 1`] = `
     role="main"
   >
     <div
-      class="container"
-    >
-      children
-    </div>
+      class="fallback"
+      style="height: 10rem;"
+    />
   </div>
 </div>
 `;

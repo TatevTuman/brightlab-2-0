@@ -2,14 +2,14 @@
 
 .button {
   display: block;
-  min-width: 35px;
-  height: 44px;
-  border-radius: 4px;
+  min-width: toRem(35);
+  height: toRem(44);
+  border-radius: toRem(4);
   text-transform: uppercase;
   transition: all 0.2s ease, opacity 0.1s ease;
   cursor: pointer;
   user-select: none;
-  font-size: 0.75rem;
+  font-size: toRem(12);
   will-change: background, opacity, border, color;
 
   &:active, &:focus {
@@ -22,59 +22,69 @@
   }
 
   @include disabled($background: true, $opacity: true, $pointerEvents: true);
+}
 
-  @include breakpoint_max('mobile') {
-    height: 32px;
-    padding: 7px 0 5px;
-  }
+@mixin primary() {
+  background-color: var(--primary);
+  border: toRem(2) solid var(--primary);
+  color: var(--white);
+}
+
+@mixin secondary() {
+  background-color: transparent;
+  border: toRem(2) solid var(--secondary);
+  color: var(--black);
+}
+
+@mixin black() {
+  background-color: var(--black);
+  border: toRem(2) solid var(--black);
+  color: var(--white);
+}
+
+@mixin danger() {
+  background-color: transparent;
+  border: toRem(2) solid var(--danger);
+  color: var(--danger);
 }
 
 // Button types
 
 @mixin primary_button($width) {
+  @include primary;
+
   width: 100%;
   max-width: $width;
-  color: #fff;
-  background-color: var(--primary);
-  border: 2px solid var(--primary);
 
   &:hover {
-    background-color: var(--secondary-dark);
-    border: 2px solid var(--secondary-dark);
+    @include secondary;
   }
 
-  &:active {
-    background-color: var(--black);
-    border: 2px solid var(--black);
+  &:active, &:focus {
+    @include black;
   }
 }
 
 @mixin secondary_button($width) {
+  @include secondary;
+
   width: 100%;
   max-width: $width;
-  color: var(--primary);
-  background-color: transparent;
-  border: 2px solid var(--primary);
 
   &:hover {
-    background-color: var(--secondary);
-    border: 2px solid var(--black);
-    color: var(--black);
+    @include primary;
   }
 
   &:active, &:focus {
-    background-color: var(--secondary);
-    border: 2px solid var(--black);
-    color: var(--black);
+    @include black;
   }
 }
 
 @mixin danger_button($width) {
+  @include danger;
+
   width: 100%;
   max-width: $width;
-  color: var(--danger);
-  background-color: transparent;
-  border: 2px solid var(--danger);
 
   &:hover, &:active {
     background-color: var(--danger);
@@ -82,47 +92,17 @@
   }
 }
 
-@mixin sign_in_button($width) {
-  width: 100%;
-  max-width: $width;
-  color: var(--black);
-  background-color: transparent;
-  border: 2px solid var(--black);
-
-  &:hover, &:active {
-    background-color: var(--primary-dark);
-    color: var(--white);
-    border-color: var(--primary-dark);
-  }
-}
-
-@mixin sign_up_button($width) {
-  width: 100%;
-  max-width: $width;
-  color: var(--black);
-  background-color: transparent;
-  border: 2px solid var(--secondary-dark);
-
-  &:hover, &:active {
-    background-color: var(--black);
-    color: var(--white);
-    border-color: var(--black);
-  }
-}
-
 // Button sizes
 $buttons_sizes: (
-  "lg": 400px,
-  "md": 200px,
-  "sm": 100px,
+  "lg": toRem(400),
+  "md": toRem(200),
+  "sm": toRem(100),
 );
 
 $buttons_types_sizes: (
   "primary": $buttons_sizes,
   "secondary": $buttons_sizes,
-  "danger": $buttons_sizes,
-  "sign-in": $buttons_sizes,
-  "sign-up": $buttons_sizes,
+  "danger": $buttons_sizes
 );
 
 @each $button_type, $button_sizes in $buttons_types_sizes {
@@ -141,14 +121,6 @@ $buttons_types_sizes: (
 
       @if $button_type == "danger" {
         @include danger_button($button_size_value);
-      }
-
-      @if $button_type == "sign-in" {
-        @include sign_in_button($button_size_value);
-      }
-
-      @if $button_type == "sign-up" {
-        @include sign_up_button($button_size_value);
       }
     }
   }

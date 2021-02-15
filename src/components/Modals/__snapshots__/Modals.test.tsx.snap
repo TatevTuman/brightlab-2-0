@@ -4,6 +4,10 @@ exports[`Modals renders correctly 1`] = `
 <div>
   <div
     id="modals"
-  />
+  >
+    <div
+      class="fallback"
+    />
+  </div>
 </div>
 `;

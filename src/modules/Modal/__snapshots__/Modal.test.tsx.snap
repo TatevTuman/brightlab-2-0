@@ -8,6 +8,7 @@ exports[`Modal renders correctly 1`] = `
   >
     <div
       class="modal"
+      data-opened="true"
       id="TestModal"
       role="complementary"
     >

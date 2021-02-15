@@ -6,38 +6,7 @@ exports[`HomeModal renders correctly 1`] = `
     id="modals"
   />
   <div
-    class="modal"
-    id="HomeModal"
-    role="complementary"
-  >
-    <div
-      class="modal-mask"
-    />
-    <div
-      class="modal-content"
-    >
-      <div
-        class="homeModal"
-      >
-        <header
-          class="modal-header"
-        >
-          <h3>
-            Home modal
-          </h3>
-        </header>
-        <div>
-          Random number from modal state: 
-        </div>
-        <footer
-          class="modal-footer"
-        >
-          <div>
-            Close
-          </div>
-        </footer>
-      </div>
-    </div>
-  </div>
+    class="fallback"
+  />
 </div>
 `;

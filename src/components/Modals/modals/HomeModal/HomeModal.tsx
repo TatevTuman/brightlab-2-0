@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Modal } from '@components'
+import { Modal } from '@modules'
 import { useModal } from '@hooks'
 import styles from './HomeModal.module.scss'
 
