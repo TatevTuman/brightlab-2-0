@@ -18,8 +18,8 @@ const FormControl = <F,>(props: FormControlProps<F>) => {
   return (
     <div className={'form-control'}>
       <Controller
-        render={props => render({ ...props, validation })}
         name={name}
+        render={props => render({ ...props, validation })}
         rules={validation}
         defaultValue={defaultValue}
         control={control}

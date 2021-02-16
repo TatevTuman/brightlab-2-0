@@ -16,10 +16,7 @@ export default {
     disabled: { control: 'boolean', name: 'Disabled' },
     loading: { control: 'boolean', name: 'Loading' },
     centered: { control: 'boolean', name: 'Centered' },
-    onClick: { action: 'onClick' },
-    form: storybook.args.disabled,
-    submit: storybook.args.disabled,
-    className: storybook.args.disabled
+    onClick: { action: 'onClick' }
   }
 } as Meta
 

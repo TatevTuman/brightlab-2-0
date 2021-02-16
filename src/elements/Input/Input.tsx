@@ -5,7 +5,7 @@ import './Input.scss'
 
 export type InputSuffixProp = JSX.Element | string | number
 export interface InputProps {
-  id: string
+  name: string
   value: string
   type?: string
   label?: string
@@ -33,7 +33,7 @@ export interface InputProps {
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
-    id,
+    name,
     value,
     type,
     label,
@@ -73,15 +73,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return (
     <div className={'input'} data-disabled={disabled}>
       {label && (
-        <label htmlFor={id} data-required={required}>
+        <label htmlFor={name} data-required={required}>
           {label}
         </label>
       )}
       <div className={'input-inner'}>
         <input
-          id={id}
+          id={name}
           type={type}
-          name={id}
+          name={name}
           ref={ref}
           value={value}
           defaultValue={defaultValue}

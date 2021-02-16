@@ -8,14 +8,14 @@ import {
   WithTogglePropsPassed
 } from '@hocs'
 
-import { Dropdown, DropdownProps, Input, InputProps } from '@elements'
+import { Dropdown, Input, InputProps } from '@elements'
 import { OptionType } from '@types'
 import SelectArrow from '@images/arrow.svg'
 import './Select.scss'
 
 type SelectInputProps = Omit<
   InputProps,
-  | 'id'
+  | 'name'
   | 'label'
   | 'value'
   | 'type'
@@ -36,7 +36,7 @@ type SelectInputProps = Omit<
 >
 
 export type SelectProps = {
-  id: string
+  name: string
   label?: string
   disabled?: boolean
   required?: boolean
@@ -45,7 +45,7 @@ export type SelectProps = {
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
-  input?: SelectInputProps
+  input?: SelectInputProps // TODO find more elegant way to do this
 
   onInputChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -59,7 +59,7 @@ export type SelectPropsWithHocs = SelectProps & WithOptionSelectPropsPassed & Wi
 
 const Select: React.FC<SelectPropsWithHocs> = props => {
   const {
-    id,
+    name,
     label,
     input = {},
     innerRef,
@@ -128,7 +128,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
       data-disabled={disabled}
     >
       <Input
-        id={id}
+        name={name}
         label={label}
         value={inputValue}
         ref={innerRef}

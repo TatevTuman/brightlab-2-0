@@ -3,7 +3,7 @@ import { handleEvent } from '@utils'
 import './Checkbox.scss'
 
 export interface CheckboxProps {
-  id: string
+  name: string
   checked: boolean
   defaultChecked?: boolean
   label?: string
@@ -18,7 +18,7 @@ export interface CheckboxProps {
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   const {
-    id,
+    name,
     label,
     checked,
     defaultChecked,
@@ -48,13 +48,13 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
       tabIndex={tabIndex}
     >
       {label && (
-        <label htmlFor={id} data-required={required}>
+        <label htmlFor={name} data-required={required}>
           {label}
         </label>
       )}
       <input
-        id={id}
-        name={id}
+        id={name}
+        name={name}
         ref={ref}
         type="checkbox"
         checked={checked}

@@ -1,15 +1,15 @@
 import React from 'react'
+import { ControllerRenderProps } from 'react-hook-form'
 import { LoadableComponent } from '@loadable/component'
 import { withLoadableFallback, WithLoadableFallbackOptions } from '@hocs'
-import { FormControlProps, Autocomplete, AutocompleteProps, Select, SelectProps } from '@components'
+import { Autocomplete, AutocompleteProps, Select, SelectProps } from '@components'
 import { Input, InputProps, Checkbox, CheckboxProps } from '@elements'
+import type { FormProps, FormControlProps } from '@modules'
+
 import { FormControl, FormItem, FormSubmit } from './components'
 
-import type { FormProps } from '@components'
-import { ControllerRenderProps } from 'react-hook-form'
-
 /* We don't need to pass these props to form component anymore because form controls them */
-export type FormModuleComponentControlledFields = 'id' | 'value' | 'checked' | 'onChange' | 'required'
+export type FormModuleComponentControlledFields = 'name' | 'value' | 'checked' | 'onChange' | 'required'
 /* We don't need to pass these props to form control anymore because we described it usages here */
 export type FormModuleControlledFields = 'render' | 'defaultValue'
 
@@ -60,7 +60,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
         render={(props: ControllerRenderProps) => {
           const { value, ref, onChange } = props
 
-          return <Input id={name} value={value} ref={ref} onChange={onChange} required={required} {...inputProps} />
+          return <Input name={name} value={value} ref={ref} onChange={onChange} required={required} {...inputProps} />
         }}
       />
     )
@@ -81,7 +81,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
           const { value, ref, onChange } = props
 
           return (
-            <Select id={name} value={value} innerRef={ref} onChange={onChange} required={required} {...selectProps} />
+            <Select name={name} value={value} innerRef={ref} onChange={onChange} required={required} {...selectProps} />
           )
         }}
       />
@@ -104,7 +104,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
 
           return (
             <Autocomplete
-              id={name}
+              name={name}
               value={value}
               innerRef={ref}
               onChange={onChange}
@@ -132,7 +132,14 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
           const { value, ref, onChange } = props
 
           return (
-            <Checkbox id={name} checked={value} ref={ref} onChange={onChange} required={required} {...checkboxProps} />
+            <Checkbox
+              name={name}
+              checked={value}
+              ref={ref}
+              onChange={onChange}
+              required={required}
+              {...checkboxProps}
+            />
           )
         }}
       />

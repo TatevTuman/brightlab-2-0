@@ -15,7 +15,7 @@ import './Autocomplete.scss'
 
 type AutocompleteInputProps = Omit<
   InputProps,
-  | 'id'
+  | 'name'
   | 'label'
   | 'value'
   | 'type'
@@ -36,7 +36,7 @@ type AutocompleteInputProps = Omit<
 >
 
 export type AutocompleteProps = {
-  id: string
+  name: string
   label?: string
   disabled?: boolean
   required?: boolean
@@ -59,7 +59,7 @@ export type AutocompletePropsWithHocs = AutocompleteProps & WithOptionSelectProp
 
 const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   const {
-    id,
+    name,
     label,
     input = {},
     innerRef,
@@ -143,7 +143,7 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
       data-disabled={disabled}
     >
       <Input
-        id={id}
+        name={name}
         label={label}
         value={autocomplete}
         ref={innerRef}
