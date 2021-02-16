@@ -17,6 +17,9 @@ export const storybook = {
   },
   actions: {
     interactive: {
+      disabled: false,
+      required: false,
+      focusable: true,
       onChange: action('onChange'),
       onFocus: action('onFocus'),
       onBlur: action('onBlur'),

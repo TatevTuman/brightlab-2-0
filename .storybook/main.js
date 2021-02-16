@@ -30,20 +30,8 @@ module.exports = {
     ]
     // Prefer Gatsby ES6 entrypoint (module) over commonjs (main) entrypoint
     config.resolve.mainFields = ["browser", "module", "main"];
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      loader: require.resolve("babel-loader"),
-      options: {
-        presets: [["react-app", { flow: false, typescript: true }]],
-        plugins: [
-          require.resolve("@babel/plugin-proposal-class-properties"),
-          // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-          require.resolve("babel-plugin-remove-graphql-queries"),
-        ],
-      },
-    })
-    config.resolve.extensions.push(".ts", ".tsx")
-    // add aliases to relative paths
+
+    // Adds aliases to relative paths
     config.resolve.alias = {
       '@components': path.resolve(__dirname, '../src/components/index.tsx'),
       '@elements': path.resolve(__dirname, '../src/elements/index.tsx'),
@@ -58,7 +46,31 @@ module.exports = {
       '@hocs': path.resolve(__dirname, '../src/hocs/index.ts'),
       '@cache': path.resolve(__dirname, '../gatsby-apollo-cache.ts')
     }
-    // add scss handling
+
+    // Adds typescript loader
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      loader: require.resolve("babel-loader"),
+      options: {
+        presets: [["react-app", { flow: false, typescript: true }]],
+        plugins: [
+          require.resolve("@babel/plugin-proposal-class-properties"),
+          // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
+          require.resolve("babel-plugin-remove-graphql-queries"),
+        ],
+      },
+    })
+    config.resolve.extensions.push(".ts", ".tsx")
+
+    // SVG handling
+    const fileLoaderRule = config.module.rules.find(rule => rule.test.test('.svg'));
+    fileLoaderRule.exclude = /\.svg$/;
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["svg-react-loader"],
+    });
+
+    // SCSS handling
     config.module.rules.push({
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader'],

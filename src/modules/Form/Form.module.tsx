@@ -60,7 +60,17 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
         render={(props: ControllerRenderProps) => {
           const { value, ref, onChange } = props
 
-          return <Input name={name} value={value} ref={ref} onChange={onChange} required={required} {...inputProps} />
+          return (
+            <Input
+              name={name}
+              value={value}
+              ref={ref}
+              onChange={onChange}
+              onClear={() => onChange('')}
+              required={required}
+              {...inputProps}
+            />
+          )
         }}
       />
     )
@@ -81,7 +91,15 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
           const { value, ref, onChange } = props
 
           return (
-            <Select name={name} value={value} innerRef={ref} onChange={onChange} required={required} {...selectProps} />
+            <Select
+              name={name}
+              value={value}
+              innerRef={ref}
+              onChange={onChange}
+              onClear={() => onChange(null)}
+              required={required}
+              {...selectProps}
+            />
           )
         }}
       />
@@ -108,6 +126,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
               value={value}
               innerRef={ref}
               onChange={onChange}
+              onClear={() => onChange(null)}
               required={required}
               {...autocompleteProps}
             />

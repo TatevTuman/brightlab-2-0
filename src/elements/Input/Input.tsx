@@ -21,7 +21,6 @@ export interface InputProps {
   required?: boolean
   focusable?: boolean
   role?: string
-  min?: number
   ref?: RefObject<HTMLInputElement>
 
   onChange?: (value: string) => void
@@ -48,7 +47,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     required,
     focusable,
     role,
-    min,
     onChange,
     onFocus,
     onBlur,
@@ -99,7 +97,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           data-clearable={clearable}
           role={role}
           tabIndex={tabIndex}
-          min={min}
         />
         <div className={'input-inner__prefix'}>{prefix}</div>
         <div className={'input-inner__suffix'}>
@@ -116,7 +113,8 @@ Input.defaultProps = {
   type: 'text',
   placeholder: 'Type a text',
   autoComplete: 'on',
-  focusable: true
+  focusable: true,
+  clearable: true
 }
 
 export default memo(Input)

@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions'
 import { Provider as AlertProvider, transitions, useAlert, AlertProviderProps } from 'react-alert'
 import Alert, { AlertProps } from './Alert'
 import { Button, ButtonSizes } from '@elements'
-import { storybook } from '@utils'
 
 interface AlertStoryTemplateProps extends Omit<AlertProviderProps, 'template'> {
   type: AlertProps['options']['type']
@@ -44,8 +43,7 @@ export default {
     offset: { control: 'text', name: 'Offset' },
     style: { control: 'object', name: 'Style' },
     onOpen: { action: 'onOpen' },
-    onClose: { action: 'onClose' },
-    id: storybook.args.disabled
+    onClose: { action: 'onClose' }
   }
 } as Meta
 
@@ -66,7 +64,6 @@ const AlertStoryTemplate: Story<AlertStoryTemplateProps> = args => {
   const { id, style, message, close, type, onOpen, onClose, ...alertProviderProps } = args
 
   const alertOptions = {
-    id,
     style,
     message,
     close,
@@ -86,7 +83,6 @@ const AlertStoryTemplate: Story<AlertStoryTemplateProps> = args => {
 }
 
 AlertStoryTemplate.args = {
-  id: 'story',
   position: ALERT_PROVIDER_POSITIONS[4],
   timeout: 2000,
   offset: '0px 0px 0px 0px',
@@ -100,5 +96,5 @@ AlertStoryTemplate.args = {
 
 export const AlertStory = AlertStoryTemplate.bind({})
 AlertStory.args = {
-  ...AlertStoryTemplate.args,
+  ...AlertStoryTemplate.args
 }

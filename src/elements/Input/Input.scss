@@ -156,9 +156,7 @@
         left: -1.5rem;
         cursor: pointer;
         transition: all 0.2s ease, transform 0.3s ease;
-        visibility: hidden;
-        opacity: 0;
-        will-change: opacity, visability, color, transform;
+        will-change: color, transform;
         margin-right: 1rem;
 
         &:active {

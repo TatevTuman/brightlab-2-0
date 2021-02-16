@@ -25,6 +25,9 @@ exports.onCreatePage = async ({ page, actions }) => {
 
 exports.onCreateWebpackConfig = function ({ stage, loaders, actions, plugins }) {
   const config = {
+    module: {
+      rules: []
+    },
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, 'src/components/index.tsx'),
@@ -44,14 +47,11 @@ exports.onCreateWebpackConfig = function ({ stage, loaders, actions, plugins }) 
   }
 
   if (stage === 'build-html') {
-    config.module = {
-      rules: [
-        {
-          test: /bad-module/,
-          use: loaders.null()
-        }
-      ]
-    }
+    /* For libs that should be ensured that window and document exists */
+    // config.module.rules.push({
+    //   test: /bad-module/ /* Define your lib */,
+    //   use: loaders.null()
+    // })
   }
 
   actions.setWebpackConfig(config)

@@ -44,7 +44,7 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
     if (render) return render(error)
     else {
       return (
-        <div role="validation-error" className={'validationError'}>
+        <div className={'validation-error'} role="validation-error">
           {error.message}
         </div>
       )
