@@ -6,7 +6,7 @@ import Alert, { AlertProps } from './Alert'
 import { Button } from '@elements'
 import { storybook } from '@utils'
 
-interface AlertStoryProps extends Omit<AlertProviderProps, 'template'> {
+interface AlertStoryTemplateProps extends Omit<AlertProviderProps, 'template'> {
   type: AlertProps['options']['type']
   onClose: AlertProps['options']['onClose']
   onOpen: AlertProps['options']['onOpen']
@@ -28,7 +28,7 @@ const ALERT_PROVIDER_POSITIONS = [
 ] as const
 
 export default {
-  title: 'elements/Alert',
+  title: 'Elements',
   argTypes: {
     message: { control: 'text', name: 'Message' },
     position: {
@@ -38,7 +38,7 @@ export default {
       },
       name: 'Position'
     },
-    type: { control: 'text', name: 'Message' },
+    type: { control: { type: 'select', options: ['success', 'info', 'error'] }, name: 'Type' },
     transition: { control: { type: 'select', options: ['fade', 'scale'] }, name: 'Transition' },
     timeout: { control: 'number', name: 'Timeout' },
     offset: { control: 'text', name: 'Offset' },
@@ -62,7 +62,7 @@ const AlertButton: React.FC<AlertProps> = props => {
   )
 }
 
-const AlertStory: Story<AlertStoryProps> = args => {
+const AlertStoryTemplate: Story<AlertStoryTemplateProps> = args => {
   const { id, style, message, close, type, onOpen, onClose, ...alertProviderProps } = args
 
   const alertOptions = {
@@ -85,7 +85,7 @@ const AlertStory: Story<AlertStoryProps> = args => {
   )
 }
 
-AlertStory.args = {
+AlertStoryTemplate.args = {
   id: 'story',
   position: ALERT_PROVIDER_POSITIONS[4],
   timeout: 2000,
@@ -98,22 +98,8 @@ AlertStory.args = {
   onClose: action('onClose')
 }
 
-export const SuccessAlert = AlertStory.bind({})
-SuccessAlert.args = {
-  ...AlertStory.args,
+export const AlertStory = AlertStoryTemplate.bind({})
+AlertStory.args = {
+  ...AlertStoryTemplate.args,
   message: 'Success'
-}
-
-export const InfoAlert = AlertStory.bind({})
-InfoAlert.args = {
-  ...AlertStory.args,
-  message: 'Info',
-  type: 'info'
-}
-
-export const ErrorAlert = AlertStory.bind({})
-ErrorAlert.args = {
-  ...AlertStory.args,
-  message: 'Error',
-  type: 'error'
 }
