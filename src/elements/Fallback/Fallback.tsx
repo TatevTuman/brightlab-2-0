@@ -3,11 +3,9 @@ import './Fallback.scss'
 
 export interface FallbackProps {
   height: string
-  render?: () => JSX.Element
 }
 
-const Fallback: React.FC<FallbackProps> = ({ height, render }) => {
-  if (render) return render()
+const Fallback: React.FC<FallbackProps> = ({ height }) => {
   return <div className={'fallback'} style={{ height }} />
 }
 
