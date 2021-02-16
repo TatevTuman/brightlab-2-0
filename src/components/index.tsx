@@ -1,56 +1,22 @@
-import { withLoadableFallback } from '@hocs'
+import loadable from '@loadable/component'
 
-import type { PageProps } from './Page/Page'
-import type { ContainerProps } from './Container/Container'
-import type { HeaderProps } from './Header/Header'
-import type { FooterProps } from './Footer/Footer'
-import type { CalendarProps } from './Calendar/Calendar'
-import type { SEOProps } from './SEO'
-import type { ListProps, ListPropsColumnsType } from './List/List'
-import type { SelectProps } from './Select/Select'
-import type { AutocompleteProps } from './Autocomplete/Autocomplete'
+export const Page = loadable(() => import('./Page/Page'))
+export const Container = loadable(() => import('./Container/Container'))
+export const Header = loadable(() => import('./Header/Header'))
+export const Footer = loadable(() => import('./Footer/Footer'))
+export const Calendar = loadable(() => import('./Calendar/Calendar'))
+export const List = loadable(() => import('./List/List'))
+export const Select = loadable(() => import('./Select/Select'))
+export const Autocomplete = loadable(() => import('./Autocomplete/Autocomplete'))
+export const Modals = loadable(() => import('./Modals/Modals'))
+export const SEO = loadable(() => import('./SEO'))
 
-const Page = withLoadableFallback<PageProps>(import('./Page/Page'), {
-  fallback: { height: '100vh' }
-})
-const Container = withLoadableFallback<ContainerProps>(import('./Container/Container'), {
-  fallback: { height: '10rem' }
-})
-const Header = withLoadableFallback<HeaderProps>(import('./Header/Header'), {
-  fallback: { height: '10rem' }
-})
-const Footer = withLoadableFallback<FooterProps>(import('./Footer/Footer'), {
-  fallback: { height: '10rem' }
-})
-const Calendar = withLoadableFallback<CalendarProps>(import('./Calendar/Calendar'), {
-  fallback: { height: '10rem' }
-})
-const SEO = withLoadableFallback<SEOProps>(import('./SEO'), {
-  fallback: { height: '10rem' }
-})
-const List = withLoadableFallback<ListProps>(import('./List/List'), {
-  fallback: { height: '10rem' }
-})
-const Select = withLoadableFallback<SelectProps>(import('./Select/Select'), {
-  fallback: { height: '10rem' }
-})
-const Autocomplete = withLoadableFallback<AutocompleteProps>(import('./Autocomplete/Autocomplete'), {
-  fallback: { height: '10rem' }
-})
-const Modals = withLoadableFallback(import('./Modals/Modals'), {
-  fallback: { height: '10rem' }
-})
-
-export { Page, Container, Header, Footer, Calendar, SEO, List, Select, Autocomplete, Modals }
-
-export type {
-  PageProps,
-  ContainerProps,
-  HeaderProps,
-  FooterProps,
-  CalendarProps,
-  SEOProps,
-  ListPropsColumnsType,
-  SelectProps,
-  AutocompleteProps
-}
+export * from './Page/Page'
+export * from './Container/Container'
+export * from './Header/Header'
+export * from './Footer/Footer'
+export * from './Calendar/Calendar'
+export * from './SEO'
+export * from './List/List'
+export * from './Select/Select'
+export * from './Autocomplete/Autocomplete'

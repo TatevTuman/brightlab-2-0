@@ -6,13 +6,24 @@ import './Button.scss'
 
 type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement>
 type ButtonMouseEvent = MouseEvent<HTMLButtonElement>
+
 export type ButtonEvents = ButtonKeyboardEvent | ButtonMouseEvent
+export enum ButtonSizes {
+  lg = 'lg',
+  md = 'md',
+  sm = 'sm'
+}
+export enum ButtonTypes {
+  primary = 'primary',
+  secondary = 'secondary',
+  danger = 'danger'
+}
 
 export interface ButtonProps {
   children: string
   className?: string
-  type?: string
-  size?: string
+  type?: ButtonTypes
+  size?: ButtonSizes
   onClick?(e: ButtonEvents): void
   disabled?: boolean
   loading?: boolean
@@ -67,8 +78,8 @@ const Button: React.FC<ButtonProps> = props => {
 
 Button.defaultProps = {
   className: '',
-  type: 'primary',
-  size: 'lg',
+  type: ButtonTypes.primary,
+  size: ButtonSizes.lg,
   loading: false,
   disabled: false,
   submit: false,

@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
 import { Provider as AlertProvider, transitions, useAlert, AlertProviderProps } from 'react-alert'
 import Alert, { AlertProps } from './Alert'
-import { Button } from '@elements'
+import { Button, ButtonSizes } from '@elements'
 import { storybook } from '@utils'
 
 interface AlertStoryTemplateProps extends Omit<AlertProviderProps, 'template'> {
@@ -28,7 +28,7 @@ const ALERT_PROVIDER_POSITIONS = [
 ] as const
 
 export default {
-  title: 'Elements',
+  title: 'Elements/Alert',
   argTypes: {
     message: { control: 'text', name: 'Message' },
     position: {
@@ -56,7 +56,7 @@ const AlertButton: React.FC<AlertProps> = props => {
   const handleAlertShow = () => alert.show(message, options)
 
   return (
-    <Button onClick={handleAlertShow} size={'sm'}>
+    <Button onClick={handleAlertShow} size={ButtonSizes.sm}>
       Show
     </Button>
   )
@@ -93,7 +93,7 @@ AlertStoryTemplate.args = {
   transition: transitions.SCALE,
   style: {},
   type: 'success',
-  message: 'Alert',
+  message: 'Text',
   onOpen: action('onOpen'),
   onClose: action('onClose')
 }
@@ -101,5 +101,4 @@ AlertStoryTemplate.args = {
 export const AlertStory = AlertStoryTemplate.bind({})
 AlertStory.args = {
   ...AlertStoryTemplate.args,
-  message: 'Success'
 }

@@ -12,6 +12,7 @@ export type WithLoadableFallbackOptions = {
 
 const defaultOptions = { delay: 1000, timeout: 10000, fallback: { height: '20rem' } }
 
+// TODO research why doesn't work in @elements. TypeError: Object(...) is not a function on import('...')
 export default <Props, Module extends DefaultComponent<Props> = DefaultComponent<Props>>(
   moduleImport: PromiseLike<Module>,
   options?: WithLoadableFallbackOptions,

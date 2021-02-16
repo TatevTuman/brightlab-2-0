@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react'
 
-interface UseWindowSizeResult {
+export interface UseWindowSizeResult {
   width: number
   height: number
   breakpoint: string
   toRender: boolean
+}
+
+/* Desktop > 992, Tablet > 768, Landscape > 576, Mobile > 320 */
+export enum Breakpoints {
+  mobile = 576,
+  landscape = 768,
+  tablet = 992
 }
 
 const useWindowSize = (breakpointsToRender?: string[]): UseWindowSizeResult => {
@@ -18,9 +25,9 @@ const useWindowSize = (breakpointsToRender?: string[]): UseWindowSizeResult => {
   }
 
   const getBreakpoint = (width: number): string => {
-    if (width <= 576) return 'mobile'
-    if (width <= 768) return 'landscape'
-    if (width <= 992) return 'tablet'
+    if (width <= Breakpoints.mobile) return 'mobile'
+    if (width <= Breakpoints.landscape) return 'landscape'
+    if (width <= Breakpoints.tablet) return 'tablet'
 
     return 'desktop'
   }
