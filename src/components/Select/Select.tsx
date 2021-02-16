@@ -34,7 +34,6 @@ type SelectInputProps = Omit<
   | 'onKeyDown'
   | 'onClear'
 >
-type SelectDropdownProps = Omit<DropdownProps, 'options' | 'onSelect' | 'toggle'>
 
 export type SelectProps = {
   id: string
@@ -47,7 +46,6 @@ export type SelectProps = {
   innerRef?: RefObject<HTMLInputElement>
 
   input?: SelectInputProps
-  dropdown?: SelectDropdownProps
 
   onInputChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -64,7 +62,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
     id,
     label,
     input = {},
-    dropdown = {},
     innerRef,
     options,
     selectedOption,
@@ -121,7 +118,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
   const inputValue = (selectedOption && selectedOption.label) || ''
 
   const { suffix, ...otherInputProps } = input
-  const { ...otherDropdownProps } = dropdown
 
   return (
     <div
@@ -152,13 +148,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         }
         {...otherInputProps}
       />
-      <Dropdown
-        options={options}
-        onSelect={handleDropdownSelect}
-        toggle={toggle}
-        direction={input.direction}
-        {...otherDropdownProps}
-      />
+      <Dropdown options={options} toggle={toggle} onSelect={handleDropdownSelect} />
     </div>
   )
 }
@@ -166,7 +156,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
 Select.defaultProps = {
   focusable: true,
   input: {},
-  dropdown: {}
 }
 
 export default withOptionSelect(withToggle(Select))

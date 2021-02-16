@@ -63,7 +63,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
         onChange={handleChange}
         tabIndex={-1}
       />
-      <div className={'checkbox-indicator'} />
+      <div className={'checkbox-indicator'} data-testid={'checkbox'} />
     </label>
   )
 })

@@ -1,46 +1,46 @@
 @import "static/assets/styles/variables";
 
-@mixin horizontal() {
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  .input-inner {
-    flex: 1;
-  }
-
-  label {
-    /*
-      If change - Check ButtonWithRefresh, ButtonWithPlus, Input, Dropdown horizontals
-    */
-    font-size: toRem(12);
-    min-width: toRem(125);
-    margin-right: toRem(65);
-    margin-bottom: unset;
-
-    @include breakpoint_max('tablet') {
-      margin-right: toRem(40);
-    }
-  }
-
-  div[role="validation-error"] {
-    width: 100%;
-    text-align: right;
-  }
-}
+//@mixin horizontal() {
+//  align-items: center;
+//  justify-content: space-between;
+//  flex-direction: row;
+//  flex-wrap: wrap;
+//
+//  .input-inner {
+//    flex: 1;
+//  }
+//
+//  label {
+//    /*
+//      If change - Check ButtonWithRefresh, ButtonWithPlus, Input, Dropdown horizontals
+//    */
+//    font-size: toRem(12);
+//    min-width: toRem(125);
+//    margin-right: toRem(65);
+//    margin-bottom: unset;
+//
+//    @include breakpoint_max('tablet') {
+//      margin-right: toRem(40);
+//    }
+//  }
+//
+//  div[role="validation-error"] {
+//    width: 100%;
+//    text-align: right;
+//  }
+//}
+//
+//&[data-direction='horizontal'] {
+//  @include breakpoint_min('tablet') {
+//    @include horizontal;
+//  }
+//}
 
 .input {
   display: flex;
   flex-direction: column;
   width: 100%;
   @include disabled($background: false, $opacity: true, $pointerEvents: true);
-
-  &[data-direction='horizontal'] {
-    @include breakpoint_min('tablet') {
-      @include horizontal;
-    }
-  }
 
   label {
     text-transform: uppercase;

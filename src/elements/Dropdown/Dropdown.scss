@@ -2,7 +2,7 @@
 
 .dropdown {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 2rem - 2px);
   margin: 0;
   border-radius: 4px;
   border: 2px solid var(--grey);

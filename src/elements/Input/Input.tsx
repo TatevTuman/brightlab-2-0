@@ -14,7 +14,6 @@ export interface InputProps {
   prefix?: InputSuffixProp
   suffix?: InputSuffixProp
 
-  direction?: 'horizontal' | 'vertical'
   autoComplete?: 'on' | 'off'
   disabled?: boolean
   error?: boolean
@@ -42,7 +41,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     placeholder,
     prefix,
     suffix,
-    direction,
     autoComplete,
     disabled,
     error,
@@ -73,7 +71,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   }
 
   return (
-    <div className={'input'} data-disabled={disabled} data-direction={direction}>
+    <div className={'input'} data-disabled={disabled}>
       {label && (
         <label htmlFor={id} data-required={required}>
           {label}
@@ -118,7 +116,6 @@ Input.defaultProps = {
   type: 'text',
   placeholder: 'Type a text',
   autoComplete: 'on',
-  direction: 'vertical',
   focusable: true
 }
 
