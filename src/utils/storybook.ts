@@ -8,7 +8,6 @@ export const storybook = {
     interactive: {
       disabled: { control: 'boolean', name: 'Disabled' },
       required: { control: 'boolean', name: 'Required' },
-      focusable: { control: 'boolean', name: 'Focusable' },
       onChange: { action: 'onChange' },
       onFocus: { action: 'onFocus' },
       onBlur: { action: 'onBlur' },
@@ -19,7 +18,6 @@ export const storybook = {
     interactive: {
       disabled: false,
       required: false,
-      focusable: true,
       onChange: action('onChange'),
       onFocus: action('onFocus'),
       onBlur: action('onBlur'),

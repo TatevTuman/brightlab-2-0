@@ -1,41 +1,5 @@
 @import "static/assets/styles/variables";
 
-//@mixin horizontal() {
-//  align-items: center;
-//  justify-content: space-between;
-//  flex-direction: row;
-//  flex-wrap: wrap;
-//
-//  .input-inner {
-//    flex: 1;
-//  }
-//
-//  label {
-//    /*
-//      If change - Check ButtonWithRefresh, ButtonWithPlus, Input, Dropdown horizontals
-//    */
-//    font-size: toRem(12);
-//    min-width: toRem(125);
-//    margin-right: toRem(65);
-//    margin-bottom: unset;
-//
-//    @include breakpoint_max('tablet') {
-//      margin-right: toRem(40);
-//    }
-//  }
-//
-//  div[role="validation-error"] {
-//    width: 100%;
-//    text-align: right;
-//  }
-//}
-//
-//&[data-direction='horizontal'] {
-//  @include breakpoint_min('tablet') {
-//    @include horizontal;
-//  }
-//}
-
 .input {
   display: flex;
   flex-direction: column;
@@ -45,57 +9,47 @@
   label {
     text-transform: uppercase;
     font-weight: 500;
-    color: var(--grey);
+    color: var(--primary-dark);
     margin-bottom: 1rem;
   }
 
   &-inner {
+    display: flex;
+    align-items: center;
     width: 100%;
     position: relative;
+    background: var(--white);
+    border: 1px solid var(--grey);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    will-change: background, border-color;
+
+    &[data-error='true'] {
+      border-color: var(--danger) !important;
+
+      input {
+        color: var(--danger) !important;
+      }
+    }
+
+    &:hover, &[data-focused="true"] {
+      border-color: var(--black);
+    }
 
     input {
-      width: 100%;
-      background: var(--white);
-      border: 1px solid var(--grey);
-      border-radius: 8px;
-      padding: 0.5rem 1rem 0.5rem;
+      flex: 1;
+      border: none;
+      padding: 0.5rem;
       color: var(--black);
-      transition: all 0.2s ease;
-      will-change: color, background, border, padding;
-
-      &[data-prefix='true'] {
-        padding-left: 3.2rem;
-      }
-
-      &[data-suffix='true'], &[data-clearable='true'] {
-        padding-right: 4rem;
-      }
-
-      &[data-suffix='true'][data-clearable='true'] {
-        padding-right: 5rem;
-      }
-
-      &[data-suffix='true'][data-clearable='true'][data-disabled='true'] {
-        padding-right: 7rem;
-      }
 
       &[data-cursor='false'] {
         text-shadow: 0 0 0 var(--black);
         color: transparent;
       }
 
-      &[data-error='true'] {
-        border-color: var(--white-dark);
-        background: var(--danger-light);
-      }
-
-      &:hover {
-        border-color: var(--grey);
-      }
-
       &:active, &:focus {
-        border-color: var(--black);
-        background: var(--white-dark);
+        outline: none;
       }
 
       &::placeholder {
@@ -103,79 +57,40 @@
       }
     }
 
-    input:active + &__prefix,
-    input:focus + &__prefix {
-      svg {
-
-        path, circle {
-        }
-      }
-    }
-
-    input:not(:placeholder-shown) + &__prefix + &__suffix {
-      .input-inner-suffix-times {
+    input:not(:placeholder-shown) + &__suffix {
+      .input-inner__suffix-times {
         visibility: visible;
         opacity: 1;
       }
     }
 
     &__prefix {
-      max-width: toRem(26);
-      min-width: toRem(26);
-      position: absolute;
-      left: 1rem;
-      top: -1px;
-      height: 100%;
+      padding-left: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    &__suffix {
+      padding-right: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
 
-      svg {
-        max-width: toRem(16);
-
-        path, circle {
-          transition: stroke 0.2s ease;
-        }
-      }
-    }
-
-    &__suffix {
-      height: 100%;
-      position: absolute;
-      right: 1rem;
-      top: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
       &-times {
-        @include absolute_vertical_center;
-
-        width: toRem(10);
-        left: -1.5rem;
+        margin-left: 0.5rem;
+        width: 0.625rem;
         cursor: pointer;
-        transition: all 0.2s ease, transform 0.3s ease;
-        will-change: color, transform;
-        margin-right: 1rem;
+        transition: all 0.3s ease;
+        will-change: transform, opacity, visibility;
+        visibility: hidden;
+        opacity: 0;
 
         &:active {
-          transform: scale(1.05) translate(0, -50%);
+          transform: scale(1.05);
         }
-      }
-
-      a {
-        height: toRem(20);
-      }
-
-      button {
-        width: fit-content;
-        margin-right: -1rem;
-        border-radius: 8px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        padding: toRem(8) toRem(28);
-        height: 100%;
       }
     }
   }

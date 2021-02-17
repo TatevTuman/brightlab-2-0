@@ -9,7 +9,6 @@ export interface CheckboxProps {
   label?: string
   disabled?: boolean
   required?: boolean
-  focusable?: boolean
   onChange?: (value: boolean) => void
   onFocus?: (e: React.FocusEvent<HTMLLabelElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLLabelElement>) => void
@@ -17,27 +16,15 @@ export interface CheckboxProps {
 }
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
-  const {
-    name,
-    label,
-    checked,
-    defaultChecked,
-    disabled,
-    required,
-    focusable,
-    onChange,
-    onFocus,
-    onBlur,
-    onKeyDown
-  } = props
+  const { name, label, checked, defaultChecked, disabled, required, onChange, onFocus, onBlur, onKeyDown } = props
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => handleEvent(onChange, { value: !checked, disabled })
   const handleBlur = (e: React.FocusEvent<HTMLLabelElement>) => handleEvent(onBlur, { value: e, disabled })
   const handleFocus = (e: React.FocusEvent<HTMLLabelElement>) => handleEvent(onFocus, { value: e, disabled })
   const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => handleEvent(onKeyDown, { value: e, disabled })
 
-  /* If disabled or not focusable no focus */
-  const tabIndex = focusable && !disabled ? 0 : -1
+  /* If disabled no focus */
+  const tabIndex = disabled ? -1 : 0
 
   return (
     <label
@@ -69,8 +56,6 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
 })
 
 Checkbox.displayName = 'Checkbox'
-Checkbox.defaultProps = {
-  focusable: true
-}
+Checkbox.defaultProps = {}
 
 export default memo(Checkbox)

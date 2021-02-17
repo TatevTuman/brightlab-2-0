@@ -39,6 +39,13 @@ textarea {
   background-color: transparent;
   letter-spacing: inherit;
   outline: none;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
 }
 
 button,

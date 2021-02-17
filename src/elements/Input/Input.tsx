@@ -1,4 +1,4 @@
-import React, { memo, forwardRef, RefObject } from 'react'
+import React, { memo, forwardRef, useState, RefObject } from 'react'
 import { handleEvent } from '@utils'
 import TimesImage from '@images/times.svg'
 import './Input.scss'
@@ -19,7 +19,6 @@ export interface InputProps {
   error?: boolean
   clearable?: boolean
   required?: boolean
-  focusable?: boolean
   role?: string
   ref?: RefObject<HTMLInputElement>
 
@@ -45,7 +44,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     error,
     clearable,
     required,
-    focusable,
     role,
     onChange,
     onFocus,
@@ -54,13 +52,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     onClear
   } = props
 
-  /* If disabled or not focusable no focus */
-  const tabIndex = focusable && !disabled ? 0 : -1
+  const [focused, focus] = useState(false)
+
+  /* If disabled no focus */
+  const tabIndex = disabled ? -1 : 0
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     handleEvent(onChange, { value: e.currentTarget.value, disabled })
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onBlur, { value: e, disabled })
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onFocus, { value: e, disabled })
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    focus(false)
+    handleEvent(onBlur, { value: e, disabled })
+  }
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    focus(true)
+    handleEvent(onFocus, { value: e, disabled })
+  }
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => handleEvent(onKeyDown, { value: e, disabled })
   const handleClear = () => {
     if (!disabled) {
@@ -75,7 +81,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           {label}
         </label>
       )}
-      <div className={'input-inner'}>
+      <div className={'input-inner'} data-error={error} data-focused={focused}>
+        <div className={'input-inner__prefix'}>{prefix}</div>
         <input
           id={name}
           type={type}
@@ -89,19 +96,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
-          data-disabled={disabled}
           data-cursor={autoComplete !== 'off'}
-          data-prefix={!!prefix}
-          data-suffix={!!suffix}
-          data-error={!!error}
-          data-clearable={clearable}
           role={role}
           tabIndex={tabIndex}
         />
-        <div className={'input-inner__prefix'}>{prefix}</div>
         <div className={'input-inner__suffix'}>
-          {clearable && <TimesImage className={'input-inner__suffix-times'} onClick={onClear || handleClear} />}
           {suffix}
+          {clearable && <TimesImage className={'input-inner__suffix-times'} onClick={onClear || handleClear} />}
         </div>
       </div>
     </div>
@@ -113,7 +114,6 @@ Input.defaultProps = {
   type: 'text',
   placeholder: 'Type a text',
   autoComplete: 'on',
-  focusable: true,
   clearable: true
 }
 

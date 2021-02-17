@@ -25,8 +25,6 @@ type SelectInputProps = Omit<
   | 'error'
   | 'clearable'
   | 'required'
-  | 'focusable'
-  | 'min'
   | 'ref'
   | 'onChange'
   | 'onFocus'
@@ -41,7 +39,6 @@ export type SelectProps = {
   disabled?: boolean
   required?: boolean
   clearable?: boolean
-  focusable?: boolean
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
@@ -70,7 +67,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
     disabled,
     required,
     clearable,
-    focusable,
     handleOptionSelect,
     handleToggle,
     onFocus,
@@ -114,7 +110,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
   }
 
   /* If disabled no focus */
-  const tabIndex = focusable && !disabled ? 0 : -1
+  const tabIndex = disabled ? -1 : 0
   const inputValue = (selectedOption && selectedOption.label) || ''
 
   const { suffix, ...otherInputProps } = input
@@ -139,7 +135,6 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         error={error}
         clearable={clearable}
         required={required}
-        focusable={false}
         suffix={
           <div className={'select-input__suffix'}>
             <SelectArrow className={'select-arrow'} data-toggle={toggle} />
@@ -154,8 +149,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
 }
 
 Select.defaultProps = {
-  focusable: true,
-  input: {},
+  input: {}
 }
 
 export default withOptionSelect(withToggle(Select))

@@ -8,7 +8,7 @@ import {
   WithTogglePropsPassed
 } from '@hocs'
 
-import { Dropdown, DropdownProps, Input, InputProps } from '@elements'
+import { Dropdown, Input, InputProps } from '@elements'
 import { OptionType } from '@types'
 import AutocompleteArrow from '@images/arrow.svg'
 import './Autocomplete.scss'
@@ -25,8 +25,6 @@ type AutocompleteInputProps = Omit<
   | 'error'
   | 'clearable'
   | 'required'
-  | 'focusable'
-  | 'min'
   | 'ref'
   | 'onChange'
   | 'onFocus'
@@ -41,7 +39,6 @@ export type AutocompleteProps = {
   disabled?: boolean
   required?: boolean
   clearable?: boolean
-  focusable?: boolean
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
@@ -70,7 +67,6 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
     disabled,
     required,
     clearable,
-    focusable,
     handleOptionSelect,
     handleToggle,
     onInputChange,
@@ -128,7 +124,7 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   }
 
   /* If disabled no focus */
-  const tabIndex = focusable && !disabled ? 0 : -1
+  const tabIndex = disabled ? -1 : 0
 
   const { suffix, ...otherInputProps } = input
 
@@ -154,7 +150,6 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
         error={error}
         clearable={clearable}
         required={required}
-        focusable={false}
         suffix={
           <div className={'autocomplete-input__suffix'}>
             <AutocompleteArrow className={'autocomplete-arrow'} data-toggle={toggle} />
@@ -169,7 +164,6 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
 }
 
 Autocomplete.defaultProps = {
-  focusable: true,
   input: {}
 }
 
