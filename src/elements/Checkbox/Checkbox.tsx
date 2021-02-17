@@ -32,6 +32,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
+      data-disabled={disabled}
       tabIndex={tabIndex}
     >
       {label && (
@@ -46,7 +47,6 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
         type="checkbox"
         checked={checked}
         defaultChecked={defaultChecked}
-        disabled={disabled}
         onChange={handleChange}
         tabIndex={-1}
       />

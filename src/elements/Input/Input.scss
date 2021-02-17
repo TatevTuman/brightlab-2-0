@@ -1,10 +1,11 @@
 @import "static/assets/styles/variables";
 
 .input {
+  @include disabled($background: false, $opacity: true, $pointerEvents: true);
+
   display: flex;
   flex-direction: column;
   width: 100%;
-  @include disabled($background: false, $opacity: true, $pointerEvents: true);
 
   label {
     text-transform: uppercase;
