@@ -1,12 +1,12 @@
 import React from 'react'
 import { ControllerRenderProps } from 'react-hook-form'
-import { LoadableComponent } from '@loadable/component'
-import { withLoadableFallback, WithLoadableFallbackOptions } from '@hocs'
+import loadable, { LoadableComponent } from '@loadable/component'
 import { Autocomplete, AutocompleteProps, Select, SelectProps } from '@components'
 import { Input, InputProps, Checkbox, CheckboxProps } from '@elements'
 import type { FormProps, FormControlProps } from '@modules'
 
 import { FormControl, FormItem, FormSubmit } from './components'
+import { WithLoadableFallbackOptions } from '@hocs'
 
 /* We don't need to pass these props to form component anymore because form controls them */
 export type FormModuleComponentControlledFields = 'name' | 'value' | 'checked' | 'onChange' | 'required'
@@ -38,22 +38,20 @@ export type LoadableForm<F> = LoadableComponent<FormProps<F>> & FormModule<F>
   const SignInForm = Form<SignInFormType>()
 */
 
-const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): LoadableForm<F> => {
-  const FormModule = withLoadableFallback<FormProps<F>>(
-    import('./Form'),
-    withLoadableFallbackOptions || {}
-  ) as LoadableForm<F>
+const Form = <F,>() => {
+  const FormModule = loadable(() => import('./Form')) as LoadableForm<F>
 
   /* Adding components to the module */
   FormModule.Control = FormControl
   FormModule.Item = FormItem
   FormModule.Submit = FormSubmit
+
   FormModule.Input = props => {
     const { name, validation, defaultValue, ...inputProps } = props
     const required = !!validation?.required
 
     return (
-      <FormModule.Control
+      <FormModule.Control<F>
         name={name}
         validation={validation}
         defaultValue={defaultValue || ''}
@@ -83,7 +81,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
     const required = !!validation?.required
 
     return (
-      <FormModule.Control
+      <FormModule.Control<F>
         name={name}
         validation={validation}
         defaultValue={defaultValue || null}
@@ -113,7 +111,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
     const required = !!validation?.required
 
     return (
-      <FormModule.Control
+      <FormModule.Control<F>
         name={name}
         validation={validation}
         defaultValue={defaultValue || null}
@@ -143,7 +141,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
     const required = !!validation?.required
 
     return (
-      <FormModule.Control
+      <FormModule.Control<F>
         name={name}
         validation={validation}
         defaultValue={defaultChecked || false}
@@ -167,7 +165,7 @@ const Form = <F,>(withLoadableFallbackOptions?: WithLoadableFallbackOptions): Lo
 
   FormModule.Checkbox.displayName = 'FormCheckbox'
 
-  return FormModule
+  return FormModule as React.FC<FormProps<F>> & FormModule<F>
 }
 
 export default Form

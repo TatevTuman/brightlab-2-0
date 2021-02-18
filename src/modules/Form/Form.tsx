@@ -19,7 +19,7 @@ export interface FormProps<F> {
   className?: string
   defaultValues?: UnpackNestedValue<DeepPartial<F>>
   children: (props: UseFormMethods<F>) => Children
-  onSubmit: SubmitHandler<F>
+  onSubmit: (form: UnpackNestedValue<F>, event?: React.BaseSyntheticEvent) => void
   onError: SubmitErrorHandler<F>
 }
 

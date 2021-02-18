@@ -7,7 +7,7 @@ import { Form } from '@modules'
 import { SignInFormType } from '@types'
 import { emailPattern } from '@utils'
 
-const SignInForm = Form<SignInFormType>({ fallback: { height: '100rem' } })
+const SignInForm = Form<SignInFormType>()
 
 interface SignInProps extends RouteComponentProps {}
 
