@@ -1,4 +1,4 @@
-import { LoadableComponent } from '@loadable/component'
+import loadable, { LoadableComponent } from '@loadable/component'
 import { withLoadableFallback } from '@hocs'
 import { ModalFooter, ModalHeader } from './components'
 
@@ -15,7 +15,7 @@ export type LoadableModal = LoadableComponent<ModalProps> & ModalModule
   TODO Research. Dot notation doesn't work with hocs
 */
 
-const Modal = withLoadableFallback<ModalProps>(import('./Modal'), { fallback: { height: '' } }) as LoadableModal
+const Modal = loadable(() => import('./Modal')) as LoadableModal
 
 Modal.Header = ModalHeader
 Modal.Footer = ModalFooter
