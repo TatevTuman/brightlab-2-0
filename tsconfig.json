@@ -21,6 +21,8 @@
       "@components": ["src/components/index.tsx"],
       "@elements": ["src/elements/index.tsx"],
       "@modules": ["src/modules/index.tsx"],
+      "@templates": ["src/templates/index.tsx"],
+      "@pages-components/*": ["src/pages-components/*"],
       "@images": ["static/assets/images"],
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
@@ -30,8 +32,7 @@
       "@hooks": ["src/hooks/index.ts"],
       "@hocs": ["src/hocs/index.ts"],
       "@cache": ["gatsby-apollo-cache.ts"]
-    }
+    },
   },
-  "files": ["./custom.d.ts"],
   "exclude": ["node_modules", "public", ".cache"]
 }

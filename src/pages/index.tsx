@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
+import { HomeTest } from '@pages-components/home'
 
 interface HomeProps extends RouteComponentProps {}
 
@@ -8,6 +9,7 @@ const Home: React.FC<HomeProps> = props => {
   return (
     <section>
       <SEO title={'Home'} />
+      <HomeTest />
       <h1>
         <mark>Brightlab</mark>
         <br />

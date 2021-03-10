@@ -13,6 +13,8 @@ const config: Config.InitialOptions = {
     '@components': '<rootDir>/src/components/index.tsx',
     '@elements': '<rootDir>/src/elements/index.tsx',
     '@modules': '<rootDir>/src/modules/index.tsx',
+    '@templates': '<rootDir>/src/templates/index.tsx',
+    '@pages-components': '<rootDir>/src/pages-components/index.tsx',
     '@images': '<rootDir>/static/assets/images',
     '@styles': '<rootDir>/static/assets/styles',
     '@types': '<rootDir>/src/types/index.ts',

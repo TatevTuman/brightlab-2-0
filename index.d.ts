@@ -51,3 +51,8 @@ declare module '*.json' {
   const value: any
   export default value
 }
+
+declare module '@pages-components/*' {
+  const value: any
+  export default value
+}

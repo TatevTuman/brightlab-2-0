@@ -33,6 +33,8 @@ exports.onCreateWebpackConfig = function ({ stage, loaders, actions, plugins }) 
         '@components': path.resolve(__dirname, 'src/components/index.tsx'),
         '@elements': path.resolve(__dirname, 'src/elements/index.tsx'),
         '@modules': path.resolve(__dirname, 'src/modules/index.tsx'),
+        '@templates': path.resolve(__dirname, 'src/templates/index.tsx'),
+        '@pages-components': path.resolve(__dirname, 'src/pages-components'),
         '@images': path.resolve(__dirname, 'static/assets/images'),
         '@styles': path.resolve(__dirname, 'static/assets/styles'),
         '@types': path.resolve(__dirname, 'src/types/index.ts'),
