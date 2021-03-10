@@ -62,22 +62,43 @@ module.exports = {
     })
     config.resolve.extensions.push(".ts", ".tsx")
 
-    // SVG handling
-    const fileLoaderRule = config.module.rules.find(rule => rule.test.test('.svg'));
-    fileLoaderRule.exclude = /\.svg$/;
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["svg-react-loader"],
-    });
-
     // SCSS handling
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
-      include: [
-        path.resolve(__dirname, '../'),
-        path.resolve('../node_modules'),
-      ]
+      use: [
+        'style-loader',
+        'css-loader',
+        {
+          loader: 'resolve-url-loader',
+          options: {
+            sourceMap: true,
+            root: path.resolve(__dirname, '../static/assets/images')
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }
+      ],
+      include: [path.resolve(__dirname, '../'), path.resolve('../node_modules')]
+    })
+
+    // SVG handling
+    const fileLoaderRule = config.module.rules.find(rule => rule.test.test('.svg'));
+    fileLoaderRule.exclude = /\.svg$/;
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.s?css$/,
+      loader: 'file-loader',
+    })
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.tsx?$/,
+      use: ["svg-react-loader"],
     });
 
     return config;

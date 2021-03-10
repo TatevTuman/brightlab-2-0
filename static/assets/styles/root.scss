@@ -1,0 +1,28 @@
+@import 'static/assets/styles/mixins.scss';
+@import 'static/assets/styles/variables.scss';
+@import 'static/assets/styles/fonts.scss';
+@import 'static/assets/styles/blocks.scss';
+@import 'static/assets/styles/typography.scss';
+
+
+@include createColorsClasses($colors);
+@include createFontSizeClasses(8, 30);
+
+* {
+
+}
+
+html {
+  @include createVars($colors);
+}
+
+html, body {
+  overflow-x: hidden;
+  -webkit-scroll-behavior: smooth;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+  }
+}

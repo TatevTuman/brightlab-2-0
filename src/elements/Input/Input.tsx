@@ -1,4 +1,5 @@
 import React, { memo, forwardRef, useState, RefObject } from 'react'
+import { Loader } from '@elements'
 import { handleEvent } from '@utils'
 import TimesImage from '@images/times.svg'
 import './Input.scss'
@@ -15,7 +16,9 @@ export interface InputProps {
   suffix?: InputSuffixProp
 
   autoComplete?: 'on' | 'off'
+  hideCursor?: boolean
   disabled?: boolean
+  loading?: boolean
   error?: boolean
   clearable?: boolean
   required?: boolean
@@ -40,8 +43,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     prefix,
     suffix,
     autoComplete,
+    hideCursor,
     disabled,
     error,
+    loading,
     clearable,
     required,
     role,
@@ -96,11 +101,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
-          data-cursor={autoComplete !== 'off'}
+          data-nocursor={hideCursor}
           role={role}
           tabIndex={tabIndex}
         />
         <div className={'input-inner__suffix'}>
+          {loading && <Loader type={'Oval'} width={16} height={16} style={{ width: 'auto', padding: '0' }} />}
           {suffix}
           {clearable && <TimesImage className={'input-inner__suffix-times'} onClick={onClear || handleClear} />}
         </div>

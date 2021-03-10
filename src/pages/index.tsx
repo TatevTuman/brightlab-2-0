@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useRef } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { SEO } from '@components'
-import { useWindowSize } from '@hooks'
 import lottie from 'lottie-web'
 
 interface HomeProps extends RouteComponentProps {}
@@ -20,8 +19,6 @@ const Home: React.FC<HomeProps> = props => {
       })
     }
   }, [animationRef])
-
-  console.log(useWindowSize())
 
   return (
     <section>

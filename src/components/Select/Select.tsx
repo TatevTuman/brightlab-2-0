@@ -8,7 +8,7 @@ import {
   WithTogglePropsPassed
 } from '@hocs'
 
-import { Dropdown, Input, InputProps } from '@elements'
+import { Dropdown, Input, InputProps, DropdownProps } from '@elements'
 import { OptionType } from '@types'
 import SelectArrow from '@images/arrow.svg'
 import './Select.scss'
@@ -21,7 +21,9 @@ type SelectInputProps = Omit<
   | 'type'
   | 'defaultValue'
   | 'autoComplete'
+  | 'hideCursor'
   | 'disabled'
+  | 'loading'
   | 'error'
   | 'clearable'
   | 'required'
@@ -33,18 +35,21 @@ type SelectInputProps = Omit<
   | 'onClear'
 >
 
+type SelectDropdownProps = Omit<DropdownProps, 'options' | 'onSelect' | 'toggle'>
+
 export type SelectProps = {
   name: string
   label?: string
   disabled?: boolean
   required?: boolean
   clearable?: boolean
+  loading?: boolean
   error?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
   input?: SelectInputProps // TODO find more elegant way to do this
+  dropdown?: SelectDropdownProps
 
-  onInputChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
@@ -59,12 +64,14 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
     name,
     label,
     input = {},
+    dropdown = {},
     innerRef,
     options,
     selectedOption,
     toggle,
-    error,
     disabled,
+    loading,
+    error,
     required,
     clearable,
     handleOptionSelect,
@@ -76,6 +83,9 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
   } = props
 
   const handleSelectFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    /* If button in the suffix is clicked don't open the dropdown */
+    if (e.target instanceof HTMLButtonElement) return
+
     handleToggle(true)
     if (onFocus) onFocus(e)
   }
@@ -114,6 +124,7 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
   const inputValue = (selectedOption && selectedOption.label) || ''
 
   const { suffix, ...otherInputProps } = input
+  const { ...otherDropdownProps } = dropdown
 
   return (
     <div
@@ -132,9 +143,11 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         onClear={handleInputClear}
         disabled={disabled}
         autoComplete={'off'}
+        loading={loading}
         error={error}
         clearable={clearable}
         required={required}
+        hideCursor
         suffix={
           <div className={'select-input__suffix'}>
             <SelectArrow className={'select-arrow'} data-toggle={toggle} />
@@ -143,13 +156,16 @@ const Select: React.FC<SelectPropsWithHocs> = props => {
         }
         {...otherInputProps}
       />
-      <Dropdown options={options} toggle={toggle} onSelect={handleDropdownSelect} />
+      <Dropdown options={options} toggle={toggle} onSelect={handleDropdownSelect} {...otherDropdownProps} />
     </div>
   )
 }
 
 Select.defaultProps = {
-  input: {}
+  input: {
+    placeholder: 'Select an option'
+  },
+  dropdown: {}
 }
 
 export default withOptionSelect(withToggle(Select))

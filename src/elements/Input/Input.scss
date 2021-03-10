@@ -1,4 +1,4 @@
-@import "static/assets/styles/variables";
+@import "static/assets/styles/mixins";
 
 .input {
   @include disabled($background: false, $opacity: true, $pointerEvents: true);
@@ -7,44 +7,26 @@
   flex-direction: column;
   width: 100%;
 
-  label {
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--primary-dark);
-    margin-bottom: 1rem;
-  }
-
   &-inner {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-    position: relative;
-    background: var(--white);
-    border: 1px solid var(--grey);
-    border-radius: 8px;
+    max-height: 32px;
     cursor: pointer;
+    border: 1px solid black;
     transition: all 0.2s ease;
     will-change: background, border-color;
 
-    &[data-error='true'] {
-      border-color: var(--danger) !important;
-
-      input {
-        color: var(--danger) !important;
-      }
-    }
-
-    &:hover, &[data-focused="true"] {
-      border-color: var(--black);
-    }
-
     input {
       flex: 1;
+      max-height: 30px;
       border: none;
       padding: 0.5rem;
+      overflow: scroll;
       color: var(--black);
 
-      &[data-cursor='false'] {
+      &[data-nocursor='true'] {
         text-shadow: 0 0 0 var(--black);
         color: transparent;
       }
@@ -54,35 +36,51 @@
       }
 
       &::placeholder {
-        color: var(--grey);
       }
     }
 
     input:not(:placeholder-shown) + &__suffix {
       .input-inner__suffix-times {
+        width: 0.625rem;
+        margin-left: 0.5rem;
         visibility: visible;
         opacity: 1;
       }
     }
 
+    &[data-error='true'] {
+      border-color: var(--danger) !important;
+
+      &:hover {
+        border-color: var(--grey);
+      }
+
+      &:hover, &[data-focused="true"] {
+        border-color: var(--black);
+      }
+    }
+
     &__prefix {
+      max-height: inherit;
       padding-left: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      flex-shrink: 0;
+      border-radius: inherit;
     }
 
     &__suffix {
+      max-height: inherit;
       padding-right: 1rem;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       overflow: hidden;
+      border-radius: inherit;
 
       &-times {
-        margin-left: 0.5rem;
-        width: 0.625rem;
+        width: 0;
         cursor: pointer;
         transition: all 0.3s ease;
         will-change: transform, opacity, visibility;

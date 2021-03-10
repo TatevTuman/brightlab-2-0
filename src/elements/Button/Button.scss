@@ -1,127 +1,41 @@
-@import 'static/assets/styles/variables.scss';
+@import "static/assets/styles/mixins";
 
 .button {
+  @include disabled($background: true, $opacity: true, $pointerEvents: true);
+
   display: block;
-  min-width: toRem(35);
+  width: 100%;
   height: toRem(44);
-  border-radius: toRem(4);
-  text-transform: uppercase;
-  transition: all 0.2s ease, opacity 0.1s ease;
   cursor: pointer;
   user-select: none;
-  font-size: toRem(12);
+  transition: all 0.2s ease, opacity 0.1s ease;
   will-change: background, opacity, border, color;
-
-  &:active, &:focus {
-    opacity: 0.6;
-  }
 
   &[data-centered='true'] {
     margin: 0 auto;
     align-self: center;
   }
-
-  @include disabled($background: true, $opacity: true, $pointerEvents: true);
 }
 
-@mixin primary() {
-  background-color: var(--primary);
-  border: toRem(2) solid var(--primary);
-  color: var(--white);
-}
-
-@mixin secondary() {
-  background-color: transparent;
-  border: toRem(2) solid var(--secondary);
-  color: var(--black);
-}
-
-@mixin black() {
-  background-color: var(--black);
-  border: toRem(2) solid var(--black);
-  color: var(--white);
-}
-
-@mixin danger() {
-  background-color: transparent;
-  border: toRem(2) solid var(--danger);
-  color: var(--danger);
-}
-
-// Button types
-
-@mixin primary_button($width) {
-  @include primary;
-
-  width: 100%;
-  max-width: $width;
+@mixin primary_button() {
 
   &:hover {
-    @include secondary;
   }
 
-  &:active, &:focus {
-    @include black;
-  }
-}
-
-@mixin secondary_button($width) {
-  @include secondary;
-
-  width: 100%;
-  max-width: $width;
-
-  &:hover {
-    @include primary;
+  &:focus {
   }
 
-  &:active, &:focus {
-    @include black;
+  &:active {
   }
 }
 
-@mixin danger_button($width) {
-  @include danger;
+$buttons_types: "primary", "";
 
-  width: 100%;
-  max-width: $width;
+@each $button_type in $buttons_types {
+  .button__#{$button_type} {
 
-  &:hover, &:active {
-    background-color: var(--danger);
-    color: var(--white);
-  }
-}
-
-// Button sizes
-$buttons_sizes: (
-  "lg": toRem(400),
-  "md": toRem(200),
-  "sm": toRem(100),
-);
-
-$buttons_types_sizes: (
-  "primary": $buttons_sizes,
-  "secondary": $buttons_sizes,
-  "danger": $buttons_sizes
-);
-
-@each $button_type, $button_sizes in $buttons_types_sizes {
-  @each $button_size_type, $button_size_value in $button_sizes {
-    .button__#{$button_type}-#{$button_size_type} {
-
-      // Button styles application
-
-      @if $button_type == "primary" {
-        @include primary_button($button_size_value);
-      }
-
-      @if $button_type == "secondary" {
-        @include secondary_button($button_size_value);
-      }
-
-      @if $button_type == "danger" {
-        @include danger_button($button_size_value);
-      }
+    @if $button_type == "primary" {
+      @include primary_button;
     }
   }
 }

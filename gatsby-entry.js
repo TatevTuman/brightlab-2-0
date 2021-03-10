@@ -4,8 +4,7 @@ import { Provider as AlertProvider, transitions } from 'react-alert'
 import { Page, Header, Footer, Modals } from '@components'
 import { Alert } from '@elements'
 import client from './gatsby-apollo'
-import '@styles/app.scss'
-import '@styles/typography.scss'
+import '@styles/root.scss'
 
 // eslint-disable-next-line react/display-name
 export const wrapPageElement = ({ element, props }) => {

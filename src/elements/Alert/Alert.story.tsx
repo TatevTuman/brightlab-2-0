@@ -54,7 +54,7 @@ const AlertButton: React.FC<AlertProps> = props => {
   const handleAlertShow = () => alert.show(message, options)
 
   return (
-    <Button onClick={handleAlertShow} size={ButtonSizes.sm}>
+    <Button onClick={handleAlertShow}>
       Show
     </Button>
   )

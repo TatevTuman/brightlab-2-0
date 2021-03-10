@@ -1,84 +1,19 @@
+$colors: (
+  primary: #47DEFF,
+  secondary: #F4F4F4,
+
+  black: #191919,
+  white: #ffffff,
+  grey: #e6e6e6,
+
+  danger: red,
+  info: blue,
+  success: green,
+  disabled: #cccccc
+);
+
 $breakpoints: (
   'mobile': 576px,
   'landscape': 768px,
   'tablet': 992px,
 ) !default;
-
-//Mixins
-@mixin breakpoint_min($breakpoint) {
-  // If the key exists in the map
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Prints a media query based on the value
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
-      @content;
-    }
-  }
-  // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
-  }
-}
-
-@mixin breakpoint_max($breakpoint) {
-  // If the key exists in the map
-  @if map-has-key($breakpoints, $breakpoint) {
-    // Prints a media query based on the value
-    @media (max-width: map-get($breakpoints, $breakpoint)) {
-      @content;
-    }
-  }
-    // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Available breakpoints are: #{map-keys($breakpoints)}.";
-  }
-}
-
-@mixin disabled($background, $opacity, $pointerEvents) {
-  transition: all 0.2s ease;
-  user-select: none;
-
-  &[data-disabled='true'] {
-    @if $background {
-      background: var(--grey);
-      border: var(--grey);
-    }
-
-    @if $opacity {
-      opacity: 0.6;
-    }
-
-    @if $pointerEvents {
-      pointer-events: none;
-    }
-  }
-}
-
-@mixin absolute_center() {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@mixin absolute_vertical_center() {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
-@mixin absolute_horizontal_center() {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-@function toRem($size) {
-  $remSize: $size / 16;
-  @return #{$remSize}rem;
-}
-
-@mixin fontSize($size) {
-  font-size: toRem($size);
-}

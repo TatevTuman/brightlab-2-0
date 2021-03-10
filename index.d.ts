@@ -1,39 +1,5 @@
-type TypographyOptions = Partial<{
-  title: string
-  baseFontSize: string
-  baseLineHeight: number
-  scaleRatio: number
-  googleFonts: {
-    name: string
-    styles: string[]
-  }[]
-  headerColor: string
-  bodyColor: string
-  headerFontFamily: string[]
-  bodyFontFamily: string[]
-  headerGray: number
-  headerGrayHue: number
-  bodyGray: number
-  bodyGrayHue: number
-  headerWeight: string
-  bodyWeight: string
-  boldWeight: string
-  blockMarginBottom: number
-  includeNormalize: boolean
-  overrideStyles(...args: any): Record<string, Record<string, any>>
-}>
-
-declare module 'typography' {
-  export default class Typography {
-    constructor(options?: TypographyOptions)
-
-    toString(): string
-    injectStyles(): void
-    rhythm(value: number): string
-    scale(value: number): void
-    options: TypographyOptions
-  }
-}
+import * as React from 'react'
+import { DocumentNode } from '@apollo/client'
 
 declare module '*.bmp' {
   const src: string
@@ -65,11 +31,6 @@ declare module '*.webp' {
   export default src
 }
 
-// declare module '*.svg' {
-//   const src: string
-//   export default src
-// }
-
 declare module '*.svg' {
   import * as React from 'react'
   export const ReactComponent: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
@@ -82,8 +43,6 @@ declare module '*.scss' {
 }
 
 declare module '*.gql' {
-  import { DocumentNode } from '@apollo/client'
-
   const value: DocumentNode
   export default value
 }

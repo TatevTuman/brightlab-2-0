@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { Container } from '@components'
 import { Navigation } from '@elements'
 import { useSiteMetadata, useWindowSize } from '@hooks'
-import LogoImage from '@images/logo.svg'
+import LogoImage from '@images/test.png'
 import './Header.scss'
 
 const HomeLogo = () => {
@@ -10,6 +10,7 @@ const HomeLogo = () => {
   if (!toRender) return null
 
   const logoStyles = {
+    width: '100px',
     position: 'absolute' as const,
     top: 0,
     right: 0

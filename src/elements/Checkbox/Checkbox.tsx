@@ -19,27 +19,15 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   const { name, label, checked, defaultChecked, disabled, required, onChange, onFocus, onBlur, onKeyDown } = props
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => handleEvent(onChange, { value: !checked, disabled })
-  const handleBlur = (e: React.FocusEvent<HTMLLabelElement>) => handleEvent(onBlur, { value: e, disabled })
-  const handleFocus = (e: React.FocusEvent<HTMLLabelElement>) => handleEvent(onFocus, { value: e, disabled })
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => handleEvent(onKeyDown, { value: e, disabled })
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onBlur, { value: e, disabled })
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => handleEvent(onFocus, { value: e, disabled })
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => handleEvent(onKeyDown, { value: e, disabled })
 
   /* If disabled no focus */
   const tabIndex = disabled ? -1 : 0
 
   return (
-    <label
-      className={'checkbox'}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-      data-disabled={disabled}
-      tabIndex={tabIndex}
-    >
-      {label && (
-        <label htmlFor={name} data-required={required}>
-          {label}
-        </label>
-      )}
+    <div className={'checkbox'} data-disabled={disabled}>
       <input
         id={name}
         name={name}
@@ -47,11 +35,19 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
         type="checkbox"
         checked={checked}
         defaultChecked={defaultChecked}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
         onChange={handleChange}
-        tabIndex={-1}
+        tabIndex={tabIndex}
+        data-testid={'checkbox'}
       />
-      <div className={'checkbox-indicator'} data-testid={'checkbox'} />
-    </label>
+      {label && (
+        <label htmlFor={name} data-required={required}>
+          {label}
+        </label>
+      )}
+    </div>
   )
 })
 

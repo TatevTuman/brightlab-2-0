@@ -1,4 +1,4 @@
-import React, { useState, RefObject } from 'react'
+import React, { useState, useEffect, RefObject } from 'react'
 import {
   withOptionSelect,
   WithOptionSelectProps,
@@ -8,7 +8,7 @@ import {
   WithTogglePropsPassed
 } from '@hocs'
 
-import { Dropdown, Input, InputProps } from '@elements'
+import { Dropdown, Input, InputProps, DropdownProps } from '@elements'
 import { OptionType } from '@types'
 import AutocompleteArrow from '@images/arrow.svg'
 import './Autocomplete.scss'
@@ -21,8 +21,10 @@ type AutocompleteInputProps = Omit<
   | 'type'
   | 'defaultValue'
   | 'autoComplete'
+  | 'hideCursor'
   | 'disabled'
   | 'error'
+  | 'loading'
   | 'clearable'
   | 'required'
   | 'ref'
@@ -33,16 +35,21 @@ type AutocompleteInputProps = Omit<
   | 'onClear'
 >
 
+type AutocompleteDropdownProps = Omit<DropdownProps, 'options' | 'onSelect' | 'toggle'>
+
 export type AutocompleteProps = {
   name: string
   label?: string
+  initialSearch?: string
   disabled?: boolean
   required?: boolean
   clearable?: boolean
   error?: boolean
+  loading?: boolean
   innerRef?: RefObject<HTMLInputElement>
 
   input?: AutocompleteInputProps
+  dropdown?: AutocompleteDropdownProps
 
   onInputChange?: (value: string) => void
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
@@ -58,12 +65,15 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   const {
     name,
     label,
+    initialSearch,
     input = {},
+    dropdown = {},
     innerRef,
     options,
     selectedOption,
     toggle,
     error,
+    loading,
     disabled,
     required,
     clearable,
@@ -76,17 +86,27 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
     onClear
   } = props
 
-  const [autocomplete, setAutocomplete] = useState('')
+  const [autocomplete, setAutocomplete] = useState(initialSearch || '')
+
+  useEffect(() => {
+    if (selectedOption) {
+      setAutocomplete('')
+    }
+  }, [selectedOption])
 
   const handleInputChange = (value: string) => {
     handleOptionSelect(null)
+    handleToggle(true)
     setAutocomplete(value)
+
     if (onInputChange) onInputChange(value)
   }
 
   const handleAutocompleteFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    /* If button in the suffix is clicked don't open the dropdown */
+    if (e.target instanceof HTMLButtonElement) return
+
     handleToggle(true)
-    innerRef?.current?.focus()
     if (onFocus) onFocus(e)
   }
 
@@ -95,20 +115,12 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
       if (!selectedOption) setAutocomplete('')
 
       handleToggle(false)
-      innerRef?.current?.blur()
       if (onBlur) onBlur(e)
     }
   }
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (onKeyDown) onKeyDown(e)
-    else {
-      const isBackspaceKey = e.key === 'Backspace'
-
-      if (isBackspaceKey && clearable) {
-        handleOptionSelect(null)
-      }
-    }
   }
 
   const handleInputClear = () => {
@@ -127,6 +139,7 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
   const tabIndex = disabled ? -1 : 0
 
   const { suffix, ...otherInputProps } = input
+  const { ...otherDropdownProps } = dropdown
 
   const filteredOptions = options.filter(option => option.label.toLowerCase().includes(autocomplete.toLowerCase()))
 
@@ -141,14 +154,16 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
       <Input
         name={name}
         label={label}
-        value={autocomplete}
+        value={selectedOption?.label || autocomplete}
         ref={innerRef}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
         onClear={handleInputClear}
+        autoComplete={'off'}
         disabled={disabled}
         error={error}
         clearable={clearable}
+        loading={loading}
         required={required}
         suffix={
           <div className={'autocomplete-input__suffix'}>
@@ -158,13 +173,16 @@ const Autocomplete: React.FC<AutocompletePropsWithHocs> = props => {
         }
         {...otherInputProps}
       />
-      <Dropdown options={filteredOptions} toggle={toggle} onSelect={handleDropdownSelect} />
+      <Dropdown options={filteredOptions} toggle={toggle} onSelect={handleDropdownSelect} {...otherDropdownProps} />
     </div>
   )
 }
 
 Autocomplete.defaultProps = {
-  input: {}
+  input: {
+    placeholder: 'Select an option'
+  },
+  dropdown: {}
 }
 
 export default withOptionSelect(withToggle(Autocomplete))

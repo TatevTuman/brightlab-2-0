@@ -16,6 +16,7 @@ export default {
     autoComplete: { control: storybook.controls.select(['on', 'off']), name: 'Autocomplete' },
     error: { control: 'boolean', name: 'Error' },
     clearable: { control: 'boolean', name: 'Clearable' },
+    loading: { control: 'boolean', name: 'Loading' },
     ...storybook.controls.interactive,
     onClear: { action: 'onClear' },
     name: storybook.args.disabled
@@ -31,7 +32,8 @@ InputStoryTemplate.args = {
   type: 'text',
   autoComplete: 'on',
   name: 'Input',
-  clearable: true
+  clearable: true,
+  loading: false
 }
 
 export const InputStory = InputStoryTemplate.bind({})

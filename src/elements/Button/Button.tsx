@@ -8,35 +8,24 @@ type ButtonKeyboardEvent = React.KeyboardEvent<HTMLButtonElement>
 type ButtonMouseEvent = MouseEvent<HTMLButtonElement>
 
 export type ButtonEvents = ButtonKeyboardEvent | ButtonMouseEvent
-export enum ButtonSizes {
-  lg = 'lg',
-  md = 'md',
-  sm = 'sm'
-}
-export enum ButtonTypes {
-  primary = 'primary',
-  secondary = 'secondary',
-  danger = 'danger'
-}
 
 export interface ButtonProps {
   children: string
+  type: 'primary'
   className?: string
-  type?: ButtonTypes
-  size?: ButtonSizes
-  onClick?(e: ButtonEvents): void
   disabled?: boolean
   loading?: boolean
   to?: string
   submit?: boolean
   centered?: boolean
   form?: string
+  onClick?(e: ButtonEvents): void
 }
 
 const Button: React.FC<ButtonProps> = props => {
-  const { className, type, size, to, children, onClick, loading, submit, centered, form } = props
+  const { type, className, to, children, onClick, loading, submit, centered, form } = props
 
-  const classNames = `button button__${type}-${size} ${className}`
+  const classNames = `button button__${type} ${className}`
   const disabled = props.disabled || loading
 
   const handleClick = async (e: ButtonEvents) =>
@@ -78,8 +67,6 @@ const Button: React.FC<ButtonProps> = props => {
 
 Button.defaultProps = {
   className: '',
-  type: ButtonTypes.primary,
-  size: ButtonSizes.lg,
   loading: false,
   disabled: false,
   submit: false,

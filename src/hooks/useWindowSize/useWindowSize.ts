@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react'
+import { Breakpoint, BreakpointName, ShortBreakpointName } from '@types'
+
+export interface UseWindowSizeOptions {
+  shortBreakpoints?: boolean
+}
 
 export interface UseWindowSizeResult {
   width: number
   height: number
-  breakpoint: string
-  toRender: boolean
+  breakpoint: BreakpointName | ShortBreakpointName
 }
 
-/* Desktop > 992, Tablet > 768, Landscape > 576, Mobile > 320 */
-export enum Breakpoints {
-  mobile = 576,
-  landscape = 768,
-  tablet = 992
-}
-
-const useWindowSize = (breakpointsToRender?: string[]): UseWindowSizeResult => {
+const useWindowSize = (options?: UseWindowSizeOptions): UseWindowSizeResult => {
   const isClient = typeof window === 'object'
+  const { shortBreakpoints } = options || {}
 
   const getSize = (): { width: number; height: number } => {
     return {
@@ -24,12 +22,12 @@ const useWindowSize = (breakpointsToRender?: string[]): UseWindowSizeResult => {
     }
   }
 
-  const getBreakpoint = (width: number): string => {
-    if (width <= Breakpoints.mobile) return 'mobile'
-    if (width <= Breakpoints.landscape) return 'landscape'
-    if (width <= Breakpoints.tablet) return 'tablet'
+  const getBreakpoint = (width: number): BreakpointName | ShortBreakpointName => {
+    if (width <= Breakpoint.mobile) return shortBreakpoints ? 'xs' : 'mobile'
+    if (width <= Breakpoint.landscape) return shortBreakpoints ? 'sm' : 'landscape'
+    if (width <= Breakpoint.tablet) return shortBreakpoints ? 'xs' : 'tablet'
 
-    return 'desktop'
+    return shortBreakpoints ? 'lg' : 'desktop'
   }
 
   const initialWindowSize = getSize()
@@ -57,9 +55,7 @@ const useWindowSize = (breakpointsToRender?: string[]): UseWindowSizeResult => {
     setWindowBreakpoint(nextWindowBreakPoint)
   }, [windowSize])
 
-  const toRender = !!breakpointsToRender?.find(breakpointToRender => breakpointToRender === windowBreakpoint)
-
-  return { ...windowSize, breakpoint: windowBreakpoint, toRender }
+  return { ...windowSize, breakpoint: windowBreakpoint }
 }
 
 export default useWindowSize

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
-import Button, { ButtonProps, ButtonSizes, ButtonTypes } from './Button'
-import { enumToArray, storybook } from '@utils'
+import { storybook } from '@utils'
+import Button, { ButtonProps } from './Button'
 
 interface ButtonStoryTemplateProps extends ButtonProps {}
 
@@ -10,8 +10,7 @@ export default {
   title: 'Elements/Button',
   argTypes: {
     children: { control: 'text', name: 'Text' },
-    type: { control: storybook.controls.select(enumToArray(ButtonTypes)), name: 'Type' },
-    size: { control: storybook.controls.select(enumToArray(ButtonSizes)), name: 'Size' },
+    type: { control: storybook.controls.select(['primary']), name: 'Type' },
     to: { control: 'text', name: 'Link' },
     disabled: { control: 'boolean', name: 'Disabled' },
     loading: { control: 'boolean', name: 'Loading' },
@@ -26,8 +25,7 @@ const ButtonStoryTemplate: Story<ButtonStoryTemplateProps> = args => {
 
 ButtonStoryTemplate.args = {
   children: 'Text',
-  type: ButtonTypes.primary,
-  size: ButtonSizes.lg,
+  type: 'primary',
   onClick: action('onClick')
 }
 

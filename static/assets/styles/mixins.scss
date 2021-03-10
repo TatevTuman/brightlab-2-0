@@ -1,0 +1,65 @@
+@function toRem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+
+@mixin createVars($vars) {
+  @each $var, $value in $vars {
+    --#{$var}: #{$value}
+  }
+}
+
+@mixin createFontSizeClasses($from, $through) {
+  @for $font_size from $from through $through {
+    .fs-#{$font_size} {
+      font-size: toRem($font_size);
+    }
+  }
+}
+
+@mixin createColorsClasses($colors) {
+  @each $var, $value in $colors {
+    .#{$var} {
+      color: #{$value}
+    }
+  }
+}
+
+@mixin absolute_center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute_vertical_center() {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@mixin absolute_horizontal_center() {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+@mixin disabled($background, $opacity, $pointerEvents) {
+  transition: background 0.2s ease, border 0.2s ease, opacity 0.2s ease;
+  user-select: none;
+
+  &[data-disabled='true'] {
+    @if $background {
+      background: var(--disabled);
+      border: var(--disabled);
+    }
+
+    @if $opacity {
+      opacity: 0.6;
+    }
+
+    @if $pointerEvents {
+      pointer-events: none;
+    }
+  }
+}
