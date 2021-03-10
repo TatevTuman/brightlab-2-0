@@ -74,14 +74,14 @@ module.exports = {
       }
     },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-typescript',
-    {
-      resolve: 'gatsby-plugin-typography',
-      options: {
-        pathToConfigModule: 'src/utils/typography',
-        omitGoogleFont: false
-      }
-    }
+    'gatsby-plugin-typescript'
+    // {
+    //   resolve: 'gatsby-plugin-typography',
+    //   options: {
+    //     pathToConfigModule: 'src/utils/typography',
+    //     omitGoogleFont: false
+    //   }
+    // }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // {

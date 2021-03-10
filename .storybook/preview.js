@@ -1,8 +1,8 @@
 import { action } from "@storybook/addon-actions"
-import { typography } from '@utils'
+// import { typography } from '@utils'
 import '!style-loader!css-loader!sass-loader!./stories.scss'
 
-typography.injectStyles()
+// typography.injectStyles()
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
 // This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),
