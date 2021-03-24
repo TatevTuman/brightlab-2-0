@@ -3,6 +3,8 @@ const passwordPattern = new RegExp(
   '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
 )
 
+export const phoneNumberPattern = new RegExp('^[+]*[0-9]{1,4}[0-9]*$')
+
 export const passwordValidation = {
   minLength: { value: 6, message: 'Password must have a minimum of 6 letters.' },
   pattern: {

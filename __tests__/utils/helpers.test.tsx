@@ -1,4 +1,4 @@
-import { handleEvent } from '@utils'
+import { handleEvent, objectsToOptions } from '@utils'
 
 // beforeAll(() => {})
 // afterAll(() => {})
@@ -31,6 +31,26 @@ describe('utils/helpers', () => {
 
       const handledValue = handledEvent()
       expect(handledValue).toBe(value)
+    })
+  })
+
+  describe('objectsToOptions', () => {
+    it('handles string args', () => {
+      const arr = [{ id: 1, title: 'Test' }]
+      const result = objectsToOptions(arr, 'title', 'id')
+
+      expect(result).toStrictEqual([{ label: 'Test', value: 1 }])
+    })
+
+    it('handles functional args', () => {
+      const arr = [{ id: 1, title: 'Test' }]
+      const result = objectsToOptions(
+        arr,
+        item => item.title,
+        item => item.id
+      )
+
+      expect(result).toStrictEqual([{ label: 'Test', value: 1 }])
     })
   })
 })

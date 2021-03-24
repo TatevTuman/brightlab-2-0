@@ -1,6 +1,7 @@
 /* (int) The current year */
 import { DayShort } from '@types'
 
+export const DAY = 1000 * 60 * 60 * 24
 export const THIS_YEAR = +new Date().getFullYear()
 
 /* (int) The current month starting from 1 - 12 */
@@ -9,13 +10,13 @@ export const THIS_MONTH = +new Date().getMonth() + 1
 
 /* Week days names and shortnames */
 export const WEEK_DAYS: { [x: string]: DayShort } = {
-  Sunday: 'Sun',
   Monday: 'Mon',
   Tuesday: 'Tue',
   Wednesday: 'Wed',
   Thursday: 'Thu',
   Friday: 'Fri',
-  Saturday: 'Sat'
+  Saturday: 'Sat',
+  Sunday: 'Sun'
 }
 
 /* Calendar months names and shortnames */
@@ -33,6 +34,8 @@ export const CALENDAR_MONTHS = {
   November: 'Nov',
   December: 'Dec'
 }
+
+export const getMonthName = (month: number) => Object.keys(CALENDAR_MONTHS)[Math.max(0, Math.min(month - 1, 11))]
 
 /* Weeks displayed on calendar */
 export const CALENDAR_WEEKS = 6
@@ -54,7 +57,7 @@ export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
 /* (int) First day of the month for a given year from 1 - 7 */
 /* 1 => Sunday, 7 => Saturday */
 export const getMonthFirstDay = (month = THIS_MONTH, year = THIS_YEAR) => {
-  return +new Date(`${year}-${zeroPad(month, 2)}-01`).getDay() + 1
+  return +new Date(`${year}-${zeroPad(month, 2)}-01`).getDay()
 }
 
 /* (bool) Checks if a value is a date - this is just a simple check */
@@ -101,6 +104,8 @@ export const getDateISO = (date = new Date()) => {
   return [date.getFullYear(), zeroPad(+date.getMonth() + 1, 2), zeroPad(+date.getDate(), 2)].join('-')
 }
 
+export const getCurrentMonth = () => new Date().getMonth() + 1
+
 /* ({month, year}) Gets the month and year before the given month and year */
 /* For example: getPreviousMonth(1, 2000) => {month: 12, year: 1999} */
 /* while: getPreviousMonth(12, 2000) => {month: 11, year: 2000} */
@@ -119,4 +124,21 @@ export const getNextMonth = (month: number, year: number) => {
   const nextMonthYear = month < 12 ? year : year + 1
 
   return { month: nextMonth, year: nextMonthYear }
+}
+
+/*
+  TODO tests and description
+*/
+export const getDatesDiff = (firstDate: Date, lastDate: Date, by: 'days') => {
+  let millisecondsDiff = 0
+
+  switch (by) {
+    case 'days':
+      millisecondsDiff = DAY
+      break
+  }
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return (firstDate - lastDate) / millisecondsDiff
 }

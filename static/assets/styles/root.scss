@@ -1,22 +1,44 @@
 @import 'static/assets/styles/mixins.scss';
+@import 'static/assets/styles/media.scss';
 @import 'static/assets/styles/variables.scss';
 @import 'static/assets/styles/fonts.scss';
 @import 'static/assets/styles/blocks.scss';
 @import 'static/assets/styles/typography.scss';
 
-
 @include createColorsClasses($colors);
+@include createBackgroundColorsClasses($colors);
 @include createFontSizeClasses(8, 30);
+@include createMarginClasses(0, 100);
+@include createMarginMediaClasses(0, 100)
+@include createPaddingClasses(0, 100);
+@include createPaddingMediaClasses(0, 100);
+@include createFontWeightsClasses();
 
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 html {
   @include createVars($colors);
+
+  font: 93.75%/1.5 'MierB', 'sans-serif';
+
+  //@include breakpoint_min('tablet') {
+  //  font: 100%/1.5 'MierB', 'sans-serif';
+  //}
+  //
+  //@include breakpoint_max('tablet') {
+  //  font: 80%/1.5 'MierB', 'sans-serif';
+  //}
+  //
+  //@include breakpoint_max('landscape') {
+  //  font: 60%/1.5 'MierB', 'sans-serif';
+  //}
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   -webkit-scroll-behavior: smooth;
   scroll-behavior: smooth;
@@ -24,5 +46,27 @@ html, body {
   &::-webkit-scrollbar {
     display: none;
     -ms-overflow-style: none;
+  }
+}
+
+button,
+textarea,
+input,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+
+  &,
+  &:focus,
+  &:hover {
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
   }
 }

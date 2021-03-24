@@ -3,44 +3,63 @@
 exports[`Navigation renders correctly 1`] = `
 <div>
   <nav
+    class="navigation"
     role="navigation"
   >
-    <ul>
-      <li>
-        <a
-          data-active="false"
-          data-underlined="false"
-          href="/page0"
+    <ul
+      class="navigation-list"
+    >
+      <li
+        class="navigation-list-item"
+        data-active="false"
+      >
+        <div
+          class="navigation-list-item-icon"
+        />
+        <div
+          class="navigation-list-item-link"
         >
           Page0
-        </a>
+        </div>
       </li>
-      <li>
-        <a
-          data-active="false"
-          data-underlined="false"
-          href="/page1"
+      <li
+        class="navigation-list-item"
+        data-active="false"
+      >
+        <div
+          class="navigation-list-item-icon"
+        />
+        <div
+          class="navigation-list-item-link"
         >
           Page1
-        </a>
+        </div>
       </li>
-      <li>
-        <a
-          data-active="false"
-          data-underlined="false"
-          href="/page2"
+      <li
+        class="navigation-list-item"
+        data-active="false"
+      >
+        <div
+          class="navigation-list-item-icon"
+        />
+        <div
+          class="navigation-list-item-link"
         >
           Page2
-        </a>
+        </div>
       </li>
-      <li>
-        <a
-          data-active="false"
-          data-underlined="false"
-          href="/page3"
+      <li
+        class="navigation-list-item"
+        data-active="false"
+      >
+        <div
+          class="navigation-list-item-icon"
+        />
+        <div
+          class="navigation-list-item-link"
         >
           Page3
-        </a>
+        </div>
       </li>
     </ul>
   </nav>

@@ -1,3 +1,6 @@
+@import 'static/assets/styles/media.scss';
+@import 'static/assets/styles/variables.scss';
+
 @function toRem($size) {
   $remSize: $size / 16;
   @return #{$remSize}rem;
@@ -5,7 +8,7 @@
 
 @mixin createVars($vars) {
   @each $var, $value in $vars {
-    --#{$var}: #{$value}
+    --#{$var}: #{$value};
   }
 }
 
@@ -17,10 +20,206 @@
   }
 }
 
+@mixin createFontWeightsClasses() {
+  $weights: 200, 300, 400, 500, 600, 700, 800, 900;
+
+  @each $weight in $weights {
+    .fw-#{$weight} {
+      font-weight: $weight;
+    }
+  }
+}
+
 @mixin createColorsClasses($colors) {
   @each $var, $value in $colors {
     .#{$var} {
-      color: #{$value}
+      color: #{$value};
+    }
+  }
+}
+
+@mixin createBackgroundColorsClasses($colors) {
+  @each $var, $value in $colors {
+    .bg-#{$var} {
+      background-color: #{$value};
+    }
+  }
+}
+
+$sides: vertical, horizontal, top, right, bottom, left;
+
+@mixin createMarginClasses($from, $through) {
+  .m-auto {
+    margin: auto;
+  }
+
+  @for $number from $from through $through {
+    @if $number % 2 != 1 {
+      .m-#{$number} {
+        margin: toRem($number);
+      }
+    }
+  }
+
+  @each $side in $sides {
+    @if $side == vertical {
+      .mv-auto {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    } @else if $side == horizontal {
+      .mh-auto {
+        margin-right: auto;
+        margin-left: auto;
+      }
+    } @else {
+      .m#{str-slice($side, 0, 1)}-auto {
+        margin-#{$side}: auto;
+      }
+    }
+
+    @for $number from $from through $through {
+      @if $number % 2 != 1 {
+        @if $side == vertical {
+          .mv-#{$number} {
+            margin-top: toRem($number);
+            margin-bottom: toRem($number);
+          }
+        } @else if $side == horizontal {
+          .mh-#{$number} {
+            margin-right: toRem($number);
+            margin-left: toRem($number);
+          }
+        } @else {
+          .m#{str-slice($side, 0, 1)}-#{$number} {
+            margin-#{$side}: toRem($number);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin createMarginMediaClasses($from, $through) {
+  @each $short_breakpoint, $breakpoint in $short_breakpoints {
+    @include breakpoint_max($breakpoint) {
+      .#{$short_breakpoint}-m-auto {
+        margin: auto;
+      }
+
+      @each $side in $sides {
+        @if $side == vertical {
+          .#{$short_breakpoint}-mv-auto {
+            margin-top: auto;
+            margin-bottom: auto;
+          }
+        } @else if $side == horizontal {
+          .#{$short_breakpoint}-mh-auto {
+            margin-right: auto;
+            margin-left: auto;
+          }
+        } @else {
+          .#{$short_breakpoint}-m#{str-slice($side, 0, 1)}-auto {
+            margin-#{$side}: auto;
+          }
+        }
+
+        @for $number from $from through $through {
+          @if $number % 2 != 1 {
+            .#{$short_breakpoint}-m-#{$number} {
+              margin: $number;
+            }
+          }
+        }
+
+        @for $number from $from through $through {
+          @if $number % 2 != 1 {
+            @if $side == vertical {
+              .#{$short_breakpoint}-mv-#{$number} {
+                margin-top: $number;
+                margin-bottom: $number;
+              }
+            } @else if $side == horizontal {
+              .#{$short_breakpoint}-mh-#{$number} {
+                margin-right: $number;
+                margin-left: $number;
+              }
+            } @else {
+              .#{$short_breakpoint}-m#{str-slice($side, 0, 1)}-#{$number} {
+                margin-#{$side}: $number;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin createPaddingClasses($from, $through) {
+  @for $number from $from through $through {
+    @if $number % 2 != 1 {
+      .p-#{$number} {
+        padding: toRem($number);
+      }
+    }
+  }
+
+  @each $side in $sides {
+    @for $number from $from through $through {
+      @if $number % 2 != 1 {
+        @if $side == vertical {
+          .pv-#{$number} {
+            padding-top: toRem($number);
+            padding-bottom: toRem($number);
+          }
+        } @else if $side == horizontal {
+          .ph-#{$number} {
+            padding-right: toRem($number);
+            padding-left: toRem($number);
+          }
+        } @else {
+          .p#{str-slice($side, 0, 1)}-#{$number} {
+            padding-#{$side}: toRem($number);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin createPaddingMediaClasses($from, $through) {
+  @each $short_breakpoint, $breakpoint in $short_breakpoints {
+    @include breakpoint_max($breakpoint) {
+      @for $number from $from through $through {
+        @if $number % 2 != 1 {
+          .#{$short_breakpoint}-p-#{$number} {
+            padding: $number;
+          }
+        }
+      }
+
+      @each $side in $sides {
+        @for $number from $from through $through {
+          @if $number % 2 != 1 {
+            @if $side == vertical {
+              .#{$short_breakpoint}-pv-#{$number} {
+                padding-top: $number;
+                padding-bottom: $number;
+              }
+            } @else if $side == horizontal {
+              .#{$short_breakpoint}-ph-#{$number} {
+                padding-right: $number;
+                padding-left: $number;
+              }
+            } @else {
+              .#{$short_breakpoint}-p#{str-slice($side, 0, 1)}-#{$number} {
+                padding-#{$side}: $number;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -44,22 +243,72 @@
   transform: translate(-50%, 0);
 }
 
+@mixin text_overflow($maxWidth) {
+  max-width: #{$maxWidth}px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin background_border($bg, $border) {
+  background-color: var(--#{$bg});
+  border: 1px solid var(--#{$border});
+}
+
 @mixin disabled($background, $opacity, $pointerEvents) {
   transition: background 0.2s ease, border 0.2s ease, opacity 0.2s ease;
   user-select: none;
 
   &[data-disabled='true'] {
+    color: var(--white);
+
     @if $background {
       background: var(--disabled);
-      border: var(--disabled);
+      border-color: var(--disabled);
     }
 
     @if $opacity {
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     @if $pointerEvents {
       pointer-events: none;
     }
   }
+}
+
+@mixin error_gradient() {
+  &[data-error='true'] {
+    border: 1px solid var(--danger) !important;
+    background-image: repeating-linear-gradient(120deg,
+      var(--danger-l),
+      var(--danger-l) toRem(10),
+      var(--white) toRem(10),
+      var(--white) toRem(20)) !important;
+    background-size: 200% 100%;
+    animation-name: gradient;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    //animation-delay: 1.2s;
+
+    @keyframes gradient {
+      from {
+        background-position: 0 50%;
+      }
+
+      to {
+        background-position: 100% 50%;
+      }
+    }
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@mixin primary_shadow() {
+  box-shadow: 1px, 2px, 4px, var(--purple-dst);
 }

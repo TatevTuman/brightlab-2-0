@@ -1,0 +1,18 @@
+.range-date-picker {
+  display: flex;
+
+  &__start {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+
+    .date-picker-header {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__end {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

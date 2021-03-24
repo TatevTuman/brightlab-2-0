@@ -1,0 +1,325 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon renders correctly 1`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="actions"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 2`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="actions-bordered"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 3`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="arrow"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 4`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="calendar"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 5`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="camera"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 6`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="clock"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 7`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="email-sign"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 8`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="incoming"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 9`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="like"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 10`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="list"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 11`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="long-arrow"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 12`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="pencil"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 13`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="person"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 14`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="person-bordered"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 15`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="plus"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 16`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="plus-bordered"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 17`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="plus-filled"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 18`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="search"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 19`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="search-bordered"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 20`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="search-filled"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 21`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="search"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 22`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="settings"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 23`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="times"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 24`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="times-bordered"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 25`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="linkedin-filled"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 26`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="sso-filled"
+    />
+  </i>
+</div>
+`;
+
+exports[`Icon renders correctly 27`] = `
+<div>
+  <i
+    class="icon"
+  >
+    <test-file-stub
+      name="google"
+    />
+  </i>
+</div>
+`;

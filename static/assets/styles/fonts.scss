@@ -1,22 +1,28 @@
 //@font-face {
-//  font-family: 'Mier B';
-//  src: url('../fonts/MierB-Regular.woff2') format('woff2'), url('../fonts/MierB-Regular.woff') format('woff');
-//  font-weight: normal;
-//  font-style: normal;
+//  font-family: 'MierB';
+//  src: local('MierB-Light'), url('/static/assets/fonts/MierB-Light.woff') format('woff'), url('/static/assets/fonts/MierB-Light.woff2') format('woff2');
+//  font-weight: 400;
 //  font-display: swap;
 //}
 //
 //@font-face {
-//  font-family: 'Mier B';
-//  src: url('../fonts/MierB-DemiBold.woff2') format('woff2'), url('../fonts/MierB-DemiBold.woff') format('woff');
+//  font-family: 'MierB';
+//  src: local('MierB-Regular'), url('/static/assets/fonts/MierB-Regular.woff') format('woff'), url('/static/assets/fonts/MierB-Regular.woff2') format('woff2');
 //  font-weight: 500;
+//  font-display: swap;
+//}
+//
+//@font-face {
+//  font-family: 'MierB';
+//  src: local('MierB-DemiBold'), url('/static/assets/fonts/MierB-DemiBold.woff') format('woff'), url('/static/assets/fonts/MierB-DemiBold.woff2') format('woff2');
+//  font-weight: 600;
 //  font-style: normal;
 //  font-display: swap;
 //}
 //
 //@font-face {
-//  font-family: 'Mier B';
-//  src: url('../fonts/MierB-Bold.woff2') format('woff2'), url('../fonts/MierB-Bold.woff') format('woff');
+//  font-family: 'MierB';
+//  src: local('MierB-Bold'), url('/static/assets/fonts/MierB-Bold.woff') format('woff'), url('/static/assets/fonts/MierB-Bold.woff2') format('woff2');
 //  font-weight: 700;
 //  font-style: normal;
 //  font-display: swap;

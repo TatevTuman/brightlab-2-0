@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import { OptionType, OptionSchema, AnyObject } from '@types'
+import { OptionType } from '@types'
 
 interface handleEventOptions {
   value?: any
@@ -14,35 +14,26 @@ export const handleEvent = (handler?: (...args: any) => void, options: handleEve
   return handler && handler(value)
 }
 
-// TODO refactor
-export const getOptionsBySchema = <T = Record<string, any>, V = OptionType<string>>(
+/*
+  Converts array of objects to options
+  Example:
+   getOptionsBySchema<{ id: number, title: string }, number>(
+    [{ id: 1, title: 'Test' }],
+    'title',
+    'id'
+  )
+
+  Result: [{ label: 'Test', value: 1 }]
+*/
+export const objectsToOptions = <T, V = string>(
   arr: T[],
-  optionSchema: OptionSchema
-) => {
+  labelKey: keyof T | ((item: T) => string),
+  valueKey: keyof T | ((item: T) => V)
+): OptionType<V>[] => {
   return arr.map(item => {
-    return Object.keys(optionSchema).reduce((acc, field) => {
-      const itemKey = get(optionSchema, field)
-      const optionKey = field
-
-      if (typeof itemKey === 'function') {
-        return {
-          ...acc,
-          [optionKey]: itemKey(item)
-        }
-      } else {
-        return {
-          ...acc,
-          [optionKey]: (item || ({} as Record<string, any>))[itemKey]
-        }
-      }
-    }, {} as V)
+    return {
+      label: typeof labelKey === 'function' ? labelKey(item) : get(item, labelKey),
+      value: typeof valueKey === 'function' ? valueKey(item) : get(item, valueKey)
+    } as OptionType<V>
   })
-}
-
-// TODO tests
-type EnumSignature = string | number
-
-export const enumToArray = (Enum: AnyObject): EnumSignature[] => {
-  // const StringIsNumber = (value: EnumSignature) => !isNaN(Number(value))
-  return Object.keys(Enum).map(key => Enum[key])
 }

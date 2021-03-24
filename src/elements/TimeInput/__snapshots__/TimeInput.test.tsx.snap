@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeInput renders correctly with props 1`] = `
+<div>
+  <label
+    class="time"
+  >
+    <label
+      class="time-label"
+      for="HH"
+    >
+      test
+    </label>
+    <div>
+      <input
+        maxlength="2"
+        name="HH"
+        placeholder="HH"
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <input
+        maxlength="2"
+        name="mm"
+        placeholder="mm"
+        type="text"
+        value=""
+      />
+    </div>
+  </label>
+</div>
+`;

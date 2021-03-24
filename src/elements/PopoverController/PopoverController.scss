@@ -1,0 +1,51 @@
+@import "static/assets/styles/mixins";
+
+.controller {
+  position: relative;
+  cursor: pointer;
+
+  &-button {
+    position: absolute;
+    left: toRem(100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: toRem(34);
+    height: toRem(34);
+    background: #F6F7FF;
+    border: 0.5px solid #D7D7E8;
+    box-sizing: border-box;
+    border-radius: toRem(10);
+    font-size: toRem(14);
+    color: var(--purple);
+
+    & > div {
+      display: none;
+      position: absolute;
+      bottom: toRem(50);
+      background: rgba(62, 66, 223, 0.09);
+
+      &:after {
+        display: block;
+      }
+    }
+
+    &:hover {
+      background: rgba(62, 66, 223, 0.09);
+
+      div {
+        display: block;
+      }
+    }
+    &[data-bottom='true'] {
+
+      & > div {
+        bottom: toRem(-160);
+
+        &:after {
+          bottom: toRem(140);
+        }
+      }
+    }
+  }
+}

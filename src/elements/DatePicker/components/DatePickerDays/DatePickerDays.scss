@@ -1,0 +1,61 @@
+$rows: 6;
+$columns: 7;
+$grid: $rows * $columns;
+
+.date-picker {
+
+  &-days {
+    display: grid;
+    grid-template-columns: repeat(7, 32px);
+  }
+
+  &-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    will-change: border, background, color;
+    color: var(--primary);
+
+    &:hover {
+      background: #F4F5FB; // TODO
+    }
+
+    &__selected {
+      background: var(--purple);
+      color: var(--white) !important;
+
+      &:hover {
+        background: var(--purple);
+      }
+    }
+
+    &__range {
+      background: var(--white-pst);
+    }
+
+    &__today {
+      border: 1px solid var(--purple);
+      color: var(--purple);
+    }
+
+    &__disabled {
+      color: var(--secondary);
+      pointer-events: none;
+    }
+
+    &__out {
+      background: unset;
+      color: var(--secondary);
+
+      &:hover {
+        color: var(--white);
+      }
+    }
+  }
+}

@@ -16,7 +16,7 @@ describe('UseWindowScroll', () => {
 
     expect(result.current).toBe(0)
 
-    global.pageYOffset = 100
+    ;(global.pageYOffset as number) = 100
 
     act(() => {
       global.dispatchEvent(new Event('scroll'))

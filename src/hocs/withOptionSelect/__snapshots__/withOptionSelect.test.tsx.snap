@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withOptionSelect renders correctly 1`] = `
+<div>
+  <div
+    data-testid="with-option-select-component"
+  >
+    <div />
+    <div
+      class="with-option-select-component-option"
+    >
+      Test
+    </div>
+  </div>
+</div>
+`;

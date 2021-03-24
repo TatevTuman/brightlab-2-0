@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrimaryInput renders correctly 1`] = `
+<div>
+  <label
+    class="primary-input"
+  >
+    <div
+      class="primary-input-inner"
+      data-error="false"
+      data-testid="inner"
+    >
+      <div
+        class="primary-input-inner__prefix"
+      />
+      <input
+        autocomplete="on"
+        data-testid="input"
+        id="input"
+        name="input"
+        tabindex="0"
+        type="text"
+        value=""
+      />
+      <div
+        class="primary-input-inner__suffix"
+      >
+        <i
+          class="icon"
+        >
+          <test-file-stub
+            classname="primary-input-inner__suffix-times"
+            data-testid="primary-input-times"
+            name="times"
+          />
+        </i>
+      </div>
+    </div>
+  </label>
+</div>
+`;

@@ -1,0 +1,10 @@
+@import 'static/assets/styles/mixins';
+
+.icon {
+  display: flex;
+
+  svg[data-name='like'] {
+    path {
+    }
+  }
+}

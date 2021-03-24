@@ -1,6 +1,3 @@
-import * as React from 'react'
-import { DocumentNode } from '@apollo/client'
-
 declare module '*.bmp' {
   const src: string
   export default src
@@ -43,6 +40,7 @@ declare module '*.scss' {
 }
 
 declare module '*.gql' {
+  import { DocumentNode } from '@apollo/client'
   const value: DocumentNode
   export default value
 }

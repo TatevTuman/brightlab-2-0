@@ -16,7 +16,7 @@ export type WithOptionSelectState = {
 export type WithOptionSelectPropsPassed = {
   options: WithOptionSelectProps['options']
   selectedOption: WithOptionSelectState['selectedOption']
-  handleOptionSelect: (option: OptionType | null) => void
+  handleOptionSelect: (value: OptionType | null) => void
 }
 
 const withOptionSelect = <P,>(WrappedComponent: React.ComponentType<WithOptionSelectPropsPassed & P>) => {

@@ -4,7 +4,6 @@ import { useLocation } from '@reach/router'
 interface setUrlSearchParamOptions {
   multiple?: boolean
   redirect?: string
-  preventScroll?: boolean
 }
 
 const decodeUrlSearchParams = (urlSearchParams: URLSearchParams) => '?' + decodeURIComponent(urlSearchParams.toString())
@@ -60,6 +59,7 @@ const useUrlSearchParams = (query: string) => {
   const getUrlSearchParam = () => urlSearchParams.getAll(query)[0]
   const getUrlSearchParams = (): Record<string, string[]> => {
     const params = {} as Record<string, any>
+
     urlSearchParams.forEach((value, key) => {
       params[key] = value.split(',')
     })

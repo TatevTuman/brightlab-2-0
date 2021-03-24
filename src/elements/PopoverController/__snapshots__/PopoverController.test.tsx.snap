@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popover renders correctly 1`] = `
+<div>
+  <div
+    class="controller"
+  >
+    <div
+      class="controller-button"
+      data-bottom="false"
+    >
+      <div
+        class="popover"
+        data-open="false"
+      >
+        <div
+          class="popover-list"
+        >
+          <div
+            class="popover-list-option"
+          >
+            <div>
+              Michael Stevenson
+            </div>
+            <div>
+              Figma Corporate. Presentation and Sales...
+            </div>
+            <div>
+              <div>
+                <i
+                  class="icon"
+                >
+                  <test-file-stub
+                    name="clock"
+                  />
+                </i>
+              </div>
+              <div>
+                8:00 - 9:30
+              </div>
+            </div>
+          </div>
+          <div
+            class="popover-list-option"
+          >
+            <div>
+              Michael Stevenson
+            </div>
+            <div>
+              Figma Corporate. Presentation and Sales...
+            </div>
+            <div>
+              <div>
+                <i
+                  class="icon"
+                >
+                  <test-file-stub
+                    name="clock"
+                  />
+                </i>
+              </div>
+              <div>
+                8:00 - 9:30
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,5 +1,5 @@
 // export { default as typography, rhythm, scale } from './typography'
-export { default as calendar } from './calendar'
+export { default as datepicker } from './datepicker'
 
 export * from './validation'
 export * from './helpers'

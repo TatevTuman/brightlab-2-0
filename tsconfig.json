@@ -23,7 +23,7 @@
       "@modules": ["src/modules/index.tsx"],
       "@templates": ["src/templates/index.tsx"],
       "@pages-components/*": ["src/pages-components/*"],
-      "@images": ["static/assets/images"],
+      "@images/*": ["static/assets/images/*"],
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
       "@graphql": ["src/graphql/index.ts"],
@@ -33,6 +33,7 @@
       "@hocs": ["src/hocs/index.ts"],
       "@cache": ["gatsby-apollo-cache.ts"]
     },
+    "typeRoots": ["./node_modules/@types", "./@types"]
   },
   "exclude": ["node_modules", "public", ".cache"]
 }

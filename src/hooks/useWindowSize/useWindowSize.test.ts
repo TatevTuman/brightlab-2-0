@@ -12,7 +12,7 @@ afterEach(() => {
 
 describe('UseWindowSize', () => {
   it('useDelayEffect', () => {
-    global.innerWidth = 994
+    ;(global.innerWidth as number) = 994
 
     const { result } = renderHook(useWindowSize)
 
@@ -28,7 +28,7 @@ describe('UseWindowSize', () => {
     Object.keys(breakpoints).forEach(breakpoint => {
       const width = breakpoints[breakpoint]
 
-      global.innerWidth = width
+      ;(global.innerWidth as number) = width
 
       act(() => {
         global.dispatchEvent(new Event('resize'))
