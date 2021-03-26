@@ -1,9 +1,7 @@
-import { withLoadableFallback } from '@hocs'
+import loadable from '@loadable/component'
 
 import type { HomeModalProps } from './HomeModal/HomeModal'
-const HomeModal = withLoadableFallback<HomeModalProps>(import('./HomeModal/HomeModal'), {
-  fallback: { height: '' }
-})
+const HomeModal = loadable(() => import('./HomeModal/HomeModal'))
 
 export { HomeModal }
 

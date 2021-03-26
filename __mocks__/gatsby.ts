@@ -15,22 +15,6 @@ const siteMetadata = {
         {
           path: '/',
           label: 'Home'
-        },
-        {
-          path: '/typography',
-          label: 'Typography'
-        },
-        {
-          path: '/sign-in',
-          label: 'Sign in'
-        },
-        {
-          path: '/sign-up',
-          label: 'Sign up'
-        },
-        {
-          path: '/dynamic',
-          label: 'Dynamic'
         }
       ]
     }

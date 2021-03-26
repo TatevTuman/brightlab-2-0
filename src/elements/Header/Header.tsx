@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Container } from '@components'
+import { Container } from '@elements'
 import { Navigation } from '@elements'
 import { useSiteMetadata, useWindowSize } from '@hooks'
 import LogoImage from '@images/test.png'

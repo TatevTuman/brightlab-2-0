@@ -1,8 +1,7 @@
 import React from 'react'
 import { ApolloProvider } from '@apollo/client'
 import { Provider as AlertProvider, transitions } from 'react-alert'
-import { Page, Header, Footer, Modals } from '@components'
-import { Alert } from '@elements'
+import { Alert, Page, Header, Footer, Modals } from '@elements'
 import client from './gatsby-apollo'
 import '@styles/root.scss'
 

@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Container } from '@components'
+import { Container } from '@elements'
 import { Navigation } from '@elements'
 import { useSiteMetadata } from '@hooks'
 import './Footer.scss'
