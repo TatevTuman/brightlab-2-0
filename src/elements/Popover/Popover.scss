@@ -10,34 +10,51 @@
   }
 
   &:after {
-    display: none;
+    display: block;
     position: absolute;
     content: '';
     transform: rotate(45deg);
-    background: var(--black);
+    background: #16161b;
     width: toRem(10);
     height: toRem(10);
     left: toRem(120);
-    bottom: toRem(-5);
+    bottom: toRem(-4);
     z-index: -1;
   }
 
   &-list {
+    height: 100%;
     width: toRem(265);
-    height: toRem(146);
-    background: var(--black);
+    background: #16161B;
     border-radius: toRem(10);
     box-shadow: 3px 8px 12px rgba(22, 22, 26, 0.251885);
-    font-size: toRem(14);
+    font-size: toRem(12);
     color: var(--white);
     bottom: toRem(45);
     left: toRem(-120);
 
+    &-line {
+      display: inline;
+      position: absolute;
+      height: 0;
+      width: toRem(237);
+      bottom: toRem(66.5);
+      left: toRem(13);
+      border-bottom: toRem(0.5) solid var(--white);
+    }
+
     &-option {
-      height: 50%;
-      padding: toRem(10);
-      color: var(--white);
+      height: toRem(68);
+      padding: toRem(10) toRem(14);
       z-index: 1;
+
+      &:first-child {
+        border-radius: toRem(10) toRem(10) 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 toRem(10) toRem(10);
+      }
 
       &:hover {
         background: rgba(115, 115, 121, 0.5);
@@ -48,39 +65,25 @@
       }
 
       div:first-child {
-        font-size: toRem(12);
-        color: var(--white);
         mix-blend-mode: normal;
         opacity: 0.7;
 
         & + div {
-          margin-bottom: toRem(5);
-          font-size: toRem(12);
           font-weight: 500;
 
           & + div {
             display: flex;
             height: toRem(12);
-            font-size: toRem(12);
             font-weight: 500;
 
             div:first-child {
-              width: toRem(12);
 
-              & + div {
-                padding-left: toRem(9);
+              & ~ div {
+                padding-left: toRem(7);
               }
             }
           }
         }
-      }
-
-      &:first-child {
-        border-radius: toRem(10) toRem(10) 0 0;
-        border-bottom: 1px solid var(--white);
-      }
-      &:last-child {
-        border-radius: 0 0 toRem(10) toRem(10);
       }
     }
   }

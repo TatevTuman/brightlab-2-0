@@ -10,6 +10,9 @@ exports[`Popover renders correctly 1`] = `
       class="popover-list"
     >
       <div
+        class="popover-list-line"
+      />
+      <div
         class="popover-list-option"
       >
         <div>

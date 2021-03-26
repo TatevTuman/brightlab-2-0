@@ -1,0 +1,59 @@
+@import "static/assets/styles/interactive";
+@import "static/assets/styles/mixins";
+
+.checkbox {
+  @include disabled($background: false, $opacity: true, $pointerEvents: true);
+
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    background-color: var(--white);
+    border: 2px solid var(--purple);
+    transition: border 0.2s ease, background-color 0.2s ease;
+    will-change: border, background-color;
+
+    &:hover {
+      background-color: var(--white-pst);
+      border: 2px solid var(--purple-d);
+    }
+
+    &:active,
+    &:checked {
+      background-color: var(--purple-dst);
+      border: 2px solid var(--purple-dst);
+    }
+
+    &[data-error='true'] {
+      @include background_border(white, danger);
+    }
+
+    appearance: none;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:checked {
+      background-image: url("/assets/images/checkbox.svg");
+    }
+
+    margin-right: toRem(12);
+    cursor: pointer;
+  }
+
+  label {
+    font-size: toRem(15);
+    font-weight: 400;
+    color: var(--primary);
+
+    a {
+      font-weight: 600;
+    }
+  }
+}

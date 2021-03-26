@@ -1,12 +1,9 @@
 import React from 'react'
 import { Story, Meta } from '@storybook/react/types-6-0'
 import Popover, { PopoverProps } from './Popover'
+import { action } from '@storybook/addon-actions'
+import { storybook } from '@utils'
 
-export default {
-  title: 'Elements/Popover',
-  component: Popover,
-  argTypes: {}
-} as Meta
 
 const options = [
   {
@@ -15,7 +12,7 @@ const options = [
       company: 'Figma Corporate. Presentation and Sales...',
       date: '8:00 - 9:30'
     },
-    value: 'aaa'
+    value: 'first Option'
   },
   {
     label: {
@@ -23,10 +20,26 @@ const options = [
       company: 'Figma Corporate. Presentation and Sales...',
       date: '8:00 - 9:30'
     },
-    value: 'aaa'
+    value: 'second Option'
   }
 ]
 
-const Template: Story<PopoverProps> = args => <Popover {...args} options={options} />
+export default {
+  title: 'Elements/Popover',
+  component: Popover,
+  argTypes: {
+    open: { control: 'boolean', name: 'open' },
+    onClick: { action: 'onClick' }
+  }
+} as Meta
 
-export const ExamplePopover = Template.bind({})
+const PopoverStoryTemplate: Story<PopoverProps> = args => <Popover {...args} options={options} />
+
+PopoverStoryTemplate.args = {
+  onClick: action('onClick')
+}
+
+export const PopoverStory = PopoverStoryTemplate.bind({})
+PopoverStory.args = {
+  ...PopoverStoryTemplate.args
+}

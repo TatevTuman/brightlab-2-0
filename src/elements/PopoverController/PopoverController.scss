@@ -18,33 +18,45 @@
     border-radius: toRem(10);
     font-size: toRem(14);
     color: var(--purple);
+    font-weight: 700;
 
-    & > div {
-      display: none;
+    .popover {
       position: absolute;
-      bottom: toRem(50);
+    }
+
+    &:hover, &:focus{
       background: rgba(62, 66, 223, 0.09);
+
+      .popover {
+        display: block;
+      }
+    }
+    .popover[position='top'] {
+      bottom: toRem(50);
+    }
+    .popover[position='left'] {
+      bottom: toRem(0);
+      left: toRem(-287);
 
       &:after {
-        display: block;
+        left: toRem(260);
+        bottom: toRem(15);
       }
     }
+    .popover[position='right'] {
+      bottom: toRem(0);
+      left: toRem(47);
 
-    &:hover {
-      background: rgba(62, 66, 223, 0.09);
-
-      div {
-        display: block;
+      &:after {
+        left: toRem(-4);
+        bottom: toRem(15);
       }
     }
-    &[data-bottom='true'] {
+    .popover[position='bottom'] {
+      bottom: toRem(-160);
 
-      & > div {
-        bottom: toRem(-160);
-
-        &:after {
-          bottom: toRem(140);
-        }
+      &:after {
+        bottom: toRem(130);
       }
     }
   }

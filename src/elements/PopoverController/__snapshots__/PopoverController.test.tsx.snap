@@ -7,15 +7,20 @@ exports[`Popover renders correctly 1`] = `
   >
     <div
       class="controller-button"
-      data-bottom="false"
     >
+      +
+      2
       <div
         class="popover"
         data-open="false"
+        position="top"
       >
         <div
           class="popover-list"
         >
+          <div
+            class="popover-list-line"
+          />
           <div
             class="popover-list-option"
           >

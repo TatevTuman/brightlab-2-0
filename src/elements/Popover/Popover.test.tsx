@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, getByText, render, waitFor } from '@testing-library/react'
+import { act, cleanup, getByText, render, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Popover from './Popover'
 
@@ -49,9 +49,13 @@ describe('Popover', () => {
     })
   })
   it('click', async () => {
-    const { getByText } = render(<Popover {...props} />)
-    const option = getByText(props.options[0].label.name)
-    userEvent.click(option!)
-    expect(props.onClick).toHaveBeenCalledTimes(1)
+    const { container } = render(<Popover {...props} />)
+    const options = container.querySelectorAll('[key]')
+    options.forEach(option => {
+      act(() => {
+        userEvent.click(option)
+        expect(props.onClick).toHaveBeenCalledTimes(1)
+      })
+    })
   })
 })
