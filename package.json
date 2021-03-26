@@ -146,5 +146,10 @@
       "jest --bail --findRelatedTests"
     ],
     "*.{js,jsx,ts,tsx,json,md}": "prettier --write"
+  },
+  "#husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
