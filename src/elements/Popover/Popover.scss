@@ -1,90 +1,42 @@
-@import "static/assets/styles/mixins";
+@import 'static/assets/styles/mixins';
 
 .popover {
-  display: none;
-  position: relative;
-  cursor: pointer;
 
-  &[data-open='true'] {
-    display: block;
+  &-content {
+
+    /* If now arrow container apply animation */
+    &[data-arrow='false'] {
+      animation-name: popover;
+      animation-duration: 0.6s;
+      animation-timing-function: ease-in-out;
+    }
   }
 
-  &:after {
-    display: block;
-    position: absolute;
-    content: '';
-    transform: rotate(45deg);
-    background: #16161b;
-    width: toRem(10);
-    height: toRem(10);
-    left: toRem(120);
-    bottom: toRem(-4);
-    z-index: -1;
+  &-children {
+    cursor: pointer;
   }
 
-  &-list {
-    height: 100%;
-    width: toRem(265);
-    background: #16161B;
-    border-radius: toRem(10);
-    box-shadow: 3px 8px 12px rgba(22, 22, 26, 0.251885);
-    font-size: toRem(12);
-    color: var(--white);
-    bottom: toRem(45);
-    left: toRem(-120);
+  &-arrow {
 
-    &-line {
-      display: inline;
-      position: absolute;
-      height: 0;
-      width: toRem(237);
-      bottom: toRem(66.5);
-      left: toRem(13);
-      border-bottom: toRem(0.5) solid var(--white);
+    /* Apply animation if exists */
+    &-container {
+      animation-name: popover;
+      animation-duration: 0.6s;
+      animation-timing-function: ease-in-out;
     }
+  }
+}
 
-    &-option {
-      height: toRem(68);
-      padding: toRem(10) toRem(14);
-      z-index: 1;
+@keyframes popover {
+  0% {
+    transform: scale(0.2);
+  }
 
-      &:first-child {
-        border-radius: toRem(10) toRem(10) 0 0;
-      }
+  50% {
+    transform: scale(1.05);
+  }
 
-      &:last-child {
-        border-radius: 0 0 toRem(10) toRem(10);
-      }
-
-      &:hover {
-        background: rgba(115, 115, 121, 0.5);
-      }
-
-      &:active {
-        background: rgba(115, 115, 121, 0.82);
-      }
-
-      div:first-child {
-        mix-blend-mode: normal;
-        opacity: 0.7;
-
-        & + div {
-          font-weight: 500;
-
-          & + div {
-            display: flex;
-            height: toRem(12);
-            font-weight: 500;
-
-            div:first-child {
-
-              & ~ div {
-                padding-left: toRem(7);
-              }
-            }
-          }
-        }
-      }
-    }
+  100% {
+    transform: scale(1);
   }
 }
