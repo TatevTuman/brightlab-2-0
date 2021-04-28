@@ -2,8 +2,16 @@
 @import 'static/assets/styles/variables.scss';
 
 @function toRem($size) {
-  $remSize: $size / 16;
+  $remSize: $size / 15;
   @return #{$remSize}rem;
+}
+
+@function toVW($size, $base_width: false) {
+  @if $base_width {
+    @return calc(#{$size} * 100vw / #{$base_width});
+  } @else {
+    @return calc(#{$size} * 100vw / 1440);
+  }
 }
 
 @mixin createVars($vars) {
@@ -260,7 +268,7 @@ $sides: vertical, horizontal, top, right, bottom, left;
   user-select: none;
 
   &[data-disabled='true'] {
-    color: var(--white);
+    color: var(--w-white);
 
     @if $background {
       background: var(--disabled);
@@ -277,38 +285,32 @@ $sides: vertical, horizontal, top, right, bottom, left;
   }
 }
 
-@mixin error_gradient() {
-  &[data-error='true'] {
-    border: 1px solid var(--danger) !important;
-    background-image: repeating-linear-gradient(120deg,
-      var(--danger-l),
-      var(--danger-l) toRem(10),
-      var(--white) toRem(10),
-      var(--white) toRem(20)) !important;
-    background-size: 200% 100%;
-    animation-name: gradient;
-    animation-duration: 10s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-fill-mode: forwards;
-    //animation-delay: 1.2s;
-
-    @keyframes gradient {
-      from {
-        background-position: 0 50%;
-      }
-
-      to {
-        background-position: 100% 50%;
-      }
-    }
-
-    &:hover {
-      animation-play-state: paused;
-    }
-  }
+@mixin shadow() {
+  box-shadow: 1px, 2px, 4px, var(--purple-dst);
 }
 
-@mixin primary_shadow() {
-  box-shadow: 1px, 2px, 4px, var(--purple-dst);
+@mixin underline($bottom) {
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: $bottom;
+    content: '';
+    height: 100%;
+    width: 100%;
+    border-bottom: solid 2px var(--purple);
+    transform: scaleX(0.0001);
+    transition: transform 0.2s ease;
+  }
+
+  &[data-active="true"] {
+    &:after {
+      transform: scaleX(1);
+    }
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(0.8);
+    }
+  }
 }

@@ -32,9 +32,13 @@ describe('ValidationErrorMessage', () => {
   })
 
   it('uses render prop', async () => {
-    const renderProp = (error: ValidationErrorMessageType) => <div data-testid={'error'}>{error.message}</div>
+    const renderProp = (error: ValidationErrorMessageType) => (
+      <div role={'validation-error'} data-testid={'validation-error'}>
+        {error.message}
+      </div>
+    )
     const { getByTestId } = render(<ValidationErrorMessage {...props} render={renderProp} />)
 
-    expect(getByTestId('error')).toBeInTheDocument()
+    expect(getByTestId('validation-error')).toBeInTheDocument()
   })
 })

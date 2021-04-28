@@ -1,7 +1,7 @@
 import React from 'react'
 import { ApolloProvider } from '@apollo/client'
 import { Provider as AlertProvider, transitions } from 'react-alert'
-import { Page, Header, Footer, Modals } from '@components'
+import { Page, Header, Footer, Modals, Overlay } from '@elements'
 import { Alert } from '@elements'
 import client from './gatsby-apollo'
 import '@styles/root.scss'
@@ -30,6 +30,7 @@ export const wrapRootElement = ({ element }) => {
     <ApolloProvider client={client}>
       <AlertProvider template={Alert} {...alertOptions}>
         <Modals />
+        <Overlay />
         {element}
       </AlertProvider>
     </ApolloProvider>

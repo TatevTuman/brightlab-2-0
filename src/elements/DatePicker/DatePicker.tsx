@@ -1,20 +1,21 @@
 import React, { memo, useEffect, useState } from 'react'
-import { getNextMonth, getPreviousMonth, isSameDay } from '@utils'
+import { getNextMonth, getPreviousMonth } from '@utils'
 import { DatePickerHeader, DatePickerDaysLabels, DatePickerDays } from './components'
 import './DatePicker.scss'
 
 export interface DatePickerProps {
-  date?: Date
-  onDateChange?: (date: Date) => void
-  onMonthChange?: (month: number) => void
-  onYearChange?: (year: number) => void
+  dates?: (Date | null)[]
+  className?: string
+  noToday?: boolean
+  initialStateDate?: Date
+  onDateChange?: (dates: (Date | null)[], date: Date) => void
+  onMonthChange?: (month: number, year: number) => void
   disabledMonths?: (month: number, year: number) => boolean
   disabledDays?: (day: Date) => boolean
-  noToday?: boolean
+  rangedDays?: (day: Date) => boolean
 }
 
 export interface DatePickerState {
-  date: Date
   month: number
   year: number
   today?: Date
@@ -22,29 +23,78 @@ export interface DatePickerState {
 
 const DatePicker: React.FC<DatePickerProps> = props => {
   const {
-    date = new Date(),
+    className,
+    noToday,
+    initialStateDate,
     onDateChange,
     onMonthChange,
-    onYearChange,
     disabledMonths = () => false,
     disabledDays = () => false,
-    noToday
+    rangedDays = () => false
   } = props
 
-  const getDayState = (date: Date) => ({
-    date,
+  const now = new Date()
+  const dates = props.dates || [now]
+
+  /* Needs to define what date to change */
+  const [dateId, handleDateId] = useState<number>(0)
+  const nextDateId = () => {
+    const nextId = dateId + 1
+    const datesLength = dates.length - 1
+
+    if (nextId > datesLength) handleDateId(0)
+    else handleDateId(nextId)
+  }
+
+  /* Checks if date picker is controlled by dates from props */
+  const isDatePickerControlled = props.dates !== undefined
+
+  const [datePickerDates, handleDatePickerDates] = useState<(Date | null)[]>(dates)
+  const setDatePickerDate = (date: Date) => {
+    /* Get next dates */
+    const nextDatePickerDates = datePickerDates.map((datePickerDate, index) => {
+      if (index === dateId) return date
+      else return datePickerDate
+    })
+
+    /* If controlled on change else change state */
+    if (isDatePickerControlled) {
+      onDateChange && onDateChange(nextDatePickerDates, date)
+    } else {
+      handleDatePickerDates(nextDatePickerDates)
+    }
+
+    /* Change date id to get next date */
+    nextDateId()
+    /* Changes month and year by that date */
+    setDatePickerState(getDatePickerState(date))
+  }
+
+  const datePickerDatesTimes = datePickerDates.map(date => (date ? date.getTime() : now.getTime()))
+
+  const minDate = new Date(Math.min(...datePickerDatesTimes))
+  const maxDate = new Date(Math.max(...datePickerDatesTimes))
+
+  /* Returns state from dates */
+  const getDatePickerState = (date: Date) => ({
     month: +date.getMonth() + 1,
     year: date.getFullYear(),
     today: !noToday ? new Date() : undefined
   })
 
-  const [state, handleState] = useState<DatePickerState>(getDayState(date))
-  const setState = (nextState: Partial<DatePickerState>) => handleState({ ...state, ...nextState })
+  /* For RangeDatePicker, we add 1 month to the second picker, so we need get endDate(maxDate) as initial state */
+  const initialState = getDatePickerState(initialStateDate || minDate)
 
-  useEffect(() => {
-    /*
-      This is a day timer that is set to automatically update today state property to the next day when the current day is over.
-    */
+  const [datePickerState, handleDatePickerState] = useState<DatePickerState>(initialState)
+  const setDatePickerState = (nextState: Partial<DatePickerState>) => {
+    handleDatePickerState({ ...datePickerState, ...nextState })
+  }
+
+  /*
+    This is a day timer that is set to automatically update today state property
+    to the next day when the current day is over.
+  */
+  const setStateTodayObserverEffect = () => {
     if (!noToday) {
       const now = new Date()
       const tomorrow = new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000
@@ -53,49 +103,47 @@ const DatePicker: React.FC<DatePickerProps> = props => {
       const ms = tomorrow - now
 
       const dayTimeout = setTimeout(() => {
-        setState({ today: new Date() })
+        setDatePickerState({ today: new Date() })
       }, ms)
 
       return () => clearTimeout(dayTimeout)
     }
-  })
+  }
 
-  useEffect(() => {
-    onMonthChange && onMonthChange(state.month)
-  }, [state.month])
-
-  useEffect(() => {
-    onYearChange && onYearChange(state.year)
-  }, [state.year])
-
-  const gotoDate = (date: Date) => {
-    const nextState = getDayState(date)
-    const isToday = !(state.date && isSameDay(date, state.date))
-
-    if (isToday) {
-      setState(nextState)
-      onDateChange && onDateChange(date)
+  /* Set date picker dates if new dates from props arrived */
+  const setStateFromPropsValueEffect = () => {
+    if (isDatePickerControlled) {
+      handleDatePickerDates(props.dates as Date[])
     }
   }
 
+  useEffect(setStateTodayObserverEffect, [])
+  useEffect(setStateFromPropsValueEffect, [props.dates])
+
+  const gotoDate = (date: Date) => {
+    setDatePickerDate(date)
+  }
+
   const gotoPreviousMonth = () => {
-    const { month, year } = state
-    setState(getPreviousMonth(month, year))
+    const previousMonth = getPreviousMonth(datePickerState.month, datePickerState.year)
+    onMonthChange && onMonthChange(previousMonth.month, previousMonth.year)
+    setDatePickerState(previousMonth)
   }
 
   const gotoNextMonth = () => {
-    const { month, year } = state
-    setState(getNextMonth(month, year))
+    const nextMonth = getNextMonth(datePickerState.month, datePickerState.year)
+    onMonthChange && onMonthChange(nextMonth.month, nextMonth.year)
+    setDatePickerState(getNextMonth(datePickerState.month, datePickerState.year))
   }
 
   const gotoPreviousYear = () => {
-    const { year } = state
-    setState({ year: year - 1 })
+    onMonthChange && onMonthChange(datePickerState.month, datePickerState.year - 1)
+    setDatePickerState({ year: datePickerState.year - 1 })
   }
 
   const gotoNextYear = () => {
-    const { year } = state
-    setState({ year: year + 1 })
+    onMonthChange && onMonthChange(datePickerState.month, datePickerState.year + 1)
+    setDatePickerState({ year: datePickerState.year + 1 })
   }
 
   const previousMonth = (e: React.MouseEvent<HTMLOrSVGElement>) => {
@@ -107,15 +155,22 @@ const DatePicker: React.FC<DatePickerProps> = props => {
   }
 
   return (
-    <div className={'date-picker'}>
+    <div className={'date-picker ' + className}>
       <DatePickerHeader
+        month={datePickerState.month}
+        year={datePickerState.year}
         nextMonth={nextMonth}
         previousMonth={previousMonth}
         disabledMonths={disabledMonths}
-        {...state}
       />
       <DatePickerDaysLabels />
-      <DatePickerDays {...state} gotoDate={gotoDate} disabledDays={disabledDays} />
+      <DatePickerDays
+        {...datePickerState}
+        dates={datePickerDates}
+        gotoDate={gotoDate}
+        disabledDays={disabledDays}
+        rangedDays={rangedDays}
+      />
     </div>
   )
 }

@@ -13,6 +13,10 @@
 
   &-control {
     width: 100%;
+
+    &[data-no-width='true'] {
+      width: unset;
+    }
   }
 
   &-submit {

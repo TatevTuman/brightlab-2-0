@@ -1,6 +1,7 @@
 /* (int) The current year */
 import { DayShort } from '@types'
 
+export const MINUTE = 1000 * 60
 export const DAY = 1000 * 60 * 60 * 24
 export const THIS_YEAR = +new Date().getFullYear()
 
@@ -35,7 +36,25 @@ export const CALENDAR_MONTHS = {
   December: 'Dec'
 }
 
-export const getMonthName = (month: number) => Object.keys(CALENDAR_MONTHS)[Math.max(0, Math.min(month - 1, 11))]
+export const FULL_CALENDAR_MONTHS = {
+  January: 'January',
+  February: 'February',
+  March: 'March',
+  April: 'April',
+  May: 'May',
+  June: 'June',
+  July: 'July',
+  August: 'August',
+  September: 'September',
+  October: 'October',
+  November: 'November',
+  December: 'December'
+}
+
+export const getMonthName = (month: number, fullName?: boolean) => {
+  const calendarMonths = fullName ? FULL_CALENDAR_MONTHS : CALENDAR_MONTHS
+  return Object.keys(calendarMonths)[Math.max(0, Math.min(month - 1, 11))]
+}
 
 /* Weeks displayed on calendar */
 export const CALENDAR_WEEKS = 6
@@ -58,6 +77,10 @@ export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
 /* 1 => Sunday, 7 => Saturday */
 export const getMonthFirstDay = (month = THIS_MONTH, year = THIS_YEAR) => {
   return +new Date(`${year}-${zeroPad(month, 2)}-01`).getDay()
+}
+
+export const getMonthLastDay = (month = THIS_MONTH, year = THIS_YEAR) => {
+  return +new Date(`${year} - ${zeroPad(month, 2)}`)
 }
 
 /* (bool) Checks if a value is a date - this is just a simple check */
@@ -104,7 +127,22 @@ export const getDateISO = (date = new Date()) => {
   return [date.getFullYear(), zeroPad(+date.getMonth() + 1, 2), zeroPad(+date.getDate(), 2)].join('-')
 }
 
-export const getCurrentMonth = () => new Date().getMonth() + 1
+/* TODO test and description */
+export const getDateHoursMinutesFormat = (date = new Date()) => {
+  if (!isDate(date)) return null
+
+  return [+date.getHours(), zeroPad(+date.getMinutes(), 2)].join(':')
+}
+
+/* TODO test and description */
+export const getDateDayMonthYearFormat = (date = new Date(), defaultValue?: any) => {
+  if (!isDate(date)) return defaultValue || null
+
+  return [zeroPad(+date.getDate(), 2), getMonthName(getMonth(date), true), date.getFullYear()].join(' ')
+}
+
+export const getMonth = (date?: Date | null) => +(date ? date.getMonth() + 1 : new Date().getMonth() + 1)
+export const getYear = (date?: Date | null) => +(date ? date.getFullYear() : new Date().getFullYear())
 
 /* ({month, year}) Gets the month and year before the given month and year */
 /* For example: getPreviousMonth(1, 2000) => {month: 12, year: 1999} */
@@ -129,16 +167,118 @@ export const getNextMonth = (month: number, year: number) => {
 /*
   TODO tests and description
 */
-export const getDatesDiff = (firstDate: Date, lastDate: Date, by: 'days') => {
+export const getDatesDiff = (firstDate: Date, lastDate: Date, by?: 'days' | 'minutes') => {
   let millisecondsDiff = 0
 
   switch (by) {
     case 'days':
       millisecondsDiff = DAY
       break
+    case 'minutes':
+      millisecondsDiff = MINUTE
+      break
+    default:
+      millisecondsDiff = 1
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return (firstDate - lastDate) / millisecondsDiff
+}
+
+/*
+  TODO tests and description
+*/
+export const addMinutes = (date: Date, minutes: number) => {
+  const nextHours = Math.floor(minutes / 60)
+  const nextMinutes = nextHours > 0 ? minutes % nextHours : minutes
+
+  const copy = new Date(Number(date))
+  nextHours && copy.setHours(date.getHours() + nextHours)
+  copy.setMinutes(date.getMinutes() + nextMinutes)
+
+  return copy
+}
+
+/*
+  TODO tests and description
+*/
+export const addDays = (date: Date, days: number) => {
+  const copy = new Date(Number(date))
+  copy.setDate(date.getDate() + days)
+  return copy
+}
+
+/*
+  TODO tests and description
+*/
+export const addMonths = (date: Date, months: number) => {
+  const copy = new Date(Number(date))
+  copy.setMonth(date.getMonth() + months)
+  return copy
+}
+
+/*
+  TODO tests and description
+*/
+export const isDateBetween = (baseDate: Date, startDate: Date | null, endDate: Date | null) => {
+  if (!startDate || !endDate) return false
+
+  // baseDate.setHours(0, 0, 0, 0)
+  const isAfterStartDate = baseDate.getTime() > startDate.getTime()
+
+  // baseDate.setHours(23, 59, 59, 999)
+  const isBeforeEndDate = baseDate.getTime() < endDate.getTime()
+
+  return isAfterStartDate && isBeforeEndDate
+}
+
+/*
+  TODO tests and description
+*/
+export const disabledPastDays = (day: Date) => {
+  const today = new Date()
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return day - today < -DAY
+}
+
+/*
+  TODO tests and description
+*/
+export const disabledPastMonths = (month: number, year: number) => {
+  const currentMonth = getMonth()
+  const currentYear = new Date().getFullYear()
+
+  return month < currentMonth && currentYear === year
+}
+
+/* (date) returns monday date by provided date */
+export const getMondayDate = (date: Date) => {
+  const currentDate = new Date(date)
+  const currentDayIndex = (currentDate.getDay() + 6) % 7
+  const currentMondayDate = new Date(date)
+  let currentMondayDateNumber = currentDate.getDate() - currentDayIndex
+  if (currentMondayDateNumber < 1) {
+    const { month: prevMonth, year: prevYear } = getPreviousMonth(currentDate.getMonth() + 1, currentDate.getFullYear())
+    const prevMonthDays = getMonthDays(prevMonth, prevYear)
+    currentMondayDateNumber += prevMonthDays
+    currentMondayDate.setFullYear(prevYear, prevMonth, currentMondayDateNumber)
+  } else {
+    currentMondayDate.setDate(currentMondayDateNumber)
+  }
+
+  return currentMondayDate
+}
+
+/* (date) returns { name: monday, shortName: mon } */
+export const getWeekDay = (date: Date) => {
+  const weekDayIndex = (+date.getDay() + 6) % 7
+  const weekDay = Object.keys(WEEK_DAYS)[weekDayIndex]
+  const weekDayShort = Object.values(WEEK_DAYS)[weekDayIndex]
+
+  return {
+    name: weekDay,
+    shortName: weekDayShort
+  }
 }

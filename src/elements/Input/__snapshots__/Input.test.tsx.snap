@@ -4,28 +4,36 @@ exports[`Input renders correctly 1`] = `
 <div>
   <div
     class="input"
-    data-direction="vertical"
   >
     <div
-      class="inputInner"
+      class="input-inner"
     >
+      <div
+        class="input-inner__prefix"
+      />
       <input
         autocomplete="on"
-        data-cursor="true"
-        data-error="false"
-        data-prefix="false"
-        data-suffix="false"
+        data-testid="input"
+        id="input"
+        name="input"
         placeholder="Type a text"
         tabindex="0"
         type="text"
         value=""
       />
       <div
-        class="inputInnerPrefix"
-      />
-      <div
-        class="inputInnerSuffix"
-      />
+        class="input-inner__suffix"
+      >
+        <i
+          class="icon"
+        >
+          <test-file-stub
+            classname="input-inner__suffix-times"
+            data-testid="input-times"
+            name="times"
+          />
+        </i>
+      </div>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
 exports[`Loader renders correctly 1`] = `
 <div>
   <div
-    class="loader"
+    class="loader undefined"
     data-testid="loader"
   >
     <div

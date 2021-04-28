@@ -5,7 +5,7 @@ import './Checkbox.scss'
 export interface CheckboxProps {
   name: string
   checked: boolean
-  className: string
+  className?: string
   defaultChecked?: boolean
   label?: string
   disabled?: boolean

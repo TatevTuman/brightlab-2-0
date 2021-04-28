@@ -3,64 +3,7 @@
 exports[`Popover renders correctly 1`] = `
 <div>
   <div
-    class="popover"
-    data-open="true"
-  >
-    <div
-      class="popover-list"
-    >
-      <div
-        class="popover-list-line"
-      />
-      <div
-        class="popover-list-option"
-      >
-        <div>
-          name-1
-        </div>
-        <div>
-          company-1
-        </div>
-        <div>
-          <div>
-            <i
-              class="icon"
-            >
-              <test-file-stub
-                name="clock"
-              />
-            </i>
-          </div>
-          <div>
-            date-1
-          </div>
-        </div>
-      </div>
-      <div
-        class="popover-list-option"
-      >
-        <div>
-          name-2
-        </div>
-        <div>
-          company-2
-        </div>
-        <div>
-          <div>
-            <i
-              class="icon"
-            >
-              <test-file-stub
-                name="clock"
-              />
-            </i>
-          </div>
-          <div>
-            date-2
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    class="popover-children"
+  />
 </div>
 `;

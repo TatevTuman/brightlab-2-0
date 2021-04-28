@@ -15,7 +15,7 @@ afterEach(() => {
 describe('Loader', () => {
   const props = {
     type: 'Triangle' as const,
-    color: 'var(--primary)',
+    color: 'primary',
     height: 60,
     width: 60,
     timeout: 15000

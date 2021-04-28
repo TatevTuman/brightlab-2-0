@@ -9,7 +9,7 @@ export const colors = [
   'purple',
   'purple-d',
   'purple-dst',
-  'white',
+  'w-white',
   'white-p',
   'white-pst',
   'blue',
@@ -24,35 +24,8 @@ export const colors = [
   'disabled'
 ]
 
-export const icons = [
-  'actions',
-  'actions-bordered',
-  'arrow',
-  'calendar',
-  'camera',
-  'clock',
-  'email-sign',
-  'incoming',
-  'like',
-  'list',
-  'long-arrow',
-  'pencil',
-  'person',
-  'person-bordered',
-  'plus',
-  'plus-bordered',
-  'plus-filled',
-  'search',
-  'search-bordered',
-  'search-filled',
-  'search',
-  'settings',
-  'times',
-  'times-bordered',
-  'linkedin-filled',
-  'sso-filled',
-  'google'
-]
+/* Should be synced with Icon element types */
+export const icons = ['times', 'arrow']
 
 export const storybook = {
   controls: {

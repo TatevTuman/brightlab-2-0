@@ -2,8 +2,9 @@ import React, { memo, useState, useEffect, useRef } from 'react'
 import './TimeInput.scss'
 
 export interface TimeInputProps {
-  onChange: (value: string) => void
+  // value: string TODO value control, not state
   label?: string
+  onChange: (value: string) => void
 }
 
 enum ArrowKeys {
@@ -17,7 +18,7 @@ const TimeInput: React.FC<TimeInputProps> = props => {
     firstInputValue: '',
     secondInputValue: ''
   })
-  // console.log(time)
+
   const firstRef: any = useRef<HTMLInputElement>(null)
   const secondRef: any = useRef<HTMLInputElement>(null)
 
@@ -30,11 +31,13 @@ const TimeInput: React.FC<TimeInputProps> = props => {
   }, [time.secondInputValue])
 
   const handleFirstInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const firstCurrentRef: any = firstRef.current
+    const firstCurrentRef = firstRef.current
     const firstCurrentRefValue = firstCurrentRef.value
     const maxLength = firstCurrentRef.maxLength
+
     if (e.target.value < '24') {
-      setTime({ firstInputValue: e.target.value })
+      setTime({ ...time, firstInputValue: e.target.value })
+
       if (firstCurrentRefValue.length === maxLength) {
         ;(secondRef.current as HTMLInputElement).focus()
       }
@@ -42,11 +45,13 @@ const TimeInput: React.FC<TimeInputProps> = props => {
   }
 
   const handleSecondInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const secondCurrentRef: any = secondRef.current
+    const secondCurrentRef = secondRef.current
     const secondCurrentRefValue = secondCurrentRef.value
+
     if (e.target.value < '60') {
-      setTime({ secondInputValue: e.target.value })
+      setTime({ ...time, secondInputValue: e.target.value })
     }
+
     if (secondCurrentRefValue.length === 0) {
       ;(firstRef.current as HTMLInputElement).focus()
     }

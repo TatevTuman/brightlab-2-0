@@ -10,8 +10,6 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-const imagesPath = '/assets/images'
-
 describe('UseSiteMetadata', () => {
   it('useSiteMetadata', () => {
     const { result } = renderHook(useSiteMetadata)
@@ -26,24 +24,8 @@ describe('UseSiteMetadata', () => {
       siteUrl: 'https://url-to-site-deploy/',
       navigation: [
         {
-          path: '/schedule',
-          label: 'Schedule',
-          icon: `${imagesPath}/schedule.svg`
-        },
-        {
-          path: '/people',
-          label: 'People',
-          icon: `${imagesPath}/people.svg`
-        },
-        {
-          path: '/incoming',
-          label: 'Incoming',
-          icon: `${imagesPath}/incoming.svg`
-        },
-        {
-          path: '/meeting-room',
-          label: 'Meeting room',
-          icon: `${imagesPath}/meeting-room.svg`
+          path: '/',
+          label: 'Home'
         }
       ]
     })

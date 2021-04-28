@@ -1,22 +1,10 @@
 import React, { memo } from 'react'
-import { Container } from '@components'
-import { Navigation } from '@elements'
-import { useSiteMetadata, useWindowSize } from '@hooks'
-import LogoImage from '@images/test.png'
+import { Navigation, Container } from '@elements'
+import { useSiteMetadata } from '@hooks'
 import './Header.scss'
 
 const HomeLogo = () => {
-  const { toRender } = useWindowSize(['desktop'])
-  if (!toRender) return null
-
-  const logoStyles = {
-    width: '100px',
-    position: 'absolute' as const,
-    top: 0,
-    right: 0
-  }
-
-  return <LogoImage width={100} height={100} style={logoStyles} />
+  return null
 }
 
 export interface HeaderProps {}

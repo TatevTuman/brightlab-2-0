@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Meta, Story } from '@storybook/react/types-6-0'
 import { action } from '@storybook/addon-actions'
-import { DAY } from '@utils'
+import { addMonths } from '@utils'
 import RangeDatePicker, { RangeDatePickerProps } from './RangeDatePicker'
 
 interface RangeDatePickerStoryTemplateProps extends RangeDatePickerProps {}
@@ -10,36 +10,35 @@ export default {
   title: 'Elements/RangeDatePicker',
   argTypes: {
     noToday: { control: 'boolean', name: 'noToday' },
-    onDatesChange: { action: 'onDatesChange' },
-    onMonthsChange: { action: 'onMonthsChange' },
-    onYearsChange: { action: 'onYearsChange' }
+    onDatesChange: { action: 'onDatesChange' }
   }
 } as Meta
 
 const RangeDatePickerStoryTemplate: Story<RangeDatePickerStoryTemplateProps> = args => {
-  const otherProps = {
-    disabledDays: (day: Date) => {
-      const today = new Date()
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      return day - today < -DAY
-    },
-    disabledMonths: (month: number, year: number) => {
-      const currentMonth = new Date().getMonth() + 1
-      const currentYear = new Date().getFullYear()
+  const [startDate, setStartDate] = useState<Date | null>(new Date())
+  const [endDate, setEndDate] = useState<Date | null>(addMonths(new Date(), 2))
 
-      return month < currentMonth && currentYear === year
-    }
+  const otherProps = {
+    startDate,
+    endDate
   }
 
-  return <RangeDatePicker {...args} {...otherProps} />
+  return (
+    <RangeDatePicker
+      {...args}
+      {...otherProps}
+      onDatesChange={(startDate, endDate) => {
+        args.onDatesChange(startDate, endDate)
+        setStartDate(startDate)
+        setEndDate(endDate)
+      }}
+    />
+  )
 }
 
 RangeDatePickerStoryTemplate.args = {
   noToday: false,
-  onDatesChange: action('onDatesChange'),
-  onMonthsChange: action('onMonthsChange'),
-  onYearsChange: action('onYearsChange')
+  onDatesChange: action('onDatesChange')
 }
 
 export const RangeDatePickerStory = RangeDatePickerStoryTemplate.bind({})

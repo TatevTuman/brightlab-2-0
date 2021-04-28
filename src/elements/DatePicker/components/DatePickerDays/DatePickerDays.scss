@@ -3,7 +3,6 @@ $columns: 7;
 $grid: $rows * $columns;
 
 .date-picker {
-
   &-days {
     display: grid;
     grid-template-columns: repeat(7, 32px);
@@ -23,12 +22,12 @@ $grid: $rows * $columns;
     color: var(--primary);
 
     &:hover {
-      background: #F4F5FB; // TODO
+      background: #f4f5fb; // TODO
     }
 
     &__selected {
-      background: var(--purple);
-      color: var(--white) !important;
+      background: var(--purple) !important;
+      color: var(--w-white) !important;
 
       &:hover {
         background: var(--purple);
@@ -50,11 +49,11 @@ $grid: $rows * $columns;
     }
 
     &__out {
-      background: unset;
-      color: var(--secondary);
+      background: unset !important;
+      color: var(--secondary) !important;
 
       &:hover {
-        color: var(--white);
+        color: var(--w-white);
       }
     }
   }

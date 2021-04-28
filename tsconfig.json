@@ -21,7 +21,7 @@
       "@components": ["src/components/index.tsx"],
       "@elements": ["src/elements/index.tsx"],
       "@modules": ["src/modules/index.tsx"],
-      "@templates": ["src/templates/index.tsx"],
+      "@layouts": ["src/templates/index.tsx"],
       "@pages-components/*": ["src/pages-components/*"],
       "@images/*": ["static/assets/images/*"],
       "@styles": ["static/assets/styles"],

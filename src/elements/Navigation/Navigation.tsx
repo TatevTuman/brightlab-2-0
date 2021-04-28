@@ -1,7 +1,7 @@
 import { navigate } from 'gatsby'
-import React from 'react'
+import React, { memo } from 'react'
 import { useMatch } from '@reach/router'
-import {Icon, IconName} from '@elements'
+import { Icon, IconName } from '@elements'
 import { NavigationType, NavigationItemType } from '@types'
 import './Navigation.scss'
 
@@ -45,4 +45,4 @@ const Navigation: React.FC<NavigationProps> = props => {
   )
 }
 
-export default Navigation
+export default memo(Navigation)

@@ -4,6 +4,7 @@
   Each calendar date is represented as an array => [YYYY, MM, DD]
 */
 import {
+  DAY,
   THIS_MONTH,
   THIS_YEAR,
   CALENDAR_WEEKS,
@@ -38,7 +39,6 @@ export default (month = THIS_MONTH, year = THIS_YEAR) => {
   })
 
   /* Builds dates to be displayed from current month */
-
   const thisMonthDates = [...new Array(monthDays)].map((n, index) => {
     const day = index + 1
     return [year, zeroPad(month, 2), zeroPad(day, 2)]

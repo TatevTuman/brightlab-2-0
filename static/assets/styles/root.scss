@@ -1,18 +1,48 @@
 @import 'static/assets/styles/mixins.scss';
 @import 'static/assets/styles/media.scss';
 @import 'static/assets/styles/variables.scss';
-@import 'static/assets/styles/fonts.scss';
 @import 'static/assets/styles/blocks.scss';
 @import 'static/assets/styles/typography.scss';
 
 @include createColorsClasses($colors);
 @include createBackgroundColorsClasses($colors);
 @include createFontSizeClasses(8, 30);
+@include createFontWeightsClasses();
 @include createMarginClasses(0, 100);
-@include createMarginMediaClasses(0, 100)
+@include createMarginMediaClasses(0, 100);
 @include createPaddingClasses(0, 100);
 @include createPaddingMediaClasses(0, 100);
-@include createFontWeightsClasses();
+
+//@font-face {
+//  font-family: 'MierB';
+//  src: url('/assets/fonts/MierB-Light.woff') format('woff'), url('/assets/fonts/MierB-Light.woff2') format('woff2');
+//  font-weight: 400;
+//  font-display: swap;
+//}
+//
+//@font-face {
+//  font-family: 'MierB';
+//  src: url('/assets/fonts/MierB-Regular.woff') format('woff'), url('/assets/fonts/MierB-Regular.woff2') format('woff2');
+//  font-weight: 500;
+//  font-display: swap;
+//}
+//
+//@font-face {
+//  font-family: 'MierB';
+//  src: url('/assets/fonts/MierB-DemiBold.woff') format('woff'), url('/assets/fonts/MierB-DemiBold.woff2') format('woff2');
+//  font-weight: 600;
+//  font-style: normal;
+//  font-display: swap;
+//}
+//
+//@font-face {
+//  font-family: 'MierB';
+//  src: url('/assets/fonts/MierB-Bold.woff') format('woff'), url('/assets/fonts/MierB-Bold.woff2') format('woff2');
+//  font-weight: 700;
+//  font-style: normal;
+//  font-display: swap;
+//}
+
 
 * {
   margin: 0;
@@ -22,19 +52,7 @@
 html {
   @include createVars($colors);
 
-  font: 93.75%/1.5 'MierB', 'sans-serif';
-
-  //@include breakpoint_min('tablet') {
-  //  font: 100%/1.5 'MierB', 'sans-serif';
-  //}
-  //
-  //@include breakpoint_max('tablet') {
-  //  font: 80%/1.5 'MierB', 'sans-serif';
-  //}
-  //
-  //@include breakpoint_max('landscape') {
-  //  font: 60%/1.5 'MierB', 'sans-serif';
-  //}
+  font: 100%/1.5 'sans-serif'; // 100% == 16px
 }
 
 html,
@@ -66,7 +84,11 @@ a {
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  &:-webkit-autofill:active, {
+    border: 0;
+    -webkit-text-fill-color: #ссс;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,174,255,0.04) 50%,rgba(255,255,255,0) 51%,rgba(0,174,255,0.03) 100%);
   }
 }

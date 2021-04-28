@@ -12,7 +12,8 @@ module.exports = {
     navigation: [
       {
         path: '/',
-        label: 'Home'
+        label: 'Home',
+        icon: '' // Required!
       }
     ]
   },

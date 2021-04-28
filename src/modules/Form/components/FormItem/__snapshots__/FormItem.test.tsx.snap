@@ -3,7 +3,7 @@
 exports[`FormItem renders correctly 1`] = `
 <div>
   <div
-    class="formItem"
+    class="form-item"
   >
     children
   </div>

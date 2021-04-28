@@ -15,4 +15,8 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+  .date-picker-day__out {
+    pointer-events: none;
+  }
 }

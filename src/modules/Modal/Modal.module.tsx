@@ -1,5 +1,4 @@
 import loadable, { LoadableComponent } from '@loadable/component'
-import { withLoadableFallback } from '@hocs'
 import { ModalFooter, ModalHeader } from './components'
 
 import type { ModalProps } from './Modal'

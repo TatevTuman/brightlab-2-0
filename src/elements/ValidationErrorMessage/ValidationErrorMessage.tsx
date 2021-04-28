@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 import { Children } from '@types'
@@ -44,7 +44,7 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
     if (render) return render(error)
     else {
       return (
-        <div className={'validation-error'} role="validation-error">
+        <div className={'validation-error'} role="validation-error" data-testid="validation-error">
           {error.message}
         </div>
       )
@@ -54,4 +54,4 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessageProps> = props => {
   return <ErrorMessage errors={formContext.errors} name={name} render={renderErrorMessage} />
 }
 
-export default ValidationErrorMessage
+export default memo(ValidationErrorMessage)

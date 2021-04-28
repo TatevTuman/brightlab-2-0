@@ -12,15 +12,20 @@ afterEach(() => {
 })
 
 describe('Input', () => {
+  const defaultProps = {
+    value: '',
+    onChange: jest.fn()
+  }
+
   it('renders correctly', async () => {
-    const { container } = render(<Input name={'input'} />)
+    const { container } = render(<Input name={'input'} {...defaultProps} />)
     await waitFor(() => container)
 
     expect(container).toMatchSnapshot()
   })
 
   it('renders no label correctly', () => {
-    const { container } = render(<Input name={'input'} />)
+    const { container } = render(<Input name={'input'} {...defaultProps} />)
     const label = container.querySelector('label')?.querySelector('label') || null
 
     expect(label).toBe(null)
@@ -29,7 +34,8 @@ describe('Input', () => {
   it('renders label correctly', () => {
     const props = {
       name: 'input',
-      label: 'input label'
+      label: 'input label',
+      ...defaultProps
     }
 
     const { getByText } = render(<Input {...props} />)
@@ -41,7 +47,8 @@ describe('Input', () => {
     const props = {
       name: 'input',
       label: 'input label',
-      validation: { required: true }
+      validation: { required: true },
+      ...defaultProps
     }
 
     const { getByText } = render(<Input {...props} />)
@@ -56,7 +63,8 @@ describe('Input', () => {
       name: 'input',
       label: 'input label',
       onFocus: jest.fn(),
-      disabled: true
+      disabled: true,
+      ...defaultProps
     }
 
     const { getByLabelText, rerender } = render(<Input {...props} />)
@@ -79,7 +87,7 @@ describe('Input', () => {
     const props = {
       name: 'input',
       label: 'input label',
-      onChange: jest.fn()
+      ...defaultProps
     }
 
     const { getByText, getByLabelText } = render(<Input {...props} />)
@@ -97,7 +105,7 @@ describe('Input', () => {
     const props = {
       name: 'input',
       label: 'input label',
-      onChange: jest.fn()
+      ...defaultProps
     }
 
     const { getByLabelText } = render(<Input {...props} />)
@@ -114,7 +122,8 @@ describe('Input', () => {
       name: 'input',
       label: 'input label',
       onFocus: jest.fn(),
-      onBlur: jest.fn()
+      onBlur: jest.fn(),
+      ...defaultProps
     }
 
     render(<Input {...props} />)

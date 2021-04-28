@@ -6,9 +6,31 @@ exports[`Header renders correctly 1`] = `
     class="header"
   >
     <div
-      class="fallback"
-      style="height: 10rem;"
-    />
+      class="container"
+    >
+      <nav
+        class="navigation"
+        role="navigation"
+      >
+        <ul
+          class="navigation-list"
+        >
+          <li
+            class="navigation-list-item"
+            data-active="true"
+          >
+            <div
+              class="navigation-list-item-icon"
+            />
+            <div
+              class="navigation-list-item-link"
+            >
+              Home
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>
 `;

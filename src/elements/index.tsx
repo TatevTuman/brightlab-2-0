@@ -1,5 +1,8 @@
 import loadable from '@loadable/component'
 
+export const Overlay = loadable(() => import('./Overlay/Overlay'))
+export const Select = loadable(() => import('./Select/Select'))
+export const Autocomplete = loadable(() => import('./Autocomplete/Autocomplete'))
 export const Button = loadable(() => import('./Button/Button'))
 export const Image = loadable(() => import('./Image/Image'))
 export const Link = loadable(() => import('./Link/Link'))
@@ -19,6 +22,9 @@ export const Header = loadable(() => import('./Header/Header'))
 export const Footer = loadable(() => import('./Footer/Footer'))
 export const Modals = loadable(() => import('./Modals/Modals'))
 
+export * from './Overlay/Overlay'
+export * from './Select/Select'
+export * from './Autocomplete/Autocomplete'
 export * from './Button/Button'
 export * from './Image/Image'
 export * from './Link/Link'

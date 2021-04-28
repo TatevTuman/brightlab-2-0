@@ -66,6 +66,7 @@ const Form = <F,>(props: FormProps<F>) => {
         className={'form ' + className}
         onSubmit={useFormMethods.handleSubmit<F>(handleFormSubmit, handleFormError)}
         noValidate
+        data-testid={'form'}
       >
         {children(useFormMethods)}
       </form>

@@ -33,23 +33,26 @@ export interface LoaderProps {
   width?: number
   className?: string
   style?: CSSProperties
+  page?: boolean
+  layer?: boolean
 }
 
-const TIMEOUT = 15000
+const TIMEOUT = 100000
 
 const Loader: React.FC<LoaderProps> = props => {
-  const { style, ...otherProps } = props
+  const { className, style, color, secondaryColor, page, layer, ...otherProps } = props
 
   return (
-    <div className={'loader'} style={style} data-testid={'loader'}>
-      <LoaderComponent {...otherProps} />
+    <div className={'loader ' + className} style={style} data-testid={'loader'} data-page={page} data-layer={layer}>
+      <LoaderComponent {...otherProps} color={`var(--${color})`} secondaryColor={`var(--${secondaryColor})`} />
     </div>
   )
 }
 
 Loader.defaultProps = {
-  type: 'Triangle',
-  color: 'var(--primary)',
+  type: 'Oval',
+  color: 'purple',
+  secondaryColor: 'secondary',
   height: 60,
   width: 60,
   timeout: TIMEOUT

@@ -37,3 +37,21 @@ export const objectsToOptions = <T, V = string>(
     } as OptionType<V>
   })
 }
+
+/* TODO tests and description */
+export const fileSize = (bytes: number) => {
+  let fsize
+  const fsizekb = bytes / 1024
+  const fsizemb = fsizekb / 1024
+  const fsizegb = fsizemb / 1024
+
+  if (fsizekb <= 1024) {
+    fsize = fsizekb.toFixed(1) + 'kb'
+  } else if (fsizekb >= 1024 && fsizemb <= 1024) {
+    fsize = fsizemb.toFixed(1) + 'Mb'
+  } else if (fsizemb >= 1024 && fsizegb <= 1024) {
+    fsize = fsizegb.toFixed(1) + 'Gb'
+  }
+
+  return fsize
+}

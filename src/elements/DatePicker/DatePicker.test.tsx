@@ -18,7 +18,7 @@ afterEach(() => {
 describe('DatePicker', () => {
   it('renders correctly', async () => {
     const props = {
-      date: new Date('January 01, 2000 00:00:00'),
+      dates: [new Date('January 01, 2000 00:00:00')],
       onDateChange: jest.fn(),
       onMonthChange: jest.fn(),
       onYearChange: jest.fn()
@@ -31,7 +31,7 @@ describe('DatePicker', () => {
 
   it('renders today correctly', async () => {
     const props = {
-      date: new Date(),
+      dates: [new Date()],
       onDateChange: jest.fn()
     }
 
@@ -41,28 +41,30 @@ describe('DatePicker', () => {
     const today = container.querySelector('div.date-picker-day__today')
 
     expect(today).toBeInTheDocument()
-    expect(today!.innerHTML).toBe(props.date.getDate().toString())
+    expect(today!.innerHTML).toBe(props.dates[0].getDate().toString())
   })
 
   it('renders noToday correctly', async () => {
     const props = {
-      date: new Date(),
+      dates: [new Date()],
       onDateChange: jest.fn(),
       noToday: true
     }
 
-    const { container, getByText } = render(<DatePicker {...props} />)
+    const { container, getAllByText } = render(<DatePicker {...props} />)
     await waitFor(() => container)
 
-    const today = getByText(props.date.getDate().toString())
+    const todaysDates = getAllByText(props.dates[0].getDate().toString())
 
-    expect(today).toBeInTheDocument()
-    expect(today).not.toHaveClass('date-picker-day__today')
+    todaysDates.map(todaysDate => {
+      expect(todaysDate).toBeInTheDocument()
+      expect(todaysDate).not.toHaveClass('date-picker-day__today')
+    })
   })
 
   it('renders days correctly', async () => {
     const props = {
-      date: new Date('January 01, 2000 00:00:00'),
+      dates: [new Date('January 01, 2000 00:00:00')],
       onDateChange: jest.fn(),
       onMonthChange: jest.fn(),
       onYearChange: jest.fn()
@@ -78,7 +80,7 @@ describe('DatePicker', () => {
 
   it('renders selected day correctly', async () => {
     const props = {
-      date: new Date(),
+      dates: [new Date()],
       onDateChange: jest.fn()
     }
 
@@ -88,15 +90,13 @@ describe('DatePicker', () => {
     const selected = container.querySelector('div.date-picker-day__selected')
 
     expect(selected).toBeInTheDocument()
-    expect(selected!.innerHTML).toBe(props.date.getDate().toString())
+    expect(selected!.innerHTML).toBe(props.dates[0].getDate().toString())
   })
 
   it('renders out month days correctly', async () => {
     const props = {
-      date: new Date('January 01, 2000 00:00:00'),
-      onDateChange: jest.fn(),
-      onMonthChange: jest.fn(),
-      onYearChange: jest.fn()
+      dates: [new Date('January 01, 2000 00:00:00')],
+      onDateChange: jest.fn()
     }
 
     const { container } = render(<DatePicker {...props} />)
@@ -109,25 +109,19 @@ describe('DatePicker', () => {
     userEvent.click(days[0])
 
     expect(props.onDateChange).toHaveBeenCalledTimes(1)
-    expect(props.onMonthChange).toHaveBeenCalledTimes(2) // Somehow it has already called once before this test, so + 1
   })
 
   it('renders disabled days correctly', async () => {
     const props = {
-      date: new Date('January 01, 2000 00:00:00'),
-      onDateChange: jest.fn(),
-      onMonthChange: jest.fn(),
-      onYearChange: jest.fn()
+      dates: [new Date('January 01, 2000 00:00:00')],
+      onDateChange: jest.fn()
     }
 
     const { container } = render(
       <DatePicker
         {...props}
         disabledDays={(day: Date) => {
-          const today = new Date()
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          return day - today < 0
+          return day.getDate() === 16
         }}
       />
     )
@@ -135,7 +129,7 @@ describe('DatePicker', () => {
 
     const days = container.querySelectorAll('div.date-picker-day__disabled')
 
-    expect(days).toHaveLength(42)
+    expect(days).toHaveLength(1)
 
     days.forEach(day => {
       userEvent.click(day!)
@@ -146,10 +140,8 @@ describe('DatePicker', () => {
 
   it('renders disabled months correctly', async () => {
     const props = {
-      date: new Date('January 01, 2000 00:00:00'),
-      onDateChange: jest.fn(),
-      onMonthChange: jest.fn(),
-      onYearChange: jest.fn()
+      dates: [new Date('January 01, 2000 00:00:00')],
+      onDateChange: jest.fn()
     }
 
     const { container } = render(
@@ -169,19 +161,18 @@ describe('DatePicker', () => {
     })
 
     expect(nextMonthBtn).toHaveAttribute('data-disabled', 'true')
-    expect(props.onMonthChange).toHaveBeenCalledTimes(1) // Somehow it has already called once before this test, so + 1
   })
 
   it('clicks on day', async () => {
     const props = {
-      date: new Date(),
+      dates: [new Date()],
       onDateChange: jest.fn()
     }
 
     const { container } = render(<DatePicker {...props} />)
     await waitFor(() => container)
 
-    const day = container.querySelector('div.date-picker-day__out')
+    const day = container.querySelector('div.date-picker-day')
 
     act(() => {
       userEvent.click(day!)
@@ -192,10 +183,8 @@ describe('DatePicker', () => {
 
   it('navigates between months and years correctly', async () => {
     const props = {
-      date: new Date(),
-      onDateChange: jest.fn(),
-      onMonthChange: jest.fn(),
-      onYearChange: jest.fn()
+      dates: [new Date()],
+      onDateChange: jest.fn()
     }
 
     const { container } = render(<DatePicker {...props} />)
@@ -203,9 +192,9 @@ describe('DatePicker', () => {
 
     let datePickerHeaderTitle = container.querySelector('div.date-picker-header-title')
 
-    let currentMonth = props.date.getMonth() + 1
+    let currentMonth = props.dates[0].getMonth() + 1
     let currentMonthName = getMonthName(currentMonth)
-    let currentYear = props.date.getFullYear()
+    let currentYear = props.dates[0].getFullYear()
 
     const nextMonthBtn = container.querySelector('div.date-picker-header-nav__next')
 

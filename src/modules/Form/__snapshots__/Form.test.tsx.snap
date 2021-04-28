@@ -1,57 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form renders correctly 1`] = `
+exports[`Form Module renders correctly 1`] = `
 <div>
   <form
     class="form undefined"
+    data-testid="form"
     novalidate=""
   >
     <div
-      class="input"
-      data-direction="vertical"
+      class="form-item"
     >
-      <label
-        data-required="true"
-        for="email"
-      >
-        Email
-      </label>
       <div
-        class="inputInner"
+        class="form-control undefined"
       >
-        <input
-          autocomplete="on"
-          data-cursor="true"
-          data-error="false"
-          data-prefix="false"
-          data-suffix="false"
-          data-times="true"
-          id="email"
-          name="email"
-          placeholder="Type a text"
-          tabindex="0"
-          type="email"
-          value=""
-        />
         <div
-          class="inputInnerPrefix"
-          data-prefix="false"
-        />
-        <div
-          class="inputInnerSuffix"
-          data-suffix="false"
+          class="input"
         >
-          <test-file-stub
-            classname="inputInnerSuffixTimes"
+          <label
+            class="fw-700 fs-15 mb-4 primary"
+            data-required="true"
+            for="Input"
+          >
+            Input
+          </label>
+          <div
+            class="input-inner"
+            data-error="false"
+          >
+            <div
+              class="input-inner__prefix"
+            />
+            <input
+              autocomplete="on"
+              data-testid="input"
+              id="Input"
+              name="Input"
+              placeholder="Type a text"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+            <div
+              class="input-inner__suffix"
+            >
+              <i
+                class="icon"
+              >
+                <test-file-stub
+                  classname="input-inner__suffix-times"
+                  data-testid="input-times"
+                  name="times"
+                />
+              </i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="form-item"
+    >
+      <div
+        class="form-control undefined"
+      >
+        <div
+          class="checkbox undefined"
+        >
+          <input
+            data-error="false"
+            data-testid="checkbox"
+            id="Checkbox"
+            name="Checkbox"
+            tabindex="0"
+            type="checkbox"
           />
+          <label
+            data-required="true"
+            for="Checkbox"
+          >
+            Checkbox
+          </label>
         </div>
       </div>
     </div>
     <button
-      class="button button__primary-md formSubmit"
+      class="button button__undefined form-submit"
       data-centered="true"
       data-disabled="false"
-      data-size="md"
       tabindex="0"
       type="submit"
     >

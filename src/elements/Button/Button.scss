@@ -18,15 +18,8 @@
 }
 
 @mixin primary_button() {
-
-  &:hover {
-  }
-
-  &:focus {
-  }
-
-  &:active {
-  }
+  height: toRem(40);
+  padding: 0 toRem(14);
 }
 
 $buttons_types: "primary", "";

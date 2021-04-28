@@ -11,7 +11,7 @@ export type ButtonEvents = ButtonKeyboardEvent | ButtonMouseEvent
 
 export interface ButtonProps {
   children: string
-  type: 'primary'
+  type?: 'primary'
   className?: string
   disabled?: boolean
   loading?: boolean

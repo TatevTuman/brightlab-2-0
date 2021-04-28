@@ -3,7 +3,7 @@
 exports[`DatePicker renders correctly 1`] = `
 <div>
   <div
-    class="date-picker"
+    class="date-picker undefined"
   >
     <div
       class="date-picker-header"
