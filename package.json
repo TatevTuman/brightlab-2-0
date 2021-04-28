@@ -148,7 +148,7 @@
     ],
     "*.{js,jsx,ts,tsx,json,md}": "prettier --write"
   },
-  "husky": {
+  "#husky": {
     "hooks": {
       "pre-commit": ""
     }

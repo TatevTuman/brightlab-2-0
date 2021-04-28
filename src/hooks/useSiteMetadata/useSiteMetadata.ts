@@ -16,7 +16,6 @@ const GetSiteMetadata = graphql`
         navigation {
           path
           label
-          icon
         }
       }
     }
