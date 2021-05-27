@@ -1,6 +1,5 @@
 import { action } from "@storybook/addon-actions"
-// import { typography } from '@utils'
-import '!style-loader!css-loader!sass-loader!./stories.scss'
+import './stories.css'
 
 // typography.injectStyles()
 // Gatsby's Link overrides:

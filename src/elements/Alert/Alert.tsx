@@ -1,6 +1,5 @@
 import React from 'react'
 import { AlertComponentPropsWithStyle } from 'react-alert'
-import './Alert.scss'
 
 export interface AlertProps extends Omit<AlertComponentPropsWithStyle, 'id'> {}
 

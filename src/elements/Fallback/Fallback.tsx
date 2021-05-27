@@ -1,5 +1,4 @@
-import React from 'react'
-import './Fallback.scss'
+import React, { memo } from 'react'
 
 export interface FallbackProps {
   height: string
@@ -9,4 +8,4 @@ const Fallback: React.FC<FallbackProps> = ({ height }) => {
   return <div className={'fallback'} style={{ height }} />
 }
 
-export default Fallback
+export default memo(Fallback)

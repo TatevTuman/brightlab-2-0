@@ -32,10 +32,10 @@ exports.onCreateWebpackConfig = function ({ stage, loaders, actions, plugins }) 
       alias: {
         '@components': path.resolve(__dirname, 'src/components/index.tsx'),
         '@elements': path.resolve(__dirname, 'src/elements/index.tsx'),
-        '@modules': path.resolve(__dirname, 'src/modules/index.tsx'),
         '@layouts': path.resolve(__dirname, 'src/layouts/index.tsx'),
         '@pages-components': path.resolve(__dirname, 'src/pages-components'),
         '@images': path.resolve(__dirname, 'static/assets/images'),
+        '@svg': path.resolve(__dirname, 'src/elements/Icons/index.tsx'),
         '@styles': path.resolve(__dirname, 'static/assets/styles'),
         '@types': path.resolve(__dirname, 'src/types/index.ts'),
         '@graphql': path.resolve(__dirname, 'src/graphql/index.ts'),

@@ -1,0 +1,19 @@
+@import 'static/assets/styles/root.css';
+
+html, body, #root {
+  height: 100%;
+}
+
+.story {
+  display: flex;
+  flex-direction: column;
+  background: #4b4e6d;
+  padding: 1rem;
+}
+
+.story-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}

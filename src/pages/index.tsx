@@ -11,7 +11,7 @@ const Home: React.FC<HomeProps> = props => {
       <SEO title={'Home'} />
       <HomeTest />
       <h1>
-        <mark>Brightlab</mark>
+        <mark className={'text-20'}>Brightlab</mark>
         <br />
         <strong>Gatsby</strong>
         <br />

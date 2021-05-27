@@ -20,10 +20,10 @@
       */
       "@components": ["src/components/index.tsx"],
       "@elements": ["src/elements/index.tsx"],
-      "@modules": ["src/modules/index.tsx"],
       "@layouts": ["src/templates/index.tsx"],
       "@pages-components/*": ["src/pages-components/*"],
       "@images/*": ["static/assets/images/*"],
+      "@svg": ["src/elements/Icons/index.tsx"],
       "@styles": ["static/assets/styles"],
       "@types": ["src/types/index.ts"],
       "@graphql": ["src/graphql/index.ts"],

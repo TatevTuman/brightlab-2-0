@@ -40,17 +40,6 @@ module.exports = {
         ]
       }
     },
-    {
-      resolve: 'gatsby-plugin-sass',
-      options: {
-        includePaths: [`${__dirname}/static/assets/styles`],
-        useResolveUrlLoader: true
-        // Override the file regex for SASS
-        // sassRuleTest: /\.global\.s(a|c)ss$/,
-        // Override the file regex for CSS modules
-        // sassRuleModulesTest: /\.mod\.s(a|c)ss$/
-      }
-    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
@@ -66,16 +55,9 @@ module.exports = {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       }
     },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /\.svg$/
-        }
-      }
-    },
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-typescript'
+    'gatsby-plugin-typescript',
+    'gatsby-plugin-postcss'
     // {
     //   resolve: 'gatsby-plugin-typography',
     //   options: {

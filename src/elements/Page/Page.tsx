@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
 import { Container } from '@elements'
 import { Children } from '@types'
-import './Page.scss'
 
 export interface PageProps extends RouteComponentProps {
   children: Children

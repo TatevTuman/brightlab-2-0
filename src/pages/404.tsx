@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 import { RouteComponentProps } from '@reach/router'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { SEO } from '@components'
-import { Link, Container } from '@elements'
+import { Container } from '@elements'
 
 interface NotFoundPageProps extends RouteComponentProps {
   data: { site: { siteMetadata: { title: string } } }

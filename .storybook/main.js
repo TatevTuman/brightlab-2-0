@@ -26,10 +26,10 @@ module.exports = {
     config.resolve.alias = {
       '@components': path.resolve(__dirname, '../src/components/index.tsx'),
       '@elements': path.resolve(__dirname, '../src/elements/index.tsx'),
-      '@modules': path.resolve(__dirname, '../src/modules/index.tsx'),
       '@layouts': path.resolve(__dirname, '../src/layouts/index.tsx'),
       '@pages-components': path.resolve(__dirname, '../src/pages-components/index.tsx'),
       '@images': path.resolve(__dirname, '../static/assets/images'),
+      '@svg': path.resolve(__dirname, '../src/elements/Icons/index.tsx'),
       '@styles': path.resolve(__dirname, '../static/assets/styles'),
       '@types': path.resolve(__dirname, '../src/types/index.ts'),
       '@graphql': path.resolve(__dirname, '../src/graphql/index.ts'),
@@ -54,45 +54,6 @@ module.exports = {
       }
     })
     config.resolve.extensions.push('.ts', '.tsx')
-
-    // SCSS handling
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        {
-          loader: 'resolve-url-loader',
-          options: {
-            sourceMap: true,
-            root: path.resolve(__dirname, '../static')
-          }
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true
-          }
-        }
-      ],
-      include: [path.resolve(__dirname, '../'), path.resolve('../node_modules')]
-    })
-
-    // SVG handling
-    const fileLoaderRule = config.module.rules.find(rule => rule.test.test('.svg'))
-    fileLoaderRule.exclude = /\.svg$/
-
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: /\.s?css$/,
-      loader: 'file-loader'
-    })
-
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: /\.tsx?$/,
-      use: ['svg-react-loader']
-    })
 
     return config
   }

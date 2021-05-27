@@ -1,11 +1,6 @@
 import React, { memo } from 'react'
-import { Navigation, Container } from '@elements'
+import { Container } from '@elements'
 import { useSiteMetadata } from '@hooks'
-import './Header.scss'
-
-const HomeLogo = () => {
-  return null
-}
 
 export interface HeaderProps {}
 
@@ -15,8 +10,7 @@ const Header: React.FC<HeaderProps> = props => {
   return (
     <div className={'header'}>
       <Container>
-        <HomeLogo />
-        <Navigation navigation={navigation} activeMatch />
+        <h1>Header</h1>
       </Container>
     </div>
   )
