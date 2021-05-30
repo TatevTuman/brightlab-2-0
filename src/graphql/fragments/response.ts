@@ -1,30 +1,30 @@
-// import { gql } from '@apollo/client'
-//
-// export const ErrorResponseAttrs = gql`
-//   fragment ErrorResponseAttrs on ErrorResponse {
-//     code
-//     detail
-//   }
-// `
-//
-// export const StatusResponseAttrs = gql`
-//   fragment StatusResponseAttrs on StatusResponse {
-//     status
-//     error {
-//       ...ErrorResponseAttrs
-//     }
-//   }
-//
-//   ${ErrorResponseAttrs}
-// `
-//
-// export const UserResponseAttrs = gql`
-//   fragment UserResponseAttrs on UserResponse {
-//     status
-//     error {
-//       ...ErrorResponseAttrs
-//     }
-//   }
-//
-//   ${ErrorResponseAttrs}
-// `
+/*
+import { gql } from "@apollo/client"
+
+export const MessagesResponseAttrs = gql`
+  fragment MessagesResponseAttrs on ValidationMessage {
+    code
+    field
+    message
+    options {
+      key
+      value
+    }
+    template
+  }
+`
+
+export const SignResponseAttrs = gql`
+  fragment SignResponseAttrs on UserToken {
+    successful
+    messages {
+      ...MessagesResponseAttrs
+    }
+    result {
+      token
+    }
+  }
+
+  ${MessagesResponseAttrs}
+`
+*/

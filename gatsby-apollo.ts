@@ -1,20 +1,17 @@
-import fetch from 'cross-fetch'
-import { ApolloClient, HttpLink, ApolloLink, from } from '@apollo/client'
-import { onError } from '@apollo/client/link/error'
-import gatsbyApolloCache from './gatsby-apollo-cache'
-import ApolloLinkTimeout from 'apollo-link-timeout'
-
-const timeoutLink = new ApolloLinkTimeout(15000) // 15 seconds timeout like on Loader element
+import fetch from "cross-fetch"
+import { ApolloClient, ApolloLink, HttpLink, from } from "@apollo/client"
+import { onError } from "@apollo/client/link/error"
+import gatsbyApolloCache from "./gatsby-apollo-cache"
 
 const authLink = new ApolloLink((operation, forward) => {
-  if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('token')
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token")
 
     operation.setContext(({ headers = {} }) => ({
       headers: {
         ...headers,
-        Authorization: token ? `Bearer ${token}` : ''
-      }
+        Authorization: token ? `Bearer ${token}` : "",
+      },
     }))
   }
 
@@ -28,21 +25,20 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     networkError = {
       name,
       message,
-      stack
+      stack,
     }
   }
 })
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
-const uri = isDevelopment ? process.env.GATSBY_DEV_API : process.env.GATSBY_PROD_API
+const uri = process.env.GATSBY_API || ""
 
 const httpLink = new HttpLink({
   uri,
-  fetch
+  fetch,
 })
 
 export default new ApolloClient({
-  link: from([timeoutLink, authLink, errorLink, httpLink]),
+  link: from([authLink, errorLink, httpLink]),
   cache: gatsbyApolloCache,
-  connectToDevTools: true
+  connectToDevTools: true,
 })

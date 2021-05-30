@@ -1,1 +1,1 @@
-// export * as user from './user'
+// export * as gqlAuth from './auth'

@@ -1,28 +1,19 @@
-import { InMemoryCache, makeVar } from '@apollo/client'
-import { CacheModal } from '@types'
-import possibleTypes from './gatsby-apollo-cache-types.json'
+import { InMemoryCache, makeVar } from "@apollo/client"
 
-export const modalsVar = makeVar<CacheModal[]>([])
-export const overlayVar = makeVar<boolean>(false)
+/*export const test = makeVar<null>(null)*/
 
 const cache = new InMemoryCache({
-  possibleTypes,
   typePolicies: {
     Query: {
       fields: {
-        modals: {
+        /*test: {
           read() {
-            return modalsVar()
-          }
-        },
-        overlay: {
-          read() {
-            return overlayVar()
-          }
-        }
-      }
-    }
-  }
+            return test()
+          },
+        },*/
+      },
+    },
+  },
 })
 
 export default cache

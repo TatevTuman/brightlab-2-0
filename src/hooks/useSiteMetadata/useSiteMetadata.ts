@@ -7,15 +7,12 @@ const GetSiteMetadata = graphql`
     site {
       siteMetadata {
         title
-        author {
-          name
-          summary
-        }
+        author
         description
-        siteUrl
         navigation {
           path
           label
+          icon
         }
       }
     }

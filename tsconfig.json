@@ -1,13 +1,19 @@
 // tsconfig.json
 {
   "compilerOptions": {
-    "module": "commonjs",
     "target": "esnext",
-    "jsx": "preserve",
+    "module": "esnext",
     "lib": ["dom", "esnext"],
+    // "allowJs": true,
+    // "checkJs": true,
+    "jsx": "react", // https://stackoverflow.com/questions/62859458/what-is-the-use-of-jsx-property-in-tsconfig-json
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
+    "moduleResolution": "node", // https://www.typescriptlang.org/docs/handbook/module-resolution.html#node
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "allowJs": true,
@@ -18,22 +24,23 @@
         and .storybook/main.js
         and jest.config.ts with moduleNameMapper
       */
-      "@components": ["src/components/index.tsx"],
-      "@elements": ["src/elements/index.tsx"],
-      "@layouts": ["src/templates/index.tsx"],
-      "@pages-components/*": ["src/pages-components/*"],
-      "@images/*": ["static/assets/images/*"],
-      "@svg": ["src/elements/Icons/index.tsx"],
-      "@styles": ["static/assets/styles"],
+      "@components": ["src/components/index.ts"],
+      "@elements": ["src/elements/index.ts"],
+      "@layouts": ["src/layouts/index.ts"],
+      "@modules": ["src/modules/index.ts"],
       "@types": ["src/types/index.ts"],
       "@graphql": ["src/graphql/index.ts"],
       "@fragments": ["src/graphql/fragments/index.ts"],
       "@utils": ["src/utils/index.ts"],
       "@hooks": ["src/hooks/index.ts"],
       "@hocs": ["src/hocs/index.ts"],
-      "@cache": ["gatsby-apollo-cache.ts"]
+      "@svg": ["src/svg/index.ts"],
+
+      "@images/*": ["static/images/*"],
+      "@styles/*": ["static/styles/*"],
+      "@pages-components/*": ["src/pages-components/*"]
     },
     "typeRoots": ["./node_modules/@types", "./@types"]
   },
-  "exclude": ["node_modules", "public", ".cache"]
+  "exclude": ["node_modules", "static", "public", ".cache"]
 }

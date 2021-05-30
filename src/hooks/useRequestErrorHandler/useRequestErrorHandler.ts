@@ -5,10 +5,7 @@ import { useAlert } from 'react-alert'
 const useRequestErrorHandler = () => {
   const alert = useAlert()
 
-  return <T = any>(
-    request: FetchResult<ResponseType<MutationResponse & { result: T }>> | null,
-    requestError?: ApolloError
-  ) => {
+  return <T = any>(request: FetchResult<ResponseType<MutationResponse<T>>> | null, requestError?: ApolloError) => {
     if (requestError) {
       alert.show(requestError.message, { type: 'error' })
 
@@ -20,12 +17,12 @@ const useRequestErrorHandler = () => {
 
       if (data) {
         const {
-          res: { error }
+          res: { messages }
         } = data
 
-        if (error) {
-          const { detail } = error
-          alert.show(detail, { type: 'error' })
+        if (messages?.length) {
+          const { message } = messages[0]
+          alert.show(message, { type: 'error' })
 
           return null
         } else {

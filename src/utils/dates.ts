@@ -122,16 +122,12 @@ export const isSameDay = (date: Date, basedate = new Date()) => {
 /* (string) Formats the given date as YYYY-MM-DD */
 /* Months and Days are zero padded */
 export const getDateISO = (date = new Date()) => {
-  if (!isDate(date)) return null
-
   return [date.getFullYear(), zeroPad(+date.getMonth() + 1, 2), zeroPad(+date.getDate(), 2)].join('-')
 }
 
 /* TODO test and description */
 export const getDateHoursMinutesFormat = (date = new Date()) => {
-  if (!isDate(date)) return null
-
-  return [+date.getHours(), zeroPad(+date.getMinutes(), 2)].join(':')
+  return [zeroPad(+date.getHours(), 2), zeroPad(+date.getMinutes(), 2), zeroPad(+date.getSeconds(), 2)].join(':')
 }
 
 /* TODO test and description */
@@ -281,4 +277,19 @@ export const getWeekDay = (date: Date) => {
     name: weekDay,
     shortName: weekDayShort
   }
+}
+
+export const formatDate = (date: Date) => {
+  const month = getMonthName(date.getMonth())
+  const day = date.getDate()
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  return day + ' ' + month + ' ' + hours + ':' + minutes
+}
+
+export const formatTime = (date: Date) => {
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
+  return hours + ':' + minutes + ':' + seconds
 }

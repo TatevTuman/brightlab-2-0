@@ -1,15 +1,23 @@
-import { InMemoryCache } from '@apollo/client'
+import { MenuType, MenuSectionType, MenuSectionCourseType, MenuSectionCourseOptionType } from './apollo'
 
-export type Context = {
-  cache: InMemoryCache
-}
+export type CacheBasketMenuSectionCourseOptionType = {
+  quantity: number
+} & MenuSectionCourseOptionType
 
-export type CacheModal<S = any> = {
-  name: string
-  state?: S
-}
+export type CacheBasketMenuSectionCourseType = {
+  quantity: number
+  note: string
+  options: CacheBasketMenuSectionCourseOptionType[]
+} & MenuSectionCourseType
 
-export type CacheDrawer = {
-  name: string
-  state?: Record<string, any>
+export type CacheBasketMenuSectionType = {
+  courses: CacheBasketMenuSectionCourseType[]
+} & MenuSectionType
+
+export type CacheBasketMenuType = {
+  sections: CacheBasketMenuSectionType[]
+} & MenuType
+
+export type CacheBasketType = {
+  menus: CacheBasketMenuType[]
 }

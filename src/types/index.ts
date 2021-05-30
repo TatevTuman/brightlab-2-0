@@ -1,8 +1,9 @@
 export * from './lists'
 export * from './forms'
-export * from './apollo'
 export * from './cache'
 export * from './dates'
+export * from './icons'
+export * from './apollo'
 
 export type BreakpointName = 'mobile' | 'landscape' | 'tablet' | 'desktop'
 
@@ -23,7 +24,6 @@ export enum ShortBreakpoint {
 }
 
 export type Children = JSX.Element | JSX.Element[] | string
-export type AnyObject = Record<string, any>
 
 export type SiteMetadataNavigationRoute = {
   path: string
@@ -38,10 +38,7 @@ export type SiteMetadata = {
   site: {
     siteMetadata: {
       title: string
-      author: {
-        name: string
-        summary: string
-      }
+      author: string
       description: string
       siteUrl: string
       navigation: SiteMetadataNavigation

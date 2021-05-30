@@ -9,6 +9,13 @@ export const passwordValidation = {
   minLength: { value: 6, message: 'Password must have a minimum of 6 letters.' },
   pattern: {
     value: passwordPattern,
-    message: 'Password must includes one lower case letter, one upper case letter, one digit'
+    message: 'Password must includes one lower case letter, one upper case letter, one diggit'
+  }
+}
+
+export const emailValidation = {
+  pattern: {
+    value: emailPattern,
+    message: 'Enter a valid e-mail or phone number'
   }
 }
