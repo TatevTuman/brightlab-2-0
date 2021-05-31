@@ -50,7 +50,7 @@ exports.onCreateWebpackConfig = function ({
         "~utils": path.resolve(__dirname, "src/utils/index.ts"),
         "~hooks": path.resolve(__dirname, "src/hooks/index.ts"),
         "~hocs": path.resolve(__dirname, "src/hocs/index.ts"),
-        "~svg": path.resolve(__dirname, "src/svg/index.ts"),
+        "~svg": path.resolve(__dirname, "src/svg/index.tsx"),
 
         "~images/*": path.resolve(__dirname, "static/images/*"),
         "~styles": path.resolve(__dirname, "static/styles"),

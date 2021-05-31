@@ -6,8 +6,23 @@ module.exports = {
     navigation: [
       {
         path: "/",
-        label: "Home",
-        icon: "",
+        label: "Solutions",
+        icon: "Test",
+      },
+      {
+        path: "/",
+        label: "Pricing",
+        icon: "Test",
+      },
+      {
+        path: "/",
+        label: "Docs",
+        icon: "Test",
+      },
+      {
+        path: "/",
+        label: "Company",
+        icon: "Test",
       },
     ],
   },

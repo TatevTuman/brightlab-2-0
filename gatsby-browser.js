@@ -17,7 +17,7 @@ export const wrapPageElement = ({ element, props }) => {
   // All routing logic is in the Page component
 
   return (
-    <div>
+    <div className="flex flex-col min-h-100vh">
       <Header />
       <Page {...props}>{element}</Page>
       <Footer />

@@ -96,7 +96,9 @@ module.exports = {
         0.25: 0.25,
       },
       maxWidth: {},
-      minWidth: {},
+      minWidth: {
+        320: pxToRem(320),
+      },
       maxHeight: {
         auto: "auto",
       },

@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery } from 'gatsby'
-import { SiteMetadata } from '@types'
+import { graphql, useStaticQuery } from "gatsby"
+import { SiteMetadata } from "~types"
 
 // See gatsby-config.js
 const GetSiteMetadata = graphql`

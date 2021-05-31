@@ -165,16 +165,20 @@
 @tailwind components;
 
 @layer components {
+    .container {
+        @apply min-w-320 px-44 mx-auto;
+    }
+
     .btn {
-        @apply inline-flex items-center justify-center px-20 py-12 font-medium rounded-4 border cursor-pointer;
+        @apply inline-flex items-center justify-center px-20 py-6 font-medium rounded-4 border cursor-pointer;
     }
 
     .btn-green {
-        @apply border-transparent text-white bg-green-300 hover:bg-green-700 transition-colors;
+        @apply border-transparent text-white bg-green-600 hover:bg-green-700 transition-colors;
     }
 
     .btn-green-white {
-        @apply border-green-300 text-green-300 bg-transparent hover:text-white hover:border-green-700 hover:bg-green-700 transition-colors;
+        @apply text-green-600 border-green-600 bg-white hover:text-white hover:border-green-700 hover:bg-green-700 transition-colors;
     }
 }
 

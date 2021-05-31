@@ -34,7 +34,7 @@
       "~utils": ["src/utils/index.ts"],
       "~hooks": ["src/hooks/index.ts"],
       "~hocs": ["src/hocs/index.ts"],
-      "~svg": ["src/svg/index.ts"],
+      "~svg": ["src/svg/index.tsx"],
 
       "~images/*": ["static/images/*"],
       "~styles/*": ["static/styles/*"],
