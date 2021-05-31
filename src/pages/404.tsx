@@ -1,5 +1,5 @@
 import React, { memo } from "react"
-import { Seo } from "@components"
+import { Seo } from "~components"
 
 const NotFoundPage = () => {
   return (

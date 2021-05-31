@@ -24,21 +24,21 @@
         and .storybook/main.js
         and jest.config.ts with moduleNameMapper
       */
-      "@components": ["src/components/index.ts"],
-      "@elements": ["src/elements/index.ts"],
-      "@layouts": ["src/layouts/index.ts"],
-      "@modules": ["src/modules/index.ts"],
-      "@types": ["src/types/index.ts"],
-      "@graphql": ["src/graphql/index.ts"],
-      "@fragments": ["src/graphql/fragments/index.ts"],
-      "@utils": ["src/utils/index.ts"],
-      "@hooks": ["src/hooks/index.ts"],
-      "@hocs": ["src/hocs/index.ts"],
-      "@svg": ["src/svg/index.ts"],
+      "~components": ["src/components/index.ts"],
+      "~elements": ["src/elements/index.ts"],
+      "~layouts": ["src/layouts/index.ts"],
+      "~modules": ["src/modules/index.ts"],
+      "~types": ["src/types/index.ts"],
+      "~graphql": ["src/graphql/index.ts"],
+      "~fragments": ["src/graphql/fragments/index.ts"],
+      "~utils": ["src/utils/index.ts"],
+      "~hooks": ["src/hooks/index.ts"],
+      "~hocs": ["src/hocs/index.ts"],
+      "~svg": ["src/svg/index.ts"],
 
-      "@images/*": ["static/images/*"],
-      "@styles/*": ["static/styles/*"],
-      "@pages-components/*": ["src/pages-components/*"]
+      "~images/*": ["static/images/*"],
+      "~styles/*": ["static/styles/*"],
+      "~pages-components/*": ["src/pages-components/*"]
     },
     "typeRoots": ["./node_modules/@types", "./@types"]
   },

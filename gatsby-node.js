@@ -41,20 +41,20 @@ exports.onCreateWebpackConfig = function ({
     },
     resolve: {
       alias: {
-        "@components": path.resolve(__dirname, "src/components/index.ts"),
-        "@elements": path.resolve(__dirname, "src/elements/index.ts"),
-        "@layouts": path.resolve(__dirname, "src/layouts/index.ts"),
-        "@types": path.resolve(__dirname, "src/types/index.ts"),
-        "@graphql": path.resolve(__dirname, "src/graphql/index.ts"),
-        "@fragments": path.resolve(__dirname, "src/graphql/fragments/index.ts"),
-        "@utils": path.resolve(__dirname, "src/utils/index.ts"),
-        "@hooks": path.resolve(__dirname, "src/hooks/index.ts"),
-        "@hocs": path.resolve(__dirname, "src/hocs/index.ts"),
-        "@svg": path.resolve(__dirname, "src/svg/index.ts"),
+        "~components": path.resolve(__dirname, "src/components/index.ts"),
+        "~elements": path.resolve(__dirname, "src/elements/index.ts"),
+        "~layouts": path.resolve(__dirname, "src/layouts/index.ts"),
+        "~types": path.resolve(__dirname, "src/types/index.ts"),
+        "~graphql": path.resolve(__dirname, "src/graphql/index.ts"),
+        "~fragments": path.resolve(__dirname, "src/graphql/fragments/index.ts"),
+        "~utils": path.resolve(__dirname, "src/utils/index.ts"),
+        "~hooks": path.resolve(__dirname, "src/hooks/index.ts"),
+        "~hocs": path.resolve(__dirname, "src/hocs/index.ts"),
+        "~svg": path.resolve(__dirname, "src/svg/index.ts"),
 
-        "@images/*": path.resolve(__dirname, "static/images/*"),
-        "@styles": path.resolve(__dirname, "static/styles"),
-        "@pages-components/*": path.resolve(
+        "~images/*": path.resolve(__dirname, "static/images/*"),
+        "~styles": path.resolve(__dirname, "static/styles"),
+        "~pages-components/*": path.resolve(
           __dirname,
           "src/pages-components/*"
         ),

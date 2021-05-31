@@ -2,14 +2,14 @@
 import { useAlert } from "react-alert"
 import { navigate } from "gatsby"
 import { useMutation } from "@apollo/client"
-import { auth, user } from "@graphql"
-import { useRequestErrorHandler } from "@hooks"
+import { auth, user } from "~graphql"
+import { useRequestErrorHandler } from "~hooks"
 import {
   SignInFormType,
   SignUpFormType,
   MutationResponse,
   ResponseType,
-} from "@types"
+} from "~types"
 
 type SignMutationResponse = ResponseType<MutationResponse<{ token: string }>>
 

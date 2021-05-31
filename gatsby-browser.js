@@ -7,10 +7,10 @@
 import React from "react"
 import { ApolloProvider } from "@apollo/client"
 import { Provider as AlertProvider, transitions } from "react-alert"
-import { Page, Header, Footer } from "@components"
-import { Alert } from "@elements"
+import { Page, Header, Footer } from "~components"
+import { Alert } from "~elements"
 import client from "./gatsby-apollo"
-import "@styles/root.css"
+import "~styles/app.css"
 
 // eslint-disable-next-line react/display-name
 export const wrapPageElement = ({ element, props }) => {

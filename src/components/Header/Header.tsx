@@ -5,7 +5,7 @@ interface HeaderProps {}
 const Header: React.FC<HeaderProps> = props => {
   const {} = props
 
-  return <div className="">Header</div>
+  return <div className=""></div>
 }
 
 export default memo(Header)

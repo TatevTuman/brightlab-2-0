@@ -1,6 +1,6 @@
 /*
 import { gql } from "@apollo/client"
-import { SignResponseAttrs } from "@fragments"
+import { SignResponseAttrs } from "~fragments"
 
 export const SignUp = gql`
   mutation SignUp($email: String!, $password: String!) {

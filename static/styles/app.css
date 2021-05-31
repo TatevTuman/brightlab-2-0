@@ -1,0 +1,191 @@
+@tailwind base;
+
+@layer base {
+    /*@font-face {
+        font-family: 'Avenir';
+        src: url('../fonts/avenir-bold.woff') format('woff'), url('../fonts/avenir-bold.woff2') format('woff2');
+        font-weight: 800;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Avenir';
+        src: url('../fonts/avenir-medium.woff') format('woff'), url('../fonts/avenir-medium.woff2') format('woff2');
+        font-weight: 500;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'Avenir';
+        src: url('../fonts/avenir-regular.woff') format('woff'), url('../fonts/avenir-regular.woff2') format('woff2');
+        font-weight: 400;
+        font-display: swap;
+    }*/
+
+    html {
+        font: 100%/1.5 'sans';
+    }
+
+    html,
+    body {
+        overflow-x: hidden;
+        -webkit-scroll-behavior: smooth;
+        scroll-behavior: smooth;
+        @apply font-sans;
+    }
+
+    p,
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    li {
+    }
+
+    h1 {
+        @apply text-36 font-extrabold sm:text-24;
+    }
+
+    h2 {
+    }
+
+    h3 {
+    }
+
+    h4 {
+    }
+
+    h5 {
+    }
+
+    h6 {
+    }
+
+    a {
+    }
+
+    ul {
+    }
+
+    ol {
+    }
+
+    nav {
+    }
+
+    label {
+        display: block;
+        position: relative;
+        width: fit-content;
+        cursor: pointer;
+    }
+
+    label[data-required='true']::after {
+        content: '*';
+        position: absolute;
+        top: 0;
+        right: -7px;
+        color: red;
+    }
+
+    b {
+    }
+
+    em {
+    }
+
+    i {
+    }
+
+    small {
+    }
+
+    strong {
+    }
+
+    sub {
+    }
+
+    sup {
+    }
+
+    ins {
+    }
+
+    del {
+    }
+
+    mark {
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    hr {
+        background: grey;
+        margin: 1rem 0;
+    }
+    button,
+    button:focus,
+    button:active {
+        outline: none;
+        transition: all 0.2s ease;
+    }
+    svg {
+        transition: all 0.2s ease;
+    }
+    * {
+        outline: none;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
+    svg {
+        transition: all 0.2s ease;
+    }
+    * {
+        outline: none;
+    }
+}
+
+@tailwind components;
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center px-20 py-12 font-medium rounded-4 border cursor-pointer;
+    }
+
+    .btn-green {
+        @apply border-transparent text-white bg-green-300 hover:bg-green-700 transition-colors;
+    }
+
+    .btn-green-white {
+        @apply border-green-300 text-green-300 bg-transparent hover:text-white hover:border-green-700 hover:bg-green-700 transition-colors;
+    }
+}
+
+@tailwind utilities;
+
+@layer utilities {
+    .absolute_vertical_center {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@tailwind screens;

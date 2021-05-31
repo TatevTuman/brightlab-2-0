@@ -1,5 +1,5 @@
 import { get } from "lodash"
-import { OptionType } from "@types"
+import { OptionType } from "~types"
 
 interface handleEventOptions {
   value?: any
