@@ -1,7 +1,7 @@
-import React, { memo } from "react"
-import { AlertComponentPropsWithStyle } from "react-alert"
+import React, { memo } from 'react'
+import { AlertComponentPropsWithStyle } from 'react-alert'
 
-export interface AlertProps extends Omit<AlertComponentPropsWithStyle, "id"> {}
+export interface AlertProps extends Omit<AlertComponentPropsWithStyle, 'id'> {}
 
 // the style contains only the margin given as offset
 // options contains all alert given options
@@ -17,7 +17,7 @@ const Alert: React.FC<AlertProps> = props => {
       data-type={type}
       style={style}
       onClick={close}
-      data-testid={"alert"}
+      data-testid={'alert'}
     >
       {message}
     </div>
@@ -26,13 +26,13 @@ const Alert: React.FC<AlertProps> = props => {
 
 Alert.defaultProps = {
   style: {},
-  message: "Alert message",
+  message: 'Alert message',
   close: () => null,
   options: {
     onClose: () => null,
     onOpen: () => null,
-    timeout: 2000,
-  },
+    timeout: 2000
+  }
 }
 
 export default memo(Alert)

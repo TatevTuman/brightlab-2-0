@@ -1,5 +1,5 @@
-import { PageProps } from "gatsby"
-import React, { memo } from "react"
+import { PageProps } from 'gatsby'
+import React, { memo } from 'react'
 
 interface PageComponentProps extends PageProps {}
 

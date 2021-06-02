@@ -1,3 +1,4 @@
-import loadable from "@loadable/component"
+import loadable from '@loadable/component'
 
-export const Alert = loadable(() => import("./Alert/Alert"))
+export const Alert = loadable(() => import('./Alert'))
+/*export const Dropdown = loadable(() => import('./Dropdown'))*/

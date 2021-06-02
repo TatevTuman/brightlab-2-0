@@ -5,30 +5,30 @@ module.exports = {
     author: `https://brightlab.me`,
     navigation: [
       {
-        path: "/",
-        label: "Solutions",
-        icon: "Test",
+        path: '/',
+        label: 'Solutions',
+        icon: 'AcademicCap'
       },
       {
-        path: "/",
-        label: "Pricing",
-        icon: "Test",
+        path: '/',
+        label: 'Pricing',
+        icon: 'CurrencyDollar'
       },
       {
-        path: "/",
-        label: "Docs",
-        icon: "Test",
+        path: '/',
+        label: 'Docs',
+        icon: 'BookOpen'
       },
       {
-        path: "/",
-        label: "Company",
-        icon: "Test",
-      },
-    ],
+        path: '/',
+        label: 'Company',
+        icon: 'BriefCase'
+      }
+    ]
   },
   flags: {
     PRESERVE_WEBPACK_CACHE: true,
-    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -37,8 +37,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/static/images`,
-      },
+        path: `${__dirname}/static/images`
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -58,6 +58,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    "gatsby-plugin-postcss",
-  ],
+    'gatsby-plugin-postcss'
+  ]
 }

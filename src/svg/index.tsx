@@ -1,16 +1,19 @@
-import React, { ReactElement, useEffect, useState } from "react"
+import React, { ReactElement, useEffect, useState } from 'react'
 
 export type IconProps = {
   className?: string
   onClick?(): void
 }
 
-export type IconType = "Logo" | "Test"
+export type IconType = 'Logo' | 'AcademicCap' | 'BookOpen' | 'BriefCase' | 'CurrencyDollar'
 
-import Test from "./icons/Test"
-import Logo from "./icons/Logo"
+import Logo from './icons/Logo'
+import AcademicCap from './icons/AcademicCap'
+import BookOpen from './icons/BookOpen'
+import BriefCase from './icons/BriefCase'
+import CurrencyDollar from './icons/CurrencyDollar'
 
-const DynamicIcon = (props: { icon: IconType } & IconProps) => {
+const Dynamic = (props: { icon: IconType } & IconProps) => {
   const { icon, ...otherProps } = props
 
   const [Icon, setIcon] = useState<ReactElement>()
@@ -23,4 +26,4 @@ const DynamicIcon = (props: { icon: IconType } & IconProps) => {
   return Icon ? React.createElement(Icon.type, otherProps) : null
 }
 
-export { Logo, Test, DynamicIcon }
+export { Logo, AcademicCap, BookOpen, BriefCase, CurrencyDollar, Dynamic }
