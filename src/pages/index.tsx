@@ -1,7 +1,10 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import { Seo } from '~components'
+import { Dropdown } from '~elements'
 
 const IndexPage = () => {
+  const [show, setShow] = useState(false)
+
   return (
     <section className="bg-white pt-20">
       <Seo title={'Home'} />
@@ -15,6 +18,14 @@ const IndexPage = () => {
           <div className="btn btn-green-white ml-10">Learn more</div>
         </div>
       </div>
+      <Dropdown
+        options={new Array(100).fill(0).map((_, index) => ({ label: 'User' + index, value: index.toString() }))}
+        show={show}
+        onShow={() => setShow(true)}
+        onHide={() => setShow(false)}
+      >
+        Dropdown
+      </Dropdown>
     </section>
   )
 }

@@ -24,7 +24,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     return (
       <Menu.Items
         static
-        className="w-full absolute left-0 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        className="w-full max-h-200 overflow-y-scroll absolute left-0 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       >
         {groups!.map((group, index) => {
           const { title, options } = group
@@ -62,7 +62,7 @@ const Dropdown: React.FC<DropdownProps> = props => {
     return (
       <Menu.Items
         static
-        className="w-full absolute left-0 mt-2 origin-top-right bg-white rounded-6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        className="w-full max-h-200 overflow-y-scroll absolute left-0 mt-2 origin-top-right bg-white rounded-6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       >
         {options!.map(option => {
           const { label, value } = option
@@ -103,14 +103,14 @@ const Dropdown: React.FC<DropdownProps> = props => {
               {children}
             </div>
             <Transition
-              as={Fragment}
+              as={'div'}
               show={show}
-              enter="transition ease-out duration-500"
-              enterFrom="transform opacity-0 max-h-0"
-              enterTo="transform opacity-100 max-h-300"
-              leave="transition ease-in duration-500"
-              leaveFrom="transform opacity-100 max-h-300"
-              leaveTo="transform opacity-0 max-h-0"
+              enter="transition ease-out duration-200"
+              enterFrom="transform opacity-0 scale-90"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-150"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-90"
             >
               {render()}
             </Transition>
