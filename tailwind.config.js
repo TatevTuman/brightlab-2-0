@@ -120,7 +120,11 @@ module.exports = {
       animation: {
         /*popover: "popover 1s ease",*/
       },
-      zIndex: {}
+      zIndex: {
+        0: 0,
+        1: 1,
+        2: 2
+      }
     }
   },
   variants: {

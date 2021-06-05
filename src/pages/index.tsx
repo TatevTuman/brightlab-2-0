@@ -1,9 +1,21 @@
 import React, { memo, useState } from 'react'
 import { Seo } from '~components'
-import { Dropdown } from '~elements'
+import { Menu, Select } from '~elements'
+import { OptionType } from '~types'
 
 const IndexPage = () => {
-  const [show, setShow] = useState(false)
+  const [showSelect, setShowSelect] = useState(false)
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [selected, setSelected] = useState<OptionType | null>(null)
+
+  const options = [
+    { label: 'Wade Cooper', value: 'Wade Cooper' },
+    { label: 'Arlene Mccoy', value: 'Arlene Mccoy' },
+    { label: 'Devon Webb', value: 'Devon Webb' },
+    { label: 'Tom Cook', value: 'Tom Cook' },
+    { label: 'Tanya Fox', value: 'Tanya Fox' },
+    { label: 'Hellen Schmidt', value: 'Hellen Schmidt' }
+  ]
 
   return (
     <section className="bg-white pt-20">
@@ -18,14 +30,19 @@ const IndexPage = () => {
           <div className="btn btn-green-white ml-10">Learn more</div>
         </div>
       </div>
-      <Dropdown
-        options={new Array(100).fill(0).map((_, index) => ({ label: 'User' + index, value: index.toString() }))}
-        show={show}
-        onShow={() => setShow(true)}
-        onHide={() => setShow(false)}
+      <Select
+        show={showSelect}
+        options={options}
+        selected={selected}
+        onSelect={setSelected}
+        onShow={setShowSelect}
+        onHide={setShowSelect}
       >
-        Dropdown
-      </Dropdown>
+        <div>Children</div>
+      </Select>
+      <Menu show={showDropdown} options={options} onShow={setShowDropdown} onHide={setShowDropdown}>
+        <div>Children</div>
+      </Menu>
     </section>
   )
 }
