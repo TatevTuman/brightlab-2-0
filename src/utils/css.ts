@@ -13,7 +13,7 @@ export default {
 
   /* TODO tests and description */
   pxToRem: (px: number, baseFontSize?: number) => {
-    baseFontSize = baseFontSize || 15
+    baseFontSize = baseFontSize || 16
 
     const remSize = px / baseFontSize
     return remSize + 'rem'

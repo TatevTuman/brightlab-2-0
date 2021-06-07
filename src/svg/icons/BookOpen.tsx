@@ -1,12 +1,13 @@
 import React, { memo } from 'react'
 import { IconProps } from '~svg'
+import cls from 'classnames'
 
 const BookOpenIcon: React.FC<IconProps> = props => {
   const { className, ...otherProps } = props
 
   return (
     <svg
-      className={`stroke-current ${className}`}
+      className={cls('stroke-current', className)}
       fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"

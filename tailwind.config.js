@@ -1,6 +1,6 @@
 const colors = require('./static/styles/colors')
 
-const rem = 14
+const rem = 16
 const array = max => new Array(max).fill(0).map((_, index) => index)
 
 const pxToRem = px => px / rem + 'rem'
@@ -69,10 +69,13 @@ module.exports = {
     extend: {
       spacing: {
         ...spacing,
-        200: pxToRem(200)
+        200: pxToRem(200),
+        '100%': '100%'
       },
       borderRadius: {
-        ...borderRadius
+        ...borderRadius,
+        '25%': '25%',
+        '50%': '50%'
       },
       backgroundImage: theme => ({
         /*checkbox: 'url("/assets/images/checkbox.svg")',*/
@@ -84,31 +87,37 @@ module.exports = {
         0.75: 0.75,
         0.25: 0.25
       },
-      maxWidth: {},
+      maxWidth: {
+        screen: '100vw'
+      },
       minWidth: {
-        320: pxToRem(320)
+        320: pxToRem(320),
+        screen: '100vw'
       },
       maxHeight: {
         0: 0,
         300: pxToRem(300),
-        auto: 'auto'
+        auto: 'auto',
+        screen: '100vh'
       },
       minHeight: {
-        '100vh': '100vh'
+        screen: '100vh'
       },
       width: {
         '25%': '25%',
         '50%': '50%',
         '75%': '75%',
         '100%': '100%',
-        fit: 'fit-content'
+        fit: 'fit-content',
+        screen: '100vw'
       },
       height: {
+        200: pxToRem(200),
         '25%': '25%',
         '50%': '50%',
         '75%': '75%',
         '100%': '100%',
-        200: pxToRem(200)
+        screen: '100vh'
       },
       keyframes: {
         /*popover: {

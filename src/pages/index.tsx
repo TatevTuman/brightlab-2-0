@@ -1,12 +1,14 @@
 import React, { memo, useState } from 'react'
 import { Seo } from '~components'
-import { Menu, Select } from '~elements'
+import { Menu, ListBox, Switch, Checkbox, Radio, Disclosure, Dialog } from '~elements'
 import { OptionType } from '~types'
 
 const IndexPage = () => {
-  const [showSelect, setShowSelect] = useState(false)
+  const [showListBox, setShowListBox] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
-  const [selected, setSelected] = useState<OptionType | null>(null)
+  const [checked, setChecked] = useState(false)
+  const [selected, setListBoxed] = useState<OptionType | null>(null)
+  const [dialogShowed, showDialog] = useState(false)
 
   const options = [
     { label: 'Wade Cooper', value: 'Wade Cooper' },
@@ -30,19 +32,33 @@ const IndexPage = () => {
           <div className="btn btn-green-white ml-10">Learn more</div>
         </div>
       </div>
-      <Select
-        show={showSelect}
+      <ListBox
+        show={showListBox}
         options={options}
-        selected={selected}
-        onSelect={setSelected}
-        onShow={setShowSelect}
-        onHide={setShowSelect}
+        value={selected}
+        onChange={setListBoxed}
+        onShow={setShowListBox}
+        onHide={setShowListBox}
       >
         <div>Children</div>
-      </Select>
+      </ListBox>
       <Menu show={showDropdown} options={options} onShow={setShowDropdown} onHide={setShowDropdown}>
         <div>Children</div>
       </Menu>
+      <Switch value={checked} onChange={setChecked} />
+      <Checkbox name={'checkbox'} label={'Hello world'} value={checked} onChange={setChecked} />
+      <Radio name={'radio'} label={'Hello world'} value={checked} onChange={setChecked} />
+      <Disclosure
+        title={'Disclosure'}
+        description={
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa cumque ducimus eius explicabo fuga fugit laboriosam, laudantium, nobis officiis quaerat quis repellendus sint vero!'
+        }
+      />
+      <button onClick={() => showDialog(true)}>Show dialog</button>
+      <Dialog show={dialogShowed} onHide={showDialog}>
+        <h3>Title</h3>
+        <p>Content</p>
+      </Dialog>
     </section>
   )
 }

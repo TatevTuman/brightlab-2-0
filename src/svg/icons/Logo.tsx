@@ -1,12 +1,13 @@
-import React, { memo } from "react"
-import { IconProps } from "../index"
+import React, { memo } from 'react'
+import { IconProps } from '../index'
+import cls from 'classnames'
 
 const LogoIcon: React.FC<IconProps> = props => {
   const { className, ...otherProps } = props
 
   return (
     <svg
-      className={`fill-current ${className}`}
+      className={cls('fill-current', className)}
       width="137"
       height="28"
       viewBox="0 0 137 28"

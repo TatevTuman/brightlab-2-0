@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import cls from 'classnames'
 import { IconProps } from '~svg'
 
 const BriefCaseIcon: React.FC<IconProps> = props => {
@@ -6,7 +7,7 @@ const BriefCaseIcon: React.FC<IconProps> = props => {
 
   return (
     <svg
-      className={`fill-current ${className}`}
+      className={cls('fill-current', className)}
       viewBox="0 0 20 20"
       fill=""
       xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { ClassName } from '~types'
 
 export type IconProps = {
-  className?: string
+  className?: ClassName
   onClick?(): void
 }
 
@@ -12,6 +13,7 @@ import AcademicCap from './icons/AcademicCap'
 import BookOpen from './icons/BookOpen'
 import BriefCase from './icons/BriefCase'
 import CurrencyDollar from './icons/CurrencyDollar'
+import Check from './icons/Check'
 
 const Dynamic = (props: { icon: IconType } & IconProps) => {
   const { icon, ...otherProps } = props
@@ -26,4 +28,4 @@ const Dynamic = (props: { icon: IconType } & IconProps) => {
   return Icon ? React.createElement(Icon.type, otherProps) : null
 }
 
-export { Logo, AcademicCap, BookOpen, BriefCase, CurrencyDollar, Dynamic }
+export { Logo, AcademicCap, BookOpen, BriefCase, CurrencyDollar, Check, Dynamic }

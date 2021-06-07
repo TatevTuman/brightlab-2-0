@@ -1,12 +1,13 @@
 import React, { memo } from 'react'
 import { IconProps } from '~svg'
+import cls from 'classnames'
 
 const AcademicCapIcon: React.FC<IconProps> = props => {
   const { className, ...otherProps } = props
 
   return (
     <svg
-      className={`fill-current ${className}`}
+      className={cls('fill-current', className)}
       viewBox="0 0 20 20"
       fill=""
       xmlns="http://www.w3.org/2000/svg"

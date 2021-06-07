@@ -1,7 +1,7 @@
-import React, { Fragment, memo, forwardRef, useRef } from 'react'
+import React, { Fragment, memo, forwardRef, useRef, RefObject } from 'react'
+import cls from 'classnames'
 import { Menu as MenuComponent, Transition } from '@headlessui/react'
-import Class from 'classnames'
-import { Children, OptionType } from '~types'
+import { Children, ClassName, OptionType } from '~types'
 import { useOutsideClick } from '~hooks'
 
 interface MenuItemProps {
@@ -15,7 +15,7 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>((props, ref) => {
     <MenuComponent.Item key={value}>
       {({ active }) => (
         <button
-          className={Class(
+          className={cls(
             'group flex rounded-md items-center w-full px-2 py-2 text-14',
             { 'bg-violet-500 text-white': active },
             { 'text-gray-900': !active }
@@ -48,7 +48,7 @@ const MenuItems = forwardRef<HTMLDivElement, MenuItemsProps>((props, ref) => {
     <MenuComponent.Items
       ref={ref}
       static
-      className={Class(
+      className={cls(
         'w-full max-h-200 overflow-y-scroll absolute left-0 mt-2 origin-top-right bg-white rounded-6 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
         { 'divide-y divide-gray-100': isGroupedOptions },
         { 'z-1': show }
@@ -82,7 +82,7 @@ const MenuItems = forwardRef<HTMLDivElement, MenuItemsProps>((props, ref) => {
 MenuItems.displayName = 'MenuItems'
 
 interface MenuProps {
-  className?: string
+  className?: ClassName
   show: boolean
   children: Children
   options?: OptionType[]
@@ -91,14 +91,14 @@ interface MenuProps {
   onHide: (value: boolean) => void
 }
 
-const Menu: React.FC<MenuProps> = props => {
+const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const { className, show, options, groups, children, onShow, onHide } = props
 
-  const ref = useRef<HTMLDivElement>(null)
-  useOutsideClick(ref, () => onHide(false))
+  const innerRef = ref || useRef<HTMLDivElement>(null)
+  useOutsideClick(innerRef as RefObject<HTMLDivElement>, () => onHide(false))
 
   return (
-    <div className={`relative inline-block text-left ${className}`} ref={ref}>
+    <div className={`relative inline-block text-left ${className}`} ref={innerRef}>
       <MenuComponent as={Fragment}>
         {({ open }) => (
           <>
@@ -122,6 +122,8 @@ const Menu: React.FC<MenuProps> = props => {
       </MenuComponent>
     </div>
   )
-}
+})
+
+Menu.displayName = 'Menu'
 
 export default memo(Menu)

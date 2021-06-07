@@ -1,6 +1,11 @@
-import { useEffect } from 'react'
+import { MutableRefObject, RefObject, useEffect } from 'react'
 
-const useOutsideClick = (ref: React.RefObject<HTMLElement>, callback: (arg: MouseEvent | TouchEvent) => void) => {
+type Element = HTMLElement | HTMLDivElement
+
+const useOutsideClick = (
+  ref: RefObject<Element> | MutableRefObject<Element>,
+  callback: (arg: MouseEvent | TouchEvent) => void
+) => {
   useEffect(
     () => {
       const listener = (event: MouseEvent | TouchEvent) => {
