@@ -1,10 +1,10 @@
-import React, { memo } from "react"
-import { Seo } from "~components"
+import React, { memo } from 'react'
+import { PageMeta } from '~seo'
 
 const NotFoundPage = () => {
   return (
     <section>
-      <Seo title="404: Not found" />
+      <PageMeta title="404: Not found" />
       <h1>404: Not Found</h1>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
     </section>

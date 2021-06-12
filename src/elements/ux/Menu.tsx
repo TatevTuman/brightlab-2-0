@@ -1,8 +1,8 @@
-import React, { Fragment, memo, forwardRef, useRef, RefObject } from 'react'
+import React, { Fragment, memo, forwardRef, useRef, RefObject, useEffect } from 'react'
 import cls from 'classnames'
 import { Menu as MenuComponent, Transition } from '@headlessui/react'
 import { Children, ClassName, OptionType } from '~types'
-import { useOutsideClick } from '~hooks'
+import { useClickAway } from '~hooks'
 
 interface MenuItemProps {
   option: OptionType
@@ -95,14 +95,14 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const { className, show, options, groups, children, onShow, onHide } = props
 
   const innerRef = ref || useRef<HTMLDivElement>(null)
-  useOutsideClick(innerRef as RefObject<HTMLDivElement>, () => onHide(false))
+  useClickAway(innerRef as RefObject<HTMLDivElement>, () => onHide(false))
 
   return (
     <div className={`relative inline-block text-left ${className}`} ref={innerRef}>
       <MenuComponent as={Fragment}>
         {({ open }) => (
           <>
-            <div className="inline-flex justify-center cursor-pointer" onClick={() => onShow(true)}>
+            <div className="inline-flex justify-center cursor-pointer" onClick={() => onShow(!show)}>
               {children}
             </div>
             <Transition

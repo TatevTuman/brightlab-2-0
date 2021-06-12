@@ -1,16 +1,20 @@
-import React, { Fragment, memo, forwardRef, useRef, RefObject } from 'react'
+import React, { Fragment, memo, forwardRef, useRef, RefObject, useEffect } from 'react'
 import { Listbox as ListBoxComponent, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/solid'
 import cls from 'classnames'
 import { Children, OptionType } from '~types'
-import { useOutsideClick } from '~hooks'
+import { useClickAway } from '~hooks'
 
 interface ListBoxOptionProps {
   option: OptionType
+  selected: boolean
 }
 
 const ListBoxOption = forwardRef<HTMLLIElement, ListBoxOptionProps>((props, ref) => {
-  const { label, value } = props.option
+  const {
+    option: { label, value },
+    selected
+  } = props
 
   return (
     <ListBoxComponent.Option
@@ -25,18 +29,20 @@ const ListBoxOption = forwardRef<HTMLLIElement, ListBoxOptionProps>((props, ref)
       }
       value={value}
     >
-      {({ selected, active }) => (
-        <>
-          <span className={cls('block truncate', { 'font-medium': selected }, { 'font-normal': !selected })}>
-            {label}
-          </span>
-          {selected && (
-            <span className={cls('absolute inset-y-0 left-0 flex items-center pl-3', { 'text-green-600': active })}>
-              <CheckIcon className="w-10 h-10" aria-hidden="true" />
+      {() => {
+        return (
+          <>
+            <span className={cls('block truncate', { 'font-medium': selected }, { 'font-normal': !selected })}>
+              {label}
             </span>
-          )}
-        </>
-      )}
+            {selected && (
+              <span className={cls('absolute inset-y-0 left-0 flex items-center pl-3')}>
+                <CheckIcon className="w-10 h-10" aria-hidden="true" />
+              </span>
+            )}
+          </>
+        )
+      }}
     </ListBoxComponent.Option>
   )
 })
@@ -46,10 +52,11 @@ ListBoxOption.displayName = 'ListBoxOption'
 interface ListBoxOptionsProps {
   show: boolean
   options: OptionType[]
+  value: string | null
 }
 
 const ListBoxOptions = forwardRef<HTMLUListElement, ListBoxOptionsProps>((props, ref) => {
-  const { show, options } = props
+  const { show, options, value } = props
 
   return (
     <ListBoxComponent.Options
@@ -61,7 +68,7 @@ const ListBoxOptions = forwardRef<HTMLUListElement, ListBoxOptionsProps>((props,
       )}
     >
       {options.map((option, index) => {
-        return <ListBoxOption key={option.value + index} option={option} />
+        return <ListBoxOption key={option.value + index} option={option} selected={value === option.value} />
       })}
     </ListBoxComponent.Options>
   )
@@ -71,11 +78,11 @@ ListBoxOptions.displayName = 'ListBoxOptions'
 
 interface ListBoxProps {
   className?: string
-  children: ((value: OptionType | null) => Children) | Children
+  children: ((value: string | null) => Children) | Children
   show: boolean
-  value: OptionType | null
+  value: string | null
   options: OptionType[]
-  onChange: (option: OptionType) => void
+  onChange: (value: string) => void
   onShow: (value: boolean) => void
   onHide: (value: boolean) => void
 }
@@ -84,15 +91,15 @@ const ListBox = forwardRef<HTMLDivElement, ListBoxProps>((props, ref) => {
   const { className, show, children, options, value, onChange, onShow, onHide } = props
 
   const innerRef = ref || useRef<HTMLDivElement>(null)
-  useOutsideClick(innerRef as RefObject<HTMLDivElement>, () => onHide(false))
+  useClickAway(innerRef as RefObject<HTMLDivElement>, () => onHide(false))
 
   return (
-    <div className={className} ref={ref}>
+    <div>
       <ListBoxComponent value={value} onChange={onChange}>
-        <div className="relative mt-1">
+        <div className={cls('relative mt-1', className)} ref={innerRef}>
           <div
             className="relative w-full text-left bg-white rounded-lg shadow-md cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500"
-            onClick={() => onShow(true)}
+            onClick={() => onShow(!show)}
           >
             {typeof children === 'function' ? children(value) : children}
           </div>
@@ -106,7 +113,7 @@ const ListBox = forwardRef<HTMLDivElement, ListBoxProps>((props, ref) => {
             leaveFrom="transform opacity-100 translate-y-0"
             leaveTo="transform opacity-0 translate-y-5"
           >
-            <ListBoxOptions show={show} options={options} />
+            <ListBoxOptions show={show} options={options} value={value} />
           </Transition>
         </div>
       </ListBoxComponent>

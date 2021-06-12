@@ -1,9 +1,9 @@
 import { PageProps } from 'gatsby'
 import React, { memo } from 'react'
 
-interface PageComponentProps extends PageProps {}
+interface PageLayoutProps extends PageProps {}
 
-const Page: React.FC<PageComponentProps> = props => {
+const PageLayout: React.FC<PageLayoutProps> = props => {
   const { children } = props
 
   return (
@@ -13,4 +13,4 @@ const Page: React.FC<PageComponentProps> = props => {
   )
 }
 
-export default memo(Page)
+export default memo(PageLayout)

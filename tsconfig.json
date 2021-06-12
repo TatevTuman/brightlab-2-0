@@ -24,21 +24,25 @@
         and .storybook/main.js
         and jest.config.ts with moduleNameMapper
       */
-      "~components": ["src/components/index.ts"],
-      "~elements": ["src/elements/index.ts"],
-      "~layouts": ["src/layouts/index.ts"],
-      "~modules": ["src/modules/index.ts"],
-      "~types": ["src/types/index.ts"],
-      "~graphql": ["src/graphql/index.ts"],
-      "~fragments": ["src/graphql/fragments/index.ts"],
-      "~utils": ["src/utils/index.ts"],
-      "~hooks": ["src/hooks/index.ts"],
-      "~hocs": ["src/hocs/index.ts"],
-      "~svg": ["src/svg/index.tsx"],
+      "~hooks": ["src/hooks/EXPORT.ts"],
+      "~hocs": ["src/hocs/EXPORT.ts"],
+
+      "~graphql": ["src/graphql/EXPORT.ts"],
+      "~fragments": ["src/graphql/fragments/EXPORT.ts"],
+
+      "~layouts": ["src/components/layouts/EXPORT.ts"],
+      "~sections": ["src/components/sections/EXPORT.ts"],
+      "~seo": ["src/components/seo/EXPORT.ts"],
+
+      "~svg": ["src/elements/svg/EXPORT.tsx"],
+      "~ui": ["src/elements/ui/EXPORT.ts"],
+      "~ux": ["src/elements/ux/EXPORT.ts"],
 
       "~images/*": ["static/images/*"],
       "~styles/*": ["static/styles/*"],
-      "~pages-components/*": ["src/pages-components/*"]
+
+      "~types": ["src/types/EXPORT.ts"],
+      "~utils": ["src/utils/EXPORT.ts"]
     },
     "typeRoots": ["./node_modules/@types", "./@types"]
   },

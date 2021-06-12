@@ -36,7 +36,7 @@ const Dialog: React.FC<DialogProps> = props => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            {children}
+            <div tabIndex={0}>{children}</div>
           </Transition.Child>
         </div>
       </DialogComponent>

@@ -5,9 +5,9 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from "react"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import * as React from 'react'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
 interface SeoProps {
   description?: string
@@ -19,7 +19,7 @@ interface SeoProps {
   title: string
 }
 
-const Seo = (props: SeoProps) => {
+const PageMeta = (props: SeoProps) => {
   const { description, lang, meta = [], title } = props
 
   const { site } = useStaticQuery(
@@ -42,52 +42,52 @@ const Seo = (props: SeoProps) => {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang
       }}
       title={title}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: metaDescription
         },
         {
           property: `og:title`,
-          content: title,
+          content: title
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: metaDescription
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: `website`
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary`
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: site.siteMetadata?.author || ``
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: title
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
-        },
+          content: metaDescription
+        }
       ].concat(meta)}
     />
   )
 }
 
-Seo.defaultProps = {
+PageMeta.defaultProps = {
   lang: `en`,
   meta: [],
-  description: ``,
+  description: ``
 }
 
-export default React.memo(Seo)
+export default React.memo(PageMeta)

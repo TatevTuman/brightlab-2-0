@@ -1,5 +1,5 @@
 import { ApolloError, FetchResult } from '@apollo/client'
-import { MutationResponse, ResponseType } from '@types'
+import { MutationResponse, ResponseType } from '~types'
 import { useAlert } from 'react-alert'
 
 const useRequestErrorHandler = () => {
