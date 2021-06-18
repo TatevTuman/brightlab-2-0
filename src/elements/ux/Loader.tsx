@@ -1,10 +1,9 @@
 import React, { memo, CSSProperties } from 'react'
 import LoaderComponent from 'react-loader-spinner'
 import { css } from '~utils'
-import cls from 'classnames'
-import './Loader.scss'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import { ClassName } from '~types'
+import cls from 'classnames'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 type LoaderTypes =
   | 'Audio'
@@ -29,20 +28,20 @@ export interface LoaderProps {
   width?: number
   height?: number
   radius?: number
-  type: LoaderTypes
+  type?: LoaderTypes
   className?: ClassName
   style?: CSSProperties
 }
 
 const Loader: React.FC<LoaderProps> = props => {
-  const { className, style, ...otherProps } = props
+  const { className, style, type = 'Oval', ...otherProps } = props
 
   const width = css.pxToRem(props.width!)
   const height = css.pxToRem(props.height!)
 
   return (
     <div className={cls('', className)} style={style} data-testid={'loader'}>
-      <LoaderComponent width={width} height={height} {...otherProps} />
+      <LoaderComponent width={width} height={height} type={type} {...otherProps} />
     </div>
   )
 }

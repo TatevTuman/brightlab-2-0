@@ -46,22 +46,51 @@
     }
 
     h1 {
-        @apply text-36 font-extrabold sm:text-24;
+        @apply text-24 font-bold;
     }
 
     h2 {
+        @apply text-20 font-bold;
     }
 
     h3 {
+        @apply text-18 font-bold;
     }
 
     h4 {
+        @apply text-16 font-bold;
     }
 
     h5 {
+        @apply text-14 font-bold;
+    }
+
+    h5.subtitle {
+        @apply text-14 font-semibold;
+    }
+
+    p {
+        @apply text-14;
     }
 
     h6 {
+        @apply text-12 font-bold;
+    }
+
+    h6.subtitle {
+        @apply text-12 font-semibold;
+    }
+
+    small {
+        @apply text-12;
+    }
+
+    small.xs-bold {
+        @apply text-10 font-bold;
+    }
+
+    small.xs {
+        @apply text-10;
     }
 
     a {

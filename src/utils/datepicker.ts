@@ -13,7 +13,7 @@ import {
   getNextMonth,
   getPreviousMonth,
   zeroPad
-} from '@utils'
+} from '~utils'
 
 export default (month = THIS_MONTH, year = THIS_YEAR) => {
   /* Get number of days in the month and the month's first day */

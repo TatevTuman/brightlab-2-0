@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLayout renders correctly 1`] = `
+<div>
+  <main
+    class="flex-1"
+  >
+    <div
+      class="container"
+    />
+  </main>
+</div>
+`;

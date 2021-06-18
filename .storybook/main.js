@@ -5,8 +5,11 @@ module.exports = {
     "../__stories__/**/**/*.story.@(js|jsx|ts|tsx)"
   ],
   "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-actions"
+    '@storybook/addon-links',
+    '@storybook/addon-actions',
+    '@storybook/addon-docs',
+    '@storybook/addon-controls',
+    '@storybook/addon-postcss'
   ],
   webpackFinal: async config => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
@@ -49,24 +52,6 @@ module.exports = {
       '~types': path.resolve(__dirname, '../src/types/EXPORT.ts'),
       '~utils': path.resolve(__dirname, '../src/utils/EXPORT.ts')
     }
-
-    /* PostCss */
-    config.module.rules.push({
-      test: /\,css&/,
-      use: [
-        {
-          loader: 'postcss-loader',
-          options: {
-            ident: 'postcss',
-            plugins: [
-              require('tailwindcss'),
-              require('autoprefixer')
-            ]
-          }
-        }
-      ],
-      include: path.resolve(__dirname, '../'),
-    })
 
     /* Manage typescript */
     config.module.rules.push({

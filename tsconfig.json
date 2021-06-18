@@ -1,29 +1,22 @@
-// tsconfig.json
 {
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "esnext"],
-    // "allowJs": true,
-    // "checkJs": true,
-    "jsx": "react", // https://stackoverflow.com/questions/62859458/what-is-the-use-of-jsx-property-in-tsconfig-json
+    "jsx": "react",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
-    "moduleResolution": "node", // https://www.typescriptlang.org/docs/handbook/module-resolution.html#node
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "noUnusedLocals": false,
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      /*
-        also check gatsby-node.js onCreateWebpackConfig aliases
-        and .storybook/main.js
-        and jest.config.ts with moduleNameMapper
-      */
       "~hooks": ["src/hooks/EXPORT.ts"],
       "~hocs": ["src/hocs/EXPORT.ts"],
 

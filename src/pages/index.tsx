@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { PageMeta } from '~seo'
+import { Button } from '~ui'
 
 const IndexPage = () => {
   return (
@@ -11,8 +12,8 @@ const IndexPage = () => {
           <span className="block text-green-600">Welcome to the Gatsby Boilerplate for Brightlab!</span>
         </h1>
         <div className="mt-8 flex">
-          <button className="btn btn-green">Get started</button>
-          <div className="btn btn-green-white ml-10">Learn more</div>
+          <Button>Get started</Button>
+          <Button variant="green-white">Learn more</Button>
         </div>
       </div>
     </section>

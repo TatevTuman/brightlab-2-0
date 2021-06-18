@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert renders correctly 1`] = `
+<div>
+  <div
+    class="w-fit min-h-40 flex font-medium items-center justify-center rounded-5 px-30 bg-green-700"
+    data-testid="alert"
+  >
+    Test
+  </div>
+</div>
+`;

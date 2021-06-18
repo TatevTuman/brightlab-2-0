@@ -7,7 +7,7 @@ const pxToRem = px => px / rem + 'rem'
 
 const spacing = array(200).reduce((acc, spacing) => ({ ...acc, [spacing]: pxToRem(spacing) }), {})
 const borderRadius = array(30).reduce((acc, borderRadius) => ({ ...acc, [borderRadius]: pxToRem(borderRadius) }), {})
-const fontSize = array(20).reduce((acc, fontSize) => ({ ...acc, [fontSize]: pxToRem(fontSize) }), {})
+const fontSize = array(25).reduce((acc, fontSize) => ({ ...acc, [fontSize]: pxToRem(fontSize) }), {})
 const lineHeight = array(40).reduce((acc, lineHeight) => ({ ...acc, [lineHeight]: pxToRem(lineHeight) }), {})
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     boxShadow: {
-      DEFAULT: '1px, 2px, 4px, rgba(0, 0, 0, 1)'
+      DEFAULT: `${pxToRem(1)}, ${pxToRem(2)}, ${pxToRem(4)}, rgba(0, 0, 0, 0.5)`
     },
     colors: {
       ...colors

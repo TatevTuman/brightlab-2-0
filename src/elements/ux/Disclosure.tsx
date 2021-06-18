@@ -4,7 +4,7 @@ import { Disclosure as DisclosureComponent, Transition } from '@headlessui/react
 import { ChevronUpIcon } from '@heroicons/react/solid'
 import { Children, ClassName } from '~types'
 
-interface DisclosureProps {
+export interface DisclosureProps {
   className?: ClassName
   title: Children
   description: Children

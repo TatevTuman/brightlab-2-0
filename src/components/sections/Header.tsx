@@ -1,9 +1,10 @@
 import { Link } from 'gatsby'
 import React, { memo } from 'react'
 import { useSiteMetadata } from '~hooks'
+import { Button } from '~ui'
 import * as Icon from '~svg'
 
-interface HeaderProps {}
+export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = props => {
   const {} = props
@@ -30,8 +31,8 @@ const Header: React.FC<HeaderProps> = props => {
               </div>
             </div>
             <div className="ml-10 space-x-4">
-              <button className="btn btn-green">Sign In</button>
-              <button className="btn btn-green-white">Sign up</button>
+              <Button>Sign In</Button>
+              <Button variant={'green-white'}>Sign up</Button>
             </div>
           </div>
         </nav>
