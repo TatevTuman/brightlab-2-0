@@ -14,6 +14,7 @@ export interface AutocompleteProps {
 
 const Autocomplete = forwardRef<HTMLInputElement, AutocompleteProps>((props, ref) => {
   const { className, name, value, options, onChange, textInputProps } = props
+  console.log('name: ', name);
   const defaultSelectedOption = options.find(option => option.value === value)
 
   const [show, onShow] = useState(false)
