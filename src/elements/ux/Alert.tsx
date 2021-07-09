@@ -6,11 +6,11 @@ import { ClassName } from '~types'
 export type AlertVariantType = AlertType
 const getAlertVariantClass = (variant?: AlertVariantType, className?: ClassName) =>
   cls(
-    'w-fit min-h-40 flex font-medium items-center justify-center rounded-5 px-30',
+    'w-fit min-h-40 flex font-medium items-center justify-center rounded-5 text-neutral-1 px-30 mt-20 mr-20',
     {
-      'bg-green-700': !variant || variant === 'success',
-      'bg-orange-500': variant === 'info',
-      'bg-red-700': variant === 'error'
+      'bg-green-2': !variant || variant === 'success',
+      'bg-orange-2': variant === 'info',
+      'bg-red-1': variant === 'error'
     },
     className
   )

@@ -7,7 +7,6 @@ export default {
   title: 'UI/Select',
   component: Select,
   argTypes: {
-    /*textInput*/
     className: {
       name: 'Class',
       type: { name: 'string', required: false }

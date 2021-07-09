@@ -23,4 +23,3 @@ const CheckIcon: React.FC<IconProps> = props => {
 }
 
 export default memo(CheckIcon)
-

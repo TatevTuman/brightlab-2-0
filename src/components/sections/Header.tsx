@@ -12,10 +12,10 @@ const Header: React.FC<HeaderProps> = props => {
   const { navigation } = useSiteMetadata()
 
   return (
-    <header className="bg-green-600 py-16">
+    <header className="bg-neutral-14 py-16">
       <div className="container">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
-          <div className="w-full py-6 flex items-center justify-between border-b border-green-500 lg:border-none">
+          <div className="w-full py-6 flex items-center justify-between border-b border-neutral-5 lg:border-none">
             <div className="flex items-center">
               <Icon.Logo className="text-white -mt-9 mr-30" />
               <div className="space-x-32 lg:block">
@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = props => {
             </div>
             <div className="ml-10 space-x-4">
               <Button>Sign In</Button>
-              <Button variant={'green-white'}>Sign up</Button>
+              <Button variant={'primary'}>Sign up</Button>
             </div>
           </div>
         </nav>

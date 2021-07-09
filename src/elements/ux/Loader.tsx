@@ -5,7 +5,7 @@ import { ClassName } from '~types'
 import cls from 'classnames'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
-type LoaderTypes =
+export type LoaderTypes =
   | 'Audio'
   | 'BallTriangle'
   | 'Bars'
@@ -40,8 +40,15 @@ const Loader: React.FC<LoaderProps> = props => {
   const height = css.pxToRem(props.height!)
 
   return (
-    <div className={cls('', className)} style={style} data-testid={'loader'}>
-      <LoaderComponent width={width} height={height} type={type} {...otherProps} />
+    <div className={cls(className)} style={style} data-testid={'loader'}>
+      <LoaderComponent
+        color={'#F92D7A'}
+        secondaryColor={'#FFCADD'}
+        width={width}
+        height={height}
+        type={type}
+        {...otherProps}
+      />
     </div>
   )
 }

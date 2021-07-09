@@ -5,10 +5,23 @@ const array = max => new Array(max).fill(0).map((_, index) => index)
 
 const pxToRem = px => px / rem + 'rem'
 
-const spacing = array(200).reduce((acc, spacing) => ({ ...acc, [spacing]: pxToRem(spacing) }), {})
+const spacing = array(300).reduce((acc, spacing) => ({ ...acc, [spacing]: pxToRem(spacing) }), {})
 const borderRadius = array(30).reduce((acc, borderRadius) => ({ ...acc, [borderRadius]: pxToRem(borderRadius) }), {})
 const fontSize = array(25).reduce((acc, fontSize) => ({ ...acc, [fontSize]: pxToRem(fontSize) }), {})
 const lineHeight = array(40).reduce((acc, lineHeight) => ({ ...acc, [lineHeight]: pxToRem(lineHeight) }), {})
+
+const defaultValues = {
+  '25%': '25%',
+  '30%': '30%',
+  '33%': '33.333%',
+  '50%': '50%',
+  '66%': '66.666%',
+  '75%': '75%',
+  '100%': '100%',
+  inherit: 'inherit',
+  auto: 'auto',
+  fit: 'fit-content'
+}
 
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/**/*.{js,jsx,ts,tsx}'],
@@ -69,7 +82,7 @@ module.exports = {
     extend: {
       spacing: {
         ...spacing,
-        200: pxToRem(200),
+        ...defaultValues,
         '100%': '100%'
       },
       borderRadius: {
@@ -78,7 +91,8 @@ module.exports = {
         '50%': '50%'
       },
       backgroundImage: theme => ({
-        /*checkbox: 'url("/assets/images/checkbox.svg")',*/
+        'sign-in-page-layout': 'url("/images/sign-in-page-layout.png")',
+        'sign-up-page-layout': 'url("/images/sign-up-page-layout.png")'
       }),
       gridTemplateColumns: {
         '7x32': 'repeat(7, 32px)'
@@ -88,35 +102,32 @@ module.exports = {
         0.25: 0.25
       },
       maxWidth: {
+        ...spacing,
+        ...defaultValues,
         screen: '100vw'
       },
       minWidth: {
+        ...spacing,
+        ...defaultValues,
         320: pxToRem(320),
         screen: '100vw'
       },
       maxHeight: {
-        0: 0,
-        300: pxToRem(300),
-        auto: 'auto',
+        ...spacing,
+        ...defaultValues,
         screen: '100vh'
       },
       minHeight: {
+        ...spacing,
+        ...defaultValues,
         screen: '100vh'
       },
       width: {
-        '25%': '25%',
-        '50%': '50%',
-        '75%': '75%',
-        '100%': '100%',
-        fit: 'fit-content',
+        ...defaultValues,
         screen: '100vw'
       },
       height: {
-        200: pxToRem(200),
-        '25%': '25%',
-        '50%': '50%',
-        '75%': '75%',
-        '100%': '100%',
+        ...defaultValues,
         screen: '100vh'
       },
       keyframes: {
@@ -138,19 +149,24 @@ module.exports = {
   },
   variants: {
     extend: {
-      opacity: ['disabled'],
+      opacity: ['hover', 'group-hover', 'disabled', 'focus', 'focus-within'],
       animation: ['motion-safe'],
       outline: ['hover', 'active'],
-      fill: ['hover', 'active', 'focus'],
-      stroke: ['hover', 'active', 'focus'],
-      textColor: ['hover', 'active', 'focus', 'disabled'],
-      borderColor: ['hover', 'active', 'focus', 'disabled', 'checked'],
-      borderWidth: ['first'],
+      fill: ['hover', 'group-hover', 'active', 'focus'],
+      stroke: ['hover', 'group-hover', 'active', 'focus'],
+      ringColor: ['hover', 'active', 'focus', 'focus-within', 'disabled'],
+      ringWidth: ['hover', 'active', 'focus', 'focus-within', 'disabled'],
+      ringOffsetWidth: ['hover', 'active', 'focus', 'focus-within', 'disabled'],
+      textColor: ['hover', 'group-hover', 'active', 'focus', 'disabled'],
+      borderColor: ['hover', 'group-hover', 'active', 'focus', 'disabled', 'checked'],
+      borderWidth: ['first', 'group-hover', 'hover', 'active', 'focus', 'focus-within', 'disabled', 'checked'],
+      borderStyle: ['hover'],
       margin: ['hover', 'active', 'focus', 'last'],
       backgroundColor: ['hover', 'active', 'focus', 'disabled', 'checked'],
       backgroundImage: ['hover', 'active', 'focus', 'disabled', 'checked'],
+      translate: ['hover'],
       pointerEvents: ['disabled']
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/line-clamp')]
 }
