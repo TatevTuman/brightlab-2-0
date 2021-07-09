@@ -211,7 +211,7 @@
 
 @layer components {
     .container {
-        @apply min-w-320 px-44 mx-auto;
+        @apply min-w-320 px-60 mx-auto;
     }
 
     .layout {

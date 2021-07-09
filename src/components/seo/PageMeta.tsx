@@ -24,15 +24,15 @@ const PageMeta = (props: SeoProps) => {
 
   const { site } = useStaticQuery(
     graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+        query {
+            site {
+                siteMetadata {
+                    title
+                    description
+                    author
+                }
+            }
         }
-      }
     `
   )
 

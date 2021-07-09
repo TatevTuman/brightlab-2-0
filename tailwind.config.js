@@ -42,12 +42,12 @@ module.exports = {
       ...theme('colors')
     }),
     fontFamily: {
-      sans: ['Avenir', 'sans-serif']
+      sans: ['Lab Grotesque', 'sans-serif']
     },
     fontSize: {
       ...fontSize,
       36: pxToRem(36),
-      24: pxToRem(24)
+      '26': pxToRem(26)
     },
     lineHeight: {
       ...lineHeight

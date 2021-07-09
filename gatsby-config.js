@@ -6,22 +6,27 @@ module.exports = {
     navigation: [
       {
         path: '/',
-        label: 'Solutions',
+        label: 'Our team',
         icon: 'AcademicCap'
       },
       {
         path: '/',
-        label: 'Pricing',
+        label: 'Services',
         icon: 'CurrencyDollar'
       },
       {
         path: '/',
-        label: 'Docs',
+        label: 'Projects',
         icon: 'BookOpen'
       },
       {
         path: '/',
-        label: 'Company',
+        label: 'Blog',
+        icon: 'BriefCase'
+      },
+      {
+        path: '/',
+        label: 'Hire us',
         icon: 'BriefCase'
       }
     ]

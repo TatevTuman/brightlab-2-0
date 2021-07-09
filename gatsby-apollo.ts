@@ -1,17 +1,17 @@
-import fetch from "cross-fetch"
-import { ApolloClient, ApolloLink, HttpLink, from } from "@apollo/client"
-import { onError } from "@apollo/client/link/error"
-import gatsbyApolloCache from "./gatsby-apollo-cache"
+import fetch from 'cross-fetch'
+import { ApolloClient, ApolloLink, HttpLink, from } from '@apollo/client'
+import { onError } from '@apollo/client/link/error'
+import gatsbyApolloCache from './gatsby-apollo-cache'
 
 const authLink = new ApolloLink((operation, forward) => {
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("token")
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token')
 
     operation.setContext(({ headers = {} }) => ({
       headers: {
         ...headers,
-        Authorization: token ? `Bearer ${token}` : "",
-      },
+        Authorization: token ? `Bearer ${token}` : ''
+      }
     }))
   }
 
@@ -25,20 +25,20 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     networkError = {
       name,
       message,
-      stack,
+      stack
     }
   }
 })
 
-const uri = process.env.GATSBY_API || ""
+const uri = process.env.GATSBY_API || ''
 
 const httpLink = new HttpLink({
   uri,
-  fetch,
+  fetch
 })
 
 export default new ApolloClient({
   link: from([authLink, errorLink, httpLink]),
   cache: gatsbyApolloCache,
-  connectToDevTools: true,
+  connectToDevTools: true
 })
